@@ -14,7 +14,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:js && npm run build:type && npm run build:css",
-    "build:dev": "npm run build:js -- --dev && npm run build:type && npm run build:css",
+    "build:dev": "npm run build:js -- --dev --watch && npm run build:type && npm run build:css",
     "build:js": "node build.js",
     "build:type": "tsc --emitDeclarationOnly",
     "build:css": "node ./scripts/build-css-modules.js",

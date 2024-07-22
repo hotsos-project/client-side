@@ -1,5 +1,6 @@
 import { createRequire } from 'module';
 import esbuild from 'esbuild';
+import { exec } from 'child_process';
 
 const require = createRequire(import.meta.url);
 const pkg = require('./package.json');
@@ -16,6 +17,28 @@ const external = Object.keys({
     ...pkg.devDependencies,
     ...pkg.peerDependencies,
 })
+
+function runTSCBuild() {
+    exec('npm run build:type', (error, stdout, stderr) => {
+        if (error) {
+            console.error(error);
+            return;
+        }
+        console.log(stdout);
+        if (stderr) console.error(stderr);
+    });
+}
+
+function runCssBuild() {
+    exec('npm run build:css', (error, stdout, stderr) => {
+        if (error) {
+            console.error(error);
+            return;
+        }
+        console.log(stdout);
+        if (stderr) console.error(stderr);
+    });
+}
 
 /**
  * 빌드 설정
@@ -59,8 +82,21 @@ async function build() {
 
     if (watch) {
         // 만약 watch 한다면,
-        const ctxESM = await esbuild.context(esmConfig);
+        // 플러그인 설정
+        const plugins = [{
+            name: 'run-css-plugin',
+            setup(build) {
+                build.onEnd(result => {
+                    runTSCBuild(); // 빌드 끝나는 시점에 ts 컴파일 실행
+                    runCssBuild(); // 빌드 끝나는 시점에 css 파싱 실행
+                });
+            },
+        }];
+
+        // ESM 빌드에만 plugin 적용
+        const ctxESM = await esbuild.context({...esmConfig, plugins});
         const ctxCJS = await esbuild.context(cjsConfig);
+
         await Promise.all([
             ctxESM.watch(),
             ctxCJS.watch(),
