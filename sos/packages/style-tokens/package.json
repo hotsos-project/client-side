@@ -1,0 +1,31 @@
+{
+  "name": "@sos/style-tokens",
+  "version": "0.0.2",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style-tokens.css": "./dist/style-tokens.css"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:js && npm run build:type && npm run build:css",
+    "build:dev": "npm run build:js -- --dev && npm run build:type && npm run build:css",
+    "build:js": "node build.js",
+    "build:type": "tsc --emitDeclarationOnly",
+    "build:css": "node ./scripts/build-css-modules.js",
+    "clean": "rimraf dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "esbuild": "^0.23.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.3"
+  }
+}
