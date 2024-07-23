@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.ts", "../src/Block.tsx"],
+  "sourcesContent": ["export { Block } from \"./Block\";", "export const Block = () => {\r\n    return (\r\n        <div>\r\n            HI\r\n        </div>\r\n    );\r\n};"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,WAAAE,IAAA,eAAAC,EAAAH,GCEQ,IAAAI,EAAA,6BAFKC,EAAQ,OAEb,OAAC,OAAI,cAEL",
+  "names": ["src_exports", "__export", "Block", "__toCommonJS", "import_jsx_runtime", "Block"]
+}

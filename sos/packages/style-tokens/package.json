@@ -13,8 +13,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:js && npm run build:type && npm run build:css",
-    "build:dev": "npm run build:js -- --dev --watch && npm run build:type && npm run build:css",
+    "build": "yarn run build:js && yarn run build:type && yarn run build:css",
+    "build:dev": "yarn run build:js  --dev && yarn run build:type && yarn run build:css",
     "build:js": "node build.js",
     "build:type": "tsc --emitDeclarationOnly",
     "build:css": "node ./scripts/build-css-modules.js",
@@ -24,6 +24,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@sos/esbuild-config": "workspace:^",
     "esbuild": "^0.23.0",
     "rimraf": "^6.0.1",
     "typescript": "^5.5.3"

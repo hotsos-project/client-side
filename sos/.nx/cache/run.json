@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx storybook @sos/storybook",
+    "startTime": "2024-07-23T04:08:48.527Z",
+    "endTime": "2024-07-23T04:17:12.532Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@sos/storybook:storybook",
+      "target": "storybook",
+      "projectName": "@sos/storybook",
+      "hash": "1630421705696824664",
+      "startTime": "2024-07-23T04:08:48.537Z",
+      "endTime": "2024-07-23T04:17:12.531Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+(node:5004) ExperimentalWarning: Importing JSON modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+X [ERROR] Invalid option in build() call: "watch"
+
+    C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:253:12:
+      253 │       throw new Error(`Invalid option ${where}: ${quote(key)}`);
+          ╵             ^
+
+    at checkForInvalidFlags (C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:253:13)
+    at flagsForBuildOptions (C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:426:3)
+    at buildOrContextContinue (C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:913:9)
+    at buildOrContextImpl (C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:897:5)
+    at Object.buildOrContext (C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:699:5)
+    at C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:2024:15
+    at new Promise (<anonymous>)
+    at Object.build (C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:2023:25)
+    at build (C:\Users\SSAFY\Desktop\PJT\client-side\sos\.yarn\unplugged\esbuild-npm-0.23.0-176e4eb3ff\node_modules\esbuild\lib\main.js:1874:51)
+    at run (C:\Users\SSAFY\Desktop\PJT\client-side\sos\packages\esbuild-config\index.js:31:5)
+
+Build failed

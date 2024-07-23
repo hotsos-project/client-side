@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/Block.tsx"],
+  "sourcesContent": ["export const Block = () => {\r\n    return (\r\n        <div>\r\n            HI\r\n        </div>\r\n    );\r\n};"],
+  "mappings": "AAEQ,cAAAA,MAAA,oBAFD,IAAMC,EAAQ,IAEbD,EAAC,OAAI,cAEL",
+  "names": ["jsx", "Block"]
+}
