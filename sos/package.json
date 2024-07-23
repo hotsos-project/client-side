@@ -4,11 +4,16 @@
   "main": "index.js",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/**/*",
+    "services/**/*"
   ],
   "scripts": {
     "graph": "nx run-many --target=build --graph",
     "build": "nx build",
+    "build:all": "nx run-many --target=build --all",
+    "build:dev": "nx run-many --target=build:dev --all",
+    "clean": "nx clean",
+    "clean:all": "nx run-many --target=clean --all",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -19,6 +19,5 @@
         "build": {
             "dependsOn": ["^build"]
         }
-    },
-  "nxCloudAccessToken": "MmE4OGY5YTMtNmQyMy00YzM1LTlmODktNDk4MjQ5YTllNDkyfHJlYWQtd3JpdGU="
+    }
 }

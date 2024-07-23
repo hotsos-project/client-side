@@ -1,5 +1,5 @@
 {
-  "name": "@sos/style-tokens",
+  "name": "@sos/components-layout",
   "version": "0.0.2",
   "type": "module",
   "main": "index.js",
@@ -9,15 +9,14 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./style-tokens.css": "./dist/style-tokens.css"
+    "./style/css": "./dist/index.css"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn run build:js && yarn run build:type && yarn run build:css",
-    "build:dev": "yarn run build:js -- --dev --watch && yarn run build:type && yarn run build:css",
+    "build": "yarn run build:js && yarn run build:type",
+    "build:dev": "yarn run build:js -- --dev --watch && yarn run build:type",
     "build:js": "node build.js",
     "build:type": "tsc --emitDeclarationOnly",
-    "build:css": "node ./scripts/build-css-modules.js",
     "clean": "rimraf dist"
   },
   "author": "",
@@ -25,8 +24,19 @@
   "description": "",
   "devDependencies": {
     "@sos/esbuild-config": "workspace:^",
+    "@sos/style-tokens": "workspace:^",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vanilla-extract/css": "^1.15.3",
+    "@vanilla-extract/esbuild-plugin": "^2.3.8",
     "esbuild": "^0.23.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "rimraf": "^6.0.1",
     "typescript": "^5.5.3"
+  },
+  "peerDependencies": {
+    "@sos/style-tokens": "workspace:^",
+    "react": "*"
   }
 }

@@ -1,10 +1,10 @@
-const { build } = require('esbuild');
+const esbuild = require('esbuild');
 
-const run = ({
+const runBuild = ({
     entryPoints = ['src/index.ts'], // 모두 동일하게 entryPoint 설정,
     pkg,
     config = {}, // 추가 설정
-    onBuildEnd = () => {}, // 만약에 watch 실행 시 자동으로 실행되어야 하는 동작이 있다면 실행하는 함수
+    onBuildEnd = () => { }, // 만약에 watch 실행 시 자동으로 실행되어야 하는 동작이 있다면 실행하는 함수
 }) => {
     const dev = process.argv.includes('--dev'); // 명령줄 인자(arguments)를 확인
     const minify = !dev; // 만약 dev라면 minify 설정 해제
@@ -42,7 +42,7 @@ const run = ({
      * js(ESModule), cjs(commonJS) 파일 생성
      * -> 병렬 처리를 위해서 Promise.all
      */
-    async function build() {
+    async function executeBuild() {
         // ESModule 설정
         const esmConfig = {
             ...baseConfig,
@@ -64,16 +64,14 @@ const run = ({
             const plugins = [{
                 name: 'run-css-plugin',
                 setup(build) {
-                    build.onEnd(result => {
-                        console.log(test);
-                        // runTSCBuild(); // 빌드 끝나는 시점에 ts 컴파일 실행
-                        // runCssBuild(); // 빌드 끝나는 시점에 css 파싱 실행
+                    build.onEnd(() => {
+                        onBuildEnd();
                     });
                 },
             }];
 
             // ESM 빌드에만 plugin 적용
-            const ctxESM = await esbuild.context({...esmConfig, plugins});
+            const ctxESM = await esbuild.context({ ...esmConfig, plugins });
             const ctxCJS = await esbuild.context(cjsConfig);
 
             await Promise.all([
@@ -91,8 +89,10 @@ const run = ({
     }
 
     // build 및 에러 핸들링
-    build().catch((error) => {
+    executeBuild().catch((error) => {
         console.error("Build failed with error:", error);
         process.exit(1);
     });
 }
+
+module.exports = runBuild;
