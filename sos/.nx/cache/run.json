@@ -1,0 +1,43 @@
+{
+  "run": {
+    "command": "nx build @sos/components-layout",
+    "startTime": "2024-07-23T12:54:32.812Z",
+    "endTime": "2024-07-23T12:54:52.717Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@sos/esbuild-config:build",
+      "target": "build",
+      "projectName": "@sos/esbuild-config",
+      "hash": "10165848840899735964",
+      "startTime": "2024-07-23T12:54:32.827Z",
+      "endTime": "2024-07-23T12:54:35.139Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@sos/style-tokens:build",
+      "target": "build",
+      "projectName": "@sos/style-tokens",
+      "hash": "2815492122495718741",
+      "startTime": "2024-07-23T12:54:35.141Z",
+      "endTime": "2024-07-23T12:54:43.562Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "@sos/components-layout:build",
+      "target": "build",
+      "projectName": "@sos/components-layout",
+      "hash": "12651901992722759880",
+      "startTime": "2024-07-23T12:54:43.565Z",
+      "endTime": "2024-07-23T12:54:52.717Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}

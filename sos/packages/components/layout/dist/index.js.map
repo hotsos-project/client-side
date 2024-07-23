@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/block.css.ts", "../src/Block.tsx"],
+  "sourcesContent": ["import 'src/block.css.ts.vanilla.css?source=Ll8xZXdqbXFsMCB7CiAgd2lkdGg6IDEwMHB4OwogIGhlaWdodDogMTAwcHg7CiAgY29sb3I6IHZhcigtLWJsdWUtOTAwKTsKfQ==';\nexport var blockStyle = '_1ewjmql0';", "import { blockStyle } from './block.css.js';\n\nexport const Block = () => {\n  return <div className={blockStyle}>Hello</div>;\n};\n"],
+  "mappings": "AACO,IAAIA,EAAa,YCEf,cAAAC,MAAA,oBADF,IAAMC,EAAQ,IACZD,EAAC,OAAI,UAAWE,EAAY,iBAAK",
+  "names": ["blockStyle", "jsx", "Block", "blockStyle"]
+}

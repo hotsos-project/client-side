@@ -5,7 +5,7 @@ export declare const borderRadius: {
     md: string;
     lg: string;
     xl: string;
-    "2xl": string;
-    "3xl": string;
+    '2xl': string;
+    '3xl': string;
     full: string;
 };

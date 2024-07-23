@@ -200,4 +200,16 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Yarn
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# NX
+.nx/
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,visualstudiocode,webstorm
