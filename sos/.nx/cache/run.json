@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx build @sos/style-tokens",
+    "startTime": "2024-07-23T08:29:43.266Z",
+    "endTime": "2024-07-23T08:29:47.065Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@sos/style-tokens:build",
+      "target": "build",
+      "projectName": "@sos/style-tokens",
+      "hash": "4205319742363969424",
+      "startTime": "2024-07-23T08:29:43.271Z",
+      "endTime": "2024-07-23T08:29:47.065Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}

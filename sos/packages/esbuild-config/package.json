@@ -1,0 +1,7 @@
+{
+  "name": "@sos/esbuild-config",
+  "packageManager": "yarn@4.3.1",
+  "devDependencies": {
+    "esbuild": "^0.23.0"
+  }
+}
