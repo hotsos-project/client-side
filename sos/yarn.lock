@@ -2321,7 +2321,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@sos/storybook@workspace:storybook":
+"@sos/storybook@workspace:^, @sos/storybook@workspace:storybook":
   version: 0.0.0-use.local
   resolution: "@sos/storybook@workspace:storybook"
   dependencies:
@@ -9212,6 +9212,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sos-frontend@workspace:."
   dependencies:
+    "@sos/storybook": "workspace:^"
     "@typescript-eslint/eslint-plugin": "npm:^7.17.0"
     "@typescript-eslint/parser": "npm:^7.17.0"
     eslint: "npm:^9.7.0"

@@ -9,6 +9,7 @@
     "storybook"
   ],
   "scripts": {
+    "run": "nx run", 
     "graph": "nx run-many --target=build --graph",
     "build": "nx build",
     "build:all": "nx run-many --target=build --all",
@@ -16,7 +17,7 @@
     "clean": "nx clean",
     "clean:all": "nx run-many --target=clean --all",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "nx run storybook:storybook"
+    "storybook": "nx run @sos/storybook:storybook"
   },
   "author": "",
   "license": "ISC",
@@ -37,5 +38,8 @@
     "nx": "19.5.2",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@sos/storybook": "workspace:^"
   }
 }
