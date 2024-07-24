@@ -1,8 +1,8 @@
 {
   "run": {
-    "command": "nx build @sos/components-layout",
-    "startTime": "2024-07-23T12:54:32.812Z",
-    "endTime": "2024-07-23T12:54:52.717Z",
+    "command": "nx run-many --target=build --all",
+    "startTime": "2024-07-24T05:29:11.136Z",
+    "endTime": "2024-07-24T05:29:21.157Z",
     "inner": false
   },
   "tasks": [
@@ -10,9 +10,9 @@
       "taskId": "@sos/esbuild-config:build",
       "target": "build",
       "projectName": "@sos/esbuild-config",
-      "hash": "10165848840899735964",
-      "startTime": "2024-07-23T12:54:32.827Z",
-      "endTime": "2024-07-23T12:54:35.139Z",
+      "hash": "17908761003306727439",
+      "startTime": "2024-07-24T05:29:11.144Z",
+      "endTime": "2024-07-24T05:29:12.334Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 0
@@ -21,9 +21,9 @@
       "taskId": "@sos/style-tokens:build",
       "target": "build",
       "projectName": "@sos/style-tokens",
-      "hash": "2815492122495718741",
-      "startTime": "2024-07-23T12:54:35.141Z",
-      "endTime": "2024-07-23T12:54:43.562Z",
+      "hash": "1422861363388173193",
+      "startTime": "2024-07-24T05:29:12.338Z",
+      "endTime": "2024-07-24T05:29:16.698Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 0
@@ -32,9 +32,9 @@
       "taskId": "@sos/components-layout:build",
       "target": "build",
       "projectName": "@sos/components-layout",
-      "hash": "12651901992722759880",
-      "startTime": "2024-07-23T12:54:43.565Z",
-      "endTime": "2024-07-23T12:54:52.717Z",
+      "hash": "636498257455353226",
+      "startTime": "2024-07-24T05:29:16.701Z",
+      "endTime": "2024-07-24T05:29:21.156Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 0

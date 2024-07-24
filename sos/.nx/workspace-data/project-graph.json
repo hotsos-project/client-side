@@ -295,6 +295,33 @@
         },
         "implicitDependencies": []
       }
+    },
+    "@sos/storybook": {
+      "name": "@sos/storybook",
+      "type": "lib",
+      "data": {
+        "root": "storybook",
+        "sourceRoot": "storybook",
+        "name": "@sos/storybook",
+        "tags": [
+          "npm:public"
+        ],
+        "metadata": {
+          "targetGroups": {}
+        },
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
     }
   },
   "externalNodes": {
@@ -6011,6 +6038,7 @@
         "type": "static"
       }
     ],
+    "@sos/storybook": [],
     "npm:@ampproject/remapping@2.3.0": [
       {
         "source": "npm:@ampproject/remapping@2.3.0",

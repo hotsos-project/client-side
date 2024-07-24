@@ -4,8 +4,9 @@
   "main": "index.js",
   "private": true,
   "workspaces": [
-    "packages/**/*",
-    "services/**/*"
+    "apps/**/*",
+    "services/**/*",
+    "storybook"
   ],
   "scripts": {
     "graph": "nx run-many --target=build --graph",
