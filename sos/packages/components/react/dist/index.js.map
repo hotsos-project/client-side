@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/layout/index.ts", "../src/layout/block/block.css.ts", "../src/layout/block/Block.tsx"],
+  "sourcesContent": ["export * from './block';\r\n", "import 'src/layout/block/block.css.ts.vanilla.css?source=Ll8xaGVqMmR2MCB7CiAgd2lkdGg6IDEwMHB4OwogIGhlaWdodDogMTAwcHg7CiAgY29sb3I6IHZhcigtLWJsdWUtOTAwKTsKfQ==';\nexport var blockStyle = '_1hej2dv0';", "import { blockStyle } from './block.css';\r\n\r\nexport const Block = () => {\r\n  return <div className={blockStyle}>Hello</div>;\r\n};\r\n"],
+  "mappings": "0FAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,WAAAE,ICCO,IAAIC,EAAa,YCEf,cAAAC,MAAA,oBADF,IAAMC,EAAQ,IACZD,EAAC,OAAI,UAAWE,EAAY,iBAAK",
+  "names": ["layout_exports", "__export", "Block", "blockStyle", "jsx", "Block", "blockStyle"]
+}

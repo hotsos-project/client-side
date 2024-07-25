@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["vanilla-extract-css-ns:src/layout/block/block.css.ts.vanilla.css?source=Ll8xaGVqMmR2MCB7CiAgd2lkdGg6IDEwMHB4OwogIGhlaWdodDogMTAwcHg7CiAgY29sb3I6IHZhcigtLWJsdWUtOTAwKTsKfQ=="],
+  "sourcesContent": ["._1hej2dv0 {\n  width: 100px;\n  height: 100px;\n  color: var(--blue-900);\n}"],
+  "mappings": "AAAA,CAAC,UACC,MAAO,MACP,OAAQ,MACR,MAAO,IAAI,WACb",
+  "names": []
+}
