@@ -210,6 +210,7 @@ $RECYCLE.BIN/
 !.yarn/versions
 
 # NX
-.nx/
+.nx/*
+.nx
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,visualstudiocode,webstorm
