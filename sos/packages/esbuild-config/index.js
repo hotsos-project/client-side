@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const esbuild = require('esbuild');
 
 const runBuild = ({
@@ -61,8 +62,9 @@ const runBuild = ({
         if (watch) {
             // 만약 watch 한다면,
             // 플러그인 설정
-            const plugins = [{
-                name: 'run-css-plugin',
+
+            const plugins = [...(config.plugins || []), {
+                name: 'watch-plugin',
                 setup(build) {
                     build.onEnd(() => {
                         onBuildEnd();
