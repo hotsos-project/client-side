@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './button.css';
-import { Block } from '@sos/components-react/layout';
+import { Block } from '@sos/components-react';
 
 /**
  * Primary UI component for user interaction
