@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 import { createRequire } from 'module';
 import { exec } from 'child_process';
 import runBuild from '@sos/esbuild-config';
