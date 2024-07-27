@@ -3122,6 +3122,7 @@ __metadata:
     "@storybook/react-vite": "npm:^8.2.5"
     "@storybook/test": "npm:^8.2.5"
     prop-types: "npm:15.8.1"
+    rimraf: "npm:^6.0.1"
     storybook: "npm:^8.2.5"
     vite: "npm:^5.3.4"
   peerDependencies:

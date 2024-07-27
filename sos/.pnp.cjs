@@ -4846,6 +4846,7 @@ const RAW_RUNTIME_STATE =
           ["@types/sos__components-react", null],\
           ["@types/sos__style-tokens", null],\
           ["prop-types", "npm:15.8.1"],\
+          ["rimraf", "npm:6.0.1"],\
           ["storybook", "npm:8.2.5"],\
           ["vite", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:5.3.4"]\
         ],\
@@ -4871,6 +4872,7 @@ const RAW_RUNTIME_STATE =
           ["@storybook/react-vite", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:8.2.5"],\
           ["@storybook/test", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:8.2.5"],\
           ["prop-types", "npm:15.8.1"],\
+          ["rimraf", "npm:6.0.1"],\
           ["storybook", "npm:8.2.5"],\
           ["vite", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:5.3.4"]\
         ],\

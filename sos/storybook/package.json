@@ -14,12 +14,14 @@
     "@storybook/react-vite": "^8.2.5",
     "@storybook/test": "^8.2.5",
     "prop-types": "15.8.1",
+    "rimraf": "^6.0.1",
     "storybook": "^8.2.5",
     "vite": "^5.3.4"
   },
   "scripts": {
     "storybook": "storybook dev -p 6006",
-    "build": "storybook build"
+    "build": "storybook build",
+    "clean": "rimraf node_modules storybook-static .cache"
   },
   "peerDependencies": {
     "@sos/components-react": "workspace:^",
