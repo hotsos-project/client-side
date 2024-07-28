@@ -6,17 +6,6 @@ import runBuild from '@sos/esbuild-config';
 const require = createRequire(import.meta.url);
 const pkg = require('./package.json');
 
-function runTSCBuild() {
-    exec('npm run build:type', (error, stdout, stderr) => {
-        if (error) {
-            console.error(error);
-            return;
-        }
-        console.log(stdout);
-        if (stderr) console.error(stderr);
-    });
-}
-
 function runCssBuild() {
     exec('npm run build:css', (error, stdout, stderr) => {
         if (error) {
@@ -31,7 +20,6 @@ function runCssBuild() {
 runBuild({
     pkg,
     onBuildEnd: () => {
-        runTSCBuild();
         runCssBuild();
     }
 });

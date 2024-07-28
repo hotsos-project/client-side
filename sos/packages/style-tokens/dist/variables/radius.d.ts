@@ -1,11 +1,13 @@
 export declare const borderRadius: {
     none: string;
     xs: string;
+    s: string;
     sm: string;
-    md: string;
-    lg: string;
+    m: string;
+    ml: string;
+    base: string;
+    l: string;
     xl: string;
     '2xl': string;
-    '3xl': string;
-    full: string;
+    round: string;
 };
