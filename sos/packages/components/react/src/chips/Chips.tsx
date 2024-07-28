@@ -1,10 +1,9 @@
-import React from 'react';
 import { baseStyle, sizeStyle, stateStyle } from './chips.css';
 
 interface ChipsProps {
-  size?: 's' | 'm' | 'l';
-  variant?: 'primary' | 'secondary';
-  state?: 'default' | 'outline' | 'active' | 'disabled';
+  size: 's' | 'm' | 'l';
+  variant: 'primary' | 'secondary';
+  state: 'default' | 'outline' | 'active' | 'disabled';
 }
 
 export const Chips: React.FC<ChipsProps> = ({
