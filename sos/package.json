@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "dev": "nx dev",
+    "dev:storybook": "yarn storybook & yarn build:dev @sos/components-react & yarn build:dev @sos/style-tokens",
     "graph": "nx run-many --target=build --graph",
     "build": "nx build",
     "build:all": "nx run-many --target=build --all",
@@ -17,7 +18,7 @@
     "clean": "nx clean",
     "clean:all": "nx run-many --target=clean --all",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "nx run @sos/storybook:storybook"
+    "storybook": "nx storybook @sos/storybook"
   },
   "author": "",
   "license": "ISC",

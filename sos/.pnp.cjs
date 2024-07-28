@@ -4765,6 +4765,8 @@ const RAW_RUNTIME_STATE =
           ["@types/sos__style-tokens", null],\
           ["@vanilla-extract/css", "npm:1.15.3"],\
           ["@vanilla-extract/esbuild-plugin", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:2.3.8"],\
+          ["@vanilla-extract/sprinkles", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:1.6.2"],\
+          ["clsx", "npm:2.1.1"],\
           ["esbuild", "npm:0.23.0"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:18.3.1"],\
@@ -4787,6 +4789,8 @@ const RAW_RUNTIME_STATE =
           ["@types/react-dom", "npm:18.3.0"],\
           ["@vanilla-extract/css", "npm:1.15.3"],\
           ["@vanilla-extract/esbuild-plugin", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:2.3.8"],\
+          ["@vanilla-extract/sprinkles", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:1.6.2"],\
+          ["clsx", "npm:2.1.1"],\
           ["esbuild", "npm:0.23.0"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:18.3.1"],\
@@ -4848,6 +4852,7 @@ const RAW_RUNTIME_STATE =
           ["prop-types", "npm:15.8.1"],\
           ["rimraf", "npm:6.0.1"],\
           ["storybook", "npm:8.2.5"],\
+          ["storybook-addon-root-attributes", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:2.1.3"],\
           ["vite", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:5.3.4"]\
         ],\
         "packagePeers": [\
@@ -4874,6 +4879,7 @@ const RAW_RUNTIME_STATE =
           ["prop-types", "npm:15.8.1"],\
           ["rimraf", "npm:6.0.1"],\
           ["storybook", "npm:8.2.5"],\
+          ["storybook-addon-root-attributes", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:2.1.3"],\
           ["vite", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:5.3.4"]\
         ],\
         "linkType": "SOFT"\
@@ -6800,6 +6806,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@vanilla-extract/sprinkles", [\
+      ["npm:1.6.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/@vanilla-extract-sprinkles-npm-1.6.2-4388d874dd-10c0.zip/node_modules/@vanilla-extract/sprinkles/",\
+        "packageDependencies": [\
+          ["@vanilla-extract/sprinkles", "npm:1.6.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:1.6.2", {\
+        "packageLocation": "./.yarn/__virtual__/@vanilla-extract-sprinkles-virtual-97fcc2a00d/4/.yarn/berry/cache/@vanilla-extract-sprinkles-npm-1.6.2-4388d874dd-10c0.zip/node_modules/@vanilla-extract/sprinkles/",\
+        "packageDependencies": [\
+          ["@vanilla-extract/sprinkles", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:1.6.2"],\
+          ["@types/vanilla-extract__css", null],\
+          ["@vanilla-extract/css", "npm:1.15.3"]\
+        ],\
+        "packagePeers": [\
+          "@types/vanilla-extract__css",\
+          "@vanilla-extract/css"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@vitejs/plugin-react", [\
       ["npm:4.3.1", {\
         "packageLocation": "../../../.yarn/berry/cache/@vitejs-plugin-react-npm-4.3.1-cbe92983ea-10c0.zip/node_modules/@vitejs/plugin-react/",\
@@ -8032,6 +8060,15 @@ const RAW_RUNTIME_STATE =
           ["is-plain-object", "npm:2.0.4"],\
           ["kind-of", "npm:6.0.3"],\
           ["shallow-clone", "npm:3.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["clsx", [\
+      ["npm:2.1.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/",\
+        "packageDependencies": [\
+          ["clsx", "npm:2.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -15250,6 +15287,32 @@ const RAW_RUNTIME_STATE =
           ["tempy", "npm:3.1.0"],\
           ["tiny-invariant", "npm:1.3.3"],\
           ["ts-dedent", "npm:2.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["storybook-addon-root-attributes", [\
+      ["npm:2.1.3", {\
+        "packageLocation": "../../../.yarn/berry/cache/storybook-addon-root-attributes-npm-2.1.3-3f8dfbf52c-10c0.zip/node_modules/storybook-addon-root-attributes/",\
+        "packageDependencies": [\
+          ["storybook-addon-root-attributes", "npm:2.1.3"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:2.1.3", {\
+        "packageLocation": "./.yarn/__virtual__/storybook-addon-root-attributes-virtual-d0119cb28b/4/.yarn/berry/cache/storybook-addon-root-attributes-npm-2.1.3-3f8dfbf52c-10c0.zip/node_modules/storybook-addon-root-attributes/",\
+        "packageDependencies": [\
+          ["storybook-addon-root-attributes", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#npm:2.1.3"],\
+          ["@types/react", null],\
+          ["@types/react-dom", null],\
+          ["react", null],\
+          ["react-dom", null]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\

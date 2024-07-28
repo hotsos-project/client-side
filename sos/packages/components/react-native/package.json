@@ -13,12 +13,11 @@
     "./style/css": "./dist/index.css"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn run build:js && yarn run build:type",
-    "build:dev": "yarn run build:js -- --dev --watch && yarn run build:type",
+    "build": "yarn build:js && yarn build:type",
     "build:js": "node build.js",
     "build:type": "tsc --emitDeclarationOnly",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

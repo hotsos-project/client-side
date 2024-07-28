@@ -13,12 +13,12 @@
     "./style/css": "./dist/index.css"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn run build:js && yarn run build:type",
-    "build:dev": "yarn run build:js -- --dev --watch && yarn run build:type",
+    "build": "yarn build:js && yarn build:type",
+    "build:dev": "yarn build:js --dev --watch & yarn build:type --watch",
     "build:js": "node build.js",
     "build:type": "tsc --emitDeclarationOnly",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +30,8 @@
     "@types/react-dom": "^18.3.0",
     "@vanilla-extract/css": "^1.15.3",
     "@vanilla-extract/esbuild-plugin": "^2.3.8",
+    "@vanilla-extract/sprinkles": "^1.6.2",
+    "clsx": "^2.1.1",
     "esbuild": "^0.23.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
