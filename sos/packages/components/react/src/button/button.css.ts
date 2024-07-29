@@ -46,11 +46,11 @@ export const sizeStyle = {
  */
 const fillStyles = {
   default: style({
-    color: vars.color.$static.light.opacityWhite[950],
+    color: vars.color.$static.light.color.white,
     backgroundColor: vars.color.$palette.ui.primaryNormal,
   }),
   hover: style({
-    color: vars.color.$static.light.opacityWhite[950],
+    color: vars.color.$static.light.color.white,
     backgroundColor: vars.color.$palette.blue[600],
   }),
   disabled: style({
@@ -58,7 +58,7 @@ const fillStyles = {
     backgroundColor: vars.color.$palette.blueGray[50],
   }),
   secondary: style({
-    color: vars.color.$static.light.opacityWhite[950],
+    color: vars.color.$static.light.color.white,
     backgroundColor: vars.color.$palette.blueGray[500],
   }),
   tertiary: style({
