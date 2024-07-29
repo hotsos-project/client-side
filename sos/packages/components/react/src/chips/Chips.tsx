@@ -7,7 +7,7 @@ interface ChipsProps {
 }
 
 export const Chips: React.FC<ChipsProps> = ({
-  size = 's',
+  size = 'm',
   variant = 'primary',
   state = 'default',
 }) => {
