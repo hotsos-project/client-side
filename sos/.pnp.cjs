@@ -4765,6 +4765,7 @@ const RAW_RUNTIME_STATE =
           ["@types/sos__style-tokens", null],\
           ["@vanilla-extract/css", "npm:1.15.3"],\
           ["@vanilla-extract/esbuild-plugin", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:2.3.8"],\
+          ["@vanilla-extract/recipes", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:0.5.3"],\
           ["@vanilla-extract/sprinkles", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:1.6.2"],\
           ["clsx", "npm:2.1.1"],\
           ["esbuild", "npm:0.23.0"],\
@@ -4789,6 +4790,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react-dom", "npm:18.3.0"],\
           ["@vanilla-extract/css", "npm:1.15.3"],\
           ["@vanilla-extract/esbuild-plugin", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:2.3.8"],\
+          ["@vanilla-extract/recipes", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:0.5.3"],\
           ["@vanilla-extract/sprinkles", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:1.6.2"],\
           ["clsx", "npm:2.1.1"],\
           ["esbuild", "npm:0.23.0"],\
@@ -6802,6 +6804,28 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/@vanilla-extract-private-npm-1.0.5-710d3387e4-10c0.zip/node_modules/@vanilla-extract/private/",\
         "packageDependencies": [\
           ["@vanilla-extract/private", "npm:1.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@vanilla-extract/recipes", [\
+      ["npm:0.5.3", {\
+        "packageLocation": "../../../.yarn/berry/cache/@vanilla-extract-recipes-npm-0.5.3-520cb7a00b-10c0.zip/node_modules/@vanilla-extract/recipes/",\
+        "packageDependencies": [\
+          ["@vanilla-extract/recipes", "npm:0.5.3"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:0.5.3", {\
+        "packageLocation": "./.yarn/__virtual__/@vanilla-extract-recipes-virtual-bdcad80142/4/.yarn/berry/cache/@vanilla-extract-recipes-npm-0.5.3-520cb7a00b-10c0.zip/node_modules/@vanilla-extract/recipes/",\
+        "packageDependencies": [\
+          ["@vanilla-extract/recipes", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:0.5.3"],\
+          ["@types/vanilla-extract__css", null],\
+          ["@vanilla-extract/css", "npm:1.15.3"]\
+        ],\
+        "packagePeers": [\
+          "@types/vanilla-extract__css",\
+          "@vanilla-extract/css"\
         ],\
         "linkType": "HARD"\
       }]\

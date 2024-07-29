@@ -2,16 +2,17 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import { Block } from '@sos/components-react';
+import { Typography } from '@sos/components-react';
 
 function App() {
   const [count, setCount] = useState(0);
-  console.log(Block);
 
   return (
     <>
       <div>
-        <Block />
+        <Typography type="display1" weight="bold">
+          This is a main heading
+        </Typography>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
