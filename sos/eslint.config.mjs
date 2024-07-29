@@ -63,6 +63,7 @@ export default [
     },
 
     rules: {
+      'react/prop-types': 'off', // PropTypes 체크 규칙 비활성화
       'react-hooks/rules-of-hooks': 'error', // React Hooks 규칙 위반 시 에러를 발생시킴. 모든 Hook은 최상위에서 호출되어야 하며, 조건문이나 반복문 내부에서 호출하면 안 됨.
       'react-hooks/exhaustive-deps': 'warn', // React Hooks 의존성 검사 경고. useEffect, useCallback 등에서 의존성 배열이 올바르게 설정되어 있는지 검사하고, 누락된 의존성이 있으면 경고를 발생시킴.
       'react/react-in-jsx-scope': 'off', // React가 JSX 스코프 내에 있는지 검사 비활성화. React 17부터는 JSX 파일에 React를 import하지 않아도 되므로 이 규칙을 비활성화함.
