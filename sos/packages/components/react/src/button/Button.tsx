@@ -34,10 +34,11 @@ export const Button: React.FC<ButtonProps> = ({
   if (variant === 'secondary' || variant === 'tertiary') {
     stateClass =
       stateStyle[
-        `${variant}${design.charAt(0).toUpperCase() + design.slice(1)}`
+        `${variant}${design.charAt(0).toUpperCase() + design.slice(1)}` as keyof typeof stateStyle
       ];
   } else {
-    const stateDesignKey = `${state}${design.charAt(0).toUpperCase() + design.slice(1)}`;
+    const stateDesignKey =
+      `${state}${design.charAt(0).toUpperCase() + design.slice(1)}` as keyof typeof stateStyle;
     stateClass = stateStyle[stateDesignKey];
   }
 
