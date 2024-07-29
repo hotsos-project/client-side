@@ -2,6 +2,9 @@
  * 제작한 Component를 export 합니다.
  */
 
+// Common
+export { Text } from './common/text/Text';
+
 // Button
 export { Button } from './button/Button';
 
