@@ -18,7 +18,7 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  size = 'm',
+  size = 'l',
   variant = 'primary',
   state = 'default',
   design = 'fill',
