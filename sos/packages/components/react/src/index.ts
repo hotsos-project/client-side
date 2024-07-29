@@ -16,5 +16,5 @@ export { Chips } from './chips/Chips';
 
 // Header
 export { TopAppBar } from './header/TopAppBar';
-export { Title } from './header/Title';
-export { Section } from './header/Section';
+export { Title } from './header/title/Title';
+export { Section } from './header/section/Section';

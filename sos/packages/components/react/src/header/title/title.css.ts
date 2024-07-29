@@ -8,9 +8,5 @@ export const titleStyle = style({
   padding: vars.spacing.spacing[16],
   paddingTop: vars.spacing.spacing[64],
   borderBottom: `0.0625rem soild ${vars.color.$palette.gray[100]}`,
-  color: vars.color.$palette.text.normal,
   backgroundColor: vars.color.$palette.background.normalPrimary,
-  fontSize: vars.typography.fontSize[28],
-  fontWeight: vars.typography.fontWeight[700],
-  lineHeight: vars.typography.lineHeight[34],
 });
