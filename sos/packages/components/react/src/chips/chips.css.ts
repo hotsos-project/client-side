@@ -2,13 +2,13 @@ import { vars } from '@sos/style-tokens';
 import { style } from '@vanilla-extract/css';
 
 /**
- * 기본적으로 적용되는 스타일
+ * 공통 스타일
  */
 export const baseStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: vars.radius.borderRadius.full,
+  borderRadius: vars.radius.borderRadius.round,
   textAlign: 'center',
 });
 
@@ -16,21 +16,21 @@ export const baseStyle = style({
  * size 스타일
  */
 const small = style({
-  padding: `${vars.spacing.spacing[1]} ${vars.spacing.spacing[2]}`,
+  padding: `${vars.spacing.spacing[4]} ${vars.spacing.spacing[8]}`,
   fontSize: vars.typography.fontSize[13],
   lineHeight: vars.typography.lineHeight[18],
 });
 
 const medium = style({
-  padding: `${vars.spacing.spacing[1]} ${vars.spacing.spacing[3]}`,
+  padding: `${vars.spacing.spacing[6]} ${vars.spacing.spacing[12]}`,
   fontSize: vars.typography.fontSize[14],
-  lineHeight: vars.typography.lineHeight[18],
+  lineHeight: vars.typography.lineHeight[19],
 });
 
 const large = style({
-  padding: `${vars.spacing.spacing[1]} ${vars.spacing.spacing[3]}`,
+  padding: `${vars.spacing.spacing[6]} ${vars.spacing.spacing[12]}`,
   fontSize: vars.typography.fontSize[15],
-  lineHeight: vars.typography.lineHeight[18],
+  lineHeight: vars.typography.lineHeight[20],
 });
 
 export const sizeStyle = {

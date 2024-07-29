@@ -8,7 +8,6 @@ export const commonStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: `${vars.spacing.spacing[1]} ${vars.spacing.spacing[1]}`,
   borderRadius: vars.radius.borderRadius['sm'],
   textAlign: 'center',
 });
@@ -18,17 +17,17 @@ export const commonStyle = style({
  */
 const size = {
   small: style({
-    padding: `${vars.spacing.spacing[1]} ${vars.spacing.spacing[1]}`,
+    padding: `${vars.spacing.spacing[2]} ${vars.spacing.spacing[4]}`,
     fontSize: vars.typography.fontSize[12],
     lineHeight: vars.typography.lineHeight[16],
   }),
   medium: style({
-    padding: `${vars.spacing.spacing[1]} ${vars.spacing.spacing[1]}`,
+    padding: `${vars.spacing.spacing[2]} ${vars.spacing.spacing[4]}`,
     fontSize: vars.typography.fontSize[13],
     lineHeight: vars.typography.lineHeight[18],
   }),
   large: style({
-    padding: `${vars.spacing.spacing[2]} ${vars.spacing.spacing[2]}`,
+    padding: `${vars.spacing.spacing[4]} ${vars.spacing.spacing[6]}`,
     fontSize: vars.typography.fontSize[14],
     lineHeight: vars.typography.lineHeight[19],
   }),
