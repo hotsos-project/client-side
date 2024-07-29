@@ -26,6 +26,7 @@ export const colorProperties = defineProperties({
   defaultCondition: 'default',
   properties: {
     color: palette,
+    backgroundColor: palette,
   },
 });
 

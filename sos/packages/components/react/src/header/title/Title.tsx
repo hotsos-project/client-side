@@ -2,11 +2,11 @@ import { titleStyle } from './title.css';
 import { Text } from '../../common/text/Text';
 import { PaletteColors } from '../../style/color/colorSprinkles.css';
 
-type TitleProps = {
+interface TitleProps {
   children: React.ReactNode;
   color?: PaletteColors;
   className?: string;
-};
+}
 
 export const Title: React.FC<TitleProps> = ({ children = '제목', color = 'textNormal', className, ...props }) => {
   const titleClass = titleStyle;
