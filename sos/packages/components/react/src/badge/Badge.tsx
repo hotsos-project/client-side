@@ -1,10 +1,11 @@
 import { commonStyle, sizeStyle, colorStyle } from './badge.css';
 
-type Color = {
-  color: 'blue' | 'pink' | 'ornage' | 'green';
-};
+interface BadgeProps {
+  size?: 's' | 'm' | 'l';
+  color: 'blue' | 'pink' | 'orange' | 'green';
+}
 
-export const Badge: React.FC<Color> = ({ size = 'l', color = 'blue' }) => {
+export const Badge: React.FC<BadgeProps> = ({ size = 'l', color = 'blue' }) => {
   const sizeClass = sizeStyle[size];
   const colorClass = colorStyle[color] || 'blue';
   return (
