@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "nx dev",
     "dev:storybook": "yarn storybook & yarn build:dev @sos/components-react & yarn build:dev @sos/style-tokens",
+    "dev:next": "yarn dev @sos/web-app & yarn build:dev @sos/components-react",
     "graph": "nx run-many --target=build --graph",
     "build": "nx build",
     "build:all": "nx run-many --target=build --all",

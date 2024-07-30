@@ -1,3 +1,7 @@
+@import './index.css';
+@import 'pretendard/dist/web/static/pretendard.css';
+@import 'material-symbols';
+
 :root {
 	--background-normal-primary: #ffffff;
 	--background-normal-secondary: #f4f4f5;
@@ -185,6 +189,8 @@
 }
 
 :root {
+	--font-family-main: 'Pretendard', 'Noto Sans KR', 'Arial', 'Helvetica', 'sans-serif';
+
 	--font-size-12: 0.75rem;
 	--font-size-13: 0.8125rem;
 	--font-size-14: 0.875rem;

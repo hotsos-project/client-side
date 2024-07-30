@@ -7,6 +7,6 @@
     "storybook/**/*.tsx",
     "storybook/**/*.ts",
     "eslint.config.mjs",
-    "apps/sos-web-app/src/**/*"
+    "apps/web-app/src/**/*"
   ]
 }
