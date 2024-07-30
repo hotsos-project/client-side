@@ -3,11 +3,17 @@
  */
 
 // Style
-export { typographyRecipe, TypographyVariants } from './style/typography/typographyRecipe.css';
-export { colorProperties, colorSprinkles, PaletteColors } from './style/color/colorSprinkles.css';
+export { typographyRecipe, TypographyVariants } from './style/typography/typographyRecipes.css';
+export { colorSprinkles, ColorSprinkles } from './style/color/colorSprinkles.css';
+export { spacingSprinkles, SpacingSprinkles } from './style/spacing/spacingSprinkles.css';
+export { borderSprinkles, BorderSprinkles } from './style/border/borderSprinkles.css';
+export { borderRecipe, BorderVariants } from './style/border/borderRecipes.css';
+export { layoutSprinkles, LayoutSprinkles } from './style/layout/layoutSprinkles.css';
+export { shadowSprinkles, ShadowSprinkles } from './style/shadow/shadowSprinkles.css';
 
 // Common
 export { Text } from './common/text/Text';
+export { Container } from './common/container/Container';
 
 // Button
 export { Button } from './button/Button';

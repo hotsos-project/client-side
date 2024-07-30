@@ -5,7 +5,7 @@ export const typographyRecipe = recipe({
   base: { fontFamily: vars.typography.fontFamily.main },
 
   variants: {
-    type: {
+    textType: {
       display1: {
         fontSize: vars.typography.fontSize[60],
         lineHeight: vars.typography.lineHeight[72],
@@ -77,7 +77,7 @@ export const typographyRecipe = recipe({
         fontWeight: vars.typography.fontWeight[400],
       },
     },
-    mode: {
+    textMode: {
       default: {},
       reading: {},
       bold: {},
@@ -86,82 +86,82 @@ export const typographyRecipe = recipe({
 
   compoundVariants: [
     {
-      variants: { type: 'body1', mode: 'reading' },
+      variants: { textType: 'body1', textMode: 'reading' },
       style: { lineHeight: vars.typography.lineHeight[28] },
     },
     {
-      variants: { type: 'body2', mode: 'reading' },
+      variants: { textType: 'body2', textMode: 'reading' },
       style: { lineHeight: vars.typography.lineHeight[26] },
     },
     {
-      variants: { type: 'body3', mode: 'reading' },
+      variants: { textType: 'body3', textMode: 'reading' },
       style: { lineHeight: vars.typography.lineHeight[24] },
     },
     {
-      variants: { type: 'label', mode: 'reading' },
+      variants: { textType: 'label', textMode: 'reading' },
       style: { lineHeight: vars.typography.lineHeight[22] },
     },
     {
-      variants: { type: 'display1', mode: 'bold' },
+      variants: { textType: 'display1', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[700] },
     },
     {
-      variants: { type: 'display2', mode: 'bold' },
+      variants: { textType: 'display2', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[700] },
     },
     {
-      variants: { type: 'title1', mode: 'bold' },
+      variants: { textType: 'title1', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[700] },
     },
     {
-      variants: { type: 'title2', mode: 'bold' },
+      variants: { textType: 'title2', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[700] },
     },
     {
-      variants: { type: 'title3', mode: 'bold' },
+      variants: { textType: 'title3', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[700] },
     },
     {
-      variants: { type: 'body1', mode: 'bold' },
+      variants: { textType: 'body1', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
     {
-      variants: { type: 'body2', mode: 'bold' },
+      variants: { textType: 'body2', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
     {
-      variants: { type: 'body3', mode: 'bold' },
+      variants: { textType: 'body3', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
     {
-      variants: { type: 'caption', mode: 'bold' },
+      variants: { textType: 'caption', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
     {
-      variants: { type: 'footnote', mode: 'bold' },
+      variants: { textType: 'footnote', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
     {
-      variants: { type: 'heading1', mode: 'bold' },
+      variants: { textType: 'heading1', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
     {
-      variants: { type: 'heading2', mode: 'bold' },
+      variants: { textType: 'heading2', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
     {
-      variants: { type: 'headline', mode: 'bold' },
+      variants: { textType: 'headline', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
     {
-      variants: { type: 'label', mode: 'bold' },
+      variants: { textType: 'label', textMode: 'bold' },
       style: { fontWeight: vars.typography.fontWeight[600] },
     },
   ],
 });
 
 export type TypographyVariants = {
-  type?:
+  textType?:
     | 'display1'
     | 'display2'
     | 'title1'
@@ -176,5 +176,5 @@ export type TypographyVariants = {
     | 'label'
     | 'footnote'
     | 'caption';
-  mode?: 'default' | 'reading' | 'bold';
+  textMode?: 'default' | 'reading' | 'bold';
 };

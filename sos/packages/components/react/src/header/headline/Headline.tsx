@@ -1,6 +1,7 @@
 import { Text } from '../../common/text/Text';
-import { headlineStyle, iconStyle, headlineSubStyle } from './headline.css';
 import { DefaultProps } from '../../common/types';
+import { headlineStyle, iconStyle, headlineSubStyle } from './headline.css';
+import clsx from 'clsx';
 
 interface HeadlineProps extends DefaultProps {
   mainText: string;
@@ -26,22 +27,18 @@ export const Headline: React.FC<HeadlineProps> = ({
   className,
   ...props
 }) => {
-  const headlineClass = headlineStyle;
-  const iconClass = icon ? iconStyle : '';
-  const headlineSubClass = headlineSubStyle;
-
   return (
-    <div className={`${headlineClass} ${className || ''}`} {...props}>
-      <Text type="heading2" mode="bold" as="h3" color={color}>
+    <div className={clsx(headlineStyle, className)} {...props}>
+      <Text textType="heading2" textMode="bold" as="h3" color={color}>
         {mainText}
       </Text>
-      <div className={headlineSubClass}>
+      <div className={headlineSubStyle}>
         {subText && (
-          <Text type="body3" as="p" color="textAssistive">
+          <Text textType="body3" as="p" color="textAssistive">
             {subText}
           </Text>
         )}
-        {icon && <span className={`${iconClass} material-symbols-outlined`}>{'chevron_right'}</span>}
+        {icon && <span className={clsx('material-symbols-outlined', iconStyle)}>{'chevron_right'}</span>}
       </div>
     </div>
   );

@@ -1,7 +1,4 @@
 import { DefaultProps } from '../../common/types';
-interface TitleProps extends DefaultProps {
-    children: React.ReactNode;
-}
 /**
  * Title 컴포넌트
  *
@@ -10,5 +7,4 @@ interface TitleProps extends DefaultProps {
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...any} props - 기타 HTML 속성
  */
-export declare const Title: React.FC<TitleProps>;
-export {};
+export declare const Title: React.FC<DefaultProps>;

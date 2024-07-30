@@ -1,7 +1,7 @@
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 import { vars } from '@sos/style-tokens';
 
-const palette = {
+export const palette = {
   ...Object.fromEntries(Object.entries(vars.color.$static.light.color).map(([key, value]) => [`${key}`, value])),
   ...Object.fromEntries(Object.entries(vars.color.$static.light.opacityBlack).map(([key, value]) => [`opacityBlack${key}`, value])),
   ...Object.fromEntries(Object.entries(vars.color.$static.light.opacityWhite).map(([key, value]) => [`opacityWhite${key}`, value])),
@@ -20,10 +20,6 @@ const palette = {
 } as const;
 
 export const colorProperties = defineProperties({
-  conditions: {
-    default: {},
-  },
-  defaultCondition: 'default',
   properties: {
     color: palette,
     backgroundColor: palette,
@@ -32,7 +28,7 @@ export const colorProperties = defineProperties({
 
 export const colorSprinkles = createSprinkles(colorProperties);
 
-export type PaletteColors =
+export type Palette =
   | keyof typeof vars.color.$static.light.color
   | `opacityBlack${keyof typeof vars.color.$static.light.opacityBlack}`
   | `opacityWhite${keyof typeof vars.color.$static.light.opacityWhite}`
@@ -46,3 +42,8 @@ export type PaletteColors =
   | `background${Capitalize<keyof typeof vars.color.$palette.background>}`
   | `text${Capitalize<keyof typeof vars.color.$palette.text>}`
   | `ui${Capitalize<keyof typeof vars.color.$palette.ui>}`;
+
+export interface ColorSprinkles {
+  backgroundColor?: Palette;
+  color?: Palette;
+}
