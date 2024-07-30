@@ -8,6 +8,7 @@ export { colorProperties, colorSprinkles, PaletteColors } from './style/color/co
 
 // Common
 export { Text } from './common/text/Text';
+export { Container } from './common/container/Container';
 
 // Button
 export { Button } from './button/Button';

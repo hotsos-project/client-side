@@ -1,7 +1,8 @@
 import { PaletteColors } from '../style/color/colorSprinkles.css';
-export interface AsProps {
-    as?: keyof JSX.IntrinsicElements;
-}
+import { ElementType } from 'react';
+export type AsProps = {
+    as?: ElementType;
+};
 export interface DefaultProps {
     backgroundColor?: PaletteColors;
     color?: PaletteColors;

@@ -23,6 +23,7 @@ __export(src_exports, {
   Badge: () => Badge,
   Button: () => Button,
   Chips: () => Chips,
+  Container: () => Container,
   Headline: () => Headline,
   Text: () => Text,
   Title: () => Title,
@@ -58,6 +59,14 @@ var Text = ({
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Component, { className: `${textClass} ${colorClass} ${className || ""}`, ...props, children });
 };
 
+// src/common/container/Container.tsx
+var import_react = require("react");
+var import_jsx_runtime2 = require("react/jsx-runtime");
+var Container = (0, import_react.forwardRef)(({ children, as: Component = "div", backgroundColor, className, ...props }, ref) => {
+  const backgroundColorClass = backgroundColor ? colorSprinkles({ backgroundColor }) : "";
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Component, { ref, className: `${backgroundColorClass} ${className || ""}`, ...props, children });
+});
+
 // src/button/button.css.ts
 var baseStyle = "mu0bc60";
 var mainTextStyle = "mu0bc6d";
@@ -66,7 +75,7 @@ var stateStyle = { defaultFill: "mu0bc64", defaultOutline: "mu0bc69", secondaryF
 var subTextStyle = "mu0bc6e";
 
 // src/button/Button.tsx
-var import_jsx_runtime2 = require("react/jsx-runtime");
+var import_jsx_runtime3 = require("react/jsx-runtime");
 var Button = ({
   size = "l",
   variant = "primary",
@@ -86,11 +95,11 @@ var Button = ({
     const stateDesignKey = `${state}${design.charAt(0).toUpperCase() + design.slice(1)}`;
     stateClass = stateStyle[stateDesignKey];
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: [
-    icon && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "material-symbols-outlined", children: icon }),
-    subText && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: subTextStyle, children: subText }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: mainTextStyle, children: mainText }),
-    isLoading && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "material-symbols-outlined", children: "refresh" })
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("button", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: [
+    icon && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "material-symbols-outlined", children: icon }),
+    subText && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: subTextStyle, children: subText }),
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: mainTextStyle, children: mainText }),
+    isLoading && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "material-symbols-outlined", children: "refresh" })
   ] });
 };
 
@@ -100,11 +109,11 @@ var commonStyle = "_1xg5d560";
 var sizeStyle2 = { s: "_1xg5d561", m: "_1xg5d562", l: "_1xg5d563" };
 
 // src/badge/Badge.tsx
-var import_jsx_runtime3 = require("react/jsx-runtime");
+var import_jsx_runtime4 = require("react/jsx-runtime");
 var Badge = ({ size = "l", color = "blue" }) => {
   const sizeClass = sizeStyle2[size];
   const colorClass = colorStyle[color] || "blue";
-  return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: `${commonStyle} ${sizeClass}  ${colorClass}`, children: "Badge" });
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: `${commonStyle} ${sizeClass}  ${colorClass}`, children: "Badge" });
 };
 
 // src/chips/chips.css.ts
@@ -113,7 +122,7 @@ var sizeStyle3 = { s: "_136tj0m1", m: "_136tj0m2", l: "_136tj0m3" };
 var stateStyle2 = { "default": "_136tj0m4", outlinePrimary: "_136tj0m5", outlineSecondary: "_136tj0m6", activePrimary: "_136tj0m7", activeSecondary: "_136tj0m8", disabled: "_136tj0m9" };
 
 // src/chips/Chips.tsx
-var import_jsx_runtime4 = require("react/jsx-runtime");
+var import_jsx_runtime5 = require("react/jsx-runtime");
 var Chips = ({
   size = "m",
   variant = "primary",
@@ -129,7 +138,7 @@ var Chips = ({
   } else {
     stateClass = stateStyle2[state];
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: "Label" });
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: "Label" });
 };
 
 // src/header/topAppBar.css.ts
@@ -139,14 +148,14 @@ var textStyle = "ehsume2";
 var topAppBarStyle = "ehsume0";
 
 // src/header/TopAppBar.tsx
-var import_jsx_runtime5 = require("react/jsx-runtime");
+var import_jsx_runtime6 = require("react/jsx-runtime");
 var TopAppBar = ({ icon = false }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: topAppBarStyle, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: leftContentStyle, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: iconWrapperStyle.outer, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: iconWrapperStyle.inner, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", { className: "material-symbols-outlined", children: "arrow_back" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", { className: textStyle, children: "Title" })
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: topAppBarStyle, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: leftContentStyle, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: iconWrapperStyle.outer, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: iconWrapperStyle.inner, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "material-symbols-outlined", children: "arrow_back" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: textStyle, children: "Title" })
     ] }),
-    icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: iconWrapperStyle.outer, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: iconWrapperStyle.inner, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", { className: "material-symbols-outlined", children: "add" }) }) })
+    icon && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: iconWrapperStyle.outer, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: iconWrapperStyle.inner, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "material-symbols-outlined", children: "add" }) }) })
   ] });
 };
 
@@ -154,10 +163,10 @@ var TopAppBar = ({ icon = false }) => {
 var titleStyle = "wn34pc1 exp0d76p";
 
 // src/header/title/Title.tsx
-var import_jsx_runtime6 = require("react/jsx-runtime");
+var import_jsx_runtime7 = require("react/jsx-runtime");
 var Title = ({ children = "\uC81C\uBAA9", color = "textNormal", className, ...props }) => {
   const titleClass = titleStyle;
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { className: `${titleClass} ${className || ""}`, type: "title2", mode: "bold", as: "h1", color, ...props, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { className: `${titleClass} ${className || ""}`, type: "title2", mode: "bold", as: "h1", color, ...props, children });
 };
 
 // src/header/headline/headline.css.ts
@@ -166,7 +175,7 @@ var headlineSubStyle = "_2svjdp2";
 var iconStyle = "_2svjdp1";
 
 // src/header/headline/Headline.tsx
-var import_jsx_runtime7 = require("react/jsx-runtime");
+var import_jsx_runtime8 = require("react/jsx-runtime");
 var Headline = ({
   mainText = "mainText",
   subText = "subText",
@@ -178,11 +187,11 @@ var Headline = ({
   const headlineClass = headlineStyle;
   const iconClass = icon ? iconStyle : "";
   const headlineSubClass = headlineSubStyle;
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: `${headlineClass} ${className || ""}`, ...props, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { type: "heading2", mode: "bold", as: "h3", color, children: mainText }),
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: headlineSubClass, children: [
-      subText && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { type: "body3", as: "p", color: "textAssistive", children: subText }),
-      icon && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: `${iconClass} material-symbols-outlined`, children: "chevron_right" })
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: `${headlineClass} ${className || ""}`, ...props, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Text, { type: "heading2", mode: "bold", as: "h3", color, children: mainText }),
+    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: headlineSubClass, children: [
+      subText && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Text, { type: "body3", as: "p", color: "textAssistive", children: subText }),
+      icon && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: `${iconClass} material-symbols-outlined`, children: "chevron_right" })
     ] })
   ] });
 };

@@ -1,4 +1,4 @@
-import { Title, Text, Headline } from '@sos/components-react';
+import { Title, Text, Headline, Container } from '@sos/components-react';
 import { marginStyle } from './style.css';
 
 export default function Home() {
@@ -9,6 +9,7 @@ export default function Home() {
         hello
       </Text>
       <Headline mainText="Hello" color="blue500" />
+      <Container as="a">Hello</Container>
     </main>
   );
 }
