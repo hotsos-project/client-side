@@ -1,9 +1,10 @@
-import { Title, Text, Headline, Container } from '@sos/components-react';
+import { Title, Text, Headline, Container, MessageList } from '@sos/components-react';
 import { marginStyle } from './style.css';
 
 export default function Home() {
   return (
     <main>
+      <MessageList />
       <Title color="blue500">안녕하세요</Title>
       <Text className={marginStyle} textType="heading1" textMode="bold" color="blue500" as="h1">
         hello

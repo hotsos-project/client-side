@@ -25,6 +25,7 @@ __export(src_exports, {
   Chips: () => Chips,
   Container: () => Container,
   Headline: () => Headline,
+  MessageList: () => MessageList,
   Text: () => Text,
   Title: () => Title,
   TopAppBar: () => TopAppBar,
@@ -297,4 +298,40 @@ var Headline = ({
     ] })
   ] });
 };
+
+// src/list/MessageList.tsx
+var import_react2 = require("react");
+
+// src/utils/dateUtils.ts
+function formatDate(date) {
+  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const seconds = date.getSeconds().toString().padStart(2, "0");
+  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+}
+
+// src/list/MessageList.tsx
+var import_jsx_runtime9 = require("react/jsx-runtime");
+var MessageList = (0, import_react2.forwardRef)(
+  ({ title = "title", date = /* @__PURE__ */ new Date(), content = "content", isRead = false, isChecked = false, following = "following" }, ref) => {
+    const dateString = formatDate(date);
+    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(Container, { as: "li", ref, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(Container, { as: "div", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(Container, { as: "div", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Text, { children: title }),
+          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Badge, { color: "blue" }),
+          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { className: "material-symbols-outlined", children: "verified" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Text, { children: dateString })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Text, { children: content })
+    ] });
+  }
+);
 //# sourceMappingURL=index.cjs.map

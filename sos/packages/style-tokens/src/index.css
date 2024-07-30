@@ -117,6 +117,10 @@ ul {
   list-style: none;
 }
 
+li {
+  list-style-type: none;
+}
+
 blockquote,
 q {
   quotes: none;
@@ -142,6 +146,7 @@ table {
 
 /* icon & symbol */
 .material-symbols-outlined {
+  color: var(--text-normal);
   font-variation-settings:
     'FILL' 1,
     'wght' 400,

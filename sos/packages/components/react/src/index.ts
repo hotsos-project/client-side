@@ -28,3 +28,6 @@ export { Chips } from './chips/Chips';
 export { TopAppBar } from './header/TopAppBar';
 export { Title } from './header/title/Title';
 export { Headline } from './header/headline/Headline';
+
+// List
+export { MessageList } from './list/MessageList';
