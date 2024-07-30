@@ -107,6 +107,8 @@ var Container = (0, import_react.forwardRef)(
   ({
     children,
     as: Component = "div",
+    width,
+    height,
     backgroundColor,
     margin,
     padding,
@@ -166,7 +168,8 @@ var Container = (0, import_react.forwardRef)(
     });
     const shadowClass = shadowSprinkles({ boxShadow });
     const combinedClass = clsx_default([backgroundColorClass, spacingClass, layoutClass, borderRecipeClass, borderClass, shadowClass, className]);
-    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Component, { ref, className: combinedClass, ...props, children });
+    const containerStyle = { width: `${width}px`, height: `${height}px` };
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Component, { ref, className: combinedClass, style: containerStyle, ...props, children });
   }
 );
 
