@@ -8,6 +8,7 @@ export const commonStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  width: '100%',
   border: 'none',
   borderRadius: vars.radius.borderRadius.ml,
   textAlign: 'center',
@@ -71,14 +72,17 @@ const outlineStyles = {
   default: style({
     border: `0.0635rem solid ${vars.color.$palette.ui.primaryNormal}`,
     color: vars.color.$palette.ui.primaryNormal,
+    backgroundColor: vars.color.$palette.background.normalPrimary,
   }),
   hover: style({
     border: `0.0635rem solid ${vars.color.$palette.blue[700]}`,
     color: vars.color.$palette.blue[800],
+    backgroundColor: vars.color.$palette.background.normalPrimary,
   }),
   disabled: style({
     border: `0.0635rem solid ${vars.color.$palette.blueGray[50]}`,
     color: vars.color.$palette.blueGray[200],
+    backgroundColor: vars.color.$palette.background.normalPrimary,
   }),
   secondary: style({
     border: `0.0635rem solid ${vars.color.$palette.gray[200]}`,
