@@ -3227,8 +3227,30 @@ __metadata:
   dependencies:
     "@sos/esbuild-config": "workspace:^"
     esbuild: "npm:^0.23.0"
+    material-symbols: "npm:^0.21.2"
+    pretendard: "npm:^1.3.9"
     rimraf: "npm:^6.0.1"
     typescript: "npm:^5.5.3"
+  languageName: unknown
+  linkType: soft
+
+"@sos/web-app@workspace:apps/web-app":
+  version: 0.0.0-use.local
+  resolution: "@sos/web-app@workspace:apps/web-app"
+  dependencies:
+    "@sos/components-react": "workspace:^"
+    "@sos/style-tokens": "workspace:^"
+    "@types/node": "npm:^20"
+    "@types/react": "npm:^18"
+    "@types/react-dom": "npm:^18"
+    "@vanilla-extract/css": "npm:^1.15.3"
+    "@vanilla-extract/next-plugin": "npm:^2.4.3"
+    eslint: "npm:^8"
+    eslint-config-next: "npm:14.2.5"
+    next: "npm:14.2.5"
+    react: "npm:^18"
+    react-dom: "npm:^18"
+    typescript: "npm:^5"
   languageName: unknown
   linkType: soft
 
@@ -9418,6 +9440,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"material-symbols@npm:^0.21.2":
+  version: 0.21.2
+  resolution: "material-symbols@npm:0.21.2"
+  checksum: 10c0/0f6def4948771e6a0113ac661aa93ac1f6941f81a582e8202dcc994f4e545da61f08321d1701f6ca0fedaf228baa82a3b4dd42ddc5910e06b61cdf95555be421
+  languageName: node
+  linkType: hard
+
 "media-query-parser@npm:^2.0.2":
   version: 2.0.2
   resolution: "media-query-parser@npm:2.0.2"
@@ -10819,6 +10848,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pretendard@npm:^1.3.9":
+  version: 1.3.9
+  resolution: "pretendard@npm:1.3.9"
+  checksum: 10c0/45da0108541a2bd78dc1e43c8a0fc25994d202745ff178faf834477cb341fc376ba367e4e742ef5c139be119c86b8f4d17c8ae4f3a85c310aa7fb4ff419a7cac
+  languageName: node
+  linkType: hard
+
 "prettier-linter-helpers@npm:^1.0.0":
   version: 1.0.0
   resolution: "prettier-linter-helpers@npm:1.0.0"
@@ -11970,26 +12006,6 @@ __metadata:
     nx: "npm:19.5.2"
     prettier: "npm:^3.3.3"
     typescript: "npm:^5.5.4"
-  languageName: unknown
-  linkType: soft
-
-"sos-web-app@workspace:apps/sos-web-app":
-  version: 0.0.0-use.local
-  resolution: "sos-web-app@workspace:apps/sos-web-app"
-  dependencies:
-    "@sos/components-react": "workspace:^"
-    "@sos/style-tokens": "workspace:^"
-    "@types/node": "npm:^20"
-    "@types/react": "npm:^18"
-    "@types/react-dom": "npm:^18"
-    "@vanilla-extract/css": "npm:^1.15.3"
-    "@vanilla-extract/next-plugin": "npm:^2.4.3"
-    eslint: "npm:^8"
-    eslint-config-next: "npm:14.2.5"
-    next: "npm:14.2.5"
-    react: "npm:^18"
-    react-dom: "npm:^18"
-    typescript: "npm:^5"
   languageName: unknown
   linkType: soft
 

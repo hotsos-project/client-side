@@ -37,3 +37,6 @@ export declare const lineHeight: {
     18: string;
     16: string;
 };
+export declare const fontFamily: {
+    main: string;
+};

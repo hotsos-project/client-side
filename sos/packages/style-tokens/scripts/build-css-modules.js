@@ -36,9 +36,7 @@ const generateCssVariables = () => {
         if (colorKey === 'light') {
           lightCssString.push(`${selector} {\n${cssVariables}\n}`);
         } else if (colorKey === 'dark') {
-          darkCssString.push(
-            `@media (prefers-color-scheme: dark) {\n\t${selector} {\n${cssVariables}\n\t}\n}`,
-          );
+          darkCssString.push(`@media (prefers-color-scheme: dark) {\n\t${selector} {\n${cssVariables}\n\t}\n}`);
         }
       });
     } else {
@@ -92,13 +90,29 @@ const generateCssClasses = () => {
   return cssString;
 };
 
+const generateCssImports = () => {
+  const importString = [];
+
+  const reset = `@import './index.css';`;
+  const pretendard = `@import 'pretendard/dist/web/static/pretendard.css';`;
+  const materialSymbols = `@import 'material-symbols';`;
+
+  importString.push(reset);
+  importString.push(pretendard);
+  importString.push(materialSymbols);
+
+  return importString.join('\n');
+};
+
 // 일반 css variable 파일 만들기
 const generateCssFile = () => {
+  const imports = generateCssImports();
   const { light, dark } = generateCssVariables();
   const classes = generateCssClasses();
 
   // 추가된 문자열 배열을 풀어서 넣어주기
-  const cssContent = `
+  const cssContent = `${imports}
+
 ${light}
 
 ${dark}

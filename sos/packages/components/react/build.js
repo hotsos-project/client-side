@@ -7,7 +7,11 @@ const require = createRequire(import.meta.url);
 const pkg = require('./package.json');
 
 const config = {
-  plugins: [vanillaExtractPlugin()],
+  plugins: [
+    vanillaExtractPlugin({
+      identifiers: 'short',
+    }),
+  ],
 };
 
 runBuild({
