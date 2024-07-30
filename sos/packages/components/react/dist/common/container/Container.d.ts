@@ -4,6 +4,8 @@ import { DefaultProps } from '../types';
  *
  * @param {React.ReactNode} props.children - 컨테이너 내부 컨텐츠 (필수)
  * @param {React.ElementType} [props.as='div'] - 렌더링할 HTML 요소 (선택, 기본값: 'div')
+ * @param {number} [props.width] - 너비 (선택)
+ * @param {number} [props.height] - 높이 (선택)
  * @param {string} [props.backgroundColor] - 배경색 (선택)
  * @param {number} [props.margin] - 마진 (선택)
  * @param {number} [props.padding] - 패딩 (선택)

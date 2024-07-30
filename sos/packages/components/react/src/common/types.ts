@@ -21,5 +21,7 @@ export interface DefaultProps
     BorderVariants,
     ShadowSprinkles {
   children?: React.ReactNode;
+  width?: number;
+  height?: number;
   className?: string;
 }

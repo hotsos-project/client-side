@@ -11,5 +11,7 @@ export type AsProps = {
 };
 export interface DefaultProps extends AsProps, ColorSprinkles, TypographyVariants, SpacingSprinkles, LayoutSprinkles, BorderSprinkles, BorderVariants, ShadowSprinkles {
     children?: React.ReactNode;
+    width?: number;
+    height?: number;
     className?: string;
 }
