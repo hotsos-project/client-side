@@ -1,3 +1,4 @@
+import { DefaultProps } from '../common/types';
 import {
   baseStyle,
   sizeStyle,
@@ -6,7 +7,7 @@ import {
   subTextStyle,
 } from './button.css';
 
-interface ButtonProps {
+interface ButtonProps extends DefaultProps{
   size: 's' | 'm' | 'l';
   variant: 'primary' | 'secondary' | 'tertiary';
   state: 'default' | 'hover' | 'disabled';
