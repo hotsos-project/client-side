@@ -1,0 +1,83 @@
+export declare const typographyRecipe: import("@vanilla-extract/recipes").RuntimeFn<{
+    textType: {
+        display1: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        display2: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        title1: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        title2: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        title3: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        heading1: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        heading2: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        headline: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        body1: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        body2: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        body3: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        label: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        footnote: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+        caption: {
+            fontSize: string;
+            lineHeight: string;
+            fontWeight: string;
+        };
+    };
+    textMode: {
+        default: {};
+        reading: {};
+        bold: {};
+    };
+}>;
+export type TypographyVariants = {
+    textType?: 'display1' | 'display2' | 'title1' | 'title2' | 'title3' | 'heading1' | 'heading2' | 'headline' | 'body1' | 'body2' | 'body3' | 'label' | 'footnote' | 'caption';
+    textMode?: 'default' | 'reading' | 'bold';
+};
