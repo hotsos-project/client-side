@@ -1,8 +1,9 @@
 import { labeStyle, starStyle, inputStyle, warningStyle } from './inputGroup.css';
 import { Input } from './Input';
 import { Button } from '../button/Button';
+import { DefaultProps } from '../common/types';
 
-interface InputGroupProps {
+interface InputGroupProps extends DefaultProps{
   state: 'default' | 'highlight' | 'warning';
   showButton?: boolean;
   showLabel?: boolean;
