@@ -1,6 +1,7 @@
+import { DefaultProps } from '../common/types';
 import { baseStyle, sizeStyle, stateStyle } from './chips.css';
 
-interface ChipsProps {
+interface ChipsProps extends DefaultProps {
   size: 's' | 'm' | 'l';
   variant: 'primary' | 'secondary';
   state: 'default' | 'outline' | 'active' | 'disabled';
