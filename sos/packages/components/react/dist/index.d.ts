@@ -17,4 +17,6 @@ export { Chips } from './chips/Chips';
 export { TopAppBar } from './header/TopAppBar';
 export { Title } from './header/title/Title';
 export { Headline } from './header/headline/Headline';
-export { MessageList } from './list/MessageList';
+export { MessageList } from './list/message/MessageList';
+export { Input } from './inputs/input/Input';
+export { InputGroup } from './inputs/group/inputGroup';

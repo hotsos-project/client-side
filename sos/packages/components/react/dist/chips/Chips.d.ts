@@ -1,5 +1,5 @@
-import { DefaultProps } from '../common/types';
-interface ChipsProps extends DefaultProps {
+import { CommonProps } from '../common/types';
+interface ChipsProps extends CommonProps {
     size: 's' | 'm' | 'l';
     variant: 'primary' | 'secondary';
     state: 'default' | 'outline' | 'active' | 'disabled';

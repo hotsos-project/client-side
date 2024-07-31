@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
-import { borderSprinkles } from '../style/border/borderSprinkles.css';
-import { colorSprinkles } from '../style/color/colorSprinkles.css';
+import { borderSprinkles } from '../../style/border/borderSprinkles.css';
+import { colorSprinkles } from '../../style/color/colorSprinkles.css';
 import { RecipeVariants } from '@vanilla-extract/recipes';
 
 export const messageListRecipe = recipe({

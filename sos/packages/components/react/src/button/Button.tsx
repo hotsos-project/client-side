@@ -1,13 +1,7 @@
-import { DefaultProps } from '../common/types';
-import {
-  baseStyle,
-  sizeStyle,
-  stateStyle,
-  mainTextStyle,
-  subTextStyle,
-} from './button.css';
+import { CommonProps } from '../common/types';
+import { baseStyle, sizeStyle, stateStyle, mainTextStyle, subTextStyle } from './button.css';
 
-interface ButtonProps extends DefaultProps{
+interface ButtonProps extends CommonProps {
   size: 's' | 'm' | 'l';
   variant: 'primary' | 'secondary' | 'tertiary';
   state: 'default' | 'hover' | 'disabled';
@@ -20,7 +14,7 @@ interface ButtonProps extends DefaultProps{
 
 /**
  * Button 컴포넌트
- * 
+ *
  * @param {'s' | 'm' | 'l'} props.size - 버튼의 크기 (필수, 기본값: 'm')
  * @param {'primary' | 'secondary' | 'tertiary'} props.variant - 버튼의 변형 스타일 (필수, 기본값: 'primary')
  * @param {'default' | 'hover' | 'disabled'} props.state - 버튼의 상태 (필수, 기본값: 'default')

@@ -1,7 +1,14 @@
-import { DefaultProps } from '../common/types';
-import { commonStyle, divStateStyle, inputStyle, inputStateStyle, iconStyle, buttonStyle } from './input.css';
+import { CommonProps } from '../../common/types';
+import {
+  commonStyle,
+  divStateStyle,
+  inputStyle,
+  inputStateStyle,
+  iconStyle,
+  buttonStyle,
+} from './input.css';
 
-interface InputProps extends DefaultProps {
+interface InputProps extends CommonProps {
   state: 'default' | 'highlight' | 'warning' | 'disabled';
   showIcon?: boolean;
   showButton?: boolean;
@@ -16,12 +23,12 @@ interface InputProps extends DefaultProps {
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...any} props - 기타 HTML 속성
  */
-export const Input: React.FC<InputProps> = ({ 
-  state = 'warning', 
-  showIcon = true, 
-  showButton = true, 
-  className, 
-  ...props 
+export const Input: React.FC<InputProps> = ({
+  state = 'warning',
+  showIcon = true,
+  showButton = true,
+  className,
+  ...props
 }) => {
   const commonClass = commonStyle;
   const divStateClass = divStateStyle[state];
@@ -30,7 +37,9 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <div className={`${commonClass} ${divStateClass} ${className || ''}`} {...props}>
-      {showIcon && <span className={`material-symbols-outlined input-icon ${iconClass}`}>search</span>}
+      {showIcon && (
+        <span className={`material-symbols-outlined input-icon ${iconClass}`}>search</span>
+      )}
       <input className={`${inputStyle} ${inputStateClass}`} type="text" placeholder="Placeholder" />
       {showButton && (
         <button className={buttonStyle}>
