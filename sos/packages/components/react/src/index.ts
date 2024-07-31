@@ -36,3 +36,6 @@ export { MessageList } from './list/message/MessageList';
 // Inputs
 export { Input } from './input/input/Input';
 export { InputGroup } from './input/group/InputGroup';
+
+// Tabs
+export { Tabs } from './tabs/Tabs';
