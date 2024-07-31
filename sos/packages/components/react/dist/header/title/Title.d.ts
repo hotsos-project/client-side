@@ -1,4 +1,4 @@
-import { DefaultProps } from '../../common/types';
+import { CommonProps } from '../../common/types';
 /**
  * Title 컴포넌트
  *
@@ -7,4 +7,4 @@ import { DefaultProps } from '../../common/types';
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...any} props - 기타 HTML 속성
  */
-export declare const Title: React.FC<DefaultProps>;
+export declare const Title: React.FC<CommonProps>;

@@ -1,5 +1,5 @@
-import { DefaultProps } from '../../common/types';
-interface HeadlineProps extends DefaultProps {
+import { CommonProps } from '../../common/types';
+interface HeadlineProps extends CommonProps {
     mainText: string;
     subText?: string;
     icon?: boolean;

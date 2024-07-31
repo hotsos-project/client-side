@@ -36,7 +36,9 @@ const generateCssVariables = () => {
         if (colorKey === 'light') {
           lightCssString.push(`${selector} {\n${cssVariables}\n}`);
         } else if (colorKey === 'dark') {
-          darkCssString.push(`@media (prefers-color-scheme: dark) {\n\t${selector} {\n${cssVariables}\n\t}\n}`);
+          darkCssString.push(
+            `@media (prefers-color-scheme: dark) {\n\t${selector} {\n${cssVariables}\n\t}\n}`,
+          );
         }
       });
     } else {

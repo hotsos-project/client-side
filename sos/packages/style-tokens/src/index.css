@@ -139,7 +139,7 @@ table {
   border-spacing: 0;
 }
 
-/* font-family */
+/* font */
 * {
   font-family: var(--font-family-main);
 }

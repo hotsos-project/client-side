@@ -1,9 +1,9 @@
 import { Text } from '../../common/text/Text';
-import { DefaultProps } from '../../common/types';
+import { CommonProps } from '../../common/types';
 import { headlineStyle, iconStyle, headlineSubStyle } from './headline.css';
 import clsx from 'clsx';
 
-interface HeadlineProps extends DefaultProps {
+interface HeadlineProps extends CommonProps {
   mainText: string;
   subText?: string;
   icon?: boolean;
@@ -38,7 +38,9 @@ export const Headline: React.FC<HeadlineProps> = ({
             {subText}
           </Text>
         )}
-        {icon && <span className={clsx('material-symbols-outlined', iconStyle)}>{'chevron_right'}</span>}
+        {icon && (
+          <span className={clsx('material-symbols-outlined', iconStyle)}>{'chevron_right'}</span>
+        )}
       </div>
     </div>
   );

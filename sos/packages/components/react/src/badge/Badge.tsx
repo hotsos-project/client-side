@@ -1,14 +1,40 @@
-import { commonStyle, sizeStyle, colorStyle } from './badge.css';
+import { forwardRef } from 'react';
+import { CommonProps } from '../common/types';
+import { Container } from '../common/container/Container';
+import { Text } from '../common/text/Text';
+import { badgeRecipe, BadgeVariants } from './badge.css';
+import clsx from 'clsx';
 
-interface BadgeProps {
-  size?: 's' | 'm' | 'l';
-  color: 'blue' | 'pink' | 'orange' | 'green';
-}
+// 지정된 색이 있는 경우 color props type 제외
+type BadgeProps = Omit<CommonProps, 'color'> & BadgeVariants;
 
-export const Badge: React.FC<BadgeProps> = ({ size = 'l', color = 'blue' }) => {
-  const sizeClass = sizeStyle[size];
-  const colorClass = colorStyle[color] || 'blue';
-  return (
-    <div className={`${commonStyle} ${sizeClass}  ${colorClass}`}>Badge</div>
-  );
-};
+/**
+ * Badge 컴포넌트
+ *
+ * @param {React.ReactNode} [props.children='text'] - 배지 내부 텍스트 (선택, 기본값: 'text')
+ * @param {BadgeVariants['size']} [props.size='m'] - 배지 크기 (선택, 기본값: 'm')
+ * @param {BadgeVariants['color']} [props.color='blue'] - 배지 색상 (선택, 기본값: 'blue')
+ * @param {string} [props.className] - 추가 CSS 클래스 (선택)
+ * @param {...any} props - Container 컴포넌트로 전달될 기타 props
+ * @param {React.Ref<HTMLElement>} ref - 전달받은 ref
+ */
+export const Badge = forwardRef<HTMLElement, BadgeProps>(
+  ({ children = 'text', size = 'm', color = 'blue', className, ...props }, ref) => {
+    const badgeClass = badgeRecipe({ size, color });
+    const textType = size === 's' ? 'caption' : size === 'm' ? 'footnote' : 'label';
+
+    return (
+      <Container
+        as="div"
+        ref={ref}
+        className={clsx(badgeClass, className)}
+        display="inline-block"
+        {...props}
+      >
+        <Text as="span" textType={textType} color={`${color}500`}>
+          {children}
+        </Text>
+      </Container>
+    );
+  },
+);
