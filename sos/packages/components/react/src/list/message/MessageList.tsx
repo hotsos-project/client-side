@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
-import { CommonProps } from '../common/types';
-import { Container } from '../common/container/Container';
-import { Text } from '../common/text/Text';
-import { Badge } from '../badge/Badge';
-import { Icon } from '../common/icon/Icon';
-import { formatDate } from '../utils/dateUtils';
+import { CommonProps } from '../../common/types';
+import { Container } from '../../common/container/Container';
+import { Text } from '../../common/text/Text';
+import { Badge } from '../../badge/Badge';
+import { Icon } from '../../common/icon/Icon';
+import { formatDate } from '../../utils/dateUtils';
 import { messageListRecipe } from './messageList.css';
 import clsx from 'clsx';
 

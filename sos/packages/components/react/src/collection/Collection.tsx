@@ -1,14 +1,18 @@
 import { Badge } from '../badge/Badge';
-import { DefaultProps } from '../common/types';
+import { CommonProps } from '../common/types';
 import { sizeStyle, infoStyle } from './collection.css';
 
-interface CollectionProps extends DefaultProps {
+interface CollectionProps extends CommonProps {
   size: 's' | 'm';
   content: string;
   badge?: boolean;
 }
 
-export const Collection: React.FC<CollectionProps> = ({ size = 'm', content = '지진', badge = true }) => {
+export const Collection: React.FC<CollectionProps> = ({
+  size = 'm',
+  content = '지진',
+  badge = true,
+}) => {
   const sizeClass = sizeStyle[size];
   return (
     <div className={sizeClass}>

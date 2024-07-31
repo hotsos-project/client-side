@@ -1,9 +1,9 @@
 import { labeStyle, starStyle, inputStyle, warningStyle } from './inputGroup.css';
-import { Input } from './Input';
-import { Button } from '../button/Button';
-import { DefaultProps } from '../common/types';
+import { Input } from '../input/Input';
+import { Button } from '../../button/Button';
+import { CommonProps } from '../../common/types';
 
-interface InputGroupProps extends DefaultProps{
+interface InputGroupProps extends CommonProps {
   state: 'default' | 'highlight' | 'warning';
   showButton?: boolean;
   showLabel?: boolean;
@@ -13,7 +13,7 @@ interface InputGroupProps extends DefaultProps{
 
 /**
  * InputGroup 컴포넌트
- * 
+ *
  * @param {'default' | 'highlight' | 'warning'} props.state - 인풋 그룹의 상태 (필수)
  * @param {boolean} [props.showButton=true] - 버튼 표시 여부 (선택, 기본값: true)
  * @param {boolean} [props.showLabel=true] - 라벨 표시 여부 (선택, 기본값: true)
@@ -41,7 +41,18 @@ export const InputGroup: React.FC<InputGroupProps> = ({
       )}
       <div className={inputStyle}>
         <Input state={state} showIcon={false} />
-        {showButton && <Button size="m" variant="primary" state="default" design="fill" icon="" subText="" mainText="Button" isLoading={false} />}
+        {showButton && (
+          <Button
+            size="m"
+            variant="primary"
+            state="default"
+            design="fill"
+            icon=""
+            subText=""
+            mainText="Button"
+            isLoading={false}
+          />
+        )}
       </div>
       {state === 'warning' && <div className={warningStyle}>{warningContent}</div>}
     </div>

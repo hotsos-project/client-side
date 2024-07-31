@@ -31,4 +31,8 @@ export { Title } from './header/title/Title';
 export { Headline } from './header/headline/Headline';
 
 // List
-export { MessageList } from './list/MessageList';
+export { MessageList } from './list/message/MessageList';
+
+// Inputs
+export { Input } from './inputs/input/Input';
+export { InputGroup } from './inputs/group/inputGroup';

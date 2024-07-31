@@ -1,7 +1,7 @@
-import { DefaultProps } from '../common/types';
+import { CommonProps } from '../common/types';
 import { baseStyle, sizeStyle, stateStyle } from './chips.css';
 
-interface ChipsProps extends DefaultProps {
+interface ChipsProps extends CommonProps {
   size: 's' | 'm' | 'l';
   variant: 'primary' | 'secondary';
   state: 'default' | 'outline' | 'active' | 'disabled';
@@ -10,7 +10,7 @@ interface ChipsProps extends DefaultProps {
 
 /**
  * Chips 컴포넌트
- * 
+ *
  * @param {'s' | 'm' | 'l'} props.size - 칩의 크기 (필수, 기본값: 'm')
  * @param {'primary' | 'secondary'} props.variant - 칩의 변형 스타일 (필수, 기본값: 'primary')
  * @param {'default' | 'outline' | 'active' | 'disabled'} props.state - 칩의 상태 (필수, 기본값: 'default')
@@ -28,15 +28,9 @@ export const Chips: React.FC<ChipsProps> = ({
   let stateClass = '';
 
   if (state === 'active') {
-    stateClass =
-      variant === 'primary'
-        ? stateStyle.activePrimary
-        : stateStyle.activeSecondary;
+    stateClass = variant === 'primary' ? stateStyle.activePrimary : stateStyle.activeSecondary;
   } else if (state === 'outline') {
-    stateClass =
-      variant === 'primary'
-        ? stateStyle.outlinePrimary
-        : stateStyle.outlineSecondary;
+    stateClass = variant === 'primary' ? stateStyle.outlinePrimary : stateStyle.outlineSecondary;
   } else {
     stateClass = stateStyle[state];
   }

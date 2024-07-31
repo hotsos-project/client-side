@@ -1,5 +1,5 @@
-import { DefaultProps } from '../common/types';
-interface ButtonProps extends DefaultProps {
+import { CommonProps } from '../common/types';
+interface ButtonProps extends CommonProps {
     size: 's' | 'm' | 'l';
     variant: 'primary' | 'secondary' | 'tertiary';
     state: 'default' | 'hover' | 'disabled';

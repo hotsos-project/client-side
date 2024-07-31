@@ -1,5 +1,5 @@
-import { DefaultProps } from '../common/types';
-interface CollectionProps extends DefaultProps {
+import { CommonProps } from '../common/types';
+interface CollectionProps extends CommonProps {
     size: 's' | 'm';
     content: string;
     badge?: boolean;
