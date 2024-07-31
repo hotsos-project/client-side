@@ -1,6 +1,6 @@
 import { titleStyle } from './title.css';
 import { Text } from '../../common/text/Text';
-import { DefaultProps } from '../../common/types';
+import { CommonProps } from '../../common/types';
 import clsx from 'clsx';
 
 /**
@@ -11,7 +11,7 @@ import clsx from 'clsx';
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...any} props - 기타 HTML 속성
  */
-export const Title: React.FC<DefaultProps> = ({ children = '제목', color = 'textNormal', className, ...props }) => {
+export const Title: React.FC<CommonProps> = ({ children = '제목', color = 'textNormal', className, ...props }) => {
   return (
     <Text className={clsx(titleStyle, className)} textType="title2" textMode="bold" as="h1" color={color} {...props}>
       {children}

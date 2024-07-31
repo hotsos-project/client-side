@@ -1,5 +1,5 @@
 export declare const layoutSprinkles: ((props: {
-    display?: "none" | "block" | "inline" | "flex" | undefined;
+    display?: "none" | "block" | "inline" | "flex" | "inline-block" | undefined;
     flexDirection?: "column" | "row" | undefined;
     justifyContent?: "space-around" | "space-between" | "stretch" | "center" | "flex-end" | "flex-start" | undefined;
     alignItems?: "stretch" | "center" | "flex-end" | "flex-start" | undefined;
