@@ -305,30 +305,31 @@ var TopAppBar = ({ icon = false }) => {
   ] });
 };
 
+// src/header/title/Title.tsx
+import { forwardRef as forwardRef5 } from "react";
+
 // src/header/title/style.css.ts
 var titleStyle = "ujvneh1 _1rmst086p";
 
 // src/header/title/Title.tsx
 import { jsx as jsx8 } from "react/jsx-runtime";
-var Title = ({
-  children = "\uC81C\uBAA9",
-  color = "textNormal",
-  className,
-  ...props
-}) => {
-  return /* @__PURE__ */ jsx8(
-    Text,
-    {
-      className: clsx_default(titleStyle, className),
-      textType: "title2",
-      textMode: "bold",
-      as: "h1",
-      color,
-      ...props,
-      children
-    }
-  );
-};
+var Title = forwardRef5(
+  ({ children = "\uC81C\uBAA9", color = "textNormal", className, ...props }, ref) => {
+    return /* @__PURE__ */ jsx8(
+      Text,
+      {
+        ref,
+        className: clsx_default(titleStyle, className),
+        textType: "title2",
+        textMode: "bold",
+        as: "h1",
+        color,
+        ...props,
+        children
+      }
+    );
+  }
+);
 
 // src/header/headline/style.css.ts
 var headlineStyle = "_1oxa1x50";
@@ -355,7 +356,7 @@ var Headline = ({
 };
 
 // src/list/message/MessageList.tsx
-import { forwardRef as forwardRef5 } from "react";
+import { forwardRef as forwardRef6 } from "react";
 
 // src/utils/dateUtils.ts
 function formatDate(date) {
@@ -382,7 +383,7 @@ var colorMap = {
   danger: "pink",
   warning: "orange"
 };
-var MessageList = forwardRef5(
+var MessageList = forwardRef6(
   ({
     title = "title",
     date = /* @__PURE__ */ new Date(),
@@ -428,6 +429,82 @@ var MessageList = forwardRef5(
   }
 );
 
+// src/list/social-content/SocialContentList.tsx
+import { forwardRef as forwardRef7 } from "react";
+import { jsx as jsx11, jsxs as jsxs5 } from "react/jsx-runtime";
+var SocialContentList = forwardRef7(
+  ({
+    children,
+    title = "title",
+    writer = "writer",
+    date = /* @__PURE__ */ new Date(),
+    location = "location",
+    viewCounts = 0,
+    commentCounts = 0,
+    content = "content",
+    isTrueCounts = 0,
+    isFalseCounts = 0
+  }, ref) => {
+    const dateString = formatDate(date);
+    return /* @__PURE__ */ jsxs5(Container, { as: "li", children: [
+      /* @__PURE__ */ jsxs5(Container, { display: "flex", flexDirection: "column", paddingX: 16, paddingTop: 20, gap: 6, children: [
+        /* @__PURE__ */ jsxs5(Container, { display: "flex", justifyContent: "space-between", children: [
+          /* @__PURE__ */ jsx11(Text, { textType: "heading2", textMode: "bold", children: title }),
+          /* @__PURE__ */ jsx11(Icon, { children: "more_horiz" })
+        ] }),
+        /* @__PURE__ */ jsxs5(Container, { display: "flex", gap: 6, children: [
+          /* @__PURE__ */ jsx11(Text, { textType: "label", color: "textAlternative", children: writer }),
+          /* @__PURE__ */ jsx11(Text, { textType: "label", color: "textAssistive", children: dateString })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxs5(
+        Container,
+        {
+          display: "flex",
+          paddingX: 16,
+          paddingY: 12,
+          justifyContent: "space-between",
+          alignItems: "center",
+          children: [
+            /* @__PURE__ */ jsxs5(Container, { display: "flex", alignItems: "center", gap: 4, children: [
+              /* @__PURE__ */ jsx11(Icon, { color: "blue500", size: 15, children: "location_on" }),
+              /* @__PURE__ */ jsx11(Text, { as: "span", textType: "body3", color: "blue500", children: location })
+            ] }),
+            /* @__PURE__ */ jsxs5(Container, { display: "flex", alignItems: "center", gap: 8, children: [
+              /* @__PURE__ */ jsxs5(Container, { display: "flex", gap: 6, children: [
+                /* @__PURE__ */ jsx11(Text, { textType: "label", color: "textAssistive", children: "\uC870\uD68C" }),
+                /* @__PURE__ */ jsx11(Text, { textType: "label", textMode: "bold", color: "textAlternative", children: viewCounts })
+              ] }),
+              /* @__PURE__ */ jsx11(Text, { children: "\xB7" }),
+              /* @__PURE__ */ jsxs5(Container, { display: "flex", gap: 6, children: [
+                /* @__PURE__ */ jsx11(Text, { textType: "label", color: "textAssistive", children: "\uB313\uAE00" }),
+                /* @__PURE__ */ jsx11(Text, { textType: "label", textMode: "bold", color: "textAlternative", children: commentCounts })
+              ] })
+            ] })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsx11(Container, { children }),
+      /* @__PURE__ */ jsx11(Container, { padding: 16, children: /* @__PURE__ */ jsx11(Text, { children: content }) }),
+      /* @__PURE__ */ jsxs5(
+        Container,
+        {
+          display: "flex",
+          padding: 16,
+          justifyContent: "space-between",
+          alignItems: "center",
+          borderType: "borderTop",
+          children: [
+            /* @__PURE__ */ jsx11(Button, { variant: "secondary", mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
+            /* @__PURE__ */ jsx11(Button, { mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
+            /* @__PURE__ */ jsx11(Button, { icon: "chat", subText: commentCounts, size: "s" })
+          ]
+        }
+      )
+    ] });
+  }
+);
+
 // src/input/input/style.css.ts
 var buttonStyle = "_16rhowh2";
 var commonStyle = "_16rhowh0";
@@ -437,7 +514,7 @@ var inputStateStyle = { "default": "_16rhowh8", highlight: "_16rhowh9 _16rhowh8"
 var inputStyle = "_16rhowh1";
 
 // src/input/input/Input.tsx
-import { jsx as jsx11, jsxs as jsxs5 } from "react/jsx-runtime";
+import { jsx as jsx12, jsxs as jsxs6 } from "react/jsx-runtime";
 var Input = ({
   state = "warning",
   showIcon = true,
@@ -449,10 +526,10 @@ var Input = ({
   const divStateClass = divStateStyle[state];
   const inputStateClass = inputStateStyle[state];
   const iconClass = iconStyle2;
-  return /* @__PURE__ */ jsxs5("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
-    showIcon && /* @__PURE__ */ jsx11("span", { className: `material-symbols-outlined input-icon ${iconClass}`, children: "search" }),
-    /* @__PURE__ */ jsx11("input", { className: `${inputStyle} ${inputStateClass}`, type: "text", placeholder: "Placeholder" }),
-    showButton && /* @__PURE__ */ jsx11("button", { className: buttonStyle, children: /* @__PURE__ */ jsx11("span", { className: "material-symbols-outlined", children: "cancel" }) })
+  return /* @__PURE__ */ jsxs6("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
+    showIcon && /* @__PURE__ */ jsx12("span", { className: `material-symbols-outlined input-icon ${iconClass}`, children: "search" }),
+    /* @__PURE__ */ jsx12("input", { className: `${inputStyle} ${inputStateClass}`, type: "text", placeholder: "Placeholder" }),
+    showButton && /* @__PURE__ */ jsx12("button", { className: buttonStyle, children: /* @__PURE__ */ jsx12("span", { className: "material-symbols-outlined", children: "cancel" }) })
   ] });
 };
 
@@ -463,7 +540,7 @@ var starStyle = "_1n4ve931";
 var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
-import { jsx as jsx12, jsxs as jsxs6 } from "react/jsx-runtime";
+import { jsx as jsx13, jsxs as jsxs7 } from "react/jsx-runtime";
 var InputGroup = ({
   state = "default",
   showButton = true,
@@ -473,14 +550,14 @@ var InputGroup = ({
   className,
   ...props
 }) => {
-  return /* @__PURE__ */ jsxs6("div", { className, ...props, children: [
-    showLabel && /* @__PURE__ */ jsxs6("div", { className: labeStyle, children: [
-      /* @__PURE__ */ jsx12("span", { children: labelContent }),
-      /* @__PURE__ */ jsx12("span", { className: starStyle, children: "*" })
+  return /* @__PURE__ */ jsxs7("div", { className, ...props, children: [
+    showLabel && /* @__PURE__ */ jsxs7("div", { className: labeStyle, children: [
+      /* @__PURE__ */ jsx13("span", { children: labelContent }),
+      /* @__PURE__ */ jsx13("span", { className: starStyle, children: "*" })
     ] }),
-    /* @__PURE__ */ jsxs6("div", { className: inputStyle2, children: [
-      /* @__PURE__ */ jsx12(Input, { state, showIcon: false }),
-      showButton && /* @__PURE__ */ jsx12(
+    /* @__PURE__ */ jsxs7("div", { className: inputStyle2, children: [
+      /* @__PURE__ */ jsx13(Input, { state, showIcon: false }),
+      showButton && /* @__PURE__ */ jsx13(
         Button,
         {
           size: "m",
@@ -494,7 +571,7 @@ var InputGroup = ({
         }
       )
     ] }),
-    state === "warning" && /* @__PURE__ */ jsx12("div", { className: warningStyle, children: warningContent })
+    state === "warning" && /* @__PURE__ */ jsx13("div", { className: warningStyle, children: warningContent })
   ] });
 };
 export {
@@ -507,6 +584,7 @@ export {
   Input,
   InputGroup,
   MessageList,
+  SocialContentList,
   Text,
   Title,
   TopAppBar,
