@@ -250,7 +250,7 @@ var subTextStyle = "mu0bc6e";
 // src/button/Button.tsx
 var import_jsx_runtime4 = require("react/jsx-runtime");
 var Button = ({
-  size = "l",
+  size = "m",
   variant = "primary",
   state = "default",
   design = "fill",
@@ -271,7 +271,7 @@ var Button = ({
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("button", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: [
     icon && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("span", { className: "material-symbols-outlined", children: icon }),
     subText && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("span", { className: subTextStyle, children: subText }),
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("span", { className: mainTextStyle, children: mainText }),
+    mainText && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("span", { className: mainTextStyle, children: mainText }),
     isLoading && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("span", { className: "material-symbols-outlined", children: "refresh" })
   ] });
 };
@@ -313,7 +313,8 @@ var import_jsx_runtime6 = require("react/jsx-runtime");
 var Chips = ({
   size = "m",
   variant = "primary",
-  state = "default"
+  state = "default",
+  content = "Label"
 }) => {
   const baseClass = baseStyle2;
   const sizeClass = sizeStyle2[size];
@@ -325,7 +326,7 @@ var Chips = ({
   } else {
     stateClass = stateStyle2[state];
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: "Label" });
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: content });
 };
 
 // src/header/topAppBar.css.ts

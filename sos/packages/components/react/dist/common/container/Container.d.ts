@@ -59,7 +59,7 @@ import { CommonProps } from '../types';
  * 그림자 관련 속성:
  * @param {string} [props.boxShadow] - 그림자 효과 (선택)
  *
- * 기타:
+ *
  * @param {...any} props - 기타 HTML 속성
  * @param {React.Ref<HTMLElement>} ref - 전달받은 ref
  */
