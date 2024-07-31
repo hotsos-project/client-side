@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import { colorSprinkles } from '../../style/color/colorSprinkles.css';
-import { typographyRecipe } from '../../style/typography/typographyRecipes.css';
+import { colorSprinkles } from '../../style/color/sprinkles.css';
+import { typographyRecipe } from '../../style/typography/recipes.css';
 import { CommonProps } from '../types';
 import clsx from 'clsx';
 

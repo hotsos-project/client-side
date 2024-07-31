@@ -1,12 +1,10 @@
-import { commonStyle, stateStyle } from './notification.css';
+import { commonStyle, stateStyle } from './style.css';
 
 type NotificationProps = {
   state: 'default' | 'warning' | 'danger';
 };
 
-export const Notification: React.FC<NotificationProps> = ({
-  state = 'danger',
-}) => {
+export const Notification: React.FC<NotificationProps> = ({ state = 'danger' }) => {
   const commonClass = commonStyle;
   const stateClass = stateStyle[state];
   return (

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Palette } from '../../style/color/colorSprinkles.css';
+import { Palette } from '../../style/color/sprinkles.css';
 interface IconProps {
     children: ReactNode;
     color?: Palette;

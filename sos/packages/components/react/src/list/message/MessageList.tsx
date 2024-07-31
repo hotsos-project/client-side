@@ -5,7 +5,7 @@ import { Text } from '../../common/text/Text';
 import { Badge } from '../../badge/Badge';
 import { Icon } from '../../common/icon/Icon';
 import { formatDate } from '../../utils/dateUtils';
-import { messageListRecipe } from './messageList.css';
+import { messageListRecipe } from './style.css';
 import clsx from 'clsx';
 
 interface MessageListProps extends Omit<CommonProps, 'color'> {

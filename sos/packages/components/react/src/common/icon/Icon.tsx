@@ -1,5 +1,5 @@
 import { forwardRef, ReactNode } from 'react';
-import { colorSprinkles, Palette } from '../../style/color/colorSprinkles.css';
+import { colorSprinkles, Palette } from '../../style/color/sprinkles.css';
 import clsx from 'clsx';
 
 interface IconProps {
