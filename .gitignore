@@ -16,9 +16,6 @@
 # 환경 설정 파일 무시
 .env
 
-# Icon must end with two \r
-Icon
-
 # Thumbnails
 ._*
 
