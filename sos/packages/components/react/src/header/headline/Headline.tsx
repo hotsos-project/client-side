@@ -1,6 +1,6 @@
 import { Text } from '../../common/text/Text';
 import { CommonProps } from '../../common/types';
-import { headlineStyle, iconStyle, headlineSubStyle } from './headline.css';
+import { headlineStyle, iconStyle, headlineSubStyle } from './style.css';
 import clsx from 'clsx';
 
 interface HeadlineProps extends CommonProps {

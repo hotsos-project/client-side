@@ -1,5 +1,5 @@
 import { CommonProps } from '../common/types';
-import { baseStyle, sizeStyle, stateStyle, mainTextStyle, subTextStyle } from './button.css';
+import { baseStyle, sizeStyle, stateStyle, mainTextStyle, subTextStyle } from './style.css';
 
 interface ButtonProps extends CommonProps {
   size: 's' | 'm' | 'l';

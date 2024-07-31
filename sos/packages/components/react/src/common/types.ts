@@ -1,11 +1,11 @@
 import { ElementType } from 'react';
-import { LayoutSprinkles } from '../style/layout/layoutSprinkles.css';
-import { SpacingSprinkles } from '../style/spacing/spacingSprinkles.css';
-import { ColorSprinkles } from '../style/color/colorSprinkles.css';
-import { TypographyVariants } from '../style/typography/typographyRecipes.css';
-import { BorderSprinkles } from '../style/border/borderSprinkles.css';
-import { BorderVariants } from '../style/border/borderRecipes.css';
-import { ShadowSprinkles } from '../style/shadow/shadowSprinkles.css';
+import { LayoutSprinkles } from '../style/layout/sprinkles.css';
+import { SpacingSprinkles } from '../style/spacing/sprinkles.css';
+import { ColorSprinkles } from '../style/color/sprinkles.css';
+import { TypographyVariants } from '../style/typography/recipes.css';
+import { BorderSprinkles } from '../style/border/sprinkles.css';
+import { BorderVariants } from '../style/border/recipes.css';
+import { ShadowSprinkles } from '../style/shadow/sprinkles.css';
 
 export type AsProps = {
   as?: ElementType;

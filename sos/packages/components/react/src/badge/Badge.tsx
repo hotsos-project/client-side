@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { CommonProps } from '../common/types';
 import { Container } from '../common/container/Container';
 import { Text } from '../common/text/Text';
-import { badgeRecipe, BadgeVariants } from './badge.css';
+import { badgeRecipe, BadgeVariants } from './style.css';
 import clsx from 'clsx';
 
 // 지정된 색이 있는 경우 color props type 제외

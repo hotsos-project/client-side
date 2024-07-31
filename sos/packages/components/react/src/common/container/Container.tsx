@@ -1,11 +1,11 @@
 import { forwardRef } from 'react';
 import { CommonProps } from '../types';
-import { layoutSprinkles } from '../../style/layout/layoutSprinkles.css';
-import { spacingSprinkles } from '../../style/spacing/spacingSprinkles.css';
-import { colorSprinkles } from '../../style/color/colorSprinkles.css';
-import { borderSprinkles } from '../../style/border/borderSprinkles.css';
-import { borderRecipe } from '../../style/border/borderRecipes.css';
-import { shadowSprinkles } from '../../style/shadow/shadowSprinkles.css';
+import { layoutSprinkles } from '../../style/layout/sprinkles.css';
+import { spacingSprinkles } from '../../style/spacing/sprinkles.css';
+import { colorSprinkles } from '../../style/color/sprinkles.css';
+import { borderSprinkles } from '../../style/border/sprinkles.css';
+import { borderRecipe } from '../../style/border/recipes.css';
+import { shadowSprinkles } from '../../style/shadow/sprinkles.css';
 import clsx from 'clsx';
 
 /**
