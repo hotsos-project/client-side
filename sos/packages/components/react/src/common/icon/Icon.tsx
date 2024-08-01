@@ -9,6 +9,16 @@ interface IconProps {
   className?: string;
 }
 
+/**
+ * Icon 컴포넌트
+ *
+ * @param {ReactNode} props.children - 아이콘 내용 (필수)
+ * @param {Palette} [props.color='textNormal'] - 아이콘 색상 (선택, 기본값: 'textNormal')
+ * @param {number} [props.size] - 아이콘 크기 (선택)
+ * @param {string} [props.className] - 추가 CSS 클래스 (선택)
+ * @param {...any} props - 기타 HTML 속성
+ * @param {React.Ref<HTMLElement>} ref - 전달받은 ref
+ */
 export const Icon = forwardRef<HTMLElement, IconProps>(
   ({ children, color = 'textNormal', size, className, ...props }, ref) => {
     const colorClass = colorSprinkles({ color });

@@ -1,12 +1,17 @@
-import { SocialContentList } from '@sos/components-react';
-import Image from 'next/image';
+import { InfoBox } from '@sos/components-react';
+
+const infos = [
+  {
+    title: '가응 시간',
+    content: '9:00 ~ 18:00',
+  },
+  { title: '설치 장소', content: '진료실' },
+];
 
 export default function Home() {
   return (
     <main>
-      <SocialContentList>
-        <Image src="/earthquake3-01.jpg" width={100} height={100} size="responsive" />
-      </SocialContentList>
+      <InfoBox infos={infos} backgroundColor="backgroundElevatedSecondary" />
     </main>
   );
 }
