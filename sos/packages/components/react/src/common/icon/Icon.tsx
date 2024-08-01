@@ -4,8 +4,8 @@ import clsx from 'clsx';
 
 interface IconProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children: ReactNode;
-  color?: Palette;
   size?: number;
+  color?: Palette;
   className?: string;
 }
 
@@ -20,7 +20,7 @@ interface IconProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
  * @param {React.Ref<HTMLElement>} ref - 전달받은 ref
  */
 export const Icon = forwardRef<HTMLElement, IconProps>(
-  ({ children, color = 'textNormal', size, className, ...props }, ref) => {
+  ({ children, size, color = 'textNormal', className, ...props }, ref) => {
     const colorClass = colorSprinkles({ color });
 
     const iconStyle = {

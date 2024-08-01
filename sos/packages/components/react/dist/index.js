@@ -196,7 +196,7 @@ var Container = forwardRef2(
 import { forwardRef as forwardRef3 } from "react";
 import { jsx as jsx3 } from "react/jsx-runtime";
 var Icon = forwardRef3(
-  ({ children, color = "textNormal", size, className, ...props }, ref) => {
+  ({ children, size, color = "textNormal", className, ...props }, ref) => {
     const colorClass = colorSprinkles({ color });
     const iconStyle3 = {
       display: "inline-block",
@@ -342,7 +342,7 @@ var InfoItem = forwardRef6(
         children: [
           /* @__PURE__ */ jsx7(Text, { textType: titleTextType, textAlign: "center", color: "textAssistive", children: title }),
           /* @__PURE__ */ jsxs2(Container, { display: "flex", alignItems: "center", gap: 6, children: [
-            icon && /* @__PURE__ */ jsx7(Icon, { color: "textAlternative", size: iconSize, children: icon }),
+            icon && /* @__PURE__ */ jsx7(Icon, { size: iconSize, color: "textAlternative", children: icon }),
             /* @__PURE__ */ jsx7(Text, { textType: contentTextType, textMode: "bold", textAlign: "center", children: content })
           ] })
         ]
@@ -392,13 +392,114 @@ var InfoBox = forwardRef7(
   }
 );
 
+// src/box/weather/WeatherBox.tsx
+import { forwardRef as forwardRef8 } from "react";
+
+// src/utils/dateUtils.ts
+function formatDateWithTime(date) {
+  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const seconds = date.getSeconds().toString().padStart(2, "0");
+  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+}
+function formatDateWithDay(date) {
+  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const dayOfWeekMap = ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"];
+  const dayOfWeek = dayOfWeekMap[date.getDay()];
+  return `${year}-${month}-${day} (${dayOfWeek})`;
+}
+
+// src/box/weather/WeatherBox.tsx
+import { jsx as jsx9, jsxs as jsxs3 } from "react/jsx-runtime";
+var WeatherBox = forwardRef8(
+  ({
+    date = /* @__PURE__ */ new Date(),
+    location = "-",
+    condition = "loading",
+    temperature = "-",
+    highestTemperature = "-",
+    lowestTemperature = "-",
+    airQuality = "-",
+    className,
+    ...props
+  }, ref) => {
+    const dateString = formatDateWithDay(date);
+    return /* @__PURE__ */ jsxs3(
+      Container,
+      {
+        display: "flex",
+        flexDirection: "column",
+        padding: 16,
+        gap: 36,
+        backgroundColor: "backgroundNormalPrimary",
+        borderRadius: "ml",
+        ref,
+        className,
+        ...props,
+        children: [
+          /* @__PURE__ */ jsxs3(Container, { display: "flex", justifyContent: "space-between", children: [
+            /* @__PURE__ */ jsx9(Text, { textType: "headline", color: "textAlternative", children: dateString }),
+            /* @__PURE__ */ jsxs3(Container, { display: "flex", alignItems: "center", gap: 4, children: [
+              /* @__PURE__ */ jsx9(Icon, { size: 15, color: "textAssistive", children: "location_on" }),
+              /* @__PURE__ */ jsx9(Text, { as: "span", textType: "body3", color: "textAssistive", children: location })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs3(Container, { display: "flex", justifyContent: "space-between", alignItems: "center", children: [
+            /* @__PURE__ */ jsxs3(Container, { display: "flex", alignItems: "center", gap: 8, children: [
+              /* @__PURE__ */ jsx9(
+                Container,
+                {
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: 72,
+                  height: 72,
+                  children: condition
+                }
+              ),
+              /* @__PURE__ */ jsx9(Text, { textType: "display1", textAlign: "center", children: `${temperature}\xB0` })
+            ] }),
+            /* @__PURE__ */ jsxs3(Container, { display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, children: [
+              /* @__PURE__ */ jsxs3(Container, { display: "flex", gap: 8, children: [
+                /* @__PURE__ */ jsxs3(Container, { display: "flex", gap: 6, children: [
+                  /* @__PURE__ */ jsx9(Text, { textType: "body2", color: "textAssistive", children: "\uCD5C\uACE0" }),
+                  /* @__PURE__ */ jsx9(Text, { textType: "body2", textMode: "bold", color: "textAlternative", children: highestTemperature })
+                ] }),
+                /* @__PURE__ */ jsxs3(Container, { display: "flex", gap: 6, children: [
+                  /* @__PURE__ */ jsx9(Text, { textType: "body2", color: "textAssistive", children: "\uCD5C\uC800" }),
+                  /* @__PURE__ */ jsx9(Text, { textType: "body2", textMode: "bold", color: "textAlternative", children: lowestTemperature })
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxs3(Container, { display: "flex", gap: 6, children: [
+                /* @__PURE__ */ jsx9(Text, { textType: "body2", color: "textAssistive", children: "\uBBF8\uC138\uBA3C\uC9C0" }),
+                /* @__PURE__ */ jsx9(Text, { textType: "body2", textMode: "bold", color: "textAlternative", children: airQuality })
+              ] })
+            ] })
+          ] })
+        ]
+      }
+    );
+  }
+);
+
 // src/chip/style.css.ts
 var baseStyle2 = "w4y0nd0";
 var sizeStyle2 = { s: "w4y0nd1", m: "w4y0nd2", l: "w4y0nd3" };
 var stateStyle2 = { "default": "w4y0nd4", outlinePrimary: "w4y0nd5", outlineSecondary: "w4y0nd6", activePrimary: "w4y0nd7", activeSecondary: "w4y0nd8", disabled: "w4y0nd9" };
 
 // src/chip/Chips.tsx
-import { jsx as jsx9 } from "react/jsx-runtime";
+import { jsx as jsx10 } from "react/jsx-runtime";
 var Chips = ({
   size = "m",
   variant = "primary",
@@ -415,7 +516,7 @@ var Chips = ({
   } else {
     stateClass = stateStyle2[state];
   }
-  return /* @__PURE__ */ jsx9("div", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: content });
+  return /* @__PURE__ */ jsx10("div", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: content });
 };
 
 // src/app-bar/top-app-bar/style.css.ts
@@ -425,28 +526,28 @@ var textStyle = "_7pr8fe2";
 var topAppBarStyle = "_7pr8fe0";
 
 // src/app-bar/top-app-bar/TopAppBar.tsx
-import { jsx as jsx10, jsxs as jsxs3 } from "react/jsx-runtime";
+import { jsx as jsx11, jsxs as jsxs4 } from "react/jsx-runtime";
 var TopAppBar = ({ icon = false }) => {
-  return /* @__PURE__ */ jsxs3("div", { className: topAppBarStyle, children: [
-    /* @__PURE__ */ jsxs3("div", { className: leftContentStyle, children: [
-      /* @__PURE__ */ jsx10("div", { className: iconWrapperStyle.outer, children: /* @__PURE__ */ jsx10("div", { className: iconWrapperStyle.inner, children: /* @__PURE__ */ jsx10("span", { className: "material-symbols-outlined", children: "arrow_back" }) }) }),
-      /* @__PURE__ */ jsx10("span", { className: textStyle, children: "Title" })
+  return /* @__PURE__ */ jsxs4("div", { className: topAppBarStyle, children: [
+    /* @__PURE__ */ jsxs4("div", { className: leftContentStyle, children: [
+      /* @__PURE__ */ jsx11("div", { className: iconWrapperStyle.outer, children: /* @__PURE__ */ jsx11("div", { className: iconWrapperStyle.inner, children: /* @__PURE__ */ jsx11("span", { className: "material-symbols-outlined", children: "arrow_back" }) }) }),
+      /* @__PURE__ */ jsx11("span", { className: textStyle, children: "Title" })
     ] }),
-    icon && /* @__PURE__ */ jsx10("div", { className: iconWrapperStyle.outer, children: /* @__PURE__ */ jsx10("div", { className: iconWrapperStyle.inner, children: /* @__PURE__ */ jsx10("span", { className: "material-symbols-outlined", children: "add" }) }) })
+    icon && /* @__PURE__ */ jsx11("div", { className: iconWrapperStyle.outer, children: /* @__PURE__ */ jsx11("div", { className: iconWrapperStyle.inner, children: /* @__PURE__ */ jsx11("span", { className: "material-symbols-outlined", children: "add" }) }) })
   ] });
 };
 
 // src/header/title/Title.tsx
-import { forwardRef as forwardRef8 } from "react";
+import { forwardRef as forwardRef9 } from "react";
 
 // src/header/title/style.css.ts
 var titleStyle = "ujvneh1 _1rmst086p";
 
 // src/header/title/Title.tsx
-import { jsx as jsx11 } from "react/jsx-runtime";
-var Title = forwardRef8(
+import { jsx as jsx12 } from "react/jsx-runtime";
+var Title = forwardRef9(
   ({ children = "\uC81C\uBAA9", color = "textNormal", className, ...props }, ref) => {
-    return /* @__PURE__ */ jsx11(
+    return /* @__PURE__ */ jsx12(
       Text,
       {
         ref,
@@ -468,7 +569,7 @@ var headlineSubStyle = "_1oxa1x52";
 var iconStyle = "_1oxa1x51";
 
 // src/header/headline/Headline.tsx
-import { jsx as jsx12, jsxs as jsxs4 } from "react/jsx-runtime";
+import { jsx as jsx13, jsxs as jsxs5 } from "react/jsx-runtime";
 var Headline = ({
   mainText = "mainText",
   subText = "subText",
@@ -477,44 +578,30 @@ var Headline = ({
   className,
   ...props
 }) => {
-  return /* @__PURE__ */ jsxs4("div", { className: clsx_default(headlineStyle, className), ...props, children: [
-    /* @__PURE__ */ jsx12(Text, { textType: "heading2", textMode: "bold", as: "h3", color, children: mainText }),
-    /* @__PURE__ */ jsxs4("div", { className: headlineSubStyle, children: [
-      subText && /* @__PURE__ */ jsx12(Text, { textType: "body3", as: "p", color: "textAssistive", children: subText }),
-      icon && /* @__PURE__ */ jsx12("span", { className: clsx_default("material-symbols-outlined", iconStyle), children: "chevron_right" })
+  return /* @__PURE__ */ jsxs5("div", { className: clsx_default(headlineStyle, className), ...props, children: [
+    /* @__PURE__ */ jsx13(Text, { textType: "heading2", textMode: "bold", as: "h3", color, children: mainText }),
+    /* @__PURE__ */ jsxs5("div", { className: headlineSubStyle, children: [
+      subText && /* @__PURE__ */ jsx13(Text, { textType: "body3", as: "p", color: "textAssistive", children: subText }),
+      icon && /* @__PURE__ */ jsx13("span", { className: clsx_default("material-symbols-outlined", iconStyle), children: "chevron_right" })
     ] })
   ] });
 };
 
 // src/list/message/MessageList.tsx
-import { forwardRef as forwardRef9 } from "react";
-
-// src/utils/dateUtils.ts
-function formatDate(date) {
-  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-    return "Invalid Date";
-  }
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-  const seconds = date.getSeconds().toString().padStart(2, "0");
-  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-}
+import { forwardRef as forwardRef10 } from "react";
 
 // src/list/message/style.css.ts
 import { createRuntimeFn as _7a4684 } from "@vanilla-extract/recipes/createRuntimeFn";
 var messageListRecipe = _7a4684({ defaultClassName: "_17rsevb4", variantClassNames: { variant: { "default": "_17rsevb5", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb8", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
 
 // src/list/message/MessageList.tsx
-import { jsx as jsx13, jsxs as jsxs5 } from "react/jsx-runtime";
+import { jsx as jsx14, jsxs as jsxs6 } from "react/jsx-runtime";
 var colorMap = {
   default: "blue",
   danger: "pink",
   warning: "orange"
 };
-var MessageList = forwardRef9(
+var MessageList = forwardRef10(
   ({
     title = "title",
     date = /* @__PURE__ */ new Date(),
@@ -527,10 +614,10 @@ var MessageList = forwardRef9(
     className,
     ...props
   }, ref) => {
-    const dateString = formatDate(date);
+    const dateString = formatDateWithTime(date);
     const color = colorMap[variant] || "blue";
     const messageListClass = messageListRecipe({ variant, mode });
-    return /* @__PURE__ */ jsxs5(
+    return /* @__PURE__ */ jsxs6(
       Container,
       {
         ref,
@@ -542,17 +629,17 @@ var MessageList = forwardRef9(
         paddingY: 12,
         ...props,
         children: [
-          isRead && /* @__PURE__ */ jsx13(Container, { height: "100%", display: "flex", paddingRight: 12, children: /* @__PURE__ */ jsx13(Icon, { color: `${color}500`, size: 8, children: "circle" }) }),
-          /* @__PURE__ */ jsxs5(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 8, children: [
-            /* @__PURE__ */ jsxs5(Container, { display: "flex", flexDirection: "column", gap: 2, children: [
-              /* @__PURE__ */ jsxs5(Container, { display: "flex", alignItems: "center", height: 24, gap: 8, children: [
-                /* @__PURE__ */ jsx13(Text, { as: "h5", textType: "body2", textMode: "bold", children: title }),
-                /* @__PURE__ */ jsx13(Badge, { color, children: following }),
-                isChecked && /* @__PURE__ */ jsx13(Icon, { color: `${color}500`, size: 20, children: "verified" })
+          isRead && /* @__PURE__ */ jsx14(Container, { height: "100%", display: "flex", paddingRight: 12, children: /* @__PURE__ */ jsx14(Icon, { size: 8, color: `${color}500`, children: "circle" }) }),
+          /* @__PURE__ */ jsxs6(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 8, children: [
+            /* @__PURE__ */ jsxs6(Container, { display: "flex", flexDirection: "column", gap: 2, children: [
+              /* @__PURE__ */ jsxs6(Container, { display: "flex", alignItems: "center", height: 24, gap: 8, children: [
+                /* @__PURE__ */ jsx14(Text, { as: "h5", textType: "body2", textMode: "bold", children: title }),
+                /* @__PURE__ */ jsx14(Badge, { color, children: following }),
+                isChecked && /* @__PURE__ */ jsx14(Icon, { size: 20, color: `${color}500`, children: "verified" })
               ] }),
-              /* @__PURE__ */ jsx13(Text, { textType: "label", color: "textAssistive", children: dateString })
+              /* @__PURE__ */ jsx14(Text, { textType: "label", color: "textAssistive", children: dateString })
             ] }),
-            /* @__PURE__ */ jsx13(Text, { textType: "body3", textMode: "reading", children: content })
+            /* @__PURE__ */ jsx14(Text, { textType: "body3", textMode: "reading", children: content })
           ] })
         ]
       }
@@ -561,9 +648,9 @@ var MessageList = forwardRef9(
 );
 
 // src/list/social-content/SocialContentList.tsx
-import { forwardRef as forwardRef10 } from "react";
-import { jsx as jsx14, jsxs as jsxs6 } from "react/jsx-runtime";
-var SocialContentList = forwardRef10(
+import { forwardRef as forwardRef11 } from "react";
+import { jsx as jsx15, jsxs as jsxs7 } from "react/jsx-runtime";
+var SocialContentList = forwardRef11(
   ({
     children,
     title = "title",
@@ -576,19 +663,19 @@ var SocialContentList = forwardRef10(
     isTrueCounts = 0,
     isFalseCounts = 0
   }, ref) => {
-    const dateString = formatDate(date);
-    return /* @__PURE__ */ jsxs6(Container, { as: "li", children: [
-      /* @__PURE__ */ jsxs6(Container, { display: "flex", flexDirection: "column", paddingX: 16, paddingTop: 20, gap: 6, children: [
-        /* @__PURE__ */ jsxs6(Container, { display: "flex", justifyContent: "space-between", children: [
-          /* @__PURE__ */ jsx14(Text, { textType: "heading2", textMode: "bold", children: title }),
-          /* @__PURE__ */ jsx14(Icon, { children: "more_horiz" })
+    const dateString = formatDateWithTime(date);
+    return /* @__PURE__ */ jsxs7(Container, { as: "li", children: [
+      /* @__PURE__ */ jsxs7(Container, { display: "flex", flexDirection: "column", paddingX: 16, paddingTop: 20, gap: 6, children: [
+        /* @__PURE__ */ jsxs7(Container, { display: "flex", justifyContent: "space-between", children: [
+          /* @__PURE__ */ jsx15(Text, { textType: "heading2", textMode: "bold", children: title }),
+          /* @__PURE__ */ jsx15(Icon, { children: "more_horiz" })
         ] }),
-        /* @__PURE__ */ jsxs6(Container, { display: "flex", gap: 6, children: [
-          /* @__PURE__ */ jsx14(Text, { textType: "label", color: "textAlternative", children: writer }),
-          /* @__PURE__ */ jsx14(Text, { textType: "label", color: "textAssistive", children: dateString })
+        /* @__PURE__ */ jsxs7(Container, { display: "flex", gap: 6, children: [
+          /* @__PURE__ */ jsx15(Text, { textType: "label", color: "textAlternative", children: writer }),
+          /* @__PURE__ */ jsx15(Text, { textType: "label", color: "textAssistive", children: dateString })
         ] })
       ] }),
-      /* @__PURE__ */ jsxs6(
+      /* @__PURE__ */ jsxs7(
         Container,
         {
           display: "flex",
@@ -597,27 +684,27 @@ var SocialContentList = forwardRef10(
           justifyContent: "space-between",
           alignItems: "center",
           children: [
-            /* @__PURE__ */ jsxs6(Container, { display: "flex", alignItems: "center", gap: 4, children: [
-              /* @__PURE__ */ jsx14(Icon, { color: "blue500", size: 15, children: "location_on" }),
-              /* @__PURE__ */ jsx14(Text, { as: "span", textType: "body3", color: "blue500", children: location })
+            /* @__PURE__ */ jsxs7(Container, { display: "flex", alignItems: "center", gap: 4, children: [
+              /* @__PURE__ */ jsx15(Icon, { size: 15, color: "blue500", children: "location_on" }),
+              /* @__PURE__ */ jsx15(Text, { as: "span", textType: "body3", color: "blue500", children: location })
             ] }),
-            /* @__PURE__ */ jsxs6(Container, { display: "flex", alignItems: "center", gap: 8, children: [
-              /* @__PURE__ */ jsxs6(Container, { display: "flex", gap: 6, children: [
-                /* @__PURE__ */ jsx14(Text, { textType: "label", color: "textAssistive", children: "\uC870\uD68C" }),
-                /* @__PURE__ */ jsx14(Text, { textType: "label", textMode: "bold", color: "textAlternative", children: viewCounts })
+            /* @__PURE__ */ jsxs7(Container, { display: "flex", alignItems: "center", gap: 8, children: [
+              /* @__PURE__ */ jsxs7(Container, { display: "flex", gap: 6, children: [
+                /* @__PURE__ */ jsx15(Text, { textType: "label", color: "textAssistive", children: "\uC870\uD68C" }),
+                /* @__PURE__ */ jsx15(Text, { textType: "label", textMode: "bold", color: "textAlternative", children: viewCounts })
               ] }),
-              /* @__PURE__ */ jsx14(Text, { children: "\xB7" }),
-              /* @__PURE__ */ jsxs6(Container, { display: "flex", gap: 6, children: [
-                /* @__PURE__ */ jsx14(Text, { textType: "label", color: "textAssistive", children: "\uB313\uAE00" }),
-                /* @__PURE__ */ jsx14(Text, { textType: "label", textMode: "bold", color: "textAlternative", children: commentCounts })
+              /* @__PURE__ */ jsx15(Text, { children: "\xB7" }),
+              /* @__PURE__ */ jsxs7(Container, { display: "flex", gap: 6, children: [
+                /* @__PURE__ */ jsx15(Text, { textType: "label", color: "textAssistive", children: "\uB313\uAE00" }),
+                /* @__PURE__ */ jsx15(Text, { textType: "label", textMode: "bold", color: "textAlternative", children: commentCounts })
               ] })
             ] })
           ]
         }
       ),
-      /* @__PURE__ */ jsx14(Container, { children }),
-      /* @__PURE__ */ jsx14(Container, { padding: 16, children: /* @__PURE__ */ jsx14(Text, { children: content }) }),
-      /* @__PURE__ */ jsx14(
+      /* @__PURE__ */ jsx15(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children }),
+      /* @__PURE__ */ jsx15(Container, { padding: 16, children: /* @__PURE__ */ jsx15(Text, { children: content }) }),
+      /* @__PURE__ */ jsx15(
         Container,
         {
           display: "flex",
@@ -640,7 +727,7 @@ var inputStateStyle = { "default": "_16rhowh8", highlight: "_16rhowh9 _16rhowh8"
 var inputStyle = "_16rhowh1";
 
 // src/input/input/Input.tsx
-import { jsx as jsx15, jsxs as jsxs7 } from "react/jsx-runtime";
+import { jsx as jsx16, jsxs as jsxs8 } from "react/jsx-runtime";
 var Input = ({
   state = "warning",
   showIcon = true,
@@ -652,10 +739,10 @@ var Input = ({
   const divStateClass = divStateStyle[state];
   const inputStateClass = inputStateStyle[state];
   const iconClass = iconStyle2;
-  return /* @__PURE__ */ jsxs7("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
-    showIcon && /* @__PURE__ */ jsx15("span", { className: `material-symbols-outlined input-icon ${iconClass}`, children: "search" }),
-    /* @__PURE__ */ jsx15("input", { className: `${inputStyle} ${inputStateClass}`, type: "text", placeholder: "Placeholder" }),
-    showButton && /* @__PURE__ */ jsx15("button", { className: buttonStyle, children: /* @__PURE__ */ jsx15("span", { className: "material-symbols-outlined", children: "cancel" }) })
+  return /* @__PURE__ */ jsxs8("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
+    showIcon && /* @__PURE__ */ jsx16("span", { className: `material-symbols-outlined input-icon ${iconClass}`, children: "search" }),
+    /* @__PURE__ */ jsx16("input", { className: `${inputStyle} ${inputStateClass}`, type: "text", placeholder: "Placeholder" }),
+    showButton && /* @__PURE__ */ jsx16("button", { className: buttonStyle, children: /* @__PURE__ */ jsx16("span", { className: "material-symbols-outlined", children: "cancel" }) })
   ] });
 };
 
@@ -666,7 +753,7 @@ var starStyle = "_1n4ve931";
 var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
-import { jsx as jsx16, jsxs as jsxs8 } from "react/jsx-runtime";
+import { jsx as jsx17, jsxs as jsxs9 } from "react/jsx-runtime";
 var InputGroup = ({
   state = "default",
   showButton = true,
@@ -676,14 +763,14 @@ var InputGroup = ({
   className,
   ...props
 }) => {
-  return /* @__PURE__ */ jsxs8("div", { className, ...props, children: [
-    showLabel && /* @__PURE__ */ jsxs8("div", { className: labeStyle, children: [
-      /* @__PURE__ */ jsx16("span", { children: labelContent }),
-      /* @__PURE__ */ jsx16("span", { className: starStyle, children: "*" })
+  return /* @__PURE__ */ jsxs9("div", { className, ...props, children: [
+    showLabel && /* @__PURE__ */ jsxs9("div", { className: labeStyle, children: [
+      /* @__PURE__ */ jsx17("span", { children: labelContent }),
+      /* @__PURE__ */ jsx17("span", { className: starStyle, children: "*" })
     ] }),
-    /* @__PURE__ */ jsxs8("div", { className: inputStyle2, children: [
-      /* @__PURE__ */ jsx16(Input, { state, showIcon: false }),
-      showButton && /* @__PURE__ */ jsx16(
+    /* @__PURE__ */ jsxs9("div", { className: inputStyle2, children: [
+      /* @__PURE__ */ jsx17(Input, { state, showIcon: false }),
+      showButton && /* @__PURE__ */ jsx17(
         Button,
         {
           size: "m",
@@ -697,7 +784,7 @@ var InputGroup = ({
         }
       )
     ] }),
-    state === "warning" && /* @__PURE__ */ jsx16("div", { className: warningStyle, children: warningContent })
+    state === "warning" && /* @__PURE__ */ jsx17("div", { className: warningStyle, children: warningContent })
   ] });
 };
 export {
@@ -716,6 +803,7 @@ export {
   Text,
   Title,
   TopAppBar,
+  WeatherBox,
   borderRecipe,
   borderSprinkles,
   colorSprinkles,
