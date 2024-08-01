@@ -10,8 +10,9 @@ export const buttonRecipe = recipe({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      textAlign: 'center',
       width: '100%',
+      borderRadius: vars.radius.borderRadius.base,
+      textAlign: 'center',
       cursor: 'pointer',
     },
     spacingSprinkles({ columnGap: 4 }),
@@ -19,26 +20,31 @@ export const buttonRecipe = recipe({
 
   variants: {
     size: {
-      s: [
-        spacingSprinkles({ paddingY: 2, paddingX: 8 }),
-        { fontSize: vars.typography.fontSize[15], lineHeight: vars.typography.lineHeight[20] },
-      ],
-      m: [
-        spacingSprinkles({ paddingY: 6, paddingX: 12 }),
-        { fontSize: vars.typography.fontSize[16], lineHeight: vars.typography.lineHeight[21] },
-      ],
-      l: [
-        spacingSprinkles({ paddingY: 10, paddingX: 16 }),
-        { fontSize: vars.typography.fontSize[17], lineHeight: vars.typography.lineHeight[22] },
-      ],
+      s: [spacingSprinkles({ paddingY: 2, paddingX: 8 })],
+      m: [spacingSprinkles({ paddingY: 6, paddingX: 12 })],
+      l: [spacingSprinkles({ paddingY: 10, paddingX: 16 })],
     },
     variant: {
-      primary: colorSprinkles({ color: 'white', backgroundColor: 'uiPrimaryNormal' }),
+      primary: colorSprinkles({ color: 'white' }),
       secondary: colorSprinkles({ color: 'white', backgroundColor: 'blueGray500' }),
       tertiary: colorSprinkles({ color: 'blueGray500' }),
     },
     design: {
-      fill: {},
+      fill: [
+        colorSprinkles({ backgroundColor: 'uiPrimaryNormal' }),
+        {
+          selectors: {
+            '&:hover': {
+              backgroundColor: vars.color.$palette.blue[700],
+            },
+            '&:disabled': {
+              backgroundColor: vars.color.$palette.blueGray[500],
+              cursor: 'not-allowed',
+              opacity: 0.5,
+            },
+          },
+        },
+      ],
       outline: [
         borderSprinkles({
           borderWidth: 1,
@@ -46,38 +52,38 @@ export const buttonRecipe = recipe({
           borderColor: 'uiPrimaryNormal',
         }),
         colorSprinkles({ color: 'uiPrimaryNormal' }),
+        {
+          selectors: {
+            '&:hover': {
+              color: vars.color.$palette.blue[700],
+              border: `0.0625rem solid ${vars.color.$palette.blue[700]}`,
+            },
+            '&:disabled': {
+              borderColor: vars.color.$palette.blueGray[500],
+              color: vars.color.$palette.blueGray[500],
+              cursor: 'not-allowed',
+              opacity: 0.5,
+            },
+          },
+        },
       ],
-    },
-    state: {
-      default: {},
-      hover: {},
-      active: {},
-      disabled: colorSprinkles({
-        color: 'blueGray200',
-        backgroundColor: 'blueGray50',
-      }),
-      cursor: 'disabled',
     },
   },
 
   compoundVariants: [
     {
-      variants: { variant: 'primary', state: 'hover' },
-      style: colorSprinkles({ backgroundColor: 'uiPrimaryHover' }),
+      variants: { variant: 'secondary', design: 'fill' },
+      style: [colorSprinkles({ backgroundColor: 'blue700' })],
     },
     {
-      variants: { variant: 'secondary', state: 'hover' },
-      style: colorSprinkles({ backgroundColor: 'blueGray600' }),
-    },
-    {
-      variants: { variant: 'tertiary', state: 'hover' },
-      style: colorSprinkles({ color: 'blueGray600' }),
-    },
-    {
-      variants: { variant: 'primary', design: 'outline', state: 'hover' },
+      variants: { variant: 'secondary', design: 'outline' },
       style: [
-        borderSprinkles({ borderColor: 'uiPrimaryHover' }),
-        colorSprinkles({ color: 'uiPrimaryHover' }),
+        borderSprinkles({
+          borderWidth: 1,
+          borderStyle: 'solid',
+          borderColor: 'blue700',
+        }),
+        colorSprinkles({ color: 'blue700' }),
       ],
     },
   ],
@@ -86,7 +92,6 @@ export const buttonRecipe = recipe({
     size: 'm',
     variant: 'primary',
     design: 'fill',
-    state: 'default',
   },
 });
 
