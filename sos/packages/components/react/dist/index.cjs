@@ -47,7 +47,7 @@ module.exports = __toCommonJS(src_exports);
 
 // src/style/layout/sprinkles.css.ts
 var import_createRuntimeSprinkles = require("@vanilla-extract/sprinkles/createRuntimeSprinkles");
-var layoutSprinkles = (0, import_createRuntimeSprinkles.createSprinkles)({ conditions: void 0, styles: { display: { values: { none: { defaultClass: "_2unefx0" }, flex: { defaultClass: "_2unefx1" }, block: { defaultClass: "_2unefx2" }, inline: { defaultClass: "_2unefx3" }, "inline-block": { defaultClass: "_2unefx4" } } }, flexDirection: { values: { row: { defaultClass: "_2unefx5" }, column: { defaultClass: "_2unefx6" } } }, justifyContent: { values: { stretch: { defaultClass: "_2unefx7" }, "flex-start": { defaultClass: "_2unefx8" }, center: { defaultClass: "_2unefx9" }, "flex-end": { defaultClass: "_2unefxa" }, "space-around": { defaultClass: "_2unefxb" }, "space-between": { defaultClass: "_2unefxc" } } }, alignItems: { values: { stretch: { defaultClass: "_2unefxd" }, "flex-start": { defaultClass: "_2unefxe" }, center: { defaultClass: "_2unefxf" }, "flex-end": { defaultClass: "_2unefxg" } } } } });
+var layoutSprinkles = (0, import_createRuntimeSprinkles.createSprinkles)({ conditions: void 0, styles: { display: { values: { none: { defaultClass: "_2unefx0" }, flex: { defaultClass: "_2unefx1" }, block: { defaultClass: "_2unefx2" }, inline: { defaultClass: "_2unefx3" }, "inline-block": { defaultClass: "_2unefx4" } } }, flexDirection: { values: { row: { defaultClass: "_2unefx5" }, column: { defaultClass: "_2unefx6" } } }, justifyContent: { values: { stretch: { defaultClass: "_2unefx7" }, "flex-start": { defaultClass: "_2unefx8" }, center: { defaultClass: "_2unefx9" }, "flex-end": { defaultClass: "_2unefxa" }, "space-around": { defaultClass: "_2unefxb" }, "space-between": { defaultClass: "_2unefxc" } } }, alignItems: { values: { stretch: { defaultClass: "_2unefxd" }, "flex-start": { defaultClass: "_2unefxe" }, center: { defaultClass: "_2unefxf" }, "flex-end": { defaultClass: "_2unefxg" } } }, width: { values: { "100%": { defaultClass: "_2unefxh" }, "100vw": { defaultClass: "_2unefxi" }, "100dvw": { defaultClass: "_2unefxj" } } }, height: { values: { "100%": { defaultClass: "_2unefxk" }, "100vh": { defaultClass: "_2unefxl" }, "100dvh": { defaultClass: "_2unefxm" } } } } });
 
 // src/style/spacing/sprinkles.css.ts
 var import_createRuntimeSprinkles2 = require("@vanilla-extract/sprinkles/createRuntimeSprinkles");
@@ -60,7 +60,7 @@ var colorSprinkles = (0, import_createRuntimeSprinkles3.createSprinkles)(colorPr
 
 // src/style/typography/recipes.css.ts
 var import_createRuntimeFn = require("@vanilla-extract/recipes/createRuntimeFn");
-var typographyRecipe = (0, import_createRuntimeFn.createRuntimeFn)({ defaultClassName: "i0cv4o0", variantClassNames: { textType: { display1: "i0cv4o1", display2: "i0cv4o2", title1: "i0cv4o3", title2: "i0cv4o4", title3: "i0cv4o5", heading1: "i0cv4o6", heading2: "i0cv4o7", headline: "i0cv4o8", body1: "i0cv4o9", body2: "i0cv4oa", body3: "i0cv4ob", label: "i0cv4oc", footnote: "i0cv4od", caption: "i0cv4oe" }, textMode: { "default": "i0cv4of", reading: "i0cv4og", bold: "i0cv4oh" } }, defaultVariants: {}, compoundVariants: [[{ textType: "body1", textMode: "reading" }, "i0cv4oi"], [{ textType: "body2", textMode: "reading" }, "i0cv4oj"], [{ textType: "body3", textMode: "reading" }, "i0cv4ok"], [{ textType: "label", textMode: "reading" }, "i0cv4ol"], [{ textType: "display1", textMode: "bold" }, "i0cv4om"], [{ textType: "display2", textMode: "bold" }, "i0cv4on"], [{ textType: "title1", textMode: "bold" }, "i0cv4oo"], [{ textType: "title2", textMode: "bold" }, "i0cv4op"], [{ textType: "title3", textMode: "bold" }, "i0cv4oq"], [{ textType: "body1", textMode: "bold" }, "i0cv4or"], [{ textType: "body2", textMode: "bold" }, "i0cv4os"], [{ textType: "body3", textMode: "bold" }, "i0cv4ot"], [{ textType: "caption", textMode: "bold" }, "i0cv4ou"], [{ textType: "footnote", textMode: "bold" }, "i0cv4ov"], [{ textType: "heading1", textMode: "bold" }, "i0cv4ow"], [{ textType: "heading2", textMode: "bold" }, "i0cv4ox"], [{ textType: "headline", textMode: "bold" }, "i0cv4oy"], [{ textType: "label", textMode: "bold" }, "i0cv4oz"]] });
+var typographyRecipe = (0, import_createRuntimeFn.createRuntimeFn)({ defaultClassName: "i0cv4o0", variantClassNames: { textType: { display1: "i0cv4o1", display2: "i0cv4o2", title1: "i0cv4o3", title2: "i0cv4o4", title3: "i0cv4o5", heading1: "i0cv4o6", heading2: "i0cv4o7", headline: "i0cv4o8", body1: "i0cv4o9", body2: "i0cv4oa", body3: "i0cv4ob", label: "i0cv4oc", footnote: "i0cv4od", caption: "i0cv4oe" }, textMode: { "default": "i0cv4of", reading: "i0cv4og", bold: "i0cv4oh" }, textAlign: { left: "i0cv4oi", center: "i0cv4oj", right: "i0cv4ok", justify: "i0cv4ol" } }, defaultVariants: {}, compoundVariants: [[{ textType: "body1", textMode: "reading" }, "i0cv4om"], [{ textType: "body2", textMode: "reading" }, "i0cv4on"], [{ textType: "body3", textMode: "reading" }, "i0cv4oo"], [{ textType: "label", textMode: "reading" }, "i0cv4op"], [{ textType: "display1", textMode: "bold" }, "i0cv4oq"], [{ textType: "display2", textMode: "bold" }, "i0cv4or"], [{ textType: "title1", textMode: "bold" }, "i0cv4os"], [{ textType: "title2", textMode: "bold" }, "i0cv4ot"], [{ textType: "title3", textMode: "bold" }, "i0cv4ou"], [{ textType: "body1", textMode: "bold" }, "i0cv4ov"], [{ textType: "body2", textMode: "bold" }, "i0cv4ow"], [{ textType: "body3", textMode: "bold" }, "i0cv4ox"], [{ textType: "caption", textMode: "bold" }, "i0cv4oy"], [{ textType: "footnote", textMode: "bold" }, "i0cv4oz"], [{ textType: "heading1", textMode: "bold" }, "i0cv4o10"], [{ textType: "heading2", textMode: "bold" }, "i0cv4o11"], [{ textType: "headline", textMode: "bold" }, "i0cv4o12"], [{ textType: "label", textMode: "bold" }, "i0cv4o13"]] });
 
 // src/style/border/sprinkles.css.ts
 var import_createRuntimeSprinkles4 = require("@vanilla-extract/sprinkles/createRuntimeSprinkles");
@@ -77,7 +77,7 @@ var shadowSprinkles = (0, import_createRuntimeSprinkles5.createSprinkles)({ cond
 // src/common/text/Text.tsx
 var import_react = require("react");
 
-// ../../../../../../../AppData/Local/Yarn/Berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
@@ -101,11 +101,12 @@ var Text = (0, import_react.forwardRef)(
     as: Component = "p",
     textType = "body1",
     textMode = "default",
-    color = "textNormal",
+    textAlign,
+    color,
     className,
     ...props
   }, ref) => {
-    const textClass = typographyRecipe({ textType, textMode });
+    const textClass = typographyRecipe({ textType, textMode, textAlign });
     const colorClass = colorSprinkles({ color });
     const combinedClass = clsx_default([textClass, colorClass, className]);
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Component, { ref, className: combinedClass, style: { ...props.style }, ...props, children });
@@ -164,7 +165,18 @@ var Container = (0, import_react2.forwardRef)(
     className,
     ...props
   }, ref) => {
-    const layoutClass = layoutSprinkles({ display, flexDirection, justifyContent, alignItems });
+    const containerStyle = {
+      ...typeof width === "number" && { width: `${width}px` },
+      ...typeof height === "number" && { height: `${height}px` }
+    };
+    const layoutClass = layoutSprinkles({
+      display,
+      flexDirection,
+      justifyContent,
+      alignItems,
+      ...typeof width !== "number" && width !== void 0 && { width },
+      ...typeof height !== "number" && height !== void 0 && { height }
+    });
     const spacingClass = spacingSprinkles({
       margin,
       padding,
@@ -214,10 +226,6 @@ var Container = (0, import_react2.forwardRef)(
       shadowClass,
       className
     ]);
-    const containerStyle = {
-      ...width && { width: typeof width === "string" ? width : `${width}px` },
-      ...height && { height: typeof height === "string" ? height : `${height}px` }
-    };
     return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       Component,
       {
@@ -379,10 +387,10 @@ var InfoItem = (0, import_react6.forwardRef)(
         gap: 8,
         ...props,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { textType: titleTextType, color: "textAssistive", children: title }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { textType: titleTextType, textAlign: "center", color: "textAssistive", children: title }),
           /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Container, { display: "flex", alignItems: "center", gap: 6, children: [
             icon && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Icon, { color: "textAlternative", size: iconSize, children: icon }),
-            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { textType: contentTextType, textMode: "bold", children: content })
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { textType: contentTextType, textMode: "bold", textAlign: "center", children: content })
           ] })
         ]
       }
@@ -656,19 +664,14 @@ var SocialContentList = (0, import_react10.forwardRef)(
       ),
       /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Container, { children }),
       /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Container, { padding: 16, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Text, { children: content }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
         Container,
         {
           display: "flex",
           padding: 16,
           justifyContent: "space-between",
           alignItems: "center",
-          borderType: "borderTop",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Button, { variant: "secondary", mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Button, { mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Button, { icon: "chat", subText: commentCounts, size: "s" })
-          ]
+          borderType: "borderTop"
         }
       )
     ] });

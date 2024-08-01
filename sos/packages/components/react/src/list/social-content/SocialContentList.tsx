@@ -103,9 +103,9 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
           alignItems="center"
           borderType="borderTop"
         >
-          <Button variant="secondary" mainText="사실이에요" size="s"></Button>
+          {/* <Button variant="secondary" mainText="사실이에요" size="s"></Button>
           <Button mainText="허위사실이에요" size="s"></Button>
-          <Button icon="chat" subText={commentCounts} size="s"></Button>
+          <Button icon="chat" subText={commentCounts} size="s"></Button> */}
         </Container>
       </Container>
     );

@@ -13,6 +13,8 @@ const layoutProperties = defineProperties({
       'space-between',
     ],
     alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
+    width: ['100%', '100vw', '100dvw'],
+    height: ['100%', '100vh', '100dvh'],
   },
 });
 

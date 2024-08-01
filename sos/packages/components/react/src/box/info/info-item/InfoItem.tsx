@@ -59,7 +59,7 @@ export const InfoItem = forwardRef<HTMLElement, InfoItemProps>(
         gap={8}
         {...props}
       >
-        <Text textType={titleTextType} color="textAssistive">
+        <Text textType={titleTextType} textAlign="center" color="textAssistive">
           {title}
         </Text>
         <Container display="flex" alignItems="center" gap={6}>
@@ -68,7 +68,7 @@ export const InfoItem = forwardRef<HTMLElement, InfoItemProps>(
               {icon}
             </Icon>
           )}
-          <Text textType={contentTextType} textMode="bold">
+          <Text textType={contentTextType} textMode="bold" textAlign="center">
             {content}
           </Text>
         </Container>
