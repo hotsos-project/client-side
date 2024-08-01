@@ -29,6 +29,7 @@ __export(src_exports, {
   Input: () => Input,
   InputGroup: () => InputGroup,
   MessageList: () => MessageList,
+  SocialContentList: () => SocialContentList,
   Text: () => Text,
   Title: () => Title,
   TopAppBar: () => TopAppBar,
@@ -349,30 +350,31 @@ var TopAppBar = ({ icon = false }) => {
   ] });
 };
 
+// src/header/title/Title.tsx
+var import_react5 = require("react");
+
 // src/header/title/style.css.ts
 var titleStyle = "ujvneh1 _1rmst086p";
 
 // src/header/title/Title.tsx
 var import_jsx_runtime8 = require("react/jsx-runtime");
-var Title = ({
-  children = "\uC81C\uBAA9",
-  color = "textNormal",
-  className,
-  ...props
-}) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
-    Text,
-    {
-      className: clsx_default(titleStyle, className),
-      textType: "title2",
-      textMode: "bold",
-      as: "h1",
-      color,
-      ...props,
-      children
-    }
-  );
-};
+var Title = (0, import_react5.forwardRef)(
+  ({ children = "\uC81C\uBAA9", color = "textNormal", className, ...props }, ref) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+      Text,
+      {
+        ref,
+        className: clsx_default(titleStyle, className),
+        textType: "title2",
+        textMode: "bold",
+        as: "h1",
+        color,
+        ...props,
+        children
+      }
+    );
+  }
+);
 
 // src/header/headline/style.css.ts
 var headlineStyle = "_1oxa1x50";
@@ -399,7 +401,7 @@ var Headline = ({
 };
 
 // src/list/message/MessageList.tsx
-var import_react5 = require("react");
+var import_react6 = require("react");
 
 // src/utils/dateUtils.ts
 function formatDate(date) {
@@ -426,7 +428,7 @@ var colorMap = {
   danger: "pink",
   warning: "orange"
 };
-var MessageList = (0, import_react5.forwardRef)(
+var MessageList = (0, import_react6.forwardRef)(
   ({
     title = "title",
     date = /* @__PURE__ */ new Date(),
@@ -472,6 +474,82 @@ var MessageList = (0, import_react5.forwardRef)(
   }
 );
 
+// src/list/social-content/SocialContentList.tsx
+var import_react7 = require("react");
+var import_jsx_runtime11 = require("react/jsx-runtime");
+var SocialContentList = (0, import_react7.forwardRef)(
+  ({
+    children,
+    title = "title",
+    writer = "writer",
+    date = /* @__PURE__ */ new Date(),
+    location = "location",
+    viewCounts = 0,
+    commentCounts = 0,
+    content = "content",
+    isTrueCounts = 0,
+    isFalseCounts = 0
+  }, ref) => {
+    const dateString = formatDate(date);
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { as: "li", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { display: "flex", flexDirection: "column", paddingX: 16, paddingTop: 20, gap: 6, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { display: "flex", justifyContent: "space-between", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "heading2", textMode: "bold", children: title }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Icon, { children: "more_horiz" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { display: "flex", gap: 6, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "label", color: "textAlternative", children: writer }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "label", color: "textAssistive", children: dateString })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+        Container,
+        {
+          display: "flex",
+          paddingX: 16,
+          paddingY: 12,
+          justifyContent: "space-between",
+          alignItems: "center",
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { display: "flex", alignItems: "center", gap: 4, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Icon, { color: "blue500", size: 15, children: "location_on" }),
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { as: "span", textType: "body3", color: "blue500", children: location })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { display: "flex", alignItems: "center", gap: 8, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { display: "flex", gap: 6, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "label", color: "textAssistive", children: "\uC870\uD68C" }),
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "label", textMode: "bold", color: "textAlternative", children: viewCounts })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { children: "\xB7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { display: "flex", gap: 6, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "label", color: "textAssistive", children: "\uB313\uAE00" }),
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "label", textMode: "bold", color: "textAlternative", children: commentCounts })
+              ] })
+            ] })
+          ]
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Container, { children }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Container, { padding: 16, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { children: content }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+        Container,
+        {
+          display: "flex",
+          padding: 16,
+          justifyContent: "space-between",
+          alignItems: "center",
+          borderType: "borderTop",
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Button, { variant: "secondary", mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Button, { mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Button, { icon: "chat", subText: commentCounts, size: "s" })
+          ]
+        }
+      )
+    ] });
+  }
+);
+
 // src/input/input/style.css.ts
 var buttonStyle = "_16rhowh2";
 var commonStyle = "_16rhowh0";
@@ -481,7 +559,7 @@ var inputStateStyle = { "default": "_16rhowh8", highlight: "_16rhowh9 _16rhowh8"
 var inputStyle = "_16rhowh1";
 
 // src/input/input/Input.tsx
-var import_jsx_runtime11 = require("react/jsx-runtime");
+var import_jsx_runtime12 = require("react/jsx-runtime");
 var Input = ({
   state = "warning",
   showIcon = true,
@@ -493,10 +571,10 @@ var Input = ({
   const divStateClass = divStateStyle[state];
   const inputStateClass = inputStateStyle[state];
   const iconClass = iconStyle2;
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
-    showIcon && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: `material-symbols-outlined input-icon ${iconClass}`, children: "search" }),
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("input", { className: `${inputStyle} ${inputStateClass}`, type: "text", placeholder: "Placeholder" }),
-    showButton && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { className: buttonStyle, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "material-symbols-outlined", children: "cancel" }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
+    showIcon && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: `material-symbols-outlined input-icon ${iconClass}`, children: "search" }),
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("input", { className: `${inputStyle} ${inputStateClass}`, type: "text", placeholder: "Placeholder" }),
+    showButton && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: buttonStyle, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "material-symbols-outlined", children: "cancel" }) })
   ] });
 };
 
@@ -507,7 +585,7 @@ var starStyle = "_1n4ve931";
 var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
-var import_jsx_runtime12 = require("react/jsx-runtime");
+var import_jsx_runtime13 = require("react/jsx-runtime");
 var InputGroup = ({
   state = "default",
   showButton = true,
@@ -517,14 +595,14 @@ var InputGroup = ({
   className,
   ...props
 }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className, ...props, children: [
-    showLabel && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: labeStyle, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: labelContent }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: starStyle, children: "*" })
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className, ...props, children: [
+    showLabel && /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: labeStyle, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { children: labelContent }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: starStyle, children: "*" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: inputStyle2, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Input, { state, showIcon: false }),
-      showButton && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: inputStyle2, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Input, { state, showIcon: false }),
+      showButton && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
         Button,
         {
           size: "m",
@@ -538,7 +616,7 @@ var InputGroup = ({
         }
       )
     ] }),
-    state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: warningStyle, children: warningContent })
+    state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: warningStyle, children: warningContent })
   ] });
 };
 //# sourceMappingURL=index.cjs.map

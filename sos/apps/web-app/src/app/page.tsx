@@ -1,34 +1,12 @@
-import { Title, Text, Headline, Container, MessageList, Badge } from '@sos/components-react';
-import { marginStyle } from './style.css';
+import { SocialContentList } from '@sos/components-react';
+import Image from 'next/image';
 
 export default function Home() {
   return (
     <main>
-      <Badge color="green" size="l">
-        test
-      </Badge>
-      <MessageList isChecked={true} />
-      <Title color="blue500">안녕하세요</Title>
-      <Text className={marginStyle} textType="heading1" textMode="bold" color="blue500" as="h1">
-        hello
-      </Text>
-      <Headline mainText="Hello" color="blue500" />
-      <Container
-        as="div"
-        padding={10}
-        backgroundColor="blue100"
-        display="flex"
-        justifyContent="center"
-        gap={10}
-      >
-        <Text className={marginStyle} textType="heading1" textMode="bold" color="blue500" as="h1">
-          hello
-        </Text>
-        <Text className={marginStyle} textType="heading1" textMode="bold" color="blue500" as="h1">
-          hello
-        </Text>
-      </Container>
-      <hr />
+      <SocialContentList>
+        <Image src="/earthquake3-01.jpg" width={100} height={100} size="responsive" />
+      </SocialContentList>
     </main>
   );
 }
