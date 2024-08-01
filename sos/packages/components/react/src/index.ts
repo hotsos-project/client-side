@@ -38,4 +38,4 @@ export { Input } from './input/input/Input';
 export { InputGroup } from './input/group/InputGroup';
 
 // Tabs
-export { Tabs } from './tabs/Tabs';
+export { TabBar } from './tabs/tab-bar/TabBar';
