@@ -13,6 +13,7 @@ export { Container } from './common/container/Container';
 export { Icon } from './common/icon/Icon';
 export { Button } from './button/Button';
 export { Badge } from './badge/Badge';
+export { InfoBox } from './box/info/info-box/InfoBox';
 export { Chips } from './chip/Chips';
 export { TopAppBar } from './app-bar/top-app-bar/TopAppBar';
 export { Title } from './header/title/Title';

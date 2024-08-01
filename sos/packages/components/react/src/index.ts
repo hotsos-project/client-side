@@ -22,6 +22,9 @@ export { Button } from './button/Button';
 // Badge
 export { Badge } from './badge/Badge';
 
+// Box
+export { InfoBox } from './box/info/info-box/InfoBox';
+
 // Chips
 export { Chips } from './chip/Chips';
 
