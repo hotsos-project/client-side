@@ -8,7 +8,7 @@ interface InfoBoxProps extends CommonProps {
  * InfoBox 컴포넌트
  *
  * @param {Omit<InfoItemProps, 'size'>[]} props.infos - InfoItem 컴포넌트에 전달될 정보 객체 배열 (필수, 객체 형식: {title: '제목', content: '내용', icon: '아이콘 이름'})
- * @param {'s' | 'm'} [props.size='m'] - 크기 (선택, 기본값: 'm')
+ * @param {'s' | 'm'} [props.size='m'] - InfoItem 컴포넌트의 크기 (선택, 기본값: 'm')
  * @param {string} [props.backgroundColor] - 배경색 (선택)
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...CommonProps} props - Container 컴포넌트에 전달될 기타 속성
