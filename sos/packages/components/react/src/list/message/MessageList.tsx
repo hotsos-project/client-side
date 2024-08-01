@@ -4,7 +4,7 @@ import { Container } from '../../common/container/Container';
 import { Text } from '../../common/text/Text';
 import { Badge } from '../../badge/Badge';
 import { Icon } from '../../common/icon/Icon';
-import { formatDate } from '../../utils/dateUtils';
+import { formatDateWithTime } from '../../utils/dateUtils';
 import { messageListRecipe } from './style.css';
 import clsx from 'clsx';
 
@@ -56,7 +56,7 @@ export const MessageList = forwardRef<HTMLElement, MessageListProps>(
     },
     ref,
   ) => {
-    const dateString = formatDate(date);
+    const dateString = formatDateWithTime(date);
 
     const color = colorMap[variant] || 'blue';
     const messageListClass = messageListRecipe({ variant, mode });
@@ -74,7 +74,7 @@ export const MessageList = forwardRef<HTMLElement, MessageListProps>(
       >
         {isRead && (
           <Container height="100%" display="flex" paddingRight={12}>
-            <Icon color={`${color}500`} size={8}>
+            <Icon size={8} color={`${color}500`}>
               circle
             </Icon>
           </Container>
@@ -87,7 +87,7 @@ export const MessageList = forwardRef<HTMLElement, MessageListProps>(
               </Text>
               <Badge color={color}>{following}</Badge>
               {isChecked && (
-                <Icon color={`${color}500`} size={20}>
+                <Icon size={20} color={`${color}500`}>
                   verified
                 </Icon>
               )}

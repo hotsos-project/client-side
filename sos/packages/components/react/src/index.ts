@@ -25,6 +25,7 @@ export { Badge } from './badge/Badge';
 
 // Box
 export { InfoBox } from './box/info/info-box/InfoBox';
+export { WeatherBox } from './box/weather/WeatherBox';
 
 // Chips
 export { Chips } from './chip/Chips';

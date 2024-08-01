@@ -64,7 +64,7 @@ export const InfoItem = forwardRef<HTMLElement, InfoItemProps>(
         </Text>
         <Container display="flex" alignItems="center" gap={6}>
           {icon && (
-            <Icon color="textAlternative" size={iconSize}>
+            <Icon size={iconSize} color="textAlternative">
               {icon}
             </Icon>
           )}
