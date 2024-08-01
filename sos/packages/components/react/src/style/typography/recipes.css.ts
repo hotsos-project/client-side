@@ -1,4 +1,4 @@
-import { recipe } from '@vanilla-extract/recipes';
+import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 import { vars } from '@sos/style-tokens';
 
 export const typographyRecipe = recipe({
@@ -82,6 +82,12 @@ export const typographyRecipe = recipe({
       reading: {},
       bold: {},
     },
+    textAlign: {
+      left: { textAlign: 'left' },
+      center: { textAlign: 'center' },
+      right: { textAlign: 'right' },
+      justify: { textAlign: 'justify' },
+    },
   },
 
   compoundVariants: [
@@ -160,21 +166,4 @@ export const typographyRecipe = recipe({
   ],
 });
 
-export type TypographyVariants = {
-  textType?:
-    | 'display1'
-    | 'display2'
-    | 'title1'
-    | 'title2'
-    | 'title3'
-    | 'heading1'
-    | 'heading2'
-    | 'headline'
-    | 'body1'
-    | 'body2'
-    | 'body3'
-    | 'label'
-    | 'footnote'
-    | 'caption';
-  textMode?: 'default' | 'reading' | 'bold';
-};
+export type TypographyVariants = NonNullable<RecipeVariants<typeof typographyRecipe>>;

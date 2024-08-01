@@ -13,7 +13,7 @@ export type AsProps = {
 
 export interface CommonProps
   extends AsProps,
-    LayoutSprinkles,
+    Omit<LayoutSprinkles, 'width' | 'height'>,
     SpacingSprinkles,
     ColorSprinkles,
     TypographyVariants,
@@ -22,7 +22,7 @@ export interface CommonProps
     ShadowSprinkles,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: React.ReactNode;
-  width?: number | '100%' | '100vw' | '100dvw';
-  height?: number | '100%' | '100vh' | '100dvh';
+  width?: number | LayoutSprinkles['width'];
+  height?: number | LayoutSprinkles['height'];
   className?: string;
 }
