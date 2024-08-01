@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { forwardRef } from 'react';
-import { CommonProps } from '../common/types';
+import { CommonProps } from '../../common/types';
 import { buttonRecipe, ButtonVariants } from './style.css';
-import { Icon } from '../common/icon/Icon';
-import { Text } from '../common/text/Text';
+import { Icon } from '../../common/icon/Icon';
+import { Text } from '../../common/text/Text';
 
 type ButtonProps = {
   icon?: string;

@@ -1,8 +1,8 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 import { vars } from '@sos/style-tokens';
-import { borderSprinkles } from '../../src/style/border/sprinkles.css';
-import { colorSprinkles } from '../../src/style/color/sprinkles.css';
-import { spacingSprinkles } from '../../src/style/spacing/sprinkles.css';
+import { borderSprinkles } from '../../style/border/sprinkles.css';
+import { colorSprinkles } from '../../style/color/sprinkles.css';
+import { spacingSprinkles } from '../../style/spacing/sprinkles.css';
 
 export const buttonRecipe = recipe({
   base: [

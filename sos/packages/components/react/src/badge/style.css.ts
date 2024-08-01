@@ -17,6 +17,8 @@ export const badgeRecipe = recipe({
       pink: colorSprinkles({ backgroundColor: 'pink50' }),
       orange: colorSprinkles({ backgroundColor: 'orange50' }),
       green: colorSprinkles({ backgroundColor: 'green50' }),
+      white: colorSprinkles({ backgroundColor: 'opacityWhite200' }),
+      ghost: {},
     },
   },
   defaultVariants: {

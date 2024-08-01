@@ -1,6 +1,6 @@
 import { labeStyle, starStyle, inputStyle, warningStyle } from './style.css';
 import { Input } from '../input/Input';
-import { Button } from '../../button/Button';
+import { Button } from '../../buttons/button/Button';
 import { CommonProps } from '../../common/types';
 
 interface InputGroupProps extends CommonProps {

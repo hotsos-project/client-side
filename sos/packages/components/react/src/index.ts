@@ -18,27 +18,27 @@ export { Icon } from './common/icon/Icon';
 export { Divider } from './common/divider/Divider';
 
 // Button
-export { Button } from './button/Button';
-
+export { Button } from './buttons/button/Button';
+export { InfoButton } from './buttons/info/InfoButton';
 // Badge
 export { Badge } from './badge/Badge';
 
 // Box
-export { InfoBox } from './box/info/info-box/InfoBox';
-export { WeatherBox } from './box/weather/WeatherBox';
+export { InfoBox } from './boxes/info/info-box/InfoBox';
+export { WeatherBox } from './boxes/weather/WeatherBox';
 
 // Chips
 export { Chips } from './chip/Chips';
 
 // Header
 export { TopAppBar } from './app-bar/top-app-bar/TopAppBar';
-export { Title } from './header/title/Title';
-export { Headline } from './header/headline/Headline';
+export { Title } from './headers/title/Title';
+export { Headline } from './headers/headline/Headline';
 
 // List
-export { MessageList } from './list/message/MessageList';
-export { SocialContentList } from './list/social-content/SocialContentList';
+export { MessageList } from './lists/message/MessageList';
+export { SocialContentList } from './lists/social-content/SocialContentList';
 
 // Inputs
-export { Input } from './input/input/Input';
-export { InputGroup } from './input/group/InputGroup';
+export { Input } from './inputs/input/Input';
+export { InputGroup } from './inputs/group/InputGroup';

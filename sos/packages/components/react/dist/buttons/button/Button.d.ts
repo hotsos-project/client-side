@@ -1,4 +1,4 @@
-import { CommonProps } from '../common/types';
+import { CommonProps } from '../../common/types';
 type ButtonProps = {
     icon?: string;
     leftSubText?: string;
@@ -25,7 +25,7 @@ type ButtonProps = {
 export declare const Button: import("react").ForwardRefExoticComponent<ButtonProps & {
     size?: "s" | "m" | "l" | undefined;
     variant?: "primary" | "secondary" | "tertiary" | undefined;
-    design?: "outline" | "fill" | undefined;
-    state?: "cursor" | "default" | "active" | "disabled" | "hover" | undefined;
+    design?: "fill" | "outline" | undefined;
+    state?: "default" | "cursor" | "active" | "disabled" | "hover" | undefined;
 } & CommonProps & import("react").RefAttributes<HTMLButtonElement>>;
 export {};
