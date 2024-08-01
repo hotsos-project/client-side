@@ -30,7 +30,7 @@ var shadowSprinkles = _ad2215({ conditions: void 0, styles: { boxShadow: { value
 // src/common/text/Text.tsx
 import { forwardRef } from "react";
 
-// ../../../../../../../AppData/Local/Yarn/Berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
@@ -198,52 +198,70 @@ var Icon = forwardRef3(
   }
 );
 
+// src/button/Button.tsx
+import { forwardRef as forwardRef4 } from "react";
+
 // src/button/style.css.ts
-var baseStyle = "_1h4ydga0";
-var mainTextStyle = "_1h4ydgad";
-var sizeStyle = { s: "_1h4ydga1", m: "_1h4ydga2", l: "_1h4ydga3" };
-var stateStyle = { defaultFill: "_1h4ydga4", defaultOutline: "_1h4ydga9", secondaryFill: "_1h4ydga7", secondaryOutline: "_1h4ydgac", tertiaryFill: "_1h4ydga8", hoverFill: "_1h4ydga5", hoverOutline: "_1h4ydgaa", disabledFill: "_1h4ydga6", disabledOutline: "_1h4ydgab" };
-var subTextStyle = "_1h4ydgae";
+import { createRuntimeFn as _7a4683 } from "@vanilla-extract/recipes/createRuntimeFn";
+var buttonRecipe = _7a4683({ defaultClassName: "_1h4ydgae _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgal", outline: "_1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgan _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgao _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgap _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1rmst083b _1bfxj7r27"]] });
 
 // src/button/Button.tsx
 import { jsx as jsx4, jsxs } from "react/jsx-runtime";
-var Button = ({
-  size = "m",
-  variant = "primary",
-  state = "default",
-  design = "fill",
-  icon = "add",
-  subText = "sub",
-  mainText = "Main",
-  isLoading = true
-}) => {
-  const baseClass = baseStyle;
-  const sizeClass = sizeStyle[size];
-  let stateClass = "";
-  if (variant === "secondary" || variant === "tertiary") {
-    stateClass = stateStyle[`${variant}${design.charAt(0).toUpperCase() + design.slice(1)}`];
-  } else {
-    const stateDesignKey = `${state}${design.charAt(0).toUpperCase() + design.slice(1)}`;
-    stateClass = stateStyle[stateDesignKey];
+var Button = forwardRef4(
+  ({
+    size,
+    variant,
+    design,
+    icon,
+    leftSubText,
+    rightSubText,
+    mainText = "Main Text",
+    isLoading = false,
+    loadingSpinner = "refresh",
+    className,
+    ...props
+  }, ref) => {
+    const buttonClass = buttonRecipe({
+      size,
+      variant,
+      design
+    });
+    let iconColor;
+    if (variant === "primary") {
+      if (design === "fill") {
+        iconColor = "white";
+      } else if (design === "outline") {
+        iconColor = "uiPrimaryNormal";
+      }
+    } else if (variant === "secondary") {
+      if (design === "fill") {
+        iconColor = "white";
+      } else if (design === "outline") {
+        iconColor = "textNormal";
+      }
+    } else if (variant === "tertiary") {
+      iconColor = "blueGray500";
+    }
+    return /* @__PURE__ */ jsxs("button", { ref, className: clsx_default(buttonClass, className), ...props, children: [
+      icon && /* @__PURE__ */ jsx4(Icon, { color: iconColor, children: icon }),
+      leftSubText && /* @__PURE__ */ jsx4(Text, { textType: "body1", color: iconColor, children: leftSubText }),
+      mainText && /* @__PURE__ */ jsx4(Text, { textType: "body1", textMode: "bold", color: iconColor, children: mainText }),
+      rightSubText && /* @__PURE__ */ jsx4(Text, { textType: "body1", color: iconColor, children: rightSubText }),
+      isLoading && /* @__PURE__ */ jsx4(Icon, { color: iconColor, children: loadingSpinner })
+    ] });
   }
-  return /* @__PURE__ */ jsxs("button", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: [
-    icon && /* @__PURE__ */ jsx4("span", { className: "material-symbols-outlined", children: icon }),
-    subText && /* @__PURE__ */ jsx4("span", { className: subTextStyle, children: subText }),
-    mainText && /* @__PURE__ */ jsx4("span", { className: mainTextStyle, children: mainText }),
-    isLoading && /* @__PURE__ */ jsx4("span", { className: "material-symbols-outlined", children: "refresh" })
-  ] });
-};
+);
 
 // src/badge/Badge.tsx
-import { forwardRef as forwardRef4 } from "react";
+import { forwardRef as forwardRef5 } from "react";
 
 // src/badge/style.css.ts
-import { createRuntimeFn as _7a4683 } from "@vanilla-extract/recipes/createRuntimeFn";
-var badgeRecipe = _7a4683({ defaultClassName: "_1bfxj7r3k", variantClassNames: { size: { s: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", m: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", l: "_89s0wz3z _89s0wz2v _89s0wz2a _89s0wz3e" }, color: { blue: "_1rmst0847", pink: "_1rmst084x", orange: "_1rmst085a", green: "_1rmst084k" } }, defaultVariants: { size: "m", color: "blue" }, compoundVariants: [] });
+import { createRuntimeFn as _7a4684 } from "@vanilla-extract/recipes/createRuntimeFn";
+var badgeRecipe = _7a4684({ defaultClassName: "_1bfxj7r3k", variantClassNames: { size: { s: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", m: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", l: "_89s0wz3z _89s0wz2v _89s0wz2a _89s0wz3e" }, color: { blue: "_1rmst0847", pink: "_1rmst084x", orange: "_1rmst085a", green: "_1rmst084k" } }, defaultVariants: { size: "m", color: "blue" }, compoundVariants: [] });
 
 // src/badge/Badge.tsx
 import { jsx as jsx5 } from "react/jsx-runtime";
-var Badge = forwardRef4(
+var Badge = forwardRef5(
   ({ children = "text", size = "m", color = "blue", className, ...props }, ref) => {
     const badgeClass = badgeRecipe({ size, color });
     const textType = size === "s" ? "caption" : size === "m" ? "footnote" : "label";
@@ -262,10 +280,10 @@ var Badge = forwardRef4(
 );
 
 // src/box/info/info-box/InfoBox.tsx
-import { forwardRef as forwardRef6 } from "react";
+import { forwardRef as forwardRef7 } from "react";
 
 // src/box/info/info-item/InfoItem.tsx
-import { forwardRef as forwardRef5 } from "react";
+import { forwardRef as forwardRef6 } from "react";
 import { jsx as jsx6, jsxs as jsxs2 } from "react/jsx-runtime";
 var sizeVariants = {
   s: {
@@ -283,7 +301,7 @@ var sizeVariants = {
     iconSize: 18
   }
 };
-var InfoItem = forwardRef5(
+var InfoItem = forwardRef6(
   ({ title = "title", content = "content", icon, size = "m", className, ...props }, ref) => {
     const { paddingTop, paddingBottom, titleTextType, contentTextType, iconSize } = sizeVariants[size];
     return /* @__PURE__ */ jsxs2(
@@ -315,7 +333,7 @@ var InfoItem = forwardRef5(
 
 // src/box/info/info-box/InfoBox.tsx
 import { jsx as jsx7 } from "react/jsx-runtime";
-var InfoBox = forwardRef6(
+var InfoBox = forwardRef7(
   ({ infos, backgroundColor, size = "m", className, ...props }, ref) => {
     const infoItems = infos == null ? void 0 : infos.reduce((acc, item, index) => {
       if (index > 0) {
@@ -356,9 +374,9 @@ var InfoBox = forwardRef6(
 );
 
 // src/chip/style.css.ts
-var baseStyle2 = "w4y0nd0";
-var sizeStyle2 = { s: "w4y0nd1", m: "w4y0nd2", l: "w4y0nd3" };
-var stateStyle2 = { "default": "w4y0nd4", outlinePrimary: "w4y0nd5", outlineSecondary: "w4y0nd6", activePrimary: "w4y0nd7", activeSecondary: "w4y0nd8", disabled: "w4y0nd9" };
+var baseStyle = "w4y0nd0";
+var sizeStyle = { s: "w4y0nd1", m: "w4y0nd2", l: "w4y0nd3" };
+var stateStyle = { "default": "w4y0nd4", outlinePrimary: "w4y0nd5", outlineSecondary: "w4y0nd6", activePrimary: "w4y0nd7", activeSecondary: "w4y0nd8", disabled: "w4y0nd9" };
 
 // src/chip/Chips.tsx
 import { jsx as jsx8 } from "react/jsx-runtime";
@@ -368,15 +386,15 @@ var Chips = ({
   state = "default",
   content = "Label"
 }) => {
-  const baseClass = baseStyle2;
-  const sizeClass = sizeStyle2[size];
+  const baseClass = baseStyle;
+  const sizeClass = sizeStyle[size];
   let stateClass = "";
   if (state === "active") {
-    stateClass = variant === "primary" ? stateStyle2.activePrimary : stateStyle2.activeSecondary;
+    stateClass = variant === "primary" ? stateStyle.activePrimary : stateStyle.activeSecondary;
   } else if (state === "outline") {
-    stateClass = variant === "primary" ? stateStyle2.outlinePrimary : stateStyle2.outlineSecondary;
+    stateClass = variant === "primary" ? stateStyle.outlinePrimary : stateStyle.outlineSecondary;
   } else {
-    stateClass = stateStyle2[state];
+    stateClass = stateStyle[state];
   }
   return /* @__PURE__ */ jsx8("div", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: content });
 };
@@ -400,14 +418,14 @@ var TopAppBar = ({ icon = false }) => {
 };
 
 // src/header/title/Title.tsx
-import { forwardRef as forwardRef7 } from "react";
+import { forwardRef as forwardRef8 } from "react";
 
 // src/header/title/style.css.ts
 var titleStyle = "ujvneh1 _1rmst086p";
 
 // src/header/title/Title.tsx
 import { jsx as jsx10 } from "react/jsx-runtime";
-var Title = forwardRef7(
+var Title = forwardRef8(
   ({ children = "\uC81C\uBAA9", color = "textNormal", className, ...props }, ref) => {
     return /* @__PURE__ */ jsx10(
       Text,
@@ -450,7 +468,7 @@ var Headline = ({
 };
 
 // src/list/message/MessageList.tsx
-import { forwardRef as forwardRef8 } from "react";
+import { forwardRef as forwardRef9 } from "react";
 
 // src/utils/dateUtils.ts
 function formatDate(date) {
@@ -467,8 +485,8 @@ function formatDate(date) {
 }
 
 // src/list/message/style.css.ts
-import { createRuntimeFn as _7a4684 } from "@vanilla-extract/recipes/createRuntimeFn";
-var messageListRecipe = _7a4684({ defaultClassName: "_17rsevb4", variantClassNames: { variant: { "default": "_17rsevb5", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb8", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
+import { createRuntimeFn as _7a4685 } from "@vanilla-extract/recipes/createRuntimeFn";
+var messageListRecipe = _7a4685({ defaultClassName: "_17rsevb4", variantClassNames: { variant: { "default": "_17rsevb5", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb8", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
 
 // src/list/message/MessageList.tsx
 import { jsx as jsx12, jsxs as jsxs5 } from "react/jsx-runtime";
@@ -477,7 +495,7 @@ var colorMap = {
   danger: "pink",
   warning: "orange"
 };
-var MessageList = forwardRef8(
+var MessageList = forwardRef9(
   ({
     title = "title",
     date = /* @__PURE__ */ new Date(),
@@ -524,9 +542,9 @@ var MessageList = forwardRef8(
 );
 
 // src/list/social-content/SocialContentList.tsx
-import { forwardRef as forwardRef9 } from "react";
+import { forwardRef as forwardRef10 } from "react";
 import { jsx as jsx13, jsxs as jsxs6 } from "react/jsx-runtime";
-var SocialContentList = forwardRef9(
+var SocialContentList = forwardRef10(
   ({
     children,
     title = "title",
@@ -591,7 +609,7 @@ var SocialContentList = forwardRef9(
           children: [
             /* @__PURE__ */ jsx13(Button, { variant: "secondary", mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
             /* @__PURE__ */ jsx13(Button, { mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ jsx13(Button, { icon: "chat", subText: commentCounts, size: "s" })
+            /* @__PURE__ */ jsx13(Button, { icon: "chat", leftSubText: commentCounts, size: "s" })
           ]
         }
       )
@@ -651,19 +669,7 @@ var InputGroup = ({
     ] }),
     /* @__PURE__ */ jsxs8("div", { className: inputStyle2, children: [
       /* @__PURE__ */ jsx15(Input, { state, showIcon: false }),
-      showButton && /* @__PURE__ */ jsx15(
-        Button,
-        {
-          size: "m",
-          variant: "primary",
-          state: "default",
-          design: "fill",
-          icon: "",
-          subText: "",
-          mainText: "Button",
-          isLoading: false
-        }
-      )
+      showButton && /* @__PURE__ */ jsx15(Button, {})
     ] }),
     state === "warning" && /* @__PURE__ */ jsx15("div", { className: warningStyle, children: warningContent })
   ] });
