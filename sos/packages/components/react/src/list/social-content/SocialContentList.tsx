@@ -105,7 +105,7 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
         >
           <Button variant="secondary" mainText="사실이에요" size="s"></Button>
           <Button mainText="허위사실이에요" size="s"></Button>
-          <Button icon="chat" subText={commentCounts} size="s"></Button>
+          <Button icon="chat" leftSubText={commentCounts} size="s"></Button>
         </Container>
       </Container>
     );
