@@ -182,7 +182,12 @@ export const Container = forwardRef<HTMLElement, CommonProps>(
     };
 
     return (
-      <Component ref={ref} className={combinedClass} style={containerStyle} {...props}>
+      <Component
+        ref={ref}
+        className={combinedClass}
+        style={{ ...containerStyle, ...props.style }}
+        {...props}
+      >
         {children}
       </Component>
     );

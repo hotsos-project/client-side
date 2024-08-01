@@ -35,7 +35,7 @@ export const Text = forwardRef<HTMLElement, CommonProps>(
     const combinedClass = clsx([textClass, colorClass, className]);
 
     return (
-      <Component ref={ref} className={combinedClass} {...props}>
+      <Component ref={ref} className={combinedClass} style={{ ...props.style }} {...props}>
         {children}
       </Component>
     );

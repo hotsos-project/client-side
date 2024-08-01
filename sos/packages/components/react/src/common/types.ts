@@ -19,7 +19,8 @@ export interface CommonProps
     TypographyVariants,
     BorderSprinkles,
     BorderVariants,
-    ShadowSprinkles {
+    ShadowSprinkles,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: React.ReactNode;
   width?: number | '100%' | '100vw' | '100dvw';
   height?: number | '100%' | '100vh' | '100dvh';
