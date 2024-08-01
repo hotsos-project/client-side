@@ -1,3 +1,4 @@
+import { RecipeVariants } from '@vanilla-extract/recipes';
 export declare const typographyRecipe: import("@vanilla-extract/recipes").RuntimeFn<{
     textType: {
         display1: {
@@ -76,8 +77,19 @@ export declare const typographyRecipe: import("@vanilla-extract/recipes").Runtim
         reading: {};
         bold: {};
     };
+    textAlign: {
+        left: {
+            textAlign: "left";
+        };
+        center: {
+            textAlign: "center";
+        };
+        right: {
+            textAlign: "right";
+        };
+        justify: {
+            textAlign: "justify";
+        };
+    };
 }>;
-export type TypographyVariants = {
-    textType?: 'display1' | 'display2' | 'title1' | 'title2' | 'title3' | 'heading1' | 'heading2' | 'headline' | 'body1' | 'body2' | 'body3' | 'label' | 'footnote' | 'caption';
-    textMode?: 'default' | 'reading' | 'bold';
-};
+export type TypographyVariants = NonNullable<RecipeVariants<typeof typographyRecipe>>;

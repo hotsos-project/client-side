@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import { CommonProps } from '../../../common/types';
 import { InfoItem, InfoItemProps } from '../info-item/InfoItem';
 import { Container } from '../../../common/container/Container';
+import { Divider } from '../../../common/divider/Divider';
 
 interface InfoBoxProps extends CommonProps {
   infos: Omit<InfoItemProps, 'size'>[];
@@ -12,7 +13,7 @@ interface InfoBoxProps extends CommonProps {
  * InfoBox 컴포넌트
  *
  * @param {Omit<InfoItemProps, 'size'>[]} props.infos - InfoItem 컴포넌트에 전달될 정보 객체 배열 (필수, 객체 형식: {title: '제목', content: '내용', icon: '아이콘 이름'})
- * @param {'s' | 'm'} [props.size='m'] - 크기 (선택, 기본값: 'm')
+ * @param {'s' | 'm'} [props.size='m'] - InfoItem 컴포넌트의 크기 (선택, 기본값: 'm')
  * @param {string} [props.backgroundColor] - 배경색 (선택)
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...CommonProps} props - Container 컴포넌트에 전달될 기타 속성
@@ -23,13 +24,12 @@ export const InfoBox = forwardRef<HTMLElement, InfoBoxProps>(
     const infoItems = infos?.reduce((acc, item, index) => {
       if (index > 0) {
         acc.push(
-          // 여기에 divider 컴포넌트 만들어서 수정합니다.
-          <div key={`divider-${index}`} style={{ width: '1px', backgroundColor: '#E0E0E0' }} />,
+          <Divider key={item.id || `divider-${index}`} orientation="vertical" margin={16} />,
         );
       }
       acc.push(
         <InfoItem
-          key={`info-${index}`}
+          key={item.id || `info-${index}`}
           title={item.title}
           content={item.content}
           icon={item.icon}

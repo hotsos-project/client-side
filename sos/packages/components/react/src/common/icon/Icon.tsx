@@ -2,10 +2,10 @@ import { forwardRef, ReactNode } from 'react';
 import { colorSprinkles, Palette } from '../../style/color/sprinkles.css';
 import clsx from 'clsx';
 
-interface IconProps {
+interface IconProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children: ReactNode;
-  color?: Palette;
   size?: number;
+  color?: Palette;
   className?: string;
 }
 
@@ -20,7 +20,7 @@ interface IconProps {
  * @param {React.Ref<HTMLElement>} ref - 전달받은 ref
  */
 export const Icon = forwardRef<HTMLElement, IconProps>(
-  ({ children, color = 'textNormal', size, className, ...props }, ref) => {
+  ({ children, size, color = 'textNormal', className, ...props }, ref) => {
     const colorClass = colorSprinkles({ color });
 
     const iconStyle = {
@@ -32,7 +32,7 @@ export const Icon = forwardRef<HTMLElement, IconProps>(
       <span
         ref={ref}
         className={clsx('material-symbols-outlined', colorClass, className)}
-        style={iconStyle}
+        style={{ ...iconStyle, ...props.style }}
         {...props}
       >
         {children}

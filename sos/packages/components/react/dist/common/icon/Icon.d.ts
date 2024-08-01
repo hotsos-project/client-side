@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { Palette } from '../../style/color/sprinkles.css';
-interface IconProps {
+interface IconProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
     children: ReactNode;
-    color?: Palette;
     size?: number;
+    color?: Palette;
     className?: string;
 }
 /**

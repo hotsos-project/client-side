@@ -124,7 +124,19 @@ export const Container = forwardRef<HTMLElement, CommonProps>(
     },
     ref,
   ) => {
-    const layoutClass = layoutSprinkles({ display, flexDirection, justifyContent, alignItems });
+    const containerStyle = {
+      ...(typeof width === 'number' && { width: `${width}px` }),
+      ...(typeof height === 'number' && { height: `${height}px` }),
+    };
+
+    const layoutClass = layoutSprinkles({
+      display,
+      flexDirection,
+      justifyContent,
+      alignItems,
+      ...(typeof width !== 'number' && width !== undefined && { width }),
+      ...(typeof height !== 'number' && height !== undefined && { height }),
+    });
     const spacingClass = spacingSprinkles({
       margin,
       padding,
@@ -176,13 +188,13 @@ export const Container = forwardRef<HTMLElement, CommonProps>(
       className,
     ]);
 
-    const containerStyle = {
-      ...(width && { width: typeof width === 'string' ? width : `${width}px` }),
-      ...(height && { height: typeof height === 'string' ? height : `${height}px` }),
-    };
-
     return (
-      <Component ref={ref} className={combinedClass} style={containerStyle} {...props}>
+      <Component
+        ref={ref}
+        className={combinedClass}
+        style={{ ...containerStyle, ...props.style }}
+        {...props}
+      >
         {children}
       </Component>
     );

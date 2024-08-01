@@ -1,3 +1,4 @@
+import { RecipeVariants } from '@vanilla-extract/recipes';
 export declare const borderRecipe: import("@vanilla-extract/recipes").RuntimeFn<{
     borderType: {
         border: {
@@ -27,6 +28,4 @@ export declare const borderRecipe: import("@vanilla-extract/recipes").RuntimeFn<
         };
     };
 }>;
-export type BorderVariants = {
-    borderType?: 'border' | 'borderBottom' | 'borderLeft' | 'borderRight' | 'borderTop';
-};
+export type BorderVariants = NonNullable<RecipeVariants<typeof borderRecipe>>;

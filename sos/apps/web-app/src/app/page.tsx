@@ -1,17 +1,15 @@
-import { InfoBox } from '@sos/components-react';
-
-const infos = [
-  {
-    title: '가응 시간',
-    content: '9:00 ~ 18:00',
-  },
-  { title: '설치 장소', content: '진료실' },
-];
+import { WeatherBox } from '@sos/components-react';
 
 export default function Home() {
   return (
     <main>
-      <InfoBox infos={infos} backgroundColor="backgroundElevatedSecondary" />
+      <WeatherBox
+        location="현재위치"
+        temperature={28}
+        highestTemperature={28}
+        lowestTemperature={23}
+        airQuality="나쁨 (116)"
+      />
     </main>
   );
 }

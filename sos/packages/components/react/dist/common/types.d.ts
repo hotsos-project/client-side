@@ -9,9 +9,9 @@ import { ShadowSprinkles } from '../style/shadow/sprinkles.css';
 export type AsProps = {
     as?: ElementType;
 };
-export interface CommonProps extends AsProps, LayoutSprinkles, SpacingSprinkles, ColorSprinkles, TypographyVariants, BorderSprinkles, BorderVariants, ShadowSprinkles {
+export interface CommonProps extends AsProps, Omit<LayoutSprinkles, 'width' | 'height'>, SpacingSprinkles, ColorSprinkles, TypographyVariants, BorderSprinkles, BorderVariants, ShadowSprinkles, Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
     children?: React.ReactNode;
-    width?: number | '100%' | '100vw' | '100dvw';
-    height?: number | '100%' | '100vh' | '100dvh';
+    width?: number | LayoutSprinkles['width'];
+    height?: number | LayoutSprinkles['height'];
     className?: string;
 }

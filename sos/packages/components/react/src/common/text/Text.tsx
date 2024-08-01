@@ -23,19 +23,20 @@ export const Text = forwardRef<HTMLElement, CommonProps>(
       as: Component = 'p',
       textType = 'body1',
       textMode = 'default',
-      color = 'textNormal',
+      textAlign,
+      color,
       className,
       ...props
     },
     ref,
   ) => {
-    const textClass = typographyRecipe({ textType, textMode });
+    const textClass = typographyRecipe({ textType, textMode, textAlign });
     const colorClass = colorSprinkles({ color });
 
     const combinedClass = clsx([textClass, colorClass, className]);
 
     return (
-      <Component ref={ref} className={combinedClass} {...props}>
+      <Component ref={ref} className={combinedClass} style={{ ...props.style }} {...props}>
         {children}
       </Component>
     );

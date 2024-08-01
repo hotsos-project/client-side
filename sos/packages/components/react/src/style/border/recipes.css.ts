@@ -1,4 +1,4 @@
-import { recipe } from '@vanilla-extract/recipes';
+import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 import { vars } from '@sos/style-tokens';
 
 export const borderRecipe = recipe({
@@ -33,6 +33,4 @@ export const borderRecipe = recipe({
   },
 });
 
-export type BorderVariants = {
-  borderType?: 'border' | 'borderBottom' | 'borderLeft' | 'borderRight' | 'borderTop';
-};
+export type BorderVariants = NonNullable<RecipeVariants<typeof borderRecipe>>;

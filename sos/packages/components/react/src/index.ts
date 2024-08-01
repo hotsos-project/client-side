@@ -15,6 +15,7 @@ export { shadowSprinkles, ShadowSprinkles } from './style/shadow/sprinkles.css';
 export { Text } from './common/text/Text';
 export { Container } from './common/container/Container';
 export { Icon } from './common/icon/Icon';
+export { Divider } from './common/divider/Divider';
 
 // Button
 export { Button } from './button/Button';
@@ -24,6 +25,7 @@ export { Badge } from './badge/Badge';
 
 // Box
 export { InfoBox } from './box/info/info-box/InfoBox';
+export { WeatherBox } from './box/weather/WeatherBox';
 
 // Chips
 export { Chips } from './chip/Chips';
