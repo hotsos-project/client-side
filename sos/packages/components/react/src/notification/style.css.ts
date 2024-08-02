@@ -1,36 +1,42 @@
 import { style } from '@vanilla-extract/css';
+import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 import { vars } from '@sos/style-tokens';
+import { colorSprinkles } from '../style/color/sprinkles.css';
+import { spacingSprinkles } from '../style/spacing/sprinkles.css';
 
-/**
- * 공통 스타일
- */
-export const commonStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: `${vars.spacing.spacing[16]} ${vars.spacing.spacing[20]}`,
-  borderRadius: vars.radius.borderRadius.base,
-  gap: vars.spacing.spacing[20],
-  boxShadow: vars.shadow.shadow.s,
+export const commonStyle = style([
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    borderRadius: vars.radius.borderRadius.base,
+    boxShadow: vars.shadow.shadow.s,
+  },
+  spacingSprinkles({ paddingY: 16, paddingX: 20, gap: 20 }),
+]);
+
+export const stateStyle = recipe({
+  base: [commonStyle],
+  variants: {
+    state: {
+      default: colorSprinkles({
+        color: 'textNormal',
+        backgroundColor: 'backgroundElevatedPrimary',
+      }),
+      warning: colorSprinkles({
+        color: 'pink500',
+        backgroundColor: 'backgroundElevatedPrimary',
+      }),
+      danger: colorSprinkles({
+        color: 'white',
+        backgroundColor: 'pink500',
+      }),
+    },
+  },
+  defaultVariants: {
+    state: 'default',
+  },
 });
 
-const state = {
-  default: style({
-    color: vars.color.$palette.text.normal,
-    backgroundColor: vars.color.$palette.background.elevatedPrimary,
-  }),
-  warning: style({
-    color: vars.color.$palette.pink[500],
-    backgroundColor: vars.color.$palette.background.elevatedPrimary,
-  }),
-  danger: style({
-    color: vars.color.$static.light.color.white,
-    backgroundColor: vars.color.$palette.pink[500],
-  }),
-};
-
-export const stateStyle = {
-  default: state.default,
-  warning: state.warning,
-  danger: state.danger,
-};
+export type StateVariants = RecipeVariants<typeof stateStyle>;
