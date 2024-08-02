@@ -15,12 +15,30 @@ interface ButtonProps extends CommonProps, NonNullable<ButtonVariants> {
   loadingSpinner?: string;
 }
 
+const textColorMap: Record<
+  string,
+  Record<string, { textColor: Palette; hovertextColor: Palette }>
+> = {
+  primary: {
+    fill: { textColor: 'white', hovertextColor: 'white' },
+    outline: { textColor: 'uiPrimaryNormal', hovertextColor: 'blue700' },
+  },
+  secondary: {
+    fill: { textColor: 'white', hovertextColor: 'white' },
+    outline: { textColor: 'textNormal', hovertextColor: 'textNormal' },
+  },
+  tertiary: {
+    fill: { textColor: 'blueGray500', hovertextColor: 'blueGray500' },
+    outline: { textColor: 'blueGray500', hovertextColor: 'blueGray500' },
+  },
+};
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       size,
-      variant,
-      design,
+      variant = 'primary',
+      design = 'fill',
       icon,
       leftSubText,
       rightSubText,
@@ -40,29 +58,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       design,
     });
 
-    let iconColor: Palette = 'uiPrimaryNormal';
-    let hoverIconColor: Palette = 'uiPrimaryNormal';
-
-    if (variant === 'primary') {
-      if (design === 'fill') {
-        iconColor = 'white';
-        hoverIconColor = 'white';
-      } else if (design === 'outline') {
-        iconColor = 'uiPrimaryNormal';
-        hoverIconColor = 'blue700';
-      }
-    } else if (variant === 'secondary') {
-      if (design === 'fill') {
-        iconColor = 'white';
-        hoverIconColor = 'white';
-      } else if (design === 'outline') {
-        iconColor = 'textNormal';
-        hoverIconColor = 'textNormal';
-      }
-    } else if (variant === 'tertiary') {
-      iconColor = 'blueGray500';
-      hoverIconColor = 'blueGray500';
-    }
+    const { textColor, hovertextColor } = textColorMap[variant][design] || {
+      textColor: 'uiPrimaryNormal',
+      hovertextColor: 'uiPrimaryNormal',
+    };
 
     return (
       <button
@@ -72,15 +71,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onMouseLeave={() => setIsHovered(false)}
         {...props}
       >
-        {icon && <Icon color={isHovered ? hoverIconColor : iconColor}>{icon}</Icon>}
-        {leftSubText && <Text textType="body1">{leftSubText}</Text>}
+        {icon && <Icon color={isHovered ? hovertextColor : textColor}>{icon}</Icon>}
+        {leftSubText && (
+          <Text textType="body1" color={isHovered ? hovertextColor : textColor}>
+            {leftSubText}
+          </Text>
+        )}
         {mainText && (
-          <Text textType="body1" textMode="bold">
+          <Text textType="body1" textMode="bold" color={isHovered ? hovertextColor : textColor}>
             {mainText}
           </Text>
         )}
-        {rightSubText && <Text textType="body1">{rightSubText}</Text>}
-        {isLoading && <Icon color={isHovered ? hoverIconColor : iconColor}>{loadingSpinner}</Icon>}
+        {rightSubText && (
+          <Text textType="body1" color={isHovered ? hovertextColor : textColor}>
+            {rightSubText}
+          </Text>
+        )}
+        {isLoading && <Icon color={isHovered ? hovertextColor : textColor}>{loadingSpinner}</Icon>}
       </button>
     );
   },
