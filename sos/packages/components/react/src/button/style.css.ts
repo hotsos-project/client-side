@@ -10,8 +10,9 @@ export const buttonRecipe = recipe({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      textAlign: 'center',
       width: '100%',
+      borderRadius: vars.radius.borderRadius.base,
+      textAlign: 'center',
       cursor: 'pointer',
     },
     spacingSprinkles({ columnGap: 4 }),
@@ -19,22 +20,13 @@ export const buttonRecipe = recipe({
 
   variants: {
     size: {
-      s: [
-        spacingSprinkles({ paddingY: 2, paddingX: 8 }),
-        { fontSize: vars.typography.fontSize[15], lineHeight: vars.typography.lineHeight[20] },
-      ],
-      m: [
-        spacingSprinkles({ paddingY: 6, paddingX: 12 }),
-        { fontSize: vars.typography.fontSize[16], lineHeight: vars.typography.lineHeight[21] },
-      ],
-      l: [
-        spacingSprinkles({ paddingY: 10, paddingX: 16 }),
-        { fontSize: vars.typography.fontSize[17], lineHeight: vars.typography.lineHeight[22] },
-      ],
+      s: [spacingSprinkles({ paddingY: 2, paddingX: 8 })],
+      m: [spacingSprinkles({ paddingY: 6, paddingX: 12 })],
+      l: [spacingSprinkles({ paddingY: 10, paddingX: 16 })],
     },
     variant: {
-      primary: colorSprinkles({ color: 'white', backgroundColor: 'uiPrimaryNormal' }),
-      secondary: colorSprinkles({ color: 'white', backgroundColor: 'blueGray500' }),
+      primary: colorSprinkles({ color: 'white' }),
+      secondary: colorSprinkles({ color: 'white' }),
       tertiary: colorSprinkles({ color: 'blueGray500' }),
     },
     design: {
@@ -43,50 +35,80 @@ export const buttonRecipe = recipe({
         borderSprinkles({
           borderWidth: 1,
           borderStyle: 'solid',
-          borderColor: 'uiPrimaryNormal',
         }),
-        colorSprinkles({ color: 'uiPrimaryNormal' }),
       ],
-    },
-    state: {
-      default: {},
-      hover: {},
-      active: {},
-      disabled: colorSprinkles({
-        color: 'blueGray200',
-        backgroundColor: 'blueGray50',
-      }),
-      cursor: 'disabled',
     },
   },
 
   compoundVariants: [
     {
-      variants: { variant: 'primary', state: 'hover' },
-      style: colorSprinkles({ backgroundColor: 'uiPrimaryHover' }),
-    },
-    {
-      variants: { variant: 'secondary', state: 'hover' },
-      style: colorSprinkles({ backgroundColor: 'blueGray600' }),
-    },
-    {
-      variants: { variant: 'tertiary', state: 'hover' },
-      style: colorSprinkles({ color: 'blueGray600' }),
-    },
-    {
-      variants: { variant: 'primary', design: 'outline', state: 'hover' },
+      variants: { variant: 'primary', design: 'fill' },
       style: [
-        borderSprinkles({ borderColor: 'uiPrimaryHover' }),
-        colorSprinkles({ color: 'uiPrimaryHover' }),
+        colorSprinkles({ color: 'white', backgroundColor: 'uiPrimaryNormal' }),
+        {
+          selectors: {
+            '&:hover': {
+              color: vars.color.$static.light.color.white,
+              backgroundColor: vars.color.$palette.blue[700],
+            },
+            '&:disabled': {
+              color: vars.color.$palette.blueGray[200],
+              backgroundColor: vars.color.$palette.blueGray[50],
+              cursor: 'not-allowed',
+            },
+          },
+        },
       ],
     },
+    {
+      variants: { variant: 'primary', design: 'outline' },
+      style: [
+        colorSprinkles({ color: 'uiPrimaryNormal' }),
+        borderSprinkles({ borderColor: 'uiPrimaryNormal' }),
+        {
+          selectors: {
+            '&:hover': {
+              border: `0.0625rem solid ${vars.color.$palette.blue[700]}`,
+            },
+            '&:disabled': {
+              color: vars.color.$palette.blueGray[200],
+              backgroundColor: vars.color.$palette.blueGray[50],
+              cursor: 'not-allowed',
+            },
+          },
+        },
+      ],
+    },
+    {
+      variants: { variant: 'secondary', design: 'fill' },
+      style: [
+        colorSprinkles({
+          color: 'white',
+          backgroundColor: 'blueGray500',
+        }),
+        {
+          selectors: {
+            '&:hover': {
+              backgroundColor: vars.color.$palette.blueGray[700],
+            },
+            '&:disabled': {
+              color: vars.color.$palette.blueGray[200],
+              backgroundColor: vars.color.$palette.blueGray[50],
+              cursor: 'not-allowed',
+            },
+          },
+        },
+      ],
+    },
+    {
+      variants: { variant: 'secondary', design: 'outline' },
+      style: [colorSprinkles({ color: 'textNormal' }), borderSprinkles({ borderColor: 'gray200' })],
+    },
   ],
-
   defaultVariants: {
     size: 'm',
     variant: 'primary',
     design: 'fill',
-    state: 'default',
   },
 });
 
