@@ -26,14 +26,11 @@ export const buttonRecipe = recipe({
     },
     variant: {
       primary: colorSprinkles({ color: 'white' }),
-
       secondary: colorSprinkles({ color: 'white' }),
-
       tertiary: colorSprinkles({ color: 'blueGray500' }),
     },
     design: {
       fill: [
-        colorSprinkles({ backgroundColor: 'uiPrimaryNormal' }),
         {
           selectors: {
             '&:hover': {
@@ -52,8 +49,6 @@ export const buttonRecipe = recipe({
           borderWidth: 1,
           borderStyle: 'solid',
         }),
-
-        colorSprinkles({ color: 'uiPrimaryNormal' }),
         {
           selectors: {
             '&:hover': {
@@ -74,19 +69,18 @@ export const buttonRecipe = recipe({
 
   compoundVariants: [
     {
-
       variants: { variant: 'primary', design: 'fill' },
       style: [
         colorSprinkles({ color: 'white', backgroundColor: 'uiPrimaryNormal' }),
         {
           selectors: {
             '&:hover': {
-              color: vars.color.$static.light.color.white,
               backgroundColor: vars.color.$palette.blue[700],
             },
             '&:disabled': {
               color: vars.color.$palette.blueGray[200],
               backgroundColor: vars.color.$palette.blueGray[50],
+              opacity: 0.1,
               cursor: 'not-allowed',
             },
           },
@@ -104,8 +98,8 @@ export const buttonRecipe = recipe({
               border: `0.0625rem solid ${vars.color.$palette.blue[700]}`,
             },
             '&:disabled': {
-              color: vars.color.$palette.blueGray[200],
-              backgroundColor: vars.color.$palette.blueGray[50],
+              border: `0.0625rem solid ${vars.color.$palette.ui.primaryNormal}`,
+              opacity: 0.1,
               cursor: 'not-allowed',
             },
           },
@@ -122,21 +116,59 @@ export const buttonRecipe = recipe({
         {
           selectors: {
             '&:hover': {
-              backgroundColor: vars.color.$palette.blueGray[700],
+              color: vars.color.$static.light.color.white,
+              backgroundColor: vars.color.$palette.blueGray[600],
             },
             '&:disabled': {
-              color: vars.color.$palette.blueGray[200],
-              backgroundColor: vars.color.$palette.blueGray[50],
+              color: vars.color.$static.light.color.white,
+              backgroundColor: vars.color.$palette.blueGray[500],
+              opacity: 0.1,
               cursor: 'not-allowed',
             },
           },
         },
-
       ],
     },
     {
       variants: { variant: 'secondary', design: 'outline' },
-      style: [colorSprinkles({ color: 'textNormal' }), borderSprinkles({ borderColor: 'gray200' })],
+      style: [
+        colorSprinkles({ color: 'textNormal' }),
+        borderSprinkles({ borderColor: 'gray200' }),
+        {
+          selectors: {
+            '&:hover': {
+              color: vars.color.$palette.text.normal,
+              backgroundColor: vars.color.$palette.gray[100],
+              border: `0.0625rem solid ${vars.color.$palette.gray[200]}`,
+            },
+            '&:disabled': {
+              color: vars.color.$palette.text.normal,
+              border: `0.0625rem solid ${vars.color.$palette.gray[200]}`,
+              opacity: 0.1,
+              cursor: 'not-allowed',
+            },
+          },
+        },
+      ],
+    },
+    {
+      variants: { variant: 'tertiary' },
+      style: [
+        colorSprinkles({ color: 'blueGray500' }),
+        {
+          selectors: {
+            '&:hover': {
+              color: vars.color.$palette.blueGray[500],
+              backgroundColor: vars.color.$palette.blueGray[50],
+            },
+            '&:disabled': {
+              color: vars.color.$palette.blueGray[500],
+              backgroundColor: vars.color.$palette.blueGray[500],
+              cursor: 'not-allowed',
+            },
+          },
+        },
+      ],
     },
   ],
   defaultVariants: {
