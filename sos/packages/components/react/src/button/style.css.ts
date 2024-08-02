@@ -26,22 +26,55 @@ export const buttonRecipe = recipe({
     },
     variant: {
       primary: colorSprinkles({ color: 'white' }),
+
       secondary: colorSprinkles({ color: 'white' }),
+
       tertiary: colorSprinkles({ color: 'blueGray500' }),
     },
     design: {
-      fill: {},
+      fill: [
+        colorSprinkles({ backgroundColor: 'uiPrimaryNormal' }),
+        {
+          selectors: {
+            '&:hover': {
+              backgroundColor: vars.color.$palette.blue[700],
+            },
+            '&:disabled': {
+              backgroundColor: vars.color.$palette.blueGray[500],
+              cursor: 'not-allowed',
+              opacity: 0.5,
+            },
+          },
+        },
+      ],
       outline: [
         borderSprinkles({
           borderWidth: 1,
           borderStyle: 'solid',
         }),
+
+        colorSprinkles({ color: 'uiPrimaryNormal' }),
+        {
+          selectors: {
+            '&:hover': {
+              color: vars.color.$palette.blue[700],
+              border: `0.0625rem solid ${vars.color.$palette.blue[700]}`,
+            },
+            '&:disabled': {
+              borderColor: vars.color.$palette.blueGray[500],
+              color: vars.color.$palette.blueGray[500],
+              cursor: 'not-allowed',
+              opacity: 0.5,
+            },
+          },
+        },
       ],
     },
   },
 
   compoundVariants: [
     {
+
       variants: { variant: 'primary', design: 'fill' },
       style: [
         colorSprinkles({ color: 'white', backgroundColor: 'uiPrimaryNormal' }),
@@ -98,6 +131,7 @@ export const buttonRecipe = recipe({
             },
           },
         },
+
       ],
     },
     {

@@ -5,9 +5,13 @@ import { buttonRecipe, ButtonVariants } from './style.css';
 import { Icon } from '../common/icon/Icon';
 import { Text } from '../common/text/Text';
 
-type Palette = 'white' | 'uiPrimaryNormal' | 'blueGray500' | 'textNormal';
+
 
 interface ButtonProps extends CommonProps, NonNullable<ButtonVariants> {
+
+type Palette = 'white' | 'uiPrimaryNormal' | 'blueGray500' | 'textNormal';
+
+type ButtonProps = {
   icon?: string;
   leftSubText?: string | number;
   rightSubText?: string | number;
@@ -74,6 +78,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {rightSubText}
           </Text>
         )}
+
+        
         {isLoading && <Icon color={iconColor}>{loadingSpinner}</Icon>}
       </button>
     );

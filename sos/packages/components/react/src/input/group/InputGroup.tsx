@@ -41,18 +41,7 @@ export const InputGroup: React.FC<InputGroupProps> = ({
       )}
       <div className={inputStyle}>
         <Input state={state} showIcon={false} />
-        {showButton && (
-          <Button
-            size="m"
-            variant="primary"
-            state="default"
-            design="fill"
-            icon=""
-            subText=""
-            mainText="Button"
-            isLoading={false}
-          />
-        )}
+        {showButton && <Button />}
       </div>
       {state === 'warning' && <div className={warningStyle}>{warningContent}</div>}
     </div>
