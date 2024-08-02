@@ -1,8 +1,8 @@
 export declare const borderSprinkles: ((props: {
     borderColor?: string | number | undefined;
-    borderRadius?: "none" | "round" | "base" | "s" | "xs" | "sm" | "m" | "ml" | "l" | "xl" | "2xl" | undefined;
+    borderRadius?: "base" | "none" | "round" | "s" | "xs" | "sm" | "m" | "ml" | "l" | "xl" | "2xl" | undefined;
     borderStyle?: "none" | "dashed" | "dotted" | "double" | "solid" | undefined;
-    borderWidth?: 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 36 | 40 | 44 | 48 | 56 | 64 | undefined;
+    borderWidth?: 2 | 1 | 4 | 8 | 16 | 32 | 64 | 6 | 10 | 12 | 14 | 18 | 20 | 24 | 28 | 36 | 40 | 44 | 48 | 56 | undefined;
     borderBottomColor?: string | number | undefined;
     borderLeftColor?: string | number | undefined;
     borderRightColor?: string | number | undefined;
@@ -11,11 +11,11 @@ export declare const borderSprinkles: ((props: {
     borderLeftStyle?: "none" | "dashed" | "dotted" | "double" | "solid" | undefined;
     borderRightStyle?: "none" | "dashed" | "dotted" | "double" | "solid" | undefined;
     borderTopStyle?: "none" | "dashed" | "dotted" | "double" | "solid" | undefined;
-    borderBottomWidth?: 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 36 | 40 | 44 | 48 | 56 | 64 | undefined;
-    borderLeftWidth?: 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 36 | 40 | 44 | 48 | 56 | 64 | undefined;
-    borderRightWidth?: 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 36 | 40 | 44 | 48 | 56 | 64 | undefined;
-    borderTopWidth?: 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 36 | 40 | 44 | 48 | 56 | 64 | undefined;
+    borderBottomWidth?: 2 | 1 | 4 | 8 | 16 | 32 | 64 | 6 | 10 | 12 | 14 | 18 | 20 | 24 | 28 | 36 | 40 | 44 | 48 | 56 | undefined;
+    borderLeftWidth?: 2 | 1 | 4 | 8 | 16 | 32 | 64 | 6 | 10 | 12 | 14 | 18 | 20 | 24 | 28 | 36 | 40 | 44 | 48 | 56 | undefined;
+    borderRightWidth?: 2 | 1 | 4 | 8 | 16 | 32 | 64 | 6 | 10 | 12 | 14 | 18 | 20 | 24 | 28 | 36 | 40 | 44 | 48 | 56 | undefined;
+    borderTopWidth?: 2 | 1 | 4 | 8 | 16 | 32 | 64 | 6 | 10 | 12 | 14 | 18 | 20 | 24 | 28 | 36 | 40 | 44 | 48 | 56 | undefined;
 }) => string) & {
-    properties: Set<"borderBottomColor" | "borderBottomStyle" | "borderBottomWidth" | "borderLeftColor" | "borderLeftStyle" | "borderLeftWidth" | "borderRightColor" | "borderRightStyle" | "borderRightWidth" | "borderTopColor" | "borderTopStyle" | "borderTopWidth" | "borderColor" | "borderRadius" | "borderStyle" | "borderWidth">;
+    properties: Set<"borderBottomColor" | "borderBottomStyle" | "borderBottomWidth" | "borderColor" | "borderLeftColor" | "borderLeftStyle" | "borderLeftWidth" | "borderRadius" | "borderRightColor" | "borderRightStyle" | "borderRightWidth" | "borderStyle" | "borderTopColor" | "borderTopStyle" | "borderTopWidth" | "borderWidth">;
 };
 export type BorderSprinkles = Parameters<typeof borderSprinkles>[0];

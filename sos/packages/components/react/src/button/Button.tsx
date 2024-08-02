@@ -5,13 +5,7 @@ import { buttonRecipe, ButtonVariants } from './style.css';
 import { Icon } from '../common/icon/Icon';
 import { Text } from '../common/text/Text';
 
-
-
 interface ButtonProps extends CommonProps, NonNullable<ButtonVariants> {
-
-type Palette = 'white' | 'uiPrimaryNormal' | 'blueGray500' | 'textNormal';
-
-type ButtonProps = {
   icon?: string;
   leftSubText?: string | number;
   rightSubText?: string | number;
@@ -43,44 +37,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       design,
     });
 
-    let iconColor: Palette | undefined;
-    if (variant === 'primary') {
-      if (design === 'fill') {
-        iconColor = 'white';
-      } else if (design === 'outline') {
-        iconColor = 'uiPrimaryNormal';
-      }
-    } else if (variant === 'secondary') {
-      if (design === 'fill') {
-        iconColor = 'white';
-      } else if (design === 'outline') {
-        iconColor = 'textNormal';
-      }
-    } else if (variant === 'tertiary') {
-      iconColor = 'blueGray500';
-    }
-
     return (
       <button ref={ref} className={clsx(buttonClass, className)} {...props}>
-        {icon && <Icon color={iconColor}>{icon}</Icon>}
-        {leftSubText && (
-          <Text textType="body1" color={iconColor}>
-            {leftSubText}
-          </Text>
-        )}
+        {icon && <Icon>{icon}</Icon>}
+        {leftSubText && <Text textType="body1">{leftSubText}</Text>}
         {mainText && (
-          <Text textType="body1" textMode="bold" color={iconColor}>
+          <Text textType="body1" textMode="bold">
             {mainText}
           </Text>
         )}
-        {rightSubText && (
-          <Text textType="body1" color={iconColor}>
-            {rightSubText}
-          </Text>
-        )}
+        {rightSubText && <Text textType="body1">{rightSubText}</Text>}
 
-        
-        {isLoading && <Icon color={iconColor}>{loadingSpinner}</Icon>}
+        {isLoading && <Icon>{loadingSpinner}</Icon>}
       </button>
     );
   },
