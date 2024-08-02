@@ -4,7 +4,7 @@ import { Container } from '../../common/container/Container';
 import { Text } from '../../common/text/Text';
 import { Icon } from '../../common/icon/Icon';
 import { formatDateWithTime } from '../../utils/dateUtils';
-// import { Button } from '../../button/Button';
+import { Button } from '../../button/Button';
 
 interface SocialContentListProps extends CommonProps {
   title: string;
@@ -105,11 +105,10 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
           alignItems="center"
           borderType="borderTop"
         >
-          {/* <Button variant="secondary" mainText="사실이에요" size="s"></Button>
+          <Button variant="secondary" mainText="사실이에요" size="s"></Button>
           <Button mainText="허위사실이에요" size="s"></Button>
 
           <Button icon="chat" leftSubText={commentCounts} size="s"></Button>
-
         </Container>
       </Container>
     );
