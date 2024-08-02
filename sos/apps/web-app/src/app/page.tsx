@@ -12,7 +12,7 @@ import {
 export default function Home() {
   return (
     <main>
-      <Container></Container>
+      {/* Test */}
       {/* <Container display="flex" paddingX={16} paddingY={20}>
         <Notification state="default"></Notification>
       </Container>
