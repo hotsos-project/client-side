@@ -12,12 +12,12 @@ interface InfoButtonProps extends CommonProps, NonNullable<InfoButtonVariants> {
 }
 
 export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
-  ({ badgeText, mainText = 'mainText', subText, variant, className, ...props }, ref) => {
-    const infoButtonClass = infoButtonRecipe({ variant });
+  ({ size, variant, badgeText, mainText = 'mainText', subText, className, ...props }, ref) => {
+    const infoButtonClass = infoButtonRecipe({ size, variant });
 
     return (
       <button ref={ref} className={clsx(infoButtonClass, className)} {...props}>
-        <Badge>{badgeText}</Badge>
+        {badgeText && <Badge>{badgeText}</Badge>}
         <Text>{mainText}</Text>
         <Text>{subText}</Text>
       </button>

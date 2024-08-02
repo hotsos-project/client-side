@@ -19,6 +19,7 @@ export { Divider } from './common/divider/Divider';
 
 // Button
 export { Button } from './button/Button';
+export { InfoButton } from './button/info/InfoButton';
 
 // Badge
 export { Badge } from './badge/Badge';
