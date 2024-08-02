@@ -1,7 +1,7 @@
 import { CommonProps } from '../../common/types';
 interface MessageListProps extends Omit<CommonProps, 'color'> {
     title: string;
-    date: Date;
+    date: string;
     content: string;
     isRead: boolean;
     isChecked: boolean;

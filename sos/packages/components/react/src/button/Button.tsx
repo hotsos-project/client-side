@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 import { CommonProps } from '../common/types';

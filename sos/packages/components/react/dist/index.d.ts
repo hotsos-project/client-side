@@ -25,3 +25,4 @@ export { MessageList } from './list/message/MessageList';
 export { SocialContentList } from './list/social-content/SocialContentList';
 export { Input } from './input/Input';
 export { InputGroup } from './input/group/InputGroup';
+export { Notification } from './notification/Notification';

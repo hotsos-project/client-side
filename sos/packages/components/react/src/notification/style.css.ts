@@ -8,6 +8,7 @@ export const commonStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  width: '100%',
   padding: `${vars.spacing.spacing[16]} ${vars.spacing.spacing[20]}`,
   borderRadius: vars.radius.borderRadius.base,
   gap: vars.spacing.spacing[20],

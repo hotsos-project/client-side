@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef } from 'react';
 import { CommonProps } from '../../common/types';
 import { Badge } from '../../badge/Badge';
@@ -18,7 +20,9 @@ export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
     return (
       <button ref={ref} className={clsx(infoButtonClass, className)} {...props}>
         {badgeText && <Badge>{badgeText}</Badge>}
-        <Text>{mainText}</Text>
+        <Text textType="body1" textMode="bold">
+          {mainText}
+        </Text>
         <Text>{subText}</Text>
       </button>
     );

@@ -2,7 +2,7 @@ import { CommonProps } from '../../common/types';
 interface SocialContentListProps extends CommonProps {
     title: string;
     writer: string;
-    date: Date;
+    date: string;
     location: string;
     viewCounts: number;
     commentCounts: number;

@@ -9,7 +9,6 @@ export const headlineStyle = style({
   paddingLeft: vars.spacing.spacing[16],
   paddingRight: vars.spacing.spacing[4],
   color: vars.color.$palette.text.normal,
-  backgroundColor: vars.color.$palette.background.normalPrimary,
   textAlign: 'center',
 });
 
