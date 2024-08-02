@@ -1,4 +1,4 @@
-import { CommonProps } from '../../common/types';
+import { CommonProps } from '../common/types';
 interface InputProps extends CommonProps {
     state: 'default' | 'highlight' | 'warning' | 'disabled';
     showIcon?: boolean;

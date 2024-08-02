@@ -40,5 +40,5 @@ export { MessageList } from './list/message/MessageList';
 export { SocialContentList } from './list/social-content/SocialContentList';
 
 // Inputs
-export { Input } from './input/input/Input';
+export { Input } from './input/Input';
 export { InputGroup } from './input/group/InputGroup';

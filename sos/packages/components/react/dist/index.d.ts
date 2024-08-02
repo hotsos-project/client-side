@@ -22,5 +22,5 @@ export { Title } from './header/title/Title';
 export { Headline } from './header/headline/Headline';
 export { MessageList } from './list/message/MessageList';
 export { SocialContentList } from './list/social-content/SocialContentList';
-export { Input } from './input/input/Input';
+export { Input } from './input/Input';
 export { InputGroup } from './input/group/InputGroup';

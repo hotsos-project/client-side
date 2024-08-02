@@ -1,4 +1,4 @@
-import { CommonProps } from '../../common/types';
+import { CommonProps } from '../common/types';
 import {
   commonStyle,
   divStateStyle,
