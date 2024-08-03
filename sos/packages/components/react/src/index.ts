@@ -43,3 +43,6 @@ export { SocialContentList } from './list/social-content/SocialContentList';
 // Inputs
 export { Input } from './input/Input';
 export { InputGroup } from './input/group/InputGroup';
+
+// Tabs
+export { TabBar } from './tabs/tab-bar/TabBar';
