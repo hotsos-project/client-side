@@ -3,10 +3,9 @@ import { CommonProps } from '../../common/types';
 import { Container } from '../../common/container/Container';
 import { Text } from '../../common/text/Text';
 import { Icon } from '../../common/icon/Icon';
-import { formatDateWithDay } from '../../utils/dateUtils';
 
 interface WeatherBoxProps extends CommonProps {
-  date: Date;
+  date: string;
   location: string;
   condition: React.ReactNode;
   temperature: number | string;
@@ -32,7 +31,7 @@ interface WeatherBoxProps extends CommonProps {
 export const WeatherBox = forwardRef<HTMLElement, WeatherBoxProps>(
   (
     {
-      date = new Date(),
+      date = '2024-07-18 (목)',
       location = '-',
       condition = 'loading',
       temperature = '-',
@@ -44,8 +43,6 @@ export const WeatherBox = forwardRef<HTMLElement, WeatherBoxProps>(
     },
     ref,
   ) => {
-    const dateString = formatDateWithDay(date);
-
     return (
       <Container
         display="flex"
@@ -61,7 +58,7 @@ export const WeatherBox = forwardRef<HTMLElement, WeatherBoxProps>(
         {/* 날짜, 현재 위치 */}
         <Container display="flex" justifyContent="space-between">
           <Text textType="headline" color="textAlternative">
-            {dateString}
+            {date}
           </Text>
           <Container display="flex" alignItems="center" gap={4}>
             <Icon size={15} color="textAssistive">

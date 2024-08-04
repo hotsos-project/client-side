@@ -44,5 +44,8 @@ export { SocialContentList } from './list/social-content/SocialContentList';
 export { Input } from './input/Input';
 export { InputGroup } from './input/group/InputGroup';
 
+// Notification
+export { Notification } from './notification/Notification';
+
 // Tabs
 export { TabBar } from './tabs/tab-bar/TabBar';

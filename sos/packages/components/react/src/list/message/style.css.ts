@@ -6,7 +6,7 @@ import { RecipeVariants } from '@vanilla-extract/recipes';
 export const messageListRecipe = recipe({
   variants: {
     variant: {
-      default: {},
+      default: colorSprinkles({ backgroundColor: 'backgroundNormalPrimary' }),
       danger: colorSprinkles({ backgroundColor: 'pink10' }),
       warning: colorSprinkles({ backgroundColor: 'orange10' }),
     },

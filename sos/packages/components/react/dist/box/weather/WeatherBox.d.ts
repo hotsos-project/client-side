@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common/types';
 interface WeatherBoxProps extends CommonProps {
-    date: Date;
+    date: string;
     location: string;
     condition: React.ReactNode;
     temperature: number | string;

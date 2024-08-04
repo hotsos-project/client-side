@@ -32,6 +32,7 @@ __export(src_exports, {
   Input: () => Input,
   InputGroup: () => InputGroup,
   MessageList: () => MessageList,
+  Notification: () => Notification,
   SocialContentList: () => SocialContentList,
   Text: () => Text,
   Title: () => Title,
@@ -290,7 +291,7 @@ var import_react5 = require("react");
 
 // src/button/style.css.ts
 var import_createRuntimeFn3 = require("@vanilla-extract/recipes/createRuntimeFn");
-var buttonRecipe = (0, import_createRuntimeFn3.createRuntimeFn)({ defaultClassName: "_1h4ydgag _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgan _1rmst086x", outline: "_1h4ydgao _1bfxj7r3y _1bfxj7r3u _1rmst083f" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgap _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgaq _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgar _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1rmst083b _1bfxj7r27"]] });
+var buttonRecipe = (0, import_createRuntimeFn3.createRuntimeFn)({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
 
 // src/button/Button.tsx
 var import_jsx_runtime5 = require("react/jsx-runtime");
@@ -308,18 +309,51 @@ var Button = (0, import_react5.forwardRef)(
     className,
     ...props
   }, ref) => {
+    const [isHovered, setIsHovered] = (0, import_react5.useState)(false);
     const buttonClass = buttonRecipe({
       size,
       variant,
       design
     });
-    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("button", { ref, className: clsx_default(buttonClass, className), ...props, children: [
-      icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { children: icon }),
-      leftSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", children: leftSubText }),
-      mainText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", textMode: "bold", children: mainText }),
-      rightSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", children: rightSubText }),
-      isLoading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { children: loadingSpinner })
-    ] });
+    let iconColor = "uiPrimaryNormal";
+    let hoverIconColor = "uiPrimaryNormal";
+    if (variant === "primary") {
+      if (design === "fill") {
+        iconColor = "white";
+        hoverIconColor = "white";
+      } else if (design === "outline") {
+        iconColor = "uiPrimaryNormal";
+        hoverIconColor = "blue700";
+      }
+    } else if (variant === "secondary") {
+      if (design === "fill") {
+        iconColor = "white";
+        hoverIconColor = "white";
+      } else if (design === "outline") {
+        iconColor = "textNormal";
+        hoverIconColor = "textNormal";
+      }
+    } else if (variant === "tertiary") {
+      iconColor = "blueGray500";
+      hoverIconColor = "blueGray500";
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(
+      "button",
+      {
+        ref,
+        className: clsx_default(buttonClass, className),
+        onMouseEnter: () => setIsHovered(true),
+        onMouseLeave: () => setIsHovered(false),
+        ...props,
+        children: [
+          icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hoverIconColor : iconColor, children: icon }),
+          leftSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", children: leftSubText }),
+          mainText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", textMode: "bold", children: mainText }),
+          rightSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", children: rightSubText }),
+          isLoading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hoverIconColor : iconColor, children: loadingSpinner })
+        ]
+      }
+    );
   }
 );
 
@@ -365,7 +399,7 @@ var InfoButton = (0, import_react7.forwardRef)(
     const infoButtonClass = infoButtonRecipe({ size, variant });
     return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("button", { ref, className: clsx_default(infoButtonClass, className), ...props, children: [
       badgeText && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Badge, { children: badgeText }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { children: mainText }),
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { textType: "body1", textMode: "bold", children: mainText }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { children: subText })
     ] });
   }
@@ -466,37 +500,10 @@ var InfoBox = (0, import_react9.forwardRef)(
 
 // src/box/weather/WeatherBox.tsx
 var import_react10 = require("react");
-
-// src/utils/dateUtils.ts
-function formatDateWithTime(date) {
-  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-    return "Invalid Date";
-  }
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-  const seconds = date.getSeconds().toString().padStart(2, "0");
-  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-}
-function formatDateWithDay(date) {
-  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-    return "Invalid Date";
-  }
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const dayOfWeekMap = ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"];
-  const dayOfWeek = dayOfWeekMap[date.getDay()];
-  return `${year}-${month}-${day} (${dayOfWeek})`;
-}
-
-// src/box/weather/WeatherBox.tsx
 var import_jsx_runtime10 = require("react/jsx-runtime");
 var WeatherBox = (0, import_react10.forwardRef)(
   ({
-    date = /* @__PURE__ */ new Date(),
+    date = "2024-07-18 (\uBAA9)",
     location = "-",
     condition = "loading",
     temperature = "-",
@@ -506,7 +513,6 @@ var WeatherBox = (0, import_react10.forwardRef)(
     className,
     ...props
   }, ref) => {
-    const dateString = formatDateWithDay(date);
     return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
       Container,
       {
@@ -521,7 +527,7 @@ var WeatherBox = (0, import_react10.forwardRef)(
         ...props,
         children: [
           /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Container, { display: "flex", justifyContent: "space-between", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Text, { textType: "headline", color: "textAlternative", children: dateString }),
+            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Text, { textType: "headline", color: "textAlternative", children: date }),
             /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Container, { display: "flex", alignItems: "center", gap: 4, children: [
               /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Icon, { size: 15, color: "textAssistive", children: "location_on" }),
               /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Text, { as: "span", textType: "body3", color: "textAssistive", children: location })
@@ -664,7 +670,7 @@ var import_react12 = require("react");
 
 // src/list/message/style.css.ts
 var import_createRuntimeFn6 = require("@vanilla-extract/recipes/createRuntimeFn");
-var messageListRecipe = (0, import_createRuntimeFn6.createRuntimeFn)({ defaultClassName: "_17rsevb4", variantClassNames: { variant: { "default": "_17rsevb5", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb8", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
+var messageListRecipe = (0, import_createRuntimeFn6.createRuntimeFn)({ defaultClassName: "_17rsevb5", variantClassNames: { variant: { "default": "_1rmst086p", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb9", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
 
 // src/list/message/MessageList.tsx
 var import_jsx_runtime15 = require("react/jsx-runtime");
@@ -676,7 +682,7 @@ var colorMap = {
 var MessageList = (0, import_react12.forwardRef)(
   ({
     title = "title",
-    date = /* @__PURE__ */ new Date(),
+    date = "2024/07/18 09:15:40",
     content = "content",
     isRead = false,
     isChecked = false,
@@ -686,7 +692,6 @@ var MessageList = (0, import_react12.forwardRef)(
     className,
     ...props
   }, ref) => {
-    const dateString = formatDateWithTime(date);
     const color = colorMap[variant] || "blue";
     const messageListClass = messageListRecipe({ variant, mode });
     return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
@@ -709,7 +714,7 @@ var MessageList = (0, import_react12.forwardRef)(
                 /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Badge, { color, children: following }),
                 isChecked && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Icon, { size: 20, color: `${color}500`, children: "verified" })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Text, { textType: "label", color: "textAssistive", children: dateString })
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Text, { textType: "label", color: "textAssistive", children: date })
             ] }),
             /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Text, { textType: "body3", textMode: "reading", children: content })
           ] })
@@ -727,7 +732,7 @@ var SocialContentList = (0, import_react13.forwardRef)(
     children,
     title = "title",
     writer = "writer",
-    date = /* @__PURE__ */ new Date(),
+    date = "2024/07/18 09:15:40",
     location = "location",
     viewCounts = 0,
     commentCounts = 0,
@@ -735,7 +740,6 @@ var SocialContentList = (0, import_react13.forwardRef)(
     isTrueCounts = 0,
     isFalseCounts = 0
   }, ref) => {
-    const dateString = formatDateWithTime(date);
     return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Container, { as: "li", children: [
       /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Container, { display: "flex", flexDirection: "column", paddingX: 16, paddingTop: 20, gap: 6, children: [
         /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Container, { display: "flex", justifyContent: "space-between", children: [
@@ -744,7 +748,7 @@ var SocialContentList = (0, import_react13.forwardRef)(
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Container, { display: "flex", gap: 6, children: [
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Text, { textType: "label", color: "textAlternative", children: writer }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Text, { textType: "label", color: "textAssistive", children: dateString })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Text, { textType: "label", color: "textAssistive", children: date })
         ] })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
@@ -850,6 +854,21 @@ var InputGroup = ({
       showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, {})
     ] }),
     state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: warningStyle, children: warningContent })
+  ] });
+};
+
+// src/notification/style.css.ts
+var commonStyle2 = "_1pruyzf0";
+var stateStyle2 = { "default": "_1pruyzf1", warning: "_1pruyzf2", danger: "_1pruyzf3" };
+
+// src/notification/Notification.tsx
+var import_jsx_runtime19 = require("react/jsx-runtime");
+var Notification = ({ state = "danger" }) => {
+  const commonClass = commonStyle2;
+  const stateClass = stateStyle2[state];
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: `${commonClass} ${stateClass}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "material-symbols-outlined", children: "warning" }),
+    "Warning"
   ] });
 };
 //# sourceMappingURL=index.cjs.map

@@ -1,7 +1,7 @@
 import { RecipeVariants } from '@vanilla-extract/recipes';
 export declare const messageListRecipe: import("@vanilla-extract/recipes").RuntimeFn<{
     variant: {
-        default: {};
+        default: string;
         danger: string;
         warning: string;
     };

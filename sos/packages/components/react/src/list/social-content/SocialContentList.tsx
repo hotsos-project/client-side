@@ -3,13 +3,12 @@ import { CommonProps } from '../../common/types';
 import { Container } from '../../common/container/Container';
 import { Text } from '../../common/text/Text';
 import { Icon } from '../../common/icon/Icon';
-import { formatDateWithTime } from '../../utils/dateUtils';
 import { Button } from '../../button/Button';
 
 interface SocialContentListProps extends CommonProps {
   title: string;
   writer: string;
-  date: Date;
+  date: string;
   location: string;
   viewCounts: number;
   commentCounts: number;
@@ -24,7 +23,7 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
       children,
       title = 'title',
       writer = 'writer',
-      date = new Date(),
+      date = '2024/07/18 09:15:40',
       location = 'location',
       viewCounts = 0,
       commentCounts = 0,
@@ -34,8 +33,6 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
     },
     ref,
   ) => {
-    const dateString = formatDateWithTime(date);
-
     return (
       <Container as="li">
         {/* Title-area */}
@@ -51,7 +48,7 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
               {writer}
             </Text>
             <Text textType="label" color="textAssistive">
-              {dateString}
+              {date}
             </Text>
           </Container>
         </Container>

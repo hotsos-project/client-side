@@ -11,7 +11,7 @@ export declare const buttonRecipe: import("@vanilla-extract/recipes").RuntimeFn<
         tertiary: string;
     };
     design: {
-        fill: (string | {
+        fill: {
             selectors: {
                 '&:hover': {
                     backgroundColor: string;
@@ -22,7 +22,7 @@ export declare const buttonRecipe: import("@vanilla-extract/recipes").RuntimeFn<
                     opacity: number;
                 };
             };
-        })[];
+        }[];
         outline: (string | {
             selectors: {
                 '&:hover': {

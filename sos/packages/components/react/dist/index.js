@@ -237,11 +237,11 @@ var Divider = forwardRef4(
 );
 
 // src/button/Button.tsx
-import { forwardRef as forwardRef5 } from "react";
+import { forwardRef as forwardRef5, useState } from "react";
 
 // src/button/style.css.ts
 import { createRuntimeFn as _7a4683 } from "@vanilla-extract/recipes/createRuntimeFn";
-var buttonRecipe = _7a4683({ defaultClassName: "_1h4ydgag _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgan _1rmst086x", outline: "_1h4ydgao _1bfxj7r3y _1bfxj7r3u _1rmst083f" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgap _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgaq _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgar _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1rmst083b _1bfxj7r27"]] });
+var buttonRecipe = _7a4683({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
 
 // src/button/Button.tsx
 import { jsx as jsx5, jsxs } from "react/jsx-runtime";
@@ -259,18 +259,51 @@ var Button = forwardRef5(
     className,
     ...props
   }, ref) => {
+    const [isHovered, setIsHovered] = useState(false);
     const buttonClass = buttonRecipe({
       size,
       variant,
       design
     });
-    return /* @__PURE__ */ jsxs("button", { ref, className: clsx_default(buttonClass, className), ...props, children: [
-      icon && /* @__PURE__ */ jsx5(Icon, { children: icon }),
-      leftSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", children: leftSubText }),
-      mainText && /* @__PURE__ */ jsx5(Text, { textType: "body1", textMode: "bold", children: mainText }),
-      rightSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", children: rightSubText }),
-      isLoading && /* @__PURE__ */ jsx5(Icon, { children: loadingSpinner })
-    ] });
+    let iconColor = "uiPrimaryNormal";
+    let hoverIconColor = "uiPrimaryNormal";
+    if (variant === "primary") {
+      if (design === "fill") {
+        iconColor = "white";
+        hoverIconColor = "white";
+      } else if (design === "outline") {
+        iconColor = "uiPrimaryNormal";
+        hoverIconColor = "blue700";
+      }
+    } else if (variant === "secondary") {
+      if (design === "fill") {
+        iconColor = "white";
+        hoverIconColor = "white";
+      } else if (design === "outline") {
+        iconColor = "textNormal";
+        hoverIconColor = "textNormal";
+      }
+    } else if (variant === "tertiary") {
+      iconColor = "blueGray500";
+      hoverIconColor = "blueGray500";
+    }
+    return /* @__PURE__ */ jsxs(
+      "button",
+      {
+        ref,
+        className: clsx_default(buttonClass, className),
+        onMouseEnter: () => setIsHovered(true),
+        onMouseLeave: () => setIsHovered(false),
+        ...props,
+        children: [
+          icon && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hoverIconColor : iconColor, children: icon }),
+          leftSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", children: leftSubText }),
+          mainText && /* @__PURE__ */ jsx5(Text, { textType: "body1", textMode: "bold", children: mainText }),
+          rightSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", children: rightSubText }),
+          isLoading && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hoverIconColor : iconColor, children: loadingSpinner })
+        ]
+      }
+    );
   }
 );
 
@@ -316,7 +349,7 @@ var InfoButton = forwardRef7(
     const infoButtonClass = infoButtonRecipe({ size, variant });
     return /* @__PURE__ */ jsxs2("button", { ref, className: clsx_default(infoButtonClass, className), ...props, children: [
       badgeText && /* @__PURE__ */ jsx7(Badge, { children: badgeText }),
-      /* @__PURE__ */ jsx7(Text, { children: mainText }),
+      /* @__PURE__ */ jsx7(Text, { textType: "body1", textMode: "bold", children: mainText }),
       /* @__PURE__ */ jsx7(Text, { children: subText })
     ] });
   }
@@ -417,37 +450,10 @@ var InfoBox = forwardRef9(
 
 // src/box/weather/WeatherBox.tsx
 import { forwardRef as forwardRef10 } from "react";
-
-// src/utils/dateUtils.ts
-function formatDateWithTime(date) {
-  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-    return "Invalid Date";
-  }
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-  const seconds = date.getSeconds().toString().padStart(2, "0");
-  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-}
-function formatDateWithDay(date) {
-  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-    return "Invalid Date";
-  }
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  const dayOfWeekMap = ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"];
-  const dayOfWeek = dayOfWeekMap[date.getDay()];
-  return `${year}-${month}-${day} (${dayOfWeek})`;
-}
-
-// src/box/weather/WeatherBox.tsx
 import { jsx as jsx10, jsxs as jsxs4 } from "react/jsx-runtime";
 var WeatherBox = forwardRef10(
   ({
-    date = /* @__PURE__ */ new Date(),
+    date = "2024-07-18 (\uBAA9)",
     location = "-",
     condition = "loading",
     temperature = "-",
@@ -457,7 +463,6 @@ var WeatherBox = forwardRef10(
     className,
     ...props
   }, ref) => {
-    const dateString = formatDateWithDay(date);
     return /* @__PURE__ */ jsxs4(
       Container,
       {
@@ -472,7 +477,7 @@ var WeatherBox = forwardRef10(
         ...props,
         children: [
           /* @__PURE__ */ jsxs4(Container, { display: "flex", justifyContent: "space-between", children: [
-            /* @__PURE__ */ jsx10(Text, { textType: "headline", color: "textAlternative", children: dateString }),
+            /* @__PURE__ */ jsx10(Text, { textType: "headline", color: "textAlternative", children: date }),
             /* @__PURE__ */ jsxs4(Container, { display: "flex", alignItems: "center", gap: 4, children: [
               /* @__PURE__ */ jsx10(Icon, { size: 15, color: "textAssistive", children: "location_on" }),
               /* @__PURE__ */ jsx10(Text, { as: "span", textType: "body3", color: "textAssistive", children: location })
@@ -615,7 +620,7 @@ import { forwardRef as forwardRef12 } from "react";
 
 // src/list/message/style.css.ts
 import { createRuntimeFn as _7a4686 } from "@vanilla-extract/recipes/createRuntimeFn";
-var messageListRecipe = _7a4686({ defaultClassName: "_17rsevb4", variantClassNames: { variant: { "default": "_17rsevb5", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb8", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
+var messageListRecipe = _7a4686({ defaultClassName: "_17rsevb5", variantClassNames: { variant: { "default": "_1rmst086p", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb9", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
 
 // src/list/message/MessageList.tsx
 import { jsx as jsx15, jsxs as jsxs7 } from "react/jsx-runtime";
@@ -627,7 +632,7 @@ var colorMap = {
 var MessageList = forwardRef12(
   ({
     title = "title",
-    date = /* @__PURE__ */ new Date(),
+    date = "2024/07/18 09:15:40",
     content = "content",
     isRead = false,
     isChecked = false,
@@ -637,7 +642,6 @@ var MessageList = forwardRef12(
     className,
     ...props
   }, ref) => {
-    const dateString = formatDateWithTime(date);
     const color = colorMap[variant] || "blue";
     const messageListClass = messageListRecipe({ variant, mode });
     return /* @__PURE__ */ jsxs7(
@@ -660,7 +664,7 @@ var MessageList = forwardRef12(
                 /* @__PURE__ */ jsx15(Badge, { color, children: following }),
                 isChecked && /* @__PURE__ */ jsx15(Icon, { size: 20, color: `${color}500`, children: "verified" })
               ] }),
-              /* @__PURE__ */ jsx15(Text, { textType: "label", color: "textAssistive", children: dateString })
+              /* @__PURE__ */ jsx15(Text, { textType: "label", color: "textAssistive", children: date })
             ] }),
             /* @__PURE__ */ jsx15(Text, { textType: "body3", textMode: "reading", children: content })
           ] })
@@ -678,7 +682,7 @@ var SocialContentList = forwardRef13(
     children,
     title = "title",
     writer = "writer",
-    date = /* @__PURE__ */ new Date(),
+    date = "2024/07/18 09:15:40",
     location = "location",
     viewCounts = 0,
     commentCounts = 0,
@@ -686,7 +690,6 @@ var SocialContentList = forwardRef13(
     isTrueCounts = 0,
     isFalseCounts = 0
   }, ref) => {
-    const dateString = formatDateWithTime(date);
     return /* @__PURE__ */ jsxs8(Container, { as: "li", children: [
       /* @__PURE__ */ jsxs8(Container, { display: "flex", flexDirection: "column", paddingX: 16, paddingTop: 20, gap: 6, children: [
         /* @__PURE__ */ jsxs8(Container, { display: "flex", justifyContent: "space-between", children: [
@@ -695,7 +698,7 @@ var SocialContentList = forwardRef13(
         ] }),
         /* @__PURE__ */ jsxs8(Container, { display: "flex", gap: 6, children: [
           /* @__PURE__ */ jsx16(Text, { textType: "label", color: "textAlternative", children: writer }),
-          /* @__PURE__ */ jsx16(Text, { textType: "label", color: "textAssistive", children: dateString })
+          /* @__PURE__ */ jsx16(Text, { textType: "label", color: "textAssistive", children: date })
         ] })
       ] }),
       /* @__PURE__ */ jsxs8(
@@ -803,6 +806,21 @@ var InputGroup = ({
     state === "warning" && /* @__PURE__ */ jsx18("div", { className: warningStyle, children: warningContent })
   ] });
 };
+
+// src/notification/style.css.ts
+var commonStyle2 = "_1pruyzf0";
+var stateStyle2 = { "default": "_1pruyzf1", warning: "_1pruyzf2", danger: "_1pruyzf3" };
+
+// src/notification/Notification.tsx
+import { jsx as jsx19, jsxs as jsxs11 } from "react/jsx-runtime";
+var Notification = ({ state = "danger" }) => {
+  const commonClass = commonStyle2;
+  const stateClass = stateStyle2[state];
+  return /* @__PURE__ */ jsxs11("div", { className: `${commonClass} ${stateClass}`, children: [
+    /* @__PURE__ */ jsx19("span", { className: "material-symbols-outlined", children: "warning" }),
+    "Warning"
+  ] });
+};
 export {
   Badge,
   Button,
@@ -816,6 +834,7 @@ export {
   Input,
   InputGroup,
   MessageList,
+  Notification,
   SocialContentList,
   Text,
   Title,

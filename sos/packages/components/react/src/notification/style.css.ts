@@ -4,6 +4,9 @@ import { vars } from '@sos/style-tokens';
 import { colorSprinkles } from '../style/color/sprinkles.css';
 import { spacingSprinkles } from '../style/spacing/sprinkles.css';
 
+/**
+ * 공통 스타일
+ */
 export const commonStyle = style([
   {
     display: 'flex',
