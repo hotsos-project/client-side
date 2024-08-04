@@ -75,6 +75,7 @@ export const buttonRecipe = recipe({
         {
           selectors: {
             '&:hover': {
+              color: vars.color.$static.light.color.white,
               backgroundColor: vars.color.$palette.blue[700],
             },
             '&:disabled': {
