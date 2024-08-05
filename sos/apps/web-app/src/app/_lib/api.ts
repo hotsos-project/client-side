@@ -27,21 +27,28 @@ api.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
+    console.log(error);
     // 토큰 만료 처리
     if (
-      error.response?.status === 500 &&
-      error.response?.data?.data?.code === 'C003' &&
-      error.response?.data?.data?.detailMessage === '만료된 JWT 토큰입니다.' &&
+      error.response?.status === 400 &&
+      error.response?.data?.data?.code === 'J002' &&
       !originalRequest._retry
     ) {
+      console.log('만료');
       originalRequest._retry = true;
       try {
         const currentAccessToken = localStorage.getItem('accessToken');
         const refreshToken = localStorage.getItem('refreshToken');
-        const response = await axios.post('https://i11a607.p.ssafy.io/api/reissue', {
-          accessToken: currentAccessToken,
-          refreshToken,
-        });
+        const response = await axios.post(
+          'https://i11a607.p.ssafy.io/api/reissue',
+          {
+            accessToken: currentAccessToken,
+            refreshToken,
+          },
+          {
+            withCredentials: true,
+          },
+        );
         const { accessToken } = response.data;
         localStorage.setItem('accessToken', accessToken);
         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
