@@ -4995,11 +4995,14 @@ const RAW_RUNTIME_STATE =
           ["@sos/web-app", "workspace:apps/web-app"],\
           ["@sos/components-react", "virtual:eba771e9976d1de4ca3986b1a98f83d7be712201cc8f39ecc0ed4efc5d8a7075b6a5f29fc0a20fab9c4803873aca88888d81b83faf85c8d09cdd27be4d295983#workspace:packages/components/react"],\
           ["@sos/style-tokens", "workspace:packages/style-tokens"],\
+          ["@tanstack/react-query", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:5.51.21"],\
+          ["@tanstack/react-query-devtools", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:5.51.21"],\
           ["@types/node", "npm:20.14.13"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
           ["@vanilla-extract/css", "npm:1.15.3"],\
           ["@vanilla-extract/next-plugin", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:2.4.3"],\
+          ["axios", "npm:1.7.3"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-next", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:14.2.5"],\
           ["next", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:14.2.5"],\
@@ -5918,6 +5921,74 @@ const RAW_RUNTIME_STATE =
           ["@swc/helpers", "npm:0.5.5"],\
           ["@swc/counter", "npm:0.1.3"],\
           ["tslib", "npm:2.6.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/query-core", [\
+      ["npm:5.51.21", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-10c0.zip/node_modules/@tanstack/query-core/",\
+        "packageDependencies": [\
+          ["@tanstack/query-core", "npm:5.51.21"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/query-devtools", [\
+      ["npm:5.51.16", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/@tanstack-query-devtools-npm-5.51.16-c98e81abc7-10c0.zip/node_modules/@tanstack/query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/query-devtools", "npm:5.51.16"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/react-query", [\
+      ["npm:5.51.21", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/@tanstack-react-query-npm-5.51.21-f2a91d0ca1-10c0.zip/node_modules/@tanstack/react-query/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query", "npm:5.51.21"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:5.51.21", {\
+        "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-virtual-46759ef099/5/AppData/Local/Yarn/Berry/cache/@tanstack-react-query-npm-5.51.21-f2a91d0ca1-10c0.zip/node_modules/@tanstack/react-query/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:5.51.21"],\
+          ["@tanstack/query-core", "npm:5.51.21"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/react-query-devtools", [\
+      ["npm:5.51.21", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/@tanstack-react-query-devtools-npm-5.51.21-deb33e027d-10c0.zip/node_modules/@tanstack/react-query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query-devtools", "npm:5.51.21"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:5.51.21", {\
+        "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-devtools-virtual-193fc9b70f/5/AppData/Local/Yarn/Berry/cache/@tanstack-react-query-devtools-npm-5.51.21-deb33e027d-10c0.zip/node_modules/@tanstack/react-query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query-devtools", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:5.51.21"],\
+          ["@tanstack/query-devtools", "npm:5.51.16"],\
+          ["@tanstack/react-query", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:5.51.21"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["@types/tanstack__react-query", null],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@tanstack/react-query",\
+          "@types/react",\
+          "@types/tanstack__react-query",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7609,6 +7680,16 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/axios-npm-1.7.2-c89264f6f7-10c0.zip/node_modules/axios/",\
         "packageDependencies": [\
           ["axios", "npm:1.7.2"],\
+          ["follow-redirects", "virtual:c89264f6f79513b22a07db5e53adf77eba9e48634cf471fb55eb2e75d910809bbac48d9ce7a920c63c8ff2780624fff91866270d8acf614cbd0c4cb748a8b29a#npm:1.15.6"],\
+          ["form-data", "npm:4.0.0"],\
+          ["proxy-from-env", "npm:1.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:1.7.3", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/axios-npm-1.7.3-a63743a582-10c0.zip/node_modules/axios/",\
+        "packageDependencies": [\
+          ["axios", "npm:1.7.3"],\
           ["follow-redirects", "virtual:c89264f6f79513b22a07db5e53adf77eba9e48634cf471fb55eb2e75d910809bbac48d9ce7a920c63c8ff2780624fff91866270d8acf614cbd0c4cb748a8b29a#npm:1.15.6"],\
           ["form-data", "npm:4.0.0"],\
           ["proxy-from-env", "npm:1.1.0"]\

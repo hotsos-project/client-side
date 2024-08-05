@@ -8,12 +8,16 @@ import {
   Headline,
   MessageList,
 } from '@sos/components-react';
+import { useUserInfo } from '../_hooks/useUserInfo';
 
 export default function Home() {
+  const userInfo = useUserInfo();
+  console.log(userInfo.data);
+
   return (
-    <main>
+    <>
       {/* Test */}
-      {/* <Container display="flex" paddingX={16} paddingY={20}>
+      <Container display="flex" paddingX={16} paddingY={20}>
         <Notification state="default"></Notification>
       </Container>
       <Container paddingX={16}>
@@ -42,7 +46,7 @@ export default function Home() {
         <Container>
           <Container display="flex" paddingX={16} paddingY={8} gap={8}></Container>
         </Container>
-      </Container> */}
-    </main>
+      </Container>
+    </>
   );
 }
