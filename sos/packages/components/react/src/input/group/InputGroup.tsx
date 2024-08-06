@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { labeStyle, starStyle, inputStyle, warningStyle } from './style.css';
 import { Input } from '../Input';
 import { Button } from '../../button/Button';
@@ -21,29 +22,35 @@ interface InputGroupProps extends CommonProps {
  * @param {string} [props.warningContent='warning text'] - 경고 텍스트 (선택, 기본값: 'warning text')
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...any} props - 기타 HTML 속성
+ * @param {React.Ref<HTMLDivElement>} ref - 전달받은 ref
  */
-export const InputGroup: React.FC<InputGroupProps> = ({
-  state = 'default',
-  showButton = true,
-  showLabel = true,
-  labelContent = 'label',
-  warningContent = 'warning text',
-  className,
-  ...props
-}) => {
-  return (
-    <div className={className} {...props}>
-      {showLabel && (
-        <div className={labeStyle}>
-          <span>{labelContent}</span>
-          <span className={starStyle}>*</span>
+export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
+  (
+    {
+      state = 'default',
+      showButton = true,
+      showLabel = true,
+      labelContent = 'label',
+      warningContent = 'warning text',
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    return (
+      <div className={className} ref={ref} {...props}>
+        {showLabel && (
+          <div className={labeStyle}>
+            <span>{labelContent}</span>
+            <span className={starStyle}>*</span>
+          </div>
+        )}
+        <div className={inputStyle}>
+          <Input state={state} showIcon={false} />
+          {showButton && <Button />}
         </div>
-      )}
-      <div className={inputStyle}>
-        <Input state={state} showIcon={false} />
-        {showButton && <Button />}
+        {state === 'warning' && <div className={warningStyle}>{warningContent}</div>}
       </div>
-      {state === 'warning' && <div className={warningStyle}>{warningContent}</div>}
-    </div>
-  );
-};
+    );
+  },
+);
