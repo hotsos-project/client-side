@@ -102,10 +102,21 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
           alignItems="center"
           borderType="borderTop"
         >
-          <Button variant="secondary" mainText="사실이에요" size="s"></Button>
-          <Button mainText="허위사실이에요" size="s"></Button>
-
-          <Button icon="chat" leftSubText={commentCounts} size="s"></Button>
+          <Button
+            variant="secondary"
+            design="outline"
+            mainText="사실이에요"
+            rightSubText={isTrueCounts}
+            size="s"
+          />
+          <Button
+            variant="secondary"
+            design="outline"
+            mainText="허위사실이에요"
+            rightSubText={isFalseCounts}
+            size="s"
+          />
+          <Button icon="chat" mainText="" leftSubText={commentCounts} size="s"></Button>
         </Container>
       </Container>
     );

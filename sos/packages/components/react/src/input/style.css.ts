@@ -22,6 +22,7 @@ export const inputStyle = style({
   textAlign: 'left',
   fontSize: vars.typography.fontSize[16],
   lineHeight: vars.typography.lineHeight[21],
+  backgroundColor: vars.color.$palette.background.normalPrimary,
   selectors: {
     '&::placeholder': {
       color: vars.color.$palette.gray[200],
