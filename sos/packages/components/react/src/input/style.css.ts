@@ -1,9 +1,6 @@
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { vars } from '@sos/style-tokens';
 
-/**
- * 공통 스타일
- */
 export const commonStyle = style({
   display: 'flex',
   alignItems: 'center',
@@ -22,9 +19,30 @@ export const inputStyle = style({
   width: '100%',
   padding: vars.spacing.spacing[6],
   border: 'none',
-  textAlign: 'center',
+  textAlign: 'left',
   fontSize: vars.typography.fontSize[16],
   lineHeight: vars.typography.lineHeight[21],
+  selectors: {
+    '&::placeholder': {
+      color: vars.color.$palette.gray[200],
+    },
+    '&:focus': {
+      outline: 'none',
+    },
+    '&:disabled': {
+      backgroundColor: vars.color.$palette.gray[50],
+      color: vars.color.$palette.gray[50],
+    },
+  },
+});
+
+export const inputStateStyle = styleVariants({
+  default: {},
+  highlight: {
+    backgroundColor: vars.color.$palette.gray[100],
+  },
+  warning: {},
+  disabled: {},
 });
 
 export const buttonStyle = style({
@@ -45,70 +63,32 @@ const baseDivStyle = style({
   border: `0.0625rem solid ${vars.color.$palette.gray[200]}`,
 });
 
-export const divStateStyle = {
-  default: style([
+export const divStateStyle = styleVariants({
+  default: [baseDivStyle, { color: vars.color.$palette.gray[500] }],
+  highlight: [
     baseDivStyle,
-    {
-      color: vars.color.$palette.gray[500],
-    },
-  ]),
-  highlight: style([
-    baseDivStyle,
-    {
-      color: vars.color.$palette.gray[700],
-      backgroundColor: vars.color.$palette.gray[100],
-    },
-  ]),
-  warning: style([
+    { color: vars.color.$palette.gray[700], backgroundColor: vars.color.$palette.gray[100] },
+  ],
+  warning: [
     baseDivStyle,
     {
       color: vars.color.$palette.pink[700],
       border: `0.0625rem solid ${vars.color.$palette.pink[500]}`,
     },
-  ]),
-  disabled: style([
+  ],
+  disabled: [
     baseDivStyle,
-    {
-      backgroundColor: vars.color.$palette.gray[50],
-    },
-  ]),
-};
-
-/**
- * 공통 input 스타일
- */
-const baseInputStyle = style({
-  backgroundColor: vars.color.$palette.background.normalPrimary,
-  selectors: {
-    '&::placeholder': {
-      color: vars.color.$palette.gray[200],
-    },
-    '&:focus': {
-      outline: 'none',
-    },
-  },
+    { backgroundColor: vars.color.$palette.gray[50], color: vars.color.$palette.gray[200] },
+  ],
 });
-
-export const inputStateStyle = {
-  default: baseInputStyle,
-  highlight: style([
-    baseInputStyle,
-    {
-      backgroundColor: vars.color.$palette.gray[100],
-    },
-  ]),
-  warning: baseInputStyle,
-  disabled: style([
-    baseInputStyle,
-    {
-      backgroundColor: vars.color.$palette.gray[50],
-    },
-  ]),
-};
 
 /**
  * span(왼쪽 아이콘) 공통 스타일
  */
 export const iconStyle = style({
   color: vars.color.$palette.text.assistive,
+});
+
+export const disabledIconStyle = style({
+  color: vars.color.$palette.gray[50],
 });

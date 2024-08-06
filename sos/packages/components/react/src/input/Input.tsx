@@ -1,3 +1,4 @@
+import React, { forwardRef, useState } from 'react';
 import { CommonProps } from '../common/types';
 import {
   commonStyle,
@@ -5,8 +6,10 @@ import {
   inputStyle,
   inputStateStyle,
   iconStyle,
+  disabledIconStyle,
   buttonStyle,
 } from './style.css';
+import { Icon } from '../common/icon/Icon';
 
 interface InputProps extends CommonProps {
   state: 'default' | 'highlight' | 'warning' | 'disabled';
@@ -22,30 +25,43 @@ interface InputProps extends CommonProps {
  * @param {boolean} [props.showButton=true] - 버튼 표시 여부 (선택, 기본값: true)
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...any} props - 기타 HTML 속성
+ * @param {React.Ref<HTMLInputElement>} ref - 전달받은 ref
  */
-export const Input: React.FC<InputProps> = ({
-  state = 'warning',
-  showIcon = true,
-  showButton = true,
-  className,
-  ...props
-}) => {
-  const commonClass = commonStyle;
-  const divStateClass = divStateStyle[state];
-  const inputStateClass = inputStateStyle[state];
-  const iconClass = iconStyle;
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ state = 'default', showIcon = true, showButton = true, className, ...props }, ref) => {
+    const [value, setValue] = useState('');
 
-  return (
-    <div className={`${commonClass} ${divStateClass} ${className || ''}`} {...props}>
-      {showIcon && (
-        <span className={`material-symbols-outlined input-icon ${iconClass}`}>search</span>
-      )}
-      <input className={`${inputStyle} ${inputStateClass}`} type="text" placeholder="Placeholder" />
-      {showButton && (
-        <button className={buttonStyle}>
-          <span className={'material-symbols-outlined'}>cancel</span>
-        </button>
-      )}
-    </div>
-  );
-};
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setValue(event.target.value);
+    };
+
+    const handleButtonClick = () => {
+      setValue('');
+    };
+
+    const commonClass = commonStyle;
+    const divStateClass = divStateStyle[state];
+    const inputStateClass = inputStateStyle[state];
+    const iconClass = state === 'disabled' ? disabledIconStyle : iconStyle;
+
+    return (
+      <div className={`${commonClass} ${divStateClass} ${className || ''}`} {...props}>
+        {showIcon && <Icon className={iconClass}>{'search'}</Icon>}
+        <input
+          ref={ref}
+          className={`${inputStyle} ${inputStateClass}`}
+          type="text"
+          placeholder="Placeholder"
+          value={value}
+          onChange={handleInputChange}
+          disabled={state === 'disabled'}
+        />
+        {showButton && value && state !== 'disabled' && (
+          <button className={buttonStyle} onClick={handleButtonClick}>
+            <Icon color="gray200">{'cancel'}</Icon>
+          </button>
+        )}
+      </div>
+    );
+  },
+);
