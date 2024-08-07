@@ -1,6 +1,6 @@
 import { CommonProps } from '../../common/types';
 interface MessageListProps extends Omit<CommonProps, 'color'> {
-    title: string;
+    title?: string;
     date: string;
     content: string;
     isRead: boolean;
@@ -12,7 +12,7 @@ interface MessageListProps extends Omit<CommonProps, 'color'> {
 /**
  * MessageList 컴포넌트
  *
- * @param {string} props.title - 메시지 제목 (필수)
+ * @param {string} props.title - 메시지 제목 (선택)
  * @param {Date} props.date - 메시지 날짜 (필수)
  * @param {string} props.content - 메시지 내용 (필수)
  * @param {boolean} props.isRead - 읽음 여부 (필수)

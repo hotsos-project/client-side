@@ -16,6 +16,7 @@ interface InputGroupProps extends CommonProps {
  * @param {string} [props.warningContent='warning text'] - 경고 텍스트 (선택, 기본값: 'warning text')
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...any} props - 기타 HTML 속성
+ * @param {React.Ref<HTMLDivElement>} ref - 전달받은 ref
  */
-export declare const InputGroup: React.FC<InputGroupProps>;
+export declare const InputGroup: import("react").ForwardRefExoticComponent<InputGroupProps & import("react").RefAttributes<HTMLDivElement>>;
 export {};
