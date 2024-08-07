@@ -362,15 +362,38 @@ var import_react6 = require("react");
 
 // src/badge/style.css.ts
 var import_createRuntimeFn4 = require("@vanilla-extract/recipes/createRuntimeFn");
-var badgeRecipe = (0, import_createRuntimeFn4.createRuntimeFn)({ defaultClassName: "_1bfxj7r3k", variantClassNames: { size: { s: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", m: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", l: "_89s0wz3z _89s0wz2v _89s0wz2a _89s0wz3e" }, color: { blue: "_1rmst0847", pink: "_1rmst084x", orange: "_1rmst085a", green: "_1rmst084k", white: "_1rmst083x", ghost: "_137kjisi" } }, defaultVariants: { size: "m", color: "blue" }, compoundVariants: [] });
+var badgeRecipe = (0, import_createRuntimeFn4.createRuntimeFn)({ defaultClassName: "_1bfxj7r3k", variantClassNames: { size: { s: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", m: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", l: "_89s0wz3z _89s0wz2v _89s0wz2a _89s0wz3e" }, color: { blue: "_1rmst0847", pink: "_1rmst084x", orange: "_1rmst085a", green: "_1rmst084k", white: "_1rmst083x", ghost: "_137kjisi", ghostWhite: "_137kjisj" } }, defaultVariants: { size: "m", color: "blue" }, compoundVariants: [] });
 
 // src/badge/Badge.tsx
 var import_jsx_runtime6 = require("react/jsx-runtime");
 var Badge = (0, import_react6.forwardRef)(
   ({ children = "text", size = "m", color = "blue", className, ...props }, ref) => {
     const badgeClass = badgeRecipe({ size, color });
-    const textType = size === "s" ? "caption" : size === "m" ? "footnote" : "label";
-    const textColor = color === "ghost" ? "textAssistive" : color === "white" ? "white" : `${color}500`;
+    let textType;
+    switch (size) {
+      case "s":
+        textType = "caption";
+        break;
+      case "m":
+        textType = "footnote";
+        break;
+      default:
+        textType = "label";
+    }
+    let textColor;
+    switch (color) {
+      case "ghost":
+        textColor = "textAssistive";
+        break;
+      case "white":
+        textColor = "white";
+        break;
+      case "ghostWhite":
+        textColor = "opacityWhite700";
+        break;
+      default:
+        textColor = `${color}500`;
+    }
     return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
       Container,
       {
@@ -387,18 +410,65 @@ var Badge = (0, import_react6.forwardRef)(
 
 // src/button/info/style.css.ts
 var import_createRuntimeFn5 = require("@vanilla-extract/recipes/createRuntimeFn");
-var infoButtonRecipe = (0, import_createRuntimeFn5.createRuntimeFn)({ defaultClassName: "_1bfxj7r3n argxa11", variantClassNames: { size: { s: "_11wl3sn8 _89s0wz2c _89s0wz2w _89s0wz3g _89s0wz40", m: "_11wl3sn9 _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { "default": "_11wl3sna _1rmst086r _1rmst083b", danger: "_11wl3snb _1rmst0852 _1rmst081", warning: "_11wl3snc _1rmst084c _1rmst081" } }, defaultVariants: { size: "s", variant: "default" }, compoundVariants: [] });
+var infoButtonRecipe = (0, import_createRuntimeFn5.createRuntimeFn)({ defaultClassName: "_11wl3sn8 _1bfxj7r3n argxa11 _2unefx1 _2unefx6 _2unefxf _2unefxc", variantClassNames: { size: { s: "_11wl3sn9 _89s0wz2b _89s0wz2v _89s0wz3f _89s0wz3z", m: "_11wl3sna _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h _89s0wz4p" }, variant: { "default": "_11wl3snb _1rmst086r", danger: "_11wl3snc _1rmst0852", warning: "_11wl3snd _1rmst084c", ghost: "_11wl3sne" } }, defaultVariants: { size: "s", variant: "default" }, compoundVariants: [] });
 
 // src/button/info/InfoButton.tsx
 var import_jsx_runtime7 = require("react/jsx-runtime");
 var InfoButton = (0, import_react7.forwardRef)(
-  ({ size, variant, badgeText, mainText = "mainText", subText, className, ...props }, ref) => {
+  ({
+    children = "children",
+    size,
+    variant = "default",
+    badgeColor,
+    badgeText,
+    subText,
+    className,
+    ...props
+  }, ref) => {
     const infoButtonClass = infoButtonRecipe({ size, variant });
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("button", { ref, className: clsx_default(infoButtonClass, className), ...props, children: [
-      badgeText && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Badge, { children: badgeText }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { textType: "body1", textMode: "bold", children: mainText }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { children: subText })
-    ] });
+    const textType = size === "s" ? "heading2" : "title1";
+    if (!badgeColor) {
+      badgeColor = variant === "default" || variant === "ghost" ? "ghost" : "white";
+    }
+    const textColor = variant === "default" ? "textNormal" : "white";
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+      "button",
+      {
+        ref,
+        className: clsx_default(infoButtonClass, className),
+        style: { ...props.style },
+        ...props,
+        children: [
+          badgeText && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Badge, { color: badgeColor, children: badgeText }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+            Text,
+            {
+              as: "span",
+              textType,
+              textMode: "bold",
+              color: textColor,
+              style: {
+                position: "absolute",
+                top: size === "s" ? "50%" : "55%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+              },
+              children
+            }
+          ),
+          subText && (variant === "danger" || variant === "warning") && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+            Text,
+            {
+              as: "span",
+              textType: "caption",
+              color: "opacityWhite700",
+              className: spacingSprinkles({ paddingBottom: 2 }),
+              children: subText
+            }
+          )
+        ]
+      }
+    );
   }
 );
 

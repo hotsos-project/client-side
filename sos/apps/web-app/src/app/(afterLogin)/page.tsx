@@ -32,9 +32,15 @@ export default function Home() {
       <Container display="flex" flexDirection="column" paddingY={16}>
         <Headline mainText="친구 현황" subText="더보기" />
         <Container display="flex" paddingX={12} paddingY={8} gap={16}>
-          <InfoButton variant="default" size="s" mainText="아빠" />
-          <InfoButton variant="default" size="s" mainText="엄마" />
-          <InfoButton variant="default" size="s" mainText="누나" />
+          <InfoButton variant="default" size="s">
+            엄마
+          </InfoButton>
+          <InfoButton variant="danger" badgeText="폭염" size="s">
+            아빠
+          </InfoButton>
+          <InfoButton variant="warning" badgeText="폭염" subText="안전" size="s">
+            누나
+          </InfoButton>
         </Container>
       </Container>
       <Container display="flex" flexDirection="column" paddingY={16}>

@@ -12,6 +12,7 @@ export declare const badgeRecipe: import("@vanilla-extract/recipes").RuntimeFn<{
         green: string;
         white: string;
         ghost: {};
+        ghostWhite: {};
     };
 }>;
 export type BadgeVariants = RecipeVariants<typeof badgeRecipe>;

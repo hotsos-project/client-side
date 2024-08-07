@@ -31,6 +31,7 @@ export declare const infoButtonRecipe: import("@vanilla-extract/recipes").Runtim
                 };
             };
         })[];
+        ghost: {};
     };
 }>;
 export type InfoButtonVariants = RecipeVariants<typeof infoButtonRecipe>;
