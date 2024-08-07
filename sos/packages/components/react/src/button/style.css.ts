@@ -20,9 +20,9 @@ export const buttonRecipe = recipe({
 
   variants: {
     size: {
-      s: [spacingSprinkles({ paddingY: 2, paddingX: 8 })],
-      m: [spacingSprinkles({ paddingY: 6, paddingX: 12 })],
-      l: [spacingSprinkles({ paddingY: 10, paddingX: 16 })],
+      s: [spacingSprinkles({ paddingY: 2, paddingX: 8 }), { height: '2.5rem' }],
+      m: [spacingSprinkles({ paddingY: 6, paddingX: 12 }), { height: '3rem' }],
+      l: [spacingSprinkles({ paddingY: 10, paddingX: 16 }), { height: '3.5rem' }],
     },
     variant: {
       primary: colorSprinkles({ color: 'white' }),

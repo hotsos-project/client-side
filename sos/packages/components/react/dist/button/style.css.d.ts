@@ -1,9 +1,15 @@
 import { RecipeVariants } from '@vanilla-extract/recipes';
 export declare const buttonRecipe: import("@vanilla-extract/recipes").RuntimeFn<{
     size: {
-        s: string[];
-        m: string[];
-        l: string[];
+        s: (string | {
+            height: "2.5rem";
+        })[];
+        m: (string | {
+            height: "3rem";
+        })[];
+        l: (string | {
+            height: "3.5rem";
+        })[];
     };
     variant: {
         primary: string;

@@ -292,7 +292,7 @@ var import_react5 = require("react");
 
 // src/button/style.css.ts
 var import_createRuntimeFn3 = require("@vanilla-extract/recipes/createRuntimeFn");
-var buttonRecipe = (0, import_createRuntimeFn3.createRuntimeFn)({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
+var buttonRecipe = (0, import_createRuntimeFn3.createRuntimeFn)({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_1h4ydgag _89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_1h4ydgah _89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_1h4ydgai _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
 
 // src/button/Button.tsx
 var import_jsx_runtime5 = require("react/jsx-runtime");
@@ -811,13 +811,32 @@ var inputStyle = "_1phoqpw1";
 // src/input/Input.tsx
 var import_jsx_runtime17 = require("react/jsx-runtime");
 var Input = (0, import_react14.forwardRef)(
-  ({ state = "default", showIcon = true, showButton = true, className, ...props }, ref) => {
-    const [value, setValue] = (0, import_react14.useState)("");
+  ({
+    state = "default",
+    showIcon = true,
+    showButton = true,
+    type,
+    className,
+    placeholder,
+    value,
+    onChange,
+    ...props
+  }, ref) => {
+    const [internalValue, setInternalValue] = (0, import_react14.useState)(value || "");
+    (0, import_react14.useEffect)(() => {
+      setInternalValue(value || "");
+    }, [value]);
     const handleInputChange = (event) => {
-      setValue(event.target.value);
+      setInternalValue(event.target.value);
+      if (onChange) {
+        onChange(event);
+      }
     };
     const handleButtonClick = () => {
-      setValue("");
+      setInternalValue("");
+      if (onChange) {
+        onChange({ target: { value: "" } });
+      }
     };
     const commonClass = commonStyle;
     const divStateClass = divStateStyle[state];
@@ -830,14 +849,14 @@ var Input = (0, import_react14.forwardRef)(
         {
           ref,
           className: `${inputStyle} ${inputStateClass}`,
-          type: "text",
-          placeholder: "Placeholder",
-          value,
+          type,
+          placeholder,
+          value: internalValue,
           onChange: handleInputChange,
           disabled: state === "disabled"
         }
       ),
-      showButton && value && state !== "disabled" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { color: "gray200", children: "cancel" }) })
+      showButton && internalValue && state !== "disabled" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { color: "gray200", children: "cancel" }) })
     ] });
   }
 );
@@ -860,6 +879,10 @@ var InputGroup = (0, import_react15.forwardRef)(
     showLabel = true,
     labelContent = "label",
     warningContent = "warning text",
+    placeholder = "",
+    type,
+    value,
+    onChange,
     className,
     ...props
   }, ref) => {
@@ -869,8 +892,18 @@ var InputGroup = (0, import_react15.forwardRef)(
         /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: starStyle, children: "*" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: inputStyle2, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Input, { state, showIcon: false }),
-        showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, {})
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+          Input,
+          {
+            state,
+            type,
+            showIcon: false,
+            placeholder,
+            value,
+            onChange
+          }
+        ),
+        showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, { variant: "primary", design: "outline", mainText: "\uC911\uBCF5\uD655\uC778" }) })
       ] }),
       state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: warningStyle, children: warningContent })
     ] });
