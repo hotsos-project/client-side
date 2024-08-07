@@ -2,8 +2,12 @@ import React from 'react';
 import { CommonProps } from '../common/types';
 interface InputProps extends CommonProps {
     state: 'default' | 'highlight' | 'warning' | 'disabled';
+    placeholder: string;
+    type?: string;
     showIcon?: boolean;
     showButton?: boolean;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 /**
  * Input 컴포넌트
@@ -12,6 +16,7 @@ interface InputProps extends CommonProps {
  * @param {boolean} [props.showIcon=true] - 아이콘 표시 여부 (선택, 기본값: true)
  * @param {boolean} [props.showButton=true] - 버튼 표시 여부 (선택, 기본값: true)
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
+ * @param {string} props.placeholder - 인풋의 플레이스홀더 (필수)
  * @param {...any} props - 기타 HTML 속성
  * @param {React.Ref<HTMLInputElement>} ref - 전달받은 ref
  */
