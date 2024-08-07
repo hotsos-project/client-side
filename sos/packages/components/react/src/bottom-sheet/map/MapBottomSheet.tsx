@@ -91,7 +91,10 @@ export const MapBottomSheet = forwardRef<HTMLElement, MapBottomSheetProps>(
                   variant="secondary"
                   size="m"
                   icon={subButtonIcon}
-                  style={{ borderRadius: vars.radius.borderRadius.round }}
+                  style={{
+                    borderRadius: vars.radius.borderRadius.round,
+                    backgroundColor: vars.color.$palette.background.elevatedSecondary,
+                  }}
                 ></Button>
               )}
             </Container>

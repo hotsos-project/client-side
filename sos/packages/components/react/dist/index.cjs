@@ -1128,7 +1128,10 @@ var MapBottomSheet = (0, import_react19.forwardRef)(
                   variant: "secondary",
                   size: "m",
                   icon: subButtonIcon,
-                  style: { borderRadius: import_style_tokens.vars.radius.borderRadius.round }
+                  style: {
+                    borderRadius: import_style_tokens.vars.radius.borderRadius.round,
+                    backgroundColor: import_style_tokens.vars.color.$palette.background.elevatedSecondary
+                  }
                 }
               ) })
             ] }),
