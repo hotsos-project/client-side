@@ -148,6 +148,7 @@ button {
   padding: 0;
   overflow: visible;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 /* input */
