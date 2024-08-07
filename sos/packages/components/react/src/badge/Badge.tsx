@@ -3,6 +3,7 @@ import { CommonProps } from '../common/types';
 import { Container } from '../common/container/Container';
 import { Text } from '../common/text/Text';
 import { badgeRecipe, BadgeVariants } from './style.css';
+import { TypographyVariants } from '../style/typography/recipes.css';
 import { Palette } from '../style/color/sprinkles.css';
 import clsx from 'clsx';
 
@@ -22,9 +23,33 @@ type BadgeProps = Omit<CommonProps, 'color'> & BadgeVariants;
 export const Badge = forwardRef<HTMLElement, BadgeProps>(
   ({ children = 'text', size = 'm', color = 'blue', className, ...props }, ref) => {
     const badgeClass = badgeRecipe({ size, color });
-    const textType = size === 's' ? 'caption' : size === 'm' ? 'footnote' : 'label';
-    const textColor: Palette | undefined =
-      color === 'ghost' ? 'textAssistive' : color === 'white' ? 'white' : `${color}500`;
+
+    let textType: NonNullable<TypographyVariants>['textType'];
+    switch (size) {
+      case 's':
+        textType = 'caption';
+        break;
+      case 'm':
+        textType = 'footnote';
+        break;
+      default:
+        textType = 'label';
+    }
+
+    let textColor: Palette | undefined;
+    switch (color) {
+      case 'ghost':
+        textColor = 'textAssistive';
+        break;
+      case 'white':
+        textColor = 'white';
+        break;
+      case 'ghostWhite':
+        textColor = 'opacityWhite700';
+        break;
+      default:
+        textColor = `${color}500` as Palette;
+    }
 
     return (
       <Container

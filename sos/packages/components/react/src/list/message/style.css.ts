@@ -21,6 +21,16 @@ export const messageListRecipe = recipe({
 
   compoundVariants: [
     {
+      variants: { variant: 'danger', mode: 'default' },
+      style: borderSprinkles({
+        borderTopWidth: 1,
+        borderTopStyle: 'solid',
+        borderBottomWidth: 1,
+        borderBottomStyle: 'solid',
+        borderColor: 'pink500',
+      }),
+    },
+    {
       variants: { variant: 'danger', mode: 'round' },
       style: borderSprinkles({ borderWidth: 1, borderStyle: 'solid', borderColor: 'pink500' }),
     },

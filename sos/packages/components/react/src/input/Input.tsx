@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import { CommonProps } from '../common/types';
 import {
   commonStyle,
@@ -13,8 +13,12 @@ import { Icon } from '../common/icon/Icon';
 
 interface InputProps extends CommonProps {
   state: 'default' | 'highlight' | 'warning' | 'disabled';
+  placeholder: string;
+  type?: string;
   showIcon?: boolean;
   showButton?: boolean;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -24,19 +28,43 @@ interface InputProps extends CommonProps {
  * @param {boolean} [props.showIcon=true] - 아이콘 표시 여부 (선택, 기본값: true)
  * @param {boolean} [props.showButton=true] - 버튼 표시 여부 (선택, 기본값: true)
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
+ * @param {string} props.placeholder - 인풋의 플레이스홀더 (필수)
  * @param {...any} props - 기타 HTML 속성
  * @param {React.Ref<HTMLInputElement>} ref - 전달받은 ref
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ state = 'default', showIcon = true, showButton = true, className, ...props }, ref) => {
-    const [value, setValue] = useState('');
+  (
+    {
+      state = 'default',
+      showIcon = true,
+      showButton = true,
+      type,
+      className,
+      placeholder,
+      value,
+      onChange,
+      ...props
+    },
+    ref,
+  ) => {
+    const [internalValue, setInternalValue] = useState(value || '');
+
+    useEffect(() => {
+      setInternalValue(value || '');
+    }, [value]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
+      setInternalValue(event.target.value);
+      if (onChange) {
+        onChange(event);
+      }
     };
 
     const handleButtonClick = () => {
-      setValue('');
+      setInternalValue('');
+      if (onChange) {
+        onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
+      }
     };
 
     const commonClass = commonStyle;
@@ -50,13 +78,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={`${inputStyle} ${inputStateClass}`}
-          type="text"
-          placeholder="Placeholder"
-          value={value}
+          type={type}
+          placeholder={placeholder}
+          value={internalValue}
           onChange={handleInputChange}
           disabled={state === 'disabled'}
         />
-        {showButton && value && state !== 'disabled' && (
+        {showButton && internalValue && state !== 'disabled' && (
           <button className={buttonStyle} onClick={handleButtonClick}>
             <Icon color="gray200">{'cancel'}</Icon>
           </button>

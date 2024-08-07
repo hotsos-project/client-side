@@ -54,7 +54,7 @@ const outlinePrimary = style({
 
 const outlineSecondary = style({
   border: `0.0625rem solid ${vars.color.$palette.gray[200]}`,
-  color: vars.color.$static.light.text.normal,
+  color: vars.color.$palette.text.normal,
 });
 
 const activePrimary = style({

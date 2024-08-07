@@ -311,15 +311,38 @@ import { forwardRef as forwardRef6 } from "react";
 
 // src/badge/style.css.ts
 import { createRuntimeFn as _7a4684 } from "@vanilla-extract/recipes/createRuntimeFn";
-var badgeRecipe = _7a4684({ defaultClassName: "_1bfxj7r3k", variantClassNames: { size: { s: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", m: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", l: "_89s0wz3z _89s0wz2v _89s0wz2a _89s0wz3e" }, color: { blue: "_1rmst0847", pink: "_1rmst084x", orange: "_1rmst085a", green: "_1rmst084k", white: "_1rmst083x", ghost: "_137kjisi" } }, defaultVariants: { size: "m", color: "blue" }, compoundVariants: [] });
+var badgeRecipe = _7a4684({ defaultClassName: "_1bfxj7r3k", variantClassNames: { size: { s: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", m: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", l: "_89s0wz3z _89s0wz2v _89s0wz2a _89s0wz3e" }, color: { blue: "_1rmst0847", pink: "_1rmst084x", orange: "_1rmst085a", green: "_1rmst084k", white: "_1rmst083x", ghost: "_137kjisi", ghostWhite: "_137kjisj" } }, defaultVariants: { size: "m", color: "blue" }, compoundVariants: [] });
 
 // src/badge/Badge.tsx
 import { jsx as jsx6 } from "react/jsx-runtime";
 var Badge = forwardRef6(
   ({ children = "text", size = "m", color = "blue", className, ...props }, ref) => {
     const badgeClass = badgeRecipe({ size, color });
-    const textType = size === "s" ? "caption" : size === "m" ? "footnote" : "label";
-    const textColor = color === "ghost" ? "textAssistive" : color === "white" ? "white" : `${color}500`;
+    let textType;
+    switch (size) {
+      case "s":
+        textType = "caption";
+        break;
+      case "m":
+        textType = "footnote";
+        break;
+      default:
+        textType = "label";
+    }
+    let textColor;
+    switch (color) {
+      case "ghost":
+        textColor = "textAssistive";
+        break;
+      case "white":
+        textColor = "white";
+        break;
+      case "ghostWhite":
+        textColor = "opacityWhite700";
+        break;
+      default:
+        textColor = `${color}500`;
+    }
     return /* @__PURE__ */ jsx6(
       Container,
       {
@@ -336,18 +359,65 @@ var Badge = forwardRef6(
 
 // src/button/info/style.css.ts
 import { createRuntimeFn as _7a4685 } from "@vanilla-extract/recipes/createRuntimeFn";
-var infoButtonRecipe = _7a4685({ defaultClassName: "_1bfxj7r3n argxa11", variantClassNames: { size: { s: "_11wl3sn8 _89s0wz2c _89s0wz2w _89s0wz3g _89s0wz40", m: "_11wl3sn9 _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { "default": "_11wl3sna _1rmst086r _1rmst083b", danger: "_11wl3snb _1rmst0852 _1rmst081", warning: "_11wl3snc _1rmst084c _1rmst081" } }, defaultVariants: { size: "s", variant: "default" }, compoundVariants: [] });
+var infoButtonRecipe = _7a4685({ defaultClassName: "_11wl3sn8 _1bfxj7r3n argxa11 _2unefx1 _2unefx6 _2unefxf _2unefxc", variantClassNames: { size: { s: "_11wl3sn9 _89s0wz2b _89s0wz2v _89s0wz3f _89s0wz3z", m: "_11wl3sna _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h _89s0wz4p" }, variant: { "default": "_11wl3snb _1rmst086r", danger: "_11wl3snc _1rmst0852", warning: "_11wl3snd _1rmst084c", ghost: "_11wl3sne" } }, defaultVariants: { size: "s", variant: "default" }, compoundVariants: [] });
 
 // src/button/info/InfoButton.tsx
 import { jsx as jsx7, jsxs as jsxs2 } from "react/jsx-runtime";
 var InfoButton = forwardRef7(
-  ({ size, variant, badgeText, mainText = "mainText", subText, className, ...props }, ref) => {
+  ({
+    children = "children",
+    size,
+    variant = "default",
+    badgeColor,
+    badgeText,
+    subText,
+    className,
+    ...props
+  }, ref) => {
     const infoButtonClass = infoButtonRecipe({ size, variant });
-    return /* @__PURE__ */ jsxs2("button", { ref, className: clsx_default(infoButtonClass, className), ...props, children: [
-      badgeText && /* @__PURE__ */ jsx7(Badge, { children: badgeText }),
-      /* @__PURE__ */ jsx7(Text, { textType: "body1", textMode: "bold", children: mainText }),
-      /* @__PURE__ */ jsx7(Text, { children: subText })
-    ] });
+    const textType = size === "s" ? "heading2" : "title1";
+    if (!badgeColor) {
+      badgeColor = variant === "default" || variant === "ghost" ? "ghost" : "white";
+    }
+    const textColor = variant === "default" ? "textNormal" : "white";
+    return /* @__PURE__ */ jsxs2(
+      "button",
+      {
+        ref,
+        className: clsx_default(infoButtonClass, className),
+        style: { ...props.style },
+        ...props,
+        children: [
+          badgeText && /* @__PURE__ */ jsx7(Badge, { color: badgeColor, children: badgeText }),
+          /* @__PURE__ */ jsx7(
+            Text,
+            {
+              as: "span",
+              textType,
+              textMode: "bold",
+              color: textColor,
+              style: {
+                position: "absolute",
+                top: size === "s" ? "50%" : "55%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+              },
+              children
+            }
+          ),
+          subText && (variant === "danger" || variant === "warning") && /* @__PURE__ */ jsx7(
+            Text,
+            {
+              as: "span",
+              textType: "caption",
+              color: "opacityWhite700",
+              className: spacingSprinkles({ paddingBottom: 2 }),
+              children: subText
+            }
+          )
+        ]
+      }
+    );
   }
 );
 
@@ -616,7 +686,7 @@ import { forwardRef as forwardRef12 } from "react";
 
 // src/list/message/style.css.ts
 import { createRuntimeFn as _7a4686 } from "@vanilla-extract/recipes/createRuntimeFn";
-var messageListRecipe = _7a4686({ defaultClassName: "_17rsevb5", variantClassNames: { variant: { "default": "_1rmst086p", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb9", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
+var messageListRecipe = _7a4686({ defaultClassName: "_17rsevb6", variantClassNames: { variant: { "default": "_1rmst086p", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevba", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "default" }, "_1bfxj7rkq _1bfxj7riy _1bfxj7rj2 _1bfxj7rij _1bfxj7r1k"], [{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
 
 // src/list/message/MessageList.tsx
 import { jsx as jsx15, jsxs as jsxs7 } from "react/jsx-runtime";
@@ -627,14 +697,14 @@ var colorMap = {
 };
 var MessageList = forwardRef12(
   ({
-    title = "title",
+    title,
     date = "2024/07/18 09:15:40",
     content = "content",
     isRead = false,
     isChecked = false,
     following = "following",
     variant,
-    mode,
+    mode = "default",
     className,
     ...props
   }, ref) => {
@@ -652,11 +722,11 @@ var MessageList = forwardRef12(
         paddingY: 12,
         ...props,
         children: [
-          isRead && /* @__PURE__ */ jsx15(Container, { height: "100%", display: "flex", paddingRight: 12, children: /* @__PURE__ */ jsx15(Icon, { size: 8, color: `${color}500`, children: "circle" }) }),
+          !isRead && /* @__PURE__ */ jsx15(Container, { height: "100%", display: "flex", paddingRight: 12, children: /* @__PURE__ */ jsx15(Icon, { size: 8, color: `${color}500`, children: "circle" }) }),
           /* @__PURE__ */ jsxs7(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 8, children: [
             /* @__PURE__ */ jsxs7(Container, { display: "flex", flexDirection: "column", gap: 2, children: [
               /* @__PURE__ */ jsxs7(Container, { display: "flex", alignItems: "center", height: 24, gap: 8, children: [
-                /* @__PURE__ */ jsx15(Text, { as: "h5", textType: "body2", textMode: "bold", children: title }),
+                title && /* @__PURE__ */ jsx15(Text, { as: "h5", textType: "body2", textMode: "bold", children: title }),
                 /* @__PURE__ */ jsx15(Badge, { color, children: following }),
                 isChecked && /* @__PURE__ */ jsx15(Icon, { size: 20, color: `${color}500`, children: "verified" })
               ] }),
@@ -769,7 +839,7 @@ var SocialContentList = forwardRef13(
 );
 
 // src/input/Input.tsx
-import { forwardRef as forwardRef14, useState as useState2 } from "react";
+import { forwardRef as forwardRef14, useState as useState2, useEffect } from "react";
 
 // src/input/style.css.ts
 var buttonStyle = "_1phoqpw6";
@@ -783,13 +853,32 @@ var inputStyle = "_1phoqpw1";
 // src/input/Input.tsx
 import { jsx as jsx17, jsxs as jsxs9 } from "react/jsx-runtime";
 var Input = forwardRef14(
-  ({ state = "default", showIcon = true, showButton = true, className, ...props }, ref) => {
-    const [value, setValue] = useState2("");
+  ({
+    state = "default",
+    showIcon = true,
+    showButton = true,
+    type,
+    className,
+    placeholder,
+    value,
+    onChange,
+    ...props
+  }, ref) => {
+    const [internalValue, setInternalValue] = useState2(value || "");
+    useEffect(() => {
+      setInternalValue(value || "");
+    }, [value]);
     const handleInputChange = (event) => {
-      setValue(event.target.value);
+      setInternalValue(event.target.value);
+      if (onChange) {
+        onChange(event);
+      }
     };
     const handleButtonClick = () => {
-      setValue("");
+      setInternalValue("");
+      if (onChange) {
+        onChange({ target: { value: "" } });
+      }
     };
     const commonClass = commonStyle;
     const divStateClass = divStateStyle[state];
@@ -802,14 +891,14 @@ var Input = forwardRef14(
         {
           ref,
           className: `${inputStyle} ${inputStateClass}`,
-          type: "text",
-          placeholder: "Placeholder",
-          value,
+          type,
+          placeholder,
+          value: internalValue,
           onChange: handleInputChange,
           disabled: state === "disabled"
         }
       ),
-      showButton && value && state !== "disabled" && /* @__PURE__ */ jsx17("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx17(Icon, { color: "gray200", children: "cancel" }) })
+      showButton && internalValue && state !== "disabled" && /* @__PURE__ */ jsx17("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx17(Icon, { color: "gray200", children: "cancel" }) })
     ] });
   }
 );
@@ -832,6 +921,10 @@ var InputGroup = forwardRef15(
     showLabel = true,
     labelContent = "label",
     warningContent = "warning text",
+    placeholder = "",
+    type,
+    value,
+    onChange,
     className,
     ...props
   }, ref) => {
@@ -841,8 +934,18 @@ var InputGroup = forwardRef15(
         /* @__PURE__ */ jsx18("span", { className: starStyle, children: "*" })
       ] }),
       /* @__PURE__ */ jsxs10("div", { className: inputStyle2, children: [
-        /* @__PURE__ */ jsx18(Input, { state, showIcon: false }),
-        showButton && /* @__PURE__ */ jsx18(Button, {})
+        /* @__PURE__ */ jsx18(
+          Input,
+          {
+            state,
+            type,
+            showIcon: false,
+            placeholder,
+            value,
+            onChange
+          }
+        ),
+        showButton && /* @__PURE__ */ jsx18(Container, { children: /* @__PURE__ */ jsx18(Button, { variant: "primary", design: "outline", mainText: "\uC911\uBCF5\uD655\uC778" }) })
       ] }),
       state === "warning" && /* @__PURE__ */ jsx18("div", { className: warningStyle, children: warningContent })
     ] });

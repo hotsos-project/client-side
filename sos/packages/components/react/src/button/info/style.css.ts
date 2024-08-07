@@ -4,19 +4,29 @@ import { shadowSprinkles } from '../../style/shadow/sprinkles.css';
 import { colorSprinkles } from '../../style/color/sprinkles.css';
 import { spacingSprinkles } from '../../style/spacing/sprinkles.css';
 import { vars } from '@sos/style-tokens';
+import { layoutSprinkles } from '../../style/layout/sprinkles.css';
 
 export const infoButtonRecipe = recipe({
-  base: [borderSprinkles({ borderRadius: 'ml' }), shadowSprinkles({ boxShadow: 's' })],
+  base: [
+    borderSprinkles({ borderRadius: 'ml' }),
+    shadowSprinkles({ boxShadow: 's' }),
+    layoutSprinkles({
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    }),
+    { position: 'relative' },
+  ],
   variants: {
     size: {
-      s: [spacingSprinkles({ padding: 8 }), { width: '96px', height: '96px' }],
-      m: [spacingSprinkles({ paddingX: 16, paddingY: 10 }), { height: '128px' }],
+      s: [spacingSprinkles({ padding: 6 }), { width: '96px', height: '96px' }],
+      m: [spacingSprinkles({ paddingX: 16, paddingY: 10, gap: 18 }), { height: '128px' }],
     },
     variant: {
       default: [
         colorSprinkles({
           backgroundColor: 'backgroundElevatedPrimary',
-          color: 'textNormal',
         }),
         {
           selectors: {
@@ -29,7 +39,6 @@ export const infoButtonRecipe = recipe({
       danger: [
         colorSprinkles({
           backgroundColor: 'pink500',
-          color: 'white',
         }),
         {
           selectors: {
@@ -42,7 +51,6 @@ export const infoButtonRecipe = recipe({
       warning: [
         colorSprinkles({
           backgroundColor: 'blue500',
-          color: 'white',
         }),
         {
           selectors: {
@@ -52,6 +60,7 @@ export const infoButtonRecipe = recipe({
           },
         },
       ],
+      ghost: {},
     },
   },
   defaultVariants: {

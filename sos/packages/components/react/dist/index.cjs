@@ -362,15 +362,38 @@ var import_react6 = require("react");
 
 // src/badge/style.css.ts
 var import_createRuntimeFn4 = require("@vanilla-extract/recipes/createRuntimeFn");
-var badgeRecipe = (0, import_createRuntimeFn4.createRuntimeFn)({ defaultClassName: "_1bfxj7r3k", variantClassNames: { size: { s: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", m: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", l: "_89s0wz3z _89s0wz2v _89s0wz2a _89s0wz3e" }, color: { blue: "_1rmst0847", pink: "_1rmst084x", orange: "_1rmst085a", green: "_1rmst084k", white: "_1rmst083x", ghost: "_137kjisi" } }, defaultVariants: { size: "m", color: "blue" }, compoundVariants: [] });
+var badgeRecipe = (0, import_createRuntimeFn4.createRuntimeFn)({ defaultClassName: "_1bfxj7r3k", variantClassNames: { size: { s: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", m: "_89s0wz3y _89s0wz2u _89s0wz29 _89s0wz3d", l: "_89s0wz3z _89s0wz2v _89s0wz2a _89s0wz3e" }, color: { blue: "_1rmst0847", pink: "_1rmst084x", orange: "_1rmst085a", green: "_1rmst084k", white: "_1rmst083x", ghost: "_137kjisi", ghostWhite: "_137kjisj" } }, defaultVariants: { size: "m", color: "blue" }, compoundVariants: [] });
 
 // src/badge/Badge.tsx
 var import_jsx_runtime6 = require("react/jsx-runtime");
 var Badge = (0, import_react6.forwardRef)(
   ({ children = "text", size = "m", color = "blue", className, ...props }, ref) => {
     const badgeClass = badgeRecipe({ size, color });
-    const textType = size === "s" ? "caption" : size === "m" ? "footnote" : "label";
-    const textColor = color === "ghost" ? "textAssistive" : color === "white" ? "white" : `${color}500`;
+    let textType;
+    switch (size) {
+      case "s":
+        textType = "caption";
+        break;
+      case "m":
+        textType = "footnote";
+        break;
+      default:
+        textType = "label";
+    }
+    let textColor;
+    switch (color) {
+      case "ghost":
+        textColor = "textAssistive";
+        break;
+      case "white":
+        textColor = "white";
+        break;
+      case "ghostWhite":
+        textColor = "opacityWhite700";
+        break;
+      default:
+        textColor = `${color}500`;
+    }
     return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
       Container,
       {
@@ -387,18 +410,65 @@ var Badge = (0, import_react6.forwardRef)(
 
 // src/button/info/style.css.ts
 var import_createRuntimeFn5 = require("@vanilla-extract/recipes/createRuntimeFn");
-var infoButtonRecipe = (0, import_createRuntimeFn5.createRuntimeFn)({ defaultClassName: "_1bfxj7r3n argxa11", variantClassNames: { size: { s: "_11wl3sn8 _89s0wz2c _89s0wz2w _89s0wz3g _89s0wz40", m: "_11wl3sn9 _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { "default": "_11wl3sna _1rmst086r _1rmst083b", danger: "_11wl3snb _1rmst0852 _1rmst081", warning: "_11wl3snc _1rmst084c _1rmst081" } }, defaultVariants: { size: "s", variant: "default" }, compoundVariants: [] });
+var infoButtonRecipe = (0, import_createRuntimeFn5.createRuntimeFn)({ defaultClassName: "_11wl3sn8 _1bfxj7r3n argxa11 _2unefx1 _2unefx6 _2unefxf _2unefxc", variantClassNames: { size: { s: "_11wl3sn9 _89s0wz2b _89s0wz2v _89s0wz3f _89s0wz3z", m: "_11wl3sna _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h _89s0wz4p" }, variant: { "default": "_11wl3snb _1rmst086r", danger: "_11wl3snc _1rmst0852", warning: "_11wl3snd _1rmst084c", ghost: "_11wl3sne" } }, defaultVariants: { size: "s", variant: "default" }, compoundVariants: [] });
 
 // src/button/info/InfoButton.tsx
 var import_jsx_runtime7 = require("react/jsx-runtime");
 var InfoButton = (0, import_react7.forwardRef)(
-  ({ size, variant, badgeText, mainText = "mainText", subText, className, ...props }, ref) => {
+  ({
+    children = "children",
+    size,
+    variant = "default",
+    badgeColor,
+    badgeText,
+    subText,
+    className,
+    ...props
+  }, ref) => {
     const infoButtonClass = infoButtonRecipe({ size, variant });
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("button", { ref, className: clsx_default(infoButtonClass, className), ...props, children: [
-      badgeText && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Badge, { children: badgeText }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { textType: "body1", textMode: "bold", children: mainText }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Text, { children: subText })
-    ] });
+    const textType = size === "s" ? "heading2" : "title1";
+    if (!badgeColor) {
+      badgeColor = variant === "default" || variant === "ghost" ? "ghost" : "white";
+    }
+    const textColor = variant === "default" ? "textNormal" : "white";
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+      "button",
+      {
+        ref,
+        className: clsx_default(infoButtonClass, className),
+        style: { ...props.style },
+        ...props,
+        children: [
+          badgeText && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Badge, { color: badgeColor, children: badgeText }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+            Text,
+            {
+              as: "span",
+              textType,
+              textMode: "bold",
+              color: textColor,
+              style: {
+                position: "absolute",
+                top: size === "s" ? "50%" : "55%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+              },
+              children
+            }
+          ),
+          subText && (variant === "danger" || variant === "warning") && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+            Text,
+            {
+              as: "span",
+              textType: "caption",
+              color: "opacityWhite700",
+              className: spacingSprinkles({ paddingBottom: 2 }),
+              children: subText
+            }
+          )
+        ]
+      }
+    );
   }
 );
 
@@ -667,7 +737,7 @@ var import_react12 = require("react");
 
 // src/list/message/style.css.ts
 var import_createRuntimeFn6 = require("@vanilla-extract/recipes/createRuntimeFn");
-var messageListRecipe = (0, import_createRuntimeFn6.createRuntimeFn)({ defaultClassName: "_17rsevb5", variantClassNames: { variant: { "default": "_1rmst086p", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevb9", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
+var messageListRecipe = (0, import_createRuntimeFn6.createRuntimeFn)({ defaultClassName: "_17rsevb6", variantClassNames: { variant: { "default": "_1rmst086p", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevba", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "default" }, "_1bfxj7rkq _1bfxj7riy _1bfxj7rj2 _1bfxj7rij _1bfxj7r1k"], [{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
 
 // src/list/message/MessageList.tsx
 var import_jsx_runtime15 = require("react/jsx-runtime");
@@ -678,14 +748,14 @@ var colorMap = {
 };
 var MessageList = (0, import_react12.forwardRef)(
   ({
-    title = "title",
+    title,
     date = "2024/07/18 09:15:40",
     content = "content",
     isRead = false,
     isChecked = false,
     following = "following",
     variant,
-    mode,
+    mode = "default",
     className,
     ...props
   }, ref) => {
@@ -703,11 +773,11 @@ var MessageList = (0, import_react12.forwardRef)(
         paddingY: 12,
         ...props,
         children: [
-          isRead && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Container, { height: "100%", display: "flex", paddingRight: 12, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Icon, { size: 8, color: `${color}500`, children: "circle" }) }),
+          !isRead && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Container, { height: "100%", display: "flex", paddingRight: 12, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Icon, { size: 8, color: `${color}500`, children: "circle" }) }),
           /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 8, children: [
             /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Container, { display: "flex", flexDirection: "column", gap: 2, children: [
               /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Container, { display: "flex", alignItems: "center", height: 24, gap: 8, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Text, { as: "h5", textType: "body2", textMode: "bold", children: title }),
+                title && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Text, { as: "h5", textType: "body2", textMode: "bold", children: title }),
                 /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Badge, { color, children: following }),
                 isChecked && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Icon, { size: 20, color: `${color}500`, children: "verified" })
               ] }),
@@ -834,13 +904,33 @@ var inputStyle = "_1phoqpw1";
 // src/input/Input.tsx
 var import_jsx_runtime17 = require("react/jsx-runtime");
 var Input = (0, import_react14.forwardRef)(
-  ({ state = "default", showIcon = true, showButton = true, className, ...props }, ref) => {
-    const [value, setValue] = (0, import_react14.useState)("");
+
+  ({
+    state = "default",
+    showIcon = true,
+    showButton = true,
+    type,
+    className,
+    placeholder,
+    value,
+    onChange,
+    ...props
+  }, ref) => {
+    const [internalValue, setInternalValue] = (0, import_react14.useState)(value || "");
+    (0, import_react14.useEffect)(() => {
+      setInternalValue(value || "");
+    }, [value]);
     const handleInputChange = (event) => {
-      setValue(event.target.value);
+      setInternalValue(event.target.value);
+      if (onChange) {
+        onChange(event);
+      }
     };
     const handleButtonClick = () => {
-      setValue("");
+      setInternalValue("");
+      if (onChange) {
+        onChange({ target: { value: "" } });
+      }
     };
     const commonClass = commonStyle;
     const divStateClass = divStateStyle[state];
@@ -853,14 +943,15 @@ var Input = (0, import_react14.forwardRef)(
         {
           ref,
           className: `${inputStyle} ${inputStateClass}`,
-          type: "text",
-          placeholder: "Placeholder",
-          value,
+
+          type,
+          placeholder,
+          value: internalValue,
           onChange: handleInputChange,
           disabled: state === "disabled"
         }
       ),
-      showButton && value && state !== "disabled" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { color: "gray200", children: "cancel" }) })
+      showButton && internalValue && state !== "disabled" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { color: "gray200", children: "cancel" }) })
     ] });
   }
 );
@@ -883,6 +974,10 @@ var InputGroup = (0, import_react15.forwardRef)(
     showLabel = true,
     labelContent = "label",
     warningContent = "warning text",
+    placeholder = "",
+    type,
+    value,
+    onChange,
     className,
     ...props
   }, ref) => {
@@ -892,8 +987,18 @@ var InputGroup = (0, import_react15.forwardRef)(
         /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: starStyle, children: "*" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: inputStyle2, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Input, { state, showIcon: false }),
-        showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, {})
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+          Input,
+          {
+            state,
+            type,
+            showIcon: false,
+            placeholder,
+            value,
+            onChange
+          }
+        ),
+        showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, { variant: "primary", design: "outline", mainText: "\uC911\uBCF5\uD655\uC778" }) })
       ] }),
       state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: warningStyle, children: warningContent })
     ] });

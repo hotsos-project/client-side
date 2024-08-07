@@ -8,7 +8,7 @@ import { messageListRecipe } from './style.css';
 import clsx from 'clsx';
 
 interface MessageListProps extends Omit<CommonProps, 'color'> {
-  title: string;
+  title?: string;
   date: string;
   content: string;
   isRead: boolean;
@@ -27,7 +27,7 @@ const colorMap: { [key in MessageListProps['variant']]: 'blue' | 'pink' | 'orang
 /**
  * MessageList 컴포넌트
  *
- * @param {string} props.title - 메시지 제목 (필수)
+ * @param {string} props.title - 메시지 제목 (선택)
  * @param {Date} props.date - 메시지 날짜 (필수)
  * @param {string} props.content - 메시지 내용 (필수)
  * @param {boolean} props.isRead - 읽음 여부 (필수)
@@ -42,14 +42,14 @@ const colorMap: { [key in MessageListProps['variant']]: 'blue' | 'pink' | 'orang
 export const MessageList = forwardRef<HTMLElement, MessageListProps>(
   (
     {
-      title = 'title',
+      title,
       date = '2024/07/18 09:15:40',
       content = 'content',
       isRead = false,
       isChecked = false,
       following = 'following',
       variant,
-      mode,
+      mode = 'default',
       className,
       ...props
     },
@@ -69,7 +69,7 @@ export const MessageList = forwardRef<HTMLElement, MessageListProps>(
         paddingY={12}
         {...props}
       >
-        {isRead && (
+        {!isRead && (
           <Container height="100%" display="flex" paddingRight={12}>
             <Icon size={8} color={`${color}500`}>
               circle
@@ -79,9 +79,11 @@ export const MessageList = forwardRef<HTMLElement, MessageListProps>(
         <Container display="flex" flexDirection="column" width="100%" gap={8}>
           <Container display="flex" flexDirection="column" gap={2}>
             <Container display="flex" alignItems="center" height={24} gap={8}>
-              <Text as="h5" textType="body2" textMode="bold">
-                {title}
-              </Text>
+              {title && (
+                <Text as="h5" textType="body2" textMode="bold">
+                  {title}
+                </Text>
+              )}
               <Badge color={color}>{following}</Badge>
               {isChecked && (
                 <Icon size={20} color={`${color}500`}>
