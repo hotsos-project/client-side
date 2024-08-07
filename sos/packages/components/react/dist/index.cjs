@@ -853,20 +853,43 @@ var SocialContentList = (0, import_react13.forwardRef)(
           ]
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children }),
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children: [
+        children,
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("img", { src: "/earthquake3-01.jpg", height: 240 })
+      ] }),
       /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Container, { padding: 16, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Text, { children: content }) }),
       /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
         Container,
         {
           display: "flex",
           padding: 16,
-          justifyContent: "space-between",
-          alignItems: "center",
+          justifyContent: "center",
+          gap: 64,
           borderType: "borderTop",
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Button, { variant: "secondary", mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Button, { mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Button, { icon: "chat", leftSubText: commentCounts, size: "s" })
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Container, { display: "flex", gap: 16, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+                Button,
+                {
+                  variant: "secondary",
+                  design: "outline",
+                  mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694",
+                  rightSubText: isTrueCounts,
+                  size: "s"
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+                Button,
+                {
+                  variant: "secondary",
+                  design: "outline",
+                  mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694",
+                  rightSubText: isFalseCounts,
+                  size: "s"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Button, { icon: "chat", mainText: "", leftSubText: commentCounts, size: "s" })
           ]
         }
       )
@@ -889,6 +912,7 @@ var inputStyle = "_1phoqpw1";
 // src/input/Input.tsx
 var import_jsx_runtime17 = require("react/jsx-runtime");
 var Input = (0, import_react14.forwardRef)(
+
   ({
     state = "default",
     showIcon = true,
@@ -927,6 +951,7 @@ var Input = (0, import_react14.forwardRef)(
         {
           ref,
           className: `${inputStyle} ${inputStateClass}`,
+
           type,
           placeholder,
           value: internalValue,

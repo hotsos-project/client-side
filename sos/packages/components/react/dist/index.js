@@ -801,20 +801,43 @@ var SocialContentList = forwardRef13(
           ]
         }
       ),
-      /* @__PURE__ */ jsx16(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children }),
+      /* @__PURE__ */ jsxs8(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children: [
+        children,
+        /* @__PURE__ */ jsx16("img", { src: "/earthquake3-01.jpg", height: 240 })
+      ] }),
       /* @__PURE__ */ jsx16(Container, { padding: 16, children: /* @__PURE__ */ jsx16(Text, { children: content }) }),
       /* @__PURE__ */ jsxs8(
         Container,
         {
           display: "flex",
           padding: 16,
-          justifyContent: "space-between",
-          alignItems: "center",
+          justifyContent: "center",
+          gap: 64,
           borderType: "borderTop",
           children: [
-            /* @__PURE__ */ jsx16(Button, { variant: "secondary", mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ jsx16(Button, { mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ jsx16(Button, { icon: "chat", leftSubText: commentCounts, size: "s" })
+            /* @__PURE__ */ jsxs8(Container, { display: "flex", gap: 16, children: [
+              /* @__PURE__ */ jsx16(
+                Button,
+                {
+                  variant: "secondary",
+                  design: "outline",
+                  mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694",
+                  rightSubText: isTrueCounts,
+                  size: "s"
+                }
+              ),
+              /* @__PURE__ */ jsx16(
+                Button,
+                {
+                  variant: "secondary",
+                  design: "outline",
+                  mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694",
+                  rightSubText: isFalseCounts,
+                  size: "s"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsx16(Button, { icon: "chat", mainText: "", leftSubText: commentCounts, size: "s" })
           ]
         }
       )

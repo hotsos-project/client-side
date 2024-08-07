@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import useKakaoLoader from './components/userKakaoLoader';
 import { useAedData } from '../../_hooks/useAedData';
+import { Container, Input, Chips } from '@sos/components-react';
 
 export default function BasicMap() {
   useKakaoLoader();
@@ -19,7 +20,7 @@ export default function BasicMap() {
   useEffect(() => {
     setIsClient(true);
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
+      const watchId = navigator.geolocation.watchPosition(
         (position) => {
           setLat(position.coords.latitude);
           setLon(position.coords.longitude);
@@ -32,6 +33,9 @@ export default function BasicMap() {
           setQueryEnabled(true);
         },
       );
+      return () => {
+        navigator.geolocation.clearWatch(watchId);
+      };
     } else {
       // default: 서울 시청
       setLat(37.5665);
@@ -54,8 +58,8 @@ export default function BasicMap() {
   if (isLoading) return <div>로딩 중</div>;
   if (error) return <div>{error.message}</div>;
 
-  const customMarkerImage = {
-    src: '/aed.png',
+  const defaultMarkerImage = {
+    src: '/aed_default.png',
     size: {
       width: 24,
       height: 35,
@@ -68,39 +72,85 @@ export default function BasicMap() {
     },
   };
 
+  const selectedMarkerImage = {
+    src: '/aed.png',
+    size: {
+      width: 30,
+      height: 41,
+    },
+    options: {
+      offset: {
+        x: 16,
+        y: 37,
+      },
+    },
+  };
+
   return (
-    <Map
-      id="map"
-      center={{
-        lat: lat,
-        lng: lon,
-      }}
-      style={{
-        width: '100%',
-        height: '100vh',
-      }}
-      level={2}
-      padding={{ top: 50, right: 50, bottom: 50, left: 50 }}
-    >
-      {aedData.map((aed, index) => (
-        <React.Fragment key={index}>
-          <MapMarker
-            position={{
-              lat: aed.lat,
-              lng: aed.lon,
-            }}
-            image={customMarkerImage}
-            onClick={() => setSelectedMarker(index)}
-          />
-          {selectedMarker === index && (
-            <CustomOverlayMap position={{ lat: aed.lat, lng: aed.lon }}>
-              <div style={{ padding: '5px', backgroundColor: 'white', border: '1px solid black' }}>
-                {`주소: ${aed.detailAddress}`} <br /> {`위치: ${aed.buildPlace}`}
-              </div>
-            </CustomOverlayMap>
-          )}
-        </React.Fragment>
-      ))}
-    </Map>
+    <>
+      <Container
+        display="flex"
+        flexDirection="column"
+        padding={16}
+        gap={16}
+        backgroundColor="backgroundNormalPrimary"
+      >
+        <Input state="default" placeholder="장소를 입력하세요" />
+        <Container display="flex" gap={10}>
+          <Chips size="m" content="심장충격기" variant="primary" state="active" />
+          <Chips size="m" content="민방대피소" variant="primary" state="outline" />
+          <Chips size="m" content="지진대피소" variant="primary" state="outline" />
+          <Chips size="m" content="해일대피소" variant="primary" state="outline" />
+        </Container>
+      </Container>
+      <Map
+        id="map"
+        center={{
+          lat: lat,
+          lng: lon,
+        }}
+        style={{
+          width: '100%',
+          height: '100vh',
+        }}
+        level={2}
+        padding={{ top: 50, right: 50, bottom: 50, left: 50 }}
+      >
+        <MapMarker
+          position={{
+            lat: lat,
+            lng: lon,
+          }}
+        />
+        {aedData.map((aed, index) => (
+          <React.Fragment key={index}>
+            <MapMarker
+              position={{
+                lat: aed.lat,
+                lng: aed.lon,
+              }}
+              image={selectedMarker === index ? selectedMarkerImage : defaultMarkerImage}
+              onClick={() => setSelectedMarker(index)}
+            />
+            {selectedMarker === index && (
+              <CustomOverlayMap position={{ lat: aed.lat, lng: aed.lon }}>
+                <div
+                  style={{
+                    padding: '5px',
+                    backgroundColor: 'white',
+                    border: '1px solid gray',
+                    position: 'relative',
+                    top: '10px',
+                    transform: 'translateY(40%)',
+                  }}
+                >
+                  {`주소: ${aed.detailAddress}`} <br /> {`위치: ${aed.buildPlace}`}
+                </div>
+              </CustomOverlayMap>
+            )}
+          </React.Fragment>
+        ))}
+      </Map>
+    </>
   );
 }
