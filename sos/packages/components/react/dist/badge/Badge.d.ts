@@ -11,5 +11,5 @@ import { CommonProps } from '../common/types';
  */
 export declare const Badge: import("react").ForwardRefExoticComponent<Omit<CommonProps, "color"> & {
     size?: "s" | "m" | "l" | undefined;
-    color?: "blue" | "green" | "orange" | "pink" | "white" | "ghost" | undefined;
+    color?: "blue" | "green" | "orange" | "pink" | "white" | "ghost" | "ghostWhite" | undefined;
 } & import("react").RefAttributes<HTMLElement>>;
