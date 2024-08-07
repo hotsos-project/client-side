@@ -26,6 +26,7 @@
     "@vanilla-extract/next-plugin": "^2.4.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "react-kakao-maps-sdk": "^1.1.27",
     "typescript": "^5"
   }
 }
