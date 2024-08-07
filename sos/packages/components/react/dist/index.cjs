@@ -34,6 +34,7 @@ __export(src_exports, {
   MessageList: () => MessageList,
   Notification: () => Notification,
   SocialContentList: () => SocialContentList,
+  TabBar: () => TabBar,
   Text: () => Text,
   Title: () => Title,
   TopAppBar: () => TopAppBar,
@@ -291,15 +292,29 @@ var import_react5 = require("react");
 
 // src/button/style.css.ts
 var import_createRuntimeFn3 = require("@vanilla-extract/recipes/createRuntimeFn");
-var buttonRecipe = (0, import_createRuntimeFn3.createRuntimeFn)({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
+var buttonRecipe = (0, import_createRuntimeFn3.createRuntimeFn)({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_1h4ydgag _89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_1h4ydgah _89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_1h4ydgai _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
 
 // src/button/Button.tsx
 var import_jsx_runtime5 = require("react/jsx-runtime");
+var textColorMap = {
+  primary: {
+    fill: { textColor: "white", hovertextColor: "white" },
+    outline: { textColor: "uiPrimaryNormal", hovertextColor: "blue700" }
+  },
+  secondary: {
+    fill: { textColor: "white", hovertextColor: "white" },
+    outline: { textColor: "textNormal", hovertextColor: "textNormal" }
+  },
+  tertiary: {
+    fill: { textColor: "blueGray500", hovertextColor: "blueGray500" },
+    outline: { textColor: "blueGray500", hovertextColor: "blueGray500" }
+  }
+};
 var Button = (0, import_react5.forwardRef)(
   ({
     size,
-    variant,
-    design,
+    variant = "primary",
+    design = "fill",
     icon,
     leftSubText,
     rightSubText,
@@ -315,28 +330,10 @@ var Button = (0, import_react5.forwardRef)(
       variant,
       design
     });
-    let iconColor = "uiPrimaryNormal";
-    let hoverIconColor = "uiPrimaryNormal";
-    if (variant === "primary") {
-      if (design === "fill") {
-        iconColor = "white";
-        hoverIconColor = "white";
-      } else if (design === "outline") {
-        iconColor = "uiPrimaryNormal";
-        hoverIconColor = "blue700";
-      }
-    } else if (variant === "secondary") {
-      if (design === "fill") {
-        iconColor = "white";
-        hoverIconColor = "white";
-      } else if (design === "outline") {
-        iconColor = "textNormal";
-        hoverIconColor = "textNormal";
-      }
-    } else if (variant === "tertiary") {
-      iconColor = "blueGray500";
-      hoverIconColor = "blueGray500";
-    }
+    const { textColor, hovertextColor } = textColorMap[variant][design] || {
+      textColor: "uiPrimaryNormal",
+      hovertextColor: "uiPrimaryNormal"
+    };
     return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(
       "button",
       {
@@ -346,11 +343,11 @@ var Button = (0, import_react5.forwardRef)(
         onMouseLeave: () => setIsHovered(false),
         ...props,
         children: [
-          icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hoverIconColor : iconColor, children: icon }),
-          leftSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", children: leftSubText }),
-          mainText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", textMode: "bold", children: mainText }),
-          rightSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", children: rightSubText }),
-          isLoading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hoverIconColor : iconColor, children: loadingSpinner })
+          icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hovertextColor : textColor, children: icon }),
+          leftSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: leftSubText }),
+          mainText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", textMode: "bold", color: isHovered ? hovertextColor : textColor, children: mainText }),
+          rightSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: rightSubText }),
+          isLoading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hovertextColor : textColor, children: loadingSpinner })
         ]
       }
     );
@@ -778,20 +775,43 @@ var SocialContentList = (0, import_react13.forwardRef)(
           ]
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children }),
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children: [
+        children,
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("img", { src: "/earthquake3-01.jpg", height: 240 })
+      ] }),
       /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Container, { padding: 16, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Text, { children: content }) }),
       /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
         Container,
         {
           display: "flex",
           padding: 16,
-          justifyContent: "space-between",
-          alignItems: "center",
+          justifyContent: "center",
+          gap: 64,
           borderType: "borderTop",
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Button, { variant: "secondary", mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Button, { mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Button, { icon: "chat", leftSubText: commentCounts, size: "s" })
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Container, { display: "flex", gap: 16, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+                Button,
+                {
+                  variant: "secondary",
+                  design: "outline",
+                  mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694",
+                  rightSubText: isTrueCounts,
+                  size: "s"
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+                Button,
+                {
+                  variant: "secondary",
+                  design: "outline",
+                  mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694",
+                  rightSubText: isFalseCounts,
+                  size: "s"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Button, { icon: "chat", mainText: "", leftSubText: commentCounts, size: "s" })
           ]
         }
       )
@@ -799,33 +819,54 @@ var SocialContentList = (0, import_react13.forwardRef)(
   }
 );
 
+// src/input/Input.tsx
+var import_react14 = require("react");
+
 // src/input/style.css.ts
-var buttonStyle = "_1phoqpw2";
+var buttonStyle = "_1phoqpw6";
 var commonStyle = "_1phoqpw0";
-var divStateStyle = { "default": "_1phoqpw4 _1phoqpw3", highlight: "_1phoqpw5 _1phoqpw3", warning: "_1phoqpw6 _1phoqpw3", disabled: "_1phoqpw7 _1phoqpw3" };
-var iconStyle2 = "_1phoqpwb";
-var inputStateStyle = { "default": "_1phoqpw8", highlight: "_1phoqpw9 _1phoqpw8", warning: "_1phoqpw8", disabled: "_1phoqpwa _1phoqpw8" };
+var disabledIconStyle = "_1phoqpwd";
+var divStateStyle = { "default": "_1phoqpw8 _1phoqpw7", highlight: "_1phoqpw9 _1phoqpw7", warning: "_1phoqpwa _1phoqpw7", disabled: "_1phoqpwb _1phoqpw7" };
+var iconStyle2 = "_1phoqpwc";
+var inputStateStyle = { "default": "_1phoqpw2", highlight: "_1phoqpw3", warning: "_1phoqpw4", disabled: "_1phoqpw5" };
 var inputStyle = "_1phoqpw1";
 
 // src/input/Input.tsx
 var import_jsx_runtime17 = require("react/jsx-runtime");
-var Input = ({
-  state = "warning",
-  showIcon = true,
-  showButton = true,
-  className,
-  ...props
-}) => {
-  const commonClass = commonStyle;
-  const divStateClass = divStateStyle[state];
-  const inputStateClass = inputStateStyle[state];
-  const iconClass = iconStyle2;
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
-    showIcon && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: `material-symbols-outlined input-icon ${iconClass}`, children: "search" }),
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { className: `${inputStyle} ${inputStateClass}`, type: "text", placeholder: "Placeholder" }),
-    showButton && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: buttonStyle, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "material-symbols-outlined", children: "cancel" }) })
-  ] });
-};
+var Input = (0, import_react14.forwardRef)(
+  ({ state = "default", showIcon = true, showButton = true, className, ...props }, ref) => {
+    const [value, setValue] = (0, import_react14.useState)("");
+    const handleInputChange = (event) => {
+      setValue(event.target.value);
+    };
+    const handleButtonClick = () => {
+      setValue("");
+    };
+    const commonClass = commonStyle;
+    const divStateClass = divStateStyle[state];
+    const inputStateClass = inputStateStyle[state];
+    const iconClass = state === "disabled" ? disabledIconStyle : iconStyle2;
+    return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
+      showIcon && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { className: iconClass, children: "search" }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        "input",
+        {
+          ref,
+          className: `${inputStyle} ${inputStateClass}`,
+          type: "text",
+          placeholder: "Placeholder",
+          value,
+          onChange: handleInputChange,
+          disabled: state === "disabled"
+        }
+      ),
+      showButton && value && state !== "disabled" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { color: "gray200", children: "cancel" }) })
+    ] });
+  }
+);
+
+// src/input/group/InputGroup.tsx
+var import_react15 = require("react");
 
 // src/input/group/style.css.ts
 var inputStyle2 = "_1n4ve932";
@@ -835,40 +876,110 @@ var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
 var import_jsx_runtime18 = require("react/jsx-runtime");
-var InputGroup = ({
-  state = "default",
-  showButton = true,
-  showLabel = true,
-  labelContent = "label",
-  warningContent = "warning text",
-  className,
-  ...props
-}) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className, ...props, children: [
-    showLabel && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: labeStyle, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { children: labelContent }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: starStyle, children: "*" })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: inputStyle2, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Input, { state, showIcon: false }),
-      showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, {})
-    ] }),
-    state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: warningStyle, children: warningContent })
-  ] });
-};
+var InputGroup = (0, import_react15.forwardRef)(
+  ({
+    state = "default",
+    showButton = true,
+    showLabel = true,
+    labelContent = "label",
+    warningContent = "warning text",
+    className,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className, ref, ...props, children: [
+      showLabel && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: labeStyle, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { children: labelContent }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: starStyle, children: "*" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: inputStyle2, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Input, { state, showIcon: false }),
+        showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, {})
+      ] }),
+      state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: warningStyle, children: warningContent })
+    ] });
+  }
+);
+
+// src/notification/Notification.tsx
+var import_react16 = require("react");
 
 // src/notification/style.css.ts
-var commonStyle2 = "_1pruyzf0";
-var stateStyle2 = { "default": "_1pruyzf1", warning: "_1pruyzf2", danger: "_1pruyzf3" };
+var import_createRuntimeFn7 = require("@vanilla-extract/recipes/createRuntimeFn");
+var stateStyle2 = (0, import_createRuntimeFn7.createRuntimeFn)({ defaultClassName: "_1pruyzf1 _89s0wz46 _89s0wz32 _89s0wz2g _89s0wz3k _89s0wz4q", variantClassNames: { state: { "default": "_1rmst083b _1rmst086r", warning: "_1rmst081k _1rmst086r", danger: "_1rmst081 _1rmst0852" } }, defaultVariants: { state: "default" }, compoundVariants: [] });
 
 // src/notification/Notification.tsx
 var import_jsx_runtime19 = require("react/jsx-runtime");
-var Notification = ({ state = "danger" }) => {
-  const commonClass = commonStyle2;
-  const stateClass = stateStyle2[state];
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: `${commonClass} ${stateClass}`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "material-symbols-outlined", children: "warning" }),
-    "Warning"
-  ] });
-};
+var Notification = (0, import_react16.forwardRef)(
+  ({ state = "default", content = "warning", icon = "warning", ...props }, ref) => {
+    const textColor = state === "danger" ? "white" : state === "warning" ? "pink500" : "textNormal";
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
+      Container,
+      {
+        ref,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 20,
+        className: clsx_default(stateStyle2({ state })),
+        ...props,
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Icon, { color: textColor, children: icon }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Text, { color: textColor, children: content })
+        ]
+      }
+    );
+  }
+);
+
+// src/tabs/tab-bar/TabBar.tsx
+var import_react18 = require("react");
+
+// src/tabs/tab/Tab.tsx
+var import_react17 = require("react");
+
+// src/tabs/tab/style.css.ts
+var commonStyle2 = "_1xjnc5f0";
+var stateStyle3 = { "default": "_1rmst083c", active: "_1rmst083b" };
+
+// src/tabs/tab/Tab.tsx
+var import_jsx_runtime20 = require("react/jsx-runtime");
+var Tab = (0, import_react17.forwardRef)(
+  ({ content, state, className = "" }, ref) => {
+    const stateClass = state === "active" ? stateStyle3.active : stateStyle3.default;
+    return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle2, className), children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
+  }
+);
+
+// src/tabs/tab-bar/style.css.ts
+var activeTab = "s5asx20";
+
+// src/tabs/tab-bar/TabBar.tsx
+var import_jsx_runtime21 = require("react/jsx-runtime");
+var TabBar = (0, import_react18.forwardRef)(({ tabs, className, ...props }, ref) => {
+  const activeTabIndex = tabs.findIndex((tab) => tab.state === "active");
+  const updatedTabs = tabs.map((tab, index) => ({
+    ...tab,
+    state: index === (activeTabIndex !== -1 ? activeTabIndex : 0) ? "active" : "default"
+  }));
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+    Container,
+    {
+      ref,
+      display: "flex",
+      justifyContent: "center",
+      gap: 32,
+      className,
+      ...props,
+      children: updatedTabs.map((tab, index) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+        Tab,
+        {
+          content: tab.content,
+          state: tab.state,
+          className: tab.state === "active" ? activeTab : ""
+        },
+        index
+      ))
+    }
+  );
+});
 //# sourceMappingURL=index.cjs.map

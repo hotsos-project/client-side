@@ -3,7 +3,7 @@ import { Container, Text, Icon, Input, Badge, SocialContentList } from '@sos/com
 
 export default function Social() {
   return (
-    <div>
+    <>
       <Container display="flex" padding={16} gap={10} backgroundColor="backgroundNormalPrimary">
         <Container display="flex" justifyContent="center" alignItems="center" gap={10}>
           <Badge size="l">{'관심'}</Badge>
@@ -48,6 +48,6 @@ export default function Social() {
           <SocialContentList />
         </Container>
       </Container>
-    </div>
+    </>
   );
 }

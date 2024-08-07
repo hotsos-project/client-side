@@ -26,3 +26,4 @@ export { SocialContentList } from './list/social-content/SocialContentList';
 export { Input } from './input/Input';
 export { InputGroup } from './input/group/InputGroup';
 export { Notification } from './notification/Notification';
+export { TabBar } from './tabs/tab-bar/TabBar';

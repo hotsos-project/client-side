@@ -91,6 +91,7 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
         {/*  */}
         <Container display="flex" justifyContent="center" alignItems="center" width="100%">
           {children}
+          <img src="/earthquake3-01.jpg" height={240} />
         </Container>
         <Container padding={16}>
           <Text>{content}</Text>
@@ -98,24 +99,26 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
         <Container
           display="flex"
           padding={16}
-          justifyContent="space-between"
-          alignItems="center"
+          justifyContent="center"
+          gap={64}
           borderType="borderTop"
         >
-          <Button
-            variant="secondary"
-            design="outline"
-            mainText="사실이에요"
-            rightSubText={isTrueCounts}
-            size="s"
-          />
-          <Button
-            variant="secondary"
-            design="outline"
-            mainText="허위사실이에요"
-            rightSubText={isFalseCounts}
-            size="s"
-          />
+          <Container display="flex" gap={16}>
+            <Button
+              variant="secondary"
+              design="outline"
+              mainText="사실이에요"
+              rightSubText={isTrueCounts}
+              size="s"
+            />
+            <Button
+              variant="secondary"
+              design="outline"
+              mainText="허위사실이에요"
+              rightSubText={isFalseCounts}
+              size="s"
+            />
+          </Container>
           <Button icon="chat" mainText="" leftSubText={commentCounts} size="s"></Button>
         </Container>
       </Container>

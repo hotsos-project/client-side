@@ -241,15 +241,29 @@ import { forwardRef as forwardRef5, useState } from "react";
 
 // src/button/style.css.ts
 import { createRuntimeFn as _7a4683 } from "@vanilla-extract/recipes/createRuntimeFn";
-var buttonRecipe = _7a4683({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
+var buttonRecipe = _7a4683({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_1h4ydgag _89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_1h4ydgah _89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_1h4ydgai _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
 
 // src/button/Button.tsx
 import { jsx as jsx5, jsxs } from "react/jsx-runtime";
+var textColorMap = {
+  primary: {
+    fill: { textColor: "white", hovertextColor: "white" },
+    outline: { textColor: "uiPrimaryNormal", hovertextColor: "blue700" }
+  },
+  secondary: {
+    fill: { textColor: "white", hovertextColor: "white" },
+    outline: { textColor: "textNormal", hovertextColor: "textNormal" }
+  },
+  tertiary: {
+    fill: { textColor: "blueGray500", hovertextColor: "blueGray500" },
+    outline: { textColor: "blueGray500", hovertextColor: "blueGray500" }
+  }
+};
 var Button = forwardRef5(
   ({
     size,
-    variant,
-    design,
+    variant = "primary",
+    design = "fill",
     icon,
     leftSubText,
     rightSubText,
@@ -265,28 +279,10 @@ var Button = forwardRef5(
       variant,
       design
     });
-    let iconColor = "uiPrimaryNormal";
-    let hoverIconColor = "uiPrimaryNormal";
-    if (variant === "primary") {
-      if (design === "fill") {
-        iconColor = "white";
-        hoverIconColor = "white";
-      } else if (design === "outline") {
-        iconColor = "uiPrimaryNormal";
-        hoverIconColor = "blue700";
-      }
-    } else if (variant === "secondary") {
-      if (design === "fill") {
-        iconColor = "white";
-        hoverIconColor = "white";
-      } else if (design === "outline") {
-        iconColor = "textNormal";
-        hoverIconColor = "textNormal";
-      }
-    } else if (variant === "tertiary") {
-      iconColor = "blueGray500";
-      hoverIconColor = "blueGray500";
-    }
+    const { textColor, hovertextColor } = textColorMap[variant][design] || {
+      textColor: "uiPrimaryNormal",
+      hovertextColor: "uiPrimaryNormal"
+    };
     return /* @__PURE__ */ jsxs(
       "button",
       {
@@ -296,11 +292,11 @@ var Button = forwardRef5(
         onMouseLeave: () => setIsHovered(false),
         ...props,
         children: [
-          icon && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hoverIconColor : iconColor, children: icon }),
-          leftSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", children: leftSubText }),
-          mainText && /* @__PURE__ */ jsx5(Text, { textType: "body1", textMode: "bold", children: mainText }),
-          rightSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", children: rightSubText }),
-          isLoading && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hoverIconColor : iconColor, children: loadingSpinner })
+          icon && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hovertextColor : textColor, children: icon }),
+          leftSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: leftSubText }),
+          mainText && /* @__PURE__ */ jsx5(Text, { textType: "body1", textMode: "bold", color: isHovered ? hovertextColor : textColor, children: mainText }),
+          rightSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: rightSubText }),
+          isLoading && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hovertextColor : textColor, children: loadingSpinner })
         ]
       }
     );
@@ -728,20 +724,43 @@ var SocialContentList = forwardRef13(
           ]
         }
       ),
-      /* @__PURE__ */ jsx16(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children }),
+      /* @__PURE__ */ jsxs8(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children: [
+        children,
+        /* @__PURE__ */ jsx16("img", { src: "/earthquake3-01.jpg", height: 240 })
+      ] }),
       /* @__PURE__ */ jsx16(Container, { padding: 16, children: /* @__PURE__ */ jsx16(Text, { children: content }) }),
       /* @__PURE__ */ jsxs8(
         Container,
         {
           display: "flex",
           padding: 16,
-          justifyContent: "space-between",
-          alignItems: "center",
+          justifyContent: "center",
+          gap: 64,
           borderType: "borderTop",
           children: [
-            /* @__PURE__ */ jsx16(Button, { variant: "secondary", mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ jsx16(Button, { mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694", size: "s" }),
-            /* @__PURE__ */ jsx16(Button, { icon: "chat", leftSubText: commentCounts, size: "s" })
+            /* @__PURE__ */ jsxs8(Container, { display: "flex", gap: 16, children: [
+              /* @__PURE__ */ jsx16(
+                Button,
+                {
+                  variant: "secondary",
+                  design: "outline",
+                  mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694",
+                  rightSubText: isTrueCounts,
+                  size: "s"
+                }
+              ),
+              /* @__PURE__ */ jsx16(
+                Button,
+                {
+                  variant: "secondary",
+                  design: "outline",
+                  mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694",
+                  rightSubText: isFalseCounts,
+                  size: "s"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsx16(Button, { icon: "chat", mainText: "", leftSubText: commentCounts, size: "s" })
           ]
         }
       )
@@ -749,33 +768,54 @@ var SocialContentList = forwardRef13(
   }
 );
 
+// src/input/Input.tsx
+import { forwardRef as forwardRef14, useState as useState2 } from "react";
+
 // src/input/style.css.ts
-var buttonStyle = "_1phoqpw2";
+var buttonStyle = "_1phoqpw6";
 var commonStyle = "_1phoqpw0";
-var divStateStyle = { "default": "_1phoqpw4 _1phoqpw3", highlight: "_1phoqpw5 _1phoqpw3", warning: "_1phoqpw6 _1phoqpw3", disabled: "_1phoqpw7 _1phoqpw3" };
-var iconStyle2 = "_1phoqpwb";
-var inputStateStyle = { "default": "_1phoqpw8", highlight: "_1phoqpw9 _1phoqpw8", warning: "_1phoqpw8", disabled: "_1phoqpwa _1phoqpw8" };
+var disabledIconStyle = "_1phoqpwd";
+var divStateStyle = { "default": "_1phoqpw8 _1phoqpw7", highlight: "_1phoqpw9 _1phoqpw7", warning: "_1phoqpwa _1phoqpw7", disabled: "_1phoqpwb _1phoqpw7" };
+var iconStyle2 = "_1phoqpwc";
+var inputStateStyle = { "default": "_1phoqpw2", highlight: "_1phoqpw3", warning: "_1phoqpw4", disabled: "_1phoqpw5" };
 var inputStyle = "_1phoqpw1";
 
 // src/input/Input.tsx
 import { jsx as jsx17, jsxs as jsxs9 } from "react/jsx-runtime";
-var Input = ({
-  state = "warning",
-  showIcon = true,
-  showButton = true,
-  className,
-  ...props
-}) => {
-  const commonClass = commonStyle;
-  const divStateClass = divStateStyle[state];
-  const inputStateClass = inputStateStyle[state];
-  const iconClass = iconStyle2;
-  return /* @__PURE__ */ jsxs9("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
-    showIcon && /* @__PURE__ */ jsx17("span", { className: `material-symbols-outlined input-icon ${iconClass}`, children: "search" }),
-    /* @__PURE__ */ jsx17("input", { className: `${inputStyle} ${inputStateClass}`, type: "text", placeholder: "Placeholder" }),
-    showButton && /* @__PURE__ */ jsx17("button", { className: buttonStyle, children: /* @__PURE__ */ jsx17("span", { className: "material-symbols-outlined", children: "cancel" }) })
-  ] });
-};
+var Input = forwardRef14(
+  ({ state = "default", showIcon = true, showButton = true, className, ...props }, ref) => {
+    const [value, setValue] = useState2("");
+    const handleInputChange = (event) => {
+      setValue(event.target.value);
+    };
+    const handleButtonClick = () => {
+      setValue("");
+    };
+    const commonClass = commonStyle;
+    const divStateClass = divStateStyle[state];
+    const inputStateClass = inputStateStyle[state];
+    const iconClass = state === "disabled" ? disabledIconStyle : iconStyle2;
+    return /* @__PURE__ */ jsxs9("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
+      showIcon && /* @__PURE__ */ jsx17(Icon, { className: iconClass, children: "search" }),
+      /* @__PURE__ */ jsx17(
+        "input",
+        {
+          ref,
+          className: `${inputStyle} ${inputStateClass}`,
+          type: "text",
+          placeholder: "Placeholder",
+          value,
+          onChange: handleInputChange,
+          disabled: state === "disabled"
+        }
+      ),
+      showButton && value && state !== "disabled" && /* @__PURE__ */ jsx17("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx17(Icon, { color: "gray200", children: "cancel" }) })
+    ] });
+  }
+);
+
+// src/input/group/InputGroup.tsx
+import { forwardRef as forwardRef15 } from "react";
 
 // src/input/group/style.css.ts
 var inputStyle2 = "_1n4ve932";
@@ -785,42 +825,112 @@ var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
 import { jsx as jsx18, jsxs as jsxs10 } from "react/jsx-runtime";
-var InputGroup = ({
-  state = "default",
-  showButton = true,
-  showLabel = true,
-  labelContent = "label",
-  warningContent = "warning text",
-  className,
-  ...props
-}) => {
-  return /* @__PURE__ */ jsxs10("div", { className, ...props, children: [
-    showLabel && /* @__PURE__ */ jsxs10("div", { className: labeStyle, children: [
-      /* @__PURE__ */ jsx18("span", { children: labelContent }),
-      /* @__PURE__ */ jsx18("span", { className: starStyle, children: "*" })
-    ] }),
-    /* @__PURE__ */ jsxs10("div", { className: inputStyle2, children: [
-      /* @__PURE__ */ jsx18(Input, { state, showIcon: false }),
-      showButton && /* @__PURE__ */ jsx18(Button, {})
-    ] }),
-    state === "warning" && /* @__PURE__ */ jsx18("div", { className: warningStyle, children: warningContent })
-  ] });
-};
+var InputGroup = forwardRef15(
+  ({
+    state = "default",
+    showButton = true,
+    showLabel = true,
+    labelContent = "label",
+    warningContent = "warning text",
+    className,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsxs10("div", { className, ref, ...props, children: [
+      showLabel && /* @__PURE__ */ jsxs10("div", { className: labeStyle, children: [
+        /* @__PURE__ */ jsx18("span", { children: labelContent }),
+        /* @__PURE__ */ jsx18("span", { className: starStyle, children: "*" })
+      ] }),
+      /* @__PURE__ */ jsxs10("div", { className: inputStyle2, children: [
+        /* @__PURE__ */ jsx18(Input, { state, showIcon: false }),
+        showButton && /* @__PURE__ */ jsx18(Button, {})
+      ] }),
+      state === "warning" && /* @__PURE__ */ jsx18("div", { className: warningStyle, children: warningContent })
+    ] });
+  }
+);
+
+// src/notification/Notification.tsx
+import { forwardRef as forwardRef16 } from "react";
 
 // src/notification/style.css.ts
-var commonStyle2 = "_1pruyzf0";
-var stateStyle2 = { "default": "_1pruyzf1", warning: "_1pruyzf2", danger: "_1pruyzf3" };
+import { createRuntimeFn as _7a4687 } from "@vanilla-extract/recipes/createRuntimeFn";
+var stateStyle2 = _7a4687({ defaultClassName: "_1pruyzf1 _89s0wz46 _89s0wz32 _89s0wz2g _89s0wz3k _89s0wz4q", variantClassNames: { state: { "default": "_1rmst083b _1rmst086r", warning: "_1rmst081k _1rmst086r", danger: "_1rmst081 _1rmst0852" } }, defaultVariants: { state: "default" }, compoundVariants: [] });
 
 // src/notification/Notification.tsx
 import { jsx as jsx19, jsxs as jsxs11 } from "react/jsx-runtime";
-var Notification = ({ state = "danger" }) => {
-  const commonClass = commonStyle2;
-  const stateClass = stateStyle2[state];
-  return /* @__PURE__ */ jsxs11("div", { className: `${commonClass} ${stateClass}`, children: [
-    /* @__PURE__ */ jsx19("span", { className: "material-symbols-outlined", children: "warning" }),
-    "Warning"
-  ] });
-};
+var Notification = forwardRef16(
+  ({ state = "default", content = "warning", icon = "warning", ...props }, ref) => {
+    const textColor = state === "danger" ? "white" : state === "warning" ? "pink500" : "textNormal";
+    return /* @__PURE__ */ jsxs11(
+      Container,
+      {
+        ref,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 20,
+        className: clsx_default(stateStyle2({ state })),
+        ...props,
+        children: [
+          /* @__PURE__ */ jsx19(Icon, { color: textColor, children: icon }),
+          /* @__PURE__ */ jsx19(Text, { color: textColor, children: content })
+        ]
+      }
+    );
+  }
+);
+
+// src/tabs/tab-bar/TabBar.tsx
+import { forwardRef as forwardRef18 } from "react";
+
+// src/tabs/tab/Tab.tsx
+import { forwardRef as forwardRef17 } from "react";
+
+// src/tabs/tab/style.css.ts
+var commonStyle2 = "_1xjnc5f0";
+var stateStyle3 = { "default": "_1rmst083c", active: "_1rmst083b" };
+
+// src/tabs/tab/Tab.tsx
+import { jsx as jsx20 } from "react/jsx-runtime";
+var Tab = forwardRef17(
+  ({ content, state, className = "" }, ref) => {
+    const stateClass = state === "active" ? stateStyle3.active : stateStyle3.default;
+    return /* @__PURE__ */ jsx20(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle2, className), children: /* @__PURE__ */ jsx20(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
+  }
+);
+
+// src/tabs/tab-bar/style.css.ts
+var activeTab = "s5asx20";
+
+// src/tabs/tab-bar/TabBar.tsx
+import { jsx as jsx21 } from "react/jsx-runtime";
+var TabBar = forwardRef18(({ tabs, className, ...props }, ref) => {
+  const activeTabIndex = tabs.findIndex((tab) => tab.state === "active");
+  const updatedTabs = tabs.map((tab, index) => ({
+    ...tab,
+    state: index === (activeTabIndex !== -1 ? activeTabIndex : 0) ? "active" : "default"
+  }));
+  return /* @__PURE__ */ jsx21(
+    Container,
+    {
+      ref,
+      display: "flex",
+      justifyContent: "center",
+      gap: 32,
+      className,
+      ...props,
+      children: updatedTabs.map((tab, index) => /* @__PURE__ */ jsx21(
+        Tab,
+        {
+          content: tab.content,
+          state: tab.state,
+          className: tab.state === "active" ? activeTab : ""
+        },
+        index
+      ))
+    }
+  );
+});
 export {
   Badge,
   Button,
@@ -836,6 +946,7 @@ export {
   MessageList,
   Notification,
   SocialContentList,
+  TabBar,
   Text,
   Title,
   TopAppBar,
