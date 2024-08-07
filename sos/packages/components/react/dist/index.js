@@ -46,6 +46,9 @@ function clsx() {
 }
 var clsx_default = clsx;
 
+// src/common/text/style.css.ts
+var ellipsisTextStyle = "_163imo40";
+
 // src/common/text/Text.tsx
 import { jsx } from "react/jsx-runtime";
 var Text = forwardRef(
@@ -56,12 +59,14 @@ var Text = forwardRef(
     textMode = "default",
     textAlign,
     color,
+    ellipsis,
     className,
     ...props
   }, ref) => {
     const textClass = typographyRecipe({ textType, textMode, textAlign });
     const colorClass = colorSprinkles({ color });
-    const combinedClass = clsx_default([textClass, colorClass, className]);
+    const ellipsisClass = ellipsis ? ellipsisTextStyle : "";
+    const combinedClass = clsx_default([textClass, colorClass, ellipsisClass, className]);
     return /* @__PURE__ */ jsx(Component, { ref, className: combinedClass, style: { ...props.style }, ...props, children });
   }
 );
@@ -261,13 +266,14 @@ var textColorMap = {
 };
 var Button = forwardRef5(
   ({
+    children,
     size,
     variant = "primary",
     design = "fill",
     icon,
     leftSubText,
     rightSubText,
-    mainText = "Main Text",
+    // mainText = 'Main Text',
     isLoading = false,
     loadingSpinner = "refresh",
     className,
@@ -290,11 +296,12 @@ var Button = forwardRef5(
         className: clsx_default(buttonClass, className),
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
+        style: { ...props.style },
         ...props,
         children: [
           icon && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hovertextColor : textColor, children: icon }),
           leftSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: leftSubText }),
-          mainText && /* @__PURE__ */ jsx5(Text, { textType: "body1", textMode: "bold", color: isHovered ? hovertextColor : textColor, children: mainText }),
+          children && /* @__PURE__ */ jsx5(Text, { textType: "body1", textMode: "bold", color: isHovered ? hovertextColor : textColor, children }),
           rightSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: rightSubText }),
           isLoading && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hovertextColor : textColor, children: loadingSpinner })
         ]
@@ -351,7 +358,7 @@ var Badge = forwardRef6(
         className: clsx_default(badgeClass, className),
         display: "inline-block",
         ...props,
-        children: /* @__PURE__ */ jsx6(Text, { as: "span", textType, color: textColor, children })
+        children: /* @__PURE__ */ jsx6(Text, { as: "span", textType, color: textColor, style: { whiteSpace: "nowrap" }, children })
       }
     );
   }
@@ -1011,6 +1018,77 @@ var TabBar = forwardRef18(({ tabs, className, ...props }, ref) => {
     }
   );
 });
+
+// src/bottom-sheet/map/MapBottomSheet.tsx
+import { forwardRef as forwardRef19 } from "react";
+import { vars } from "@sos/style-tokens";
+import { jsx as jsx22, jsxs as jsxs12 } from "react/jsx-runtime";
+var MapBottomSheet = forwardRef19(
+  ({
+    children,
+    title,
+    badgeText,
+    subText,
+    infos,
+    subButtonIcon,
+    buttonText,
+    badgeColor,
+    className,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsxs12(
+      Container,
+      {
+        ref,
+        className,
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        padding: 20,
+        paddingBottom: 32,
+        gap: 20,
+        backgroundColor: "backgroundNormalPrimary",
+        borderRadius: "base",
+        boxShadow: "s",
+        ...props,
+        children: [
+          /* @__PURE__ */ jsxs12(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 16, children: [
+            /* @__PURE__ */ jsxs12(Container, { display: "flex", justifyContent: "space-between", width: "100%", children: [
+              /* @__PURE__ */ jsxs12(
+                Container,
+                {
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 6,
+                  style: { width: subButtonIcon ? `calc(100% - 48px)` : "100%" },
+                  children: [
+                    title && /* @__PURE__ */ jsx22(Text, { as: "span", textType: "heading2", textMode: "bold", ellipsis: true, children: title }),
+                    /* @__PURE__ */ jsxs12(Container, { display: "flex", alignItems: "center", width: "100%", gap: 6, children: [
+                      badgeText && /* @__PURE__ */ jsx22(Badge, { color: badgeColor, children: badgeText }),
+                      /* @__PURE__ */ jsx22(Text, { as: "span", textType: "footnote", color: "textAssistive", ellipsis: true, children: subText })
+                    ] })
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsx22(Container, { display: "flex", children: subButtonIcon && /* @__PURE__ */ jsx22(
+                Button,
+                {
+                  variant: "secondary",
+                  size: "m",
+                  icon: subButtonIcon,
+                  style: { borderRadius: vars.radius.borderRadius.round }
+                }
+              ) })
+            ] }),
+            infos && /* @__PURE__ */ jsx22(InfoBox, { infos, size: "s", backgroundColor: "backgroundElevatedSecondary" })
+          ] }),
+          buttonText && /* @__PURE__ */ jsx22(Button, { size: "m", children: buttonText }),
+          children
+        ]
+      }
+    );
+  }
+);
 export {
   Badge,
   Button,
@@ -1023,6 +1101,7 @@ export {
   InfoButton,
   Input,
   InputGroup,
+  MapBottomSheet,
   MessageList,
   Notification,
   SocialContentList,

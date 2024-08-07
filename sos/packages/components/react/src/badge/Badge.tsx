@@ -59,7 +59,7 @@ export const Badge = forwardRef<HTMLElement, BadgeProps>(
         display="inline-block"
         {...props}
       >
-        <Text as="span" textType={textType} color={textColor}>
+        <Text as="span" textType={textType} color={textColor} style={{ whiteSpace: 'nowrap' }}>
           {children}
         </Text>
       </Container>

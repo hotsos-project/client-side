@@ -38,13 +38,14 @@ const textColorMap: Record<
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
+      children,
       size,
       variant = 'primary',
       design = 'fill',
       icon,
       leftSubText,
       rightSubText,
-      mainText = 'Main Text',
+      // mainText = 'Main Text',
       isLoading = false,
       loadingSpinner = 'refresh',
       className,
@@ -71,6 +72,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={clsx(buttonClass, className)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        style={{ ...props.style }}
         {...props}
       >
         {icon && <Icon color={isHovered ? hovertextColor : textColor}>{icon}</Icon>}
@@ -79,9 +81,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {leftSubText}
           </Text>
         )}
-        {mainText && (
+        {children && (
           <Text textType="body1" textMode="bold" color={isHovered ? hovertextColor : textColor}>
-            {mainText}
+            {children}
           </Text>
         )}
         {rightSubText && (

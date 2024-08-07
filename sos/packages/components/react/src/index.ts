@@ -49,3 +49,5 @@ export { Notification } from './notification/Notification';
 
 // Tabs
 export { TabBar } from './tabs/tab-bar/TabBar';
+
+export { MapBottomSheet } from './bottom-sheet/map/MapBottomSheet';

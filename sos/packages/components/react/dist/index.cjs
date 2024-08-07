@@ -31,6 +31,7 @@ __export(src_exports, {
   InfoButton: () => InfoButton,
   Input: () => Input,
   InputGroup: () => InputGroup,
+  MapBottomSheet: () => MapBottomSheet,
   MessageList: () => MessageList,
   Notification: () => Notification,
   SocialContentList: () => SocialContentList,
@@ -97,6 +98,9 @@ function clsx() {
 }
 var clsx_default = clsx;
 
+// src/common/text/style.css.ts
+var ellipsisTextStyle = "_163imo40";
+
 // src/common/text/Text.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
 var Text = (0, import_react.forwardRef)(
@@ -107,12 +111,14 @@ var Text = (0, import_react.forwardRef)(
     textMode = "default",
     textAlign,
     color,
+    ellipsis,
     className,
     ...props
   }, ref) => {
     const textClass = typographyRecipe({ textType, textMode, textAlign });
     const colorClass = colorSprinkles({ color });
-    const combinedClass = clsx_default([textClass, colorClass, className]);
+    const ellipsisClass = ellipsis ? ellipsisTextStyle : "";
+    const combinedClass = clsx_default([textClass, colorClass, ellipsisClass, className]);
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Component, { ref, className: combinedClass, style: { ...props.style }, ...props, children });
   }
 );
@@ -312,13 +318,14 @@ var textColorMap = {
 };
 var Button = (0, import_react5.forwardRef)(
   ({
+    children,
     size,
     variant = "primary",
     design = "fill",
     icon,
     leftSubText,
     rightSubText,
-    mainText = "Main Text",
+    // mainText = 'Main Text',
     isLoading = false,
     loadingSpinner = "refresh",
     className,
@@ -341,11 +348,12 @@ var Button = (0, import_react5.forwardRef)(
         className: clsx_default(buttonClass, className),
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
+        style: { ...props.style },
         ...props,
         children: [
           icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hovertextColor : textColor, children: icon }),
           leftSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: leftSubText }),
-          mainText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", textMode: "bold", color: isHovered ? hovertextColor : textColor, children: mainText }),
+          children && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", textMode: "bold", color: isHovered ? hovertextColor : textColor, children }),
           rightSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: rightSubText }),
           isLoading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hovertextColor : textColor, children: loadingSpinner })
         ]
@@ -402,7 +410,7 @@ var Badge = (0, import_react6.forwardRef)(
         className: clsx_default(badgeClass, className),
         display: "inline-block",
         ...props,
-        children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { as: "span", textType, color: textColor, children })
+        children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Text, { as: "span", textType, color: textColor, style: { whiteSpace: "nowrap" }, children })
       }
     );
   }
@@ -1062,4 +1070,75 @@ var TabBar = (0, import_react18.forwardRef)(({ tabs, className, ...props }, ref)
     }
   );
 });
+
+// src/bottom-sheet/map/MapBottomSheet.tsx
+var import_react19 = require("react");
+var import_style_tokens = require("@sos/style-tokens");
+var import_jsx_runtime22 = require("react/jsx-runtime");
+var MapBottomSheet = (0, import_react19.forwardRef)(
+  ({
+    children,
+    title,
+    badgeText,
+    subText,
+    infos,
+    subButtonIcon,
+    buttonText,
+    badgeColor,
+    className,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+      Container,
+      {
+        ref,
+        className,
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        padding: 20,
+        paddingBottom: 32,
+        gap: 20,
+        backgroundColor: "backgroundNormalPrimary",
+        borderRadius: "base",
+        boxShadow: "s",
+        ...props,
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 16, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Container, { display: "flex", justifyContent: "space-between", width: "100%", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+                Container,
+                {
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 6,
+                  style: { width: subButtonIcon ? `calc(100% - 48px)` : "100%" },
+                  children: [
+                    title && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { as: "span", textType: "heading2", textMode: "bold", ellipsis: true, children: title }),
+                    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Container, { display: "flex", alignItems: "center", width: "100%", gap: 6, children: [
+                      badgeText && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Badge, { color: badgeColor, children: badgeText }),
+                      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { as: "span", textType: "footnote", color: "textAssistive", ellipsis: true, children: subText })
+                    ] })
+                  ]
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Container, { display: "flex", children: subButtonIcon && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+                Button,
+                {
+                  variant: "secondary",
+                  size: "m",
+                  icon: subButtonIcon,
+                  style: { borderRadius: import_style_tokens.vars.radius.borderRadius.round }
+                }
+              ) })
+            ] }),
+            infos && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(InfoBox, { infos, size: "s", backgroundColor: "backgroundElevatedSecondary" })
+          ] }),
+          buttonText && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Button, { size: "m", children: buttonText }),
+          children
+        ]
+      }
+    );
+  }
+);
 //# sourceMappingURL=index.cjs.map
