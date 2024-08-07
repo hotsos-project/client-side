@@ -2945,6 +2945,14 @@ const RAW_RUNTIME_STATE =
           ["regenerator-runtime", "npm:0.14.1"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:7.25.0", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/@babel-runtime-npm-7.25.0-a7bca33687-10c0.zip/node_modules/@babel/runtime/",\
+        "packageDependencies": [\
+          ["@babel/runtime", "npm:7.25.0"],\
+          ["regenerator-runtime", "npm:0.14.1"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["@babel/template", [\
@@ -5008,6 +5016,7 @@ const RAW_RUNTIME_STATE =
           ["next", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:14.2.5"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:18.3.1"],\
+          ["react-kakao-maps-sdk", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:1.1.27"],\
           ["typescript", "patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"]\
         ],\
         "linkType": "SOFT"\
@@ -12502,6 +12511,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["kakao.maps.d.ts", [\
+      ["npm:0.1.40", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/kakao.maps.d.ts-npm-0.1.40-31fc1b5fb8-10c0.zip/node_modules/kakao.maps.d.ts/",\
+        "packageDependencies": [\
+          ["kakao.maps.d.ts", "npm:0.1.40"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["keyv", [\
       ["npm:4.5.4", {\
         "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/keyv-npm-4.5.4-4c8e2cf7f7-10c0.zip/node_modules/keyv/",\
@@ -14832,6 +14850,34 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/react-is-npm-18.3.1-370a81e1e9-10c0.zip/node_modules/react-is/",\
         "packageDependencies": [\
           ["react-is", "npm:18.3.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-kakao-maps-sdk", [\
+      ["npm:1.1.27", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/react-kakao-maps-sdk-npm-1.1.27-ecc5e96aad-10c0.zip/node_modules/react-kakao-maps-sdk/",\
+        "packageDependencies": [\
+          ["react-kakao-maps-sdk", "npm:1.1.27"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:1.1.27", {\
+        "packageLocation": "./.yarn/__virtual__/react-kakao-maps-sdk-virtual-8367805a16/5/AppData/Local/Yarn/Berry/cache/react-kakao-maps-sdk-npm-1.1.27-ecc5e96aad-10c0.zip/node_modules/react-kakao-maps-sdk/",\
+        "packageDependencies": [\
+          ["react-kakao-maps-sdk", "virtual:11e05643fc76f55c72b812ad6ba3e17bd60114a3ce2763747def4effecffb7e77dbef3d3e53b9b51c117573d95fd83b70727d1d9706cabef4b0193720dfc7f93#npm:1.1.27"],\
+          ["@babel/runtime", "npm:7.25.0"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["@types/react-dom", "npm:18.3.0"],\
+          ["kakao.maps.d.ts", "npm:0.1.40"],\
+          ["react", "npm:18.3.1"],\
+          ["react-dom", "virtual:bfdf8a948227ecc7c8b6c2424dd3409409f8e0d3cd7ce9453f22fdac7326c909ba64b715bbb16d2ee054667abe5275ddf16da7a7814f9529285fe1526abc46de#npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\

@@ -1,5 +1,5 @@
 export declare const shadowSprinkles: ((props: {
-    boxShadow?: "xs" | "s" | "m" | "l" | "elevatedTop" | undefined;
+    boxShadow?: "s" | "xs" | "m" | "l" | "elevatedTop" | undefined;
 }) => string) & {
     properties: Set<"boxShadow">;
 };
