@@ -241,7 +241,7 @@ import { forwardRef as forwardRef5, useState } from "react";
 
 // src/button/style.css.ts
 import { createRuntimeFn as _7a4683 } from "@vanilla-extract/recipes/createRuntimeFn";
-var buttonRecipe = _7a4683({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
+var buttonRecipe = _7a4683({ defaultClassName: "_1h4ydgaf _89s0wz5m", variantClassNames: { size: { s: "_1h4ydgag _89s0wz40 _89s0wz2w _89s0wz29 _89s0wz3d", m: "_1h4ydgah _89s0wz42 _89s0wz2y _89s0wz2b _89s0wz3f", l: "_1h4ydgai _89s0wz44 _89s0wz30 _89s0wz2d _89s0wz3h" }, variant: { primary: "_1rmst081", secondary: "_1rmst081", tertiary: "_1rmst0830" }, design: { fill: "_1h4ydgam", outline: "_1h4ydgan _1bfxj7r3y _1bfxj7r3u" } }, defaultVariants: { size: "m", variant: "primary", design: "fill" }, compoundVariants: [[{ variant: "primary", design: "fill" }, "_1h4ydgao _1rmst081 _1rmst086x"], [{ variant: "primary", design: "outline" }, "_1h4ydgap _1rmst083f _1bfxj7r3f"], [{ variant: "secondary", design: "fill" }, "_1h4ydgaq _1rmst081 _1rmst086i"], [{ variant: "secondary", design: "outline" }, "_1h4ydgar _1rmst083b _1bfxj7r27"], [{ variant: "tertiary" }, "_1h4ydgas _1rmst0830"]] });
 
 // src/button/Button.tsx
 import { jsx as jsx5, jsxs } from "react/jsx-runtime";
@@ -746,7 +746,7 @@ var SocialContentList = forwardRef13(
 );
 
 // src/input/Input.tsx
-import { forwardRef as forwardRef14, useState as useState2 } from "react";
+import { forwardRef as forwardRef14, useState as useState2, useEffect } from "react";
 
 // src/input/style.css.ts
 var buttonStyle = "_1phoqpw6";
@@ -760,13 +760,32 @@ var inputStyle = "_1phoqpw1";
 // src/input/Input.tsx
 import { jsx as jsx17, jsxs as jsxs9 } from "react/jsx-runtime";
 var Input = forwardRef14(
-  ({ state = "default", showIcon = true, showButton = true, className, ...props }, ref) => {
-    const [value, setValue] = useState2("");
+  ({
+    state = "default",
+    showIcon = true,
+    showButton = true,
+    type,
+    className,
+    placeholder,
+    value,
+    onChange,
+    ...props
+  }, ref) => {
+    const [internalValue, setInternalValue] = useState2(value || "");
+    useEffect(() => {
+      setInternalValue(value || "");
+    }, [value]);
     const handleInputChange = (event) => {
-      setValue(event.target.value);
+      setInternalValue(event.target.value);
+      if (onChange) {
+        onChange(event);
+      }
     };
     const handleButtonClick = () => {
-      setValue("");
+      setInternalValue("");
+      if (onChange) {
+        onChange({ target: { value: "" } });
+      }
     };
     const commonClass = commonStyle;
     const divStateClass = divStateStyle[state];
@@ -779,14 +798,14 @@ var Input = forwardRef14(
         {
           ref,
           className: `${inputStyle} ${inputStateClass}`,
-          type: "text",
-          placeholder: "Placeholder",
-          value,
+          type,
+          placeholder,
+          value: internalValue,
           onChange: handleInputChange,
           disabled: state === "disabled"
         }
       ),
-      showButton && value && state !== "disabled" && /* @__PURE__ */ jsx17("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx17(Icon, { color: "gray200", children: "cancel" }) })
+      showButton && internalValue && state !== "disabled" && /* @__PURE__ */ jsx17("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx17(Icon, { color: "gray200", children: "cancel" }) })
     ] });
   }
 );
@@ -809,6 +828,10 @@ var InputGroup = forwardRef15(
     showLabel = true,
     labelContent = "label",
     warningContent = "warning text",
+    placeholder = "",
+    type,
+    value,
+    onChange,
     className,
     ...props
   }, ref) => {
@@ -818,8 +841,18 @@ var InputGroup = forwardRef15(
         /* @__PURE__ */ jsx18("span", { className: starStyle, children: "*" })
       ] }),
       /* @__PURE__ */ jsxs10("div", { className: inputStyle2, children: [
-        /* @__PURE__ */ jsx18(Input, { state, showIcon: false }),
-        showButton && /* @__PURE__ */ jsx18(Button, {})
+        /* @__PURE__ */ jsx18(
+          Input,
+          {
+            state,
+            type,
+            showIcon: false,
+            placeholder,
+            value,
+            onChange
+          }
+        ),
+        showButton && /* @__PURE__ */ jsx18(Container, { children: /* @__PURE__ */ jsx18(Button, { variant: "primary", design: "outline", mainText: "\uC911\uBCF5\uD655\uC778" }) })
       ] }),
       state === "warning" && /* @__PURE__ */ jsx18("div", { className: warningStyle, children: warningContent })
     ] });
