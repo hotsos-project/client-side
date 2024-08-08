@@ -323,9 +323,9 @@ var Button = (0, import_react5.forwardRef)(
     variant = "primary",
     design = "fill",
     icon,
+    iconColor,
     leftSubText,
     rightSubText,
-    // mainText = 'Main Text',
     isLoading = false,
     loadingSpinner = "refresh",
     className,
@@ -351,11 +351,11 @@ var Button = (0, import_react5.forwardRef)(
         style: { ...props.style },
         ...props,
         children: [
-          icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hovertextColor : textColor, children: icon }),
+          icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: iconColor || (isHovered ? hovertextColor : textColor), children: icon }),
           leftSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: leftSubText }),
           children && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", textMode: "bold", color: isHovered ? hovertextColor : textColor, children }),
           rightSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: rightSubText }),
-          isLoading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: isHovered ? hovertextColor : textColor, children: loadingSpinner })
+          isLoading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: iconColor || (isHovered ? hovertextColor : textColor), children: loadingSpinner })
         ]
       }
     );
@@ -916,6 +916,7 @@ var Input = (0, import_react14.forwardRef)(
     state = "default",
     showIcon = true,
     showButton = true,
+    showPasswordToggle = false,
     type,
     className,
     placeholder,
@@ -924,9 +925,15 @@ var Input = (0, import_react14.forwardRef)(
     ...props
   }, ref) => {
     const [internalValue, setInternalValue] = (0, import_react14.useState)(value || "");
+    const [inputType, setInputType] = (0, import_react14.useState)(type);
+    const [iconColor, setIconColor] = (0, import_react14.useState)("gray200");
     (0, import_react14.useEffect)(() => {
       setInternalValue(value || "");
     }, [value]);
+    (0, import_react14.useEffect)(() => {
+      setInputType(type);
+      setIconColor(type === "password" ? "gray200" : "gray600");
+    }, [type]);
     const handleInputChange = (event) => {
       setInternalValue(event.target.value);
       if (onChange) {
@@ -937,6 +944,15 @@ var Input = (0, import_react14.forwardRef)(
       setInternalValue("");
       if (onChange) {
         onChange({ target: { value: "" } });
+      }
+    };
+    const handlePasswordToggle = () => {
+      if (inputType === "password") {
+        setInputType("text");
+        setIconColor("gray600");
+      } else {
+        setInputType("password");
+        setIconColor("gray200");
       }
     };
     const commonClass = commonStyle;
@@ -950,14 +966,15 @@ var Input = (0, import_react14.forwardRef)(
         {
           ref,
           className: `${inputStyle} ${inputStateClass}`,
-          type,
+          type: inputType,
           placeholder,
           value: internalValue,
           onChange: handleInputChange,
           disabled: state === "disabled"
         }
       ),
-      showButton && internalValue && state !== "disabled" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { color: "gray200", children: "cancel" }) })
+      showButton && internalValue && state !== "disabled" && type !== "password" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { type: "button", className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { color: "gray200", children: "cancel" }) }),
+      showPasswordToggle && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { type: "button", className: buttonStyle, onClick: handlePasswordToggle, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { color: iconColor, children: "remove_red_eye" }) })
     ] });
   }
 );
@@ -978,6 +995,8 @@ var InputGroup = (0, import_react15.forwardRef)(
     state = "default",
     showButton = true,
     showLabel = true,
+    showStar = true,
+    showPasswordToggle = false,
     labelContent = "label",
     warningContent = "warning text",
     placeholder = "",
@@ -990,7 +1009,7 @@ var InputGroup = (0, import_react15.forwardRef)(
     return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className, ref, ...props, children: [
       showLabel && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: labeStyle, children: [
         /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { children: labelContent }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: starStyle, children: "*" })
+        showStar && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: starStyle, children: "*" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: inputStyle2, children: [
         /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
@@ -1001,10 +1020,11 @@ var InputGroup = (0, import_react15.forwardRef)(
             showIcon: false,
             placeholder,
             value,
-            onChange
+            onChange,
+            showPasswordToggle
           }
         ),
-        showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, { variant: "primary", design: "outline", mainText: "\uC911\uBCF5\uD655\uC778" }) })
+        showButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Button, { variant: "primary", design: "outline", mainText: "main text" }) })
       ] }),
       state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: warningStyle, children: warningContent })
     ] });
