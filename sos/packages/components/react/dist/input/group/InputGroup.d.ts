@@ -4,6 +4,8 @@ interface InputGroupProps extends CommonProps {
     type?: string;
     showButton?: boolean;
     showLabel?: boolean;
+    showStar?: boolean;
+    showPasswordToggle?: boolean;
     labelContent?: string;
     warningContent?: string;
     placeholder?: string;
@@ -16,6 +18,8 @@ interface InputGroupProps extends CommonProps {
  * @param {'default' | 'highlight' | 'warning'} props.state - 인풋 그룹의 상태 (필수)
  * @param {boolean} [props.showButton=true] - 버튼 표시 여부 (선택, 기본값: true)
  * @param {boolean} [props.showLabel=true] - 라벨 표시 여부 (선택, 기본값: true)
+ * @param {boolean} [props.showStar=true] - 별표 표시 여부 (선택, 기본값: true)
+ * @param {boolean} [props.showPasswordToggle=false] - 비밀번호 토글 버튼 표시 여부 (선택, 기본값: false)
  * @param {string} [props.labelContent='label'] - 라벨 텍스트 (선택, 기본값: 'label')
  * @param {string} [props.warningContent='warning text'] - 경고 텍스트 (선택, 기본값: 'warning text')
  * @param {string} [props.placeholder] - 인풋의 플레이스홀더 (선택)

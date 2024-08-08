@@ -10,6 +10,7 @@ import { Text } from '../common/text/Text';
 
 interface ButtonProps extends CommonProps, NonNullable<ButtonVariants> {
   icon?: string;
+  iconColor?: Palette; // Add iconColor prop
   leftSubText?: string | number;
   rightSubText?: string | number;
   mainText?: string;
@@ -43,9 +44,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = 'primary',
       design = 'fill',
       icon,
+      iconColor,
       leftSubText,
       rightSubText,
-      // mainText = 'Main Text',
       isLoading = false,
       loadingSpinner = 'refresh',
       className,
@@ -75,7 +76,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         style={{ ...props.style }}
         {...props}
       >
-        {icon && <Icon color={isHovered ? hovertextColor : textColor}>{icon}</Icon>}
+        {icon && <Icon color={iconColor || (isHovered ? hovertextColor : textColor)}>{icon}</Icon>}
         {leftSubText && (
           <Text textType="body1" color={isHovered ? hovertextColor : textColor}>
             {leftSubText}
@@ -91,7 +92,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {rightSubText}
           </Text>
         )}
-        {isLoading && <Icon color={isHovered ? hovertextColor : textColor}>{loadingSpinner}</Icon>}
+        {isLoading && (
+          <Icon color={iconColor || (isHovered ? hovertextColor : textColor)}>
+            {loadingSpinner}
+          </Icon>
+        )}
       </button>
     );
   },
