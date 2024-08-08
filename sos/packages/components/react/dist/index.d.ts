@@ -23,6 +23,7 @@ export { Title } from './header/title/Title';
 export { Headline } from './header/headline/Headline';
 export { MessageList } from './list/message/MessageList';
 export { SocialContentList } from './list/social-content/SocialContentList';
+export { TabList } from './list/tab/TabList';
 export { Input } from './input/Input';
 export { InputGroup } from './input/group/InputGroup';
 export { Notification } from './notification/Notification';

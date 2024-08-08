@@ -1,26 +1,62 @@
 'use client';
 
-import { MapBottomSheet, Container } from '@sos/components-react';
+import { Text, Container, Title, Headline, InfoBox, TabList } from '@sos/components-react';
+import Link from 'next/link';
 
 export default function MyPage() {
   const infos = [
-    { title: '가응 시간', content: '9:00 ~ 18:00' },
-    { title: '설치 장소', content: '진료실' },
+    { title: '나의 팔로잉', content: '0명' },
+    { title: '관심지역', content: '0명' },
+    { title: '재난문자', content: '0명' },
   ];
   return (
-    <div>
-      <Container display="flex" width="100dvw" padding={16}>
-        <MapBottomSheet
-          title="신동보건지소"
-          badgeText="심장충격기"
-          subText="서울시 무슨구 신동면 중리"
-          infos={infos}
-          subButtonIcon="phone"
-          buttonText="길찾기"
-          badgeColor="pink"
-        />
+    <>
+      <Container display="flex" flexDirection="column" gap={16}>
+        <Title>마이페이지</Title>
+        <Container padding={16}>
+          <Container
+            display="flex"
+            flexDirection="column"
+            padding={24}
+            gap={10}
+            borderType="border"
+            borderRadius="base"
+            borderColor={'gray200'}
+          >
+            <Text textType="heading1" textMode="bold">
+              name
+            </Text>
+            <Text>email@gmail.com</Text>
+            <Text>adress</Text>
+          </Container>
+        </Container>
+        <Container display="flex" paddingX={16}>
+          <InfoBox infos={infos} backgroundColor="gray100" />
+        </Container>
+        <Container
+          display="flex"
+          flexDirection="column"
+          paddingY={16}
+          gap={10}
+          backgroundColor="backgroundNormalPrimary"
+        >
+          <Headline mainText="설정" subText="" icon={false} />
+          <TabList icon="person">계정 설정</TabList>
+          <TabList icon="gps_fixed">위치 설정</TabList>
+          <TabList icon="notifications_active">알림 설정</TabList>
+        </Container>
+        <Container
+          display="flex"
+          flexDirection="column"
+          paddingY={16}
+          gap={10}
+          backgroundColor="backgroundNormalPrimary"
+        >
+          <Headline mainText="설정" subText="" icon={false} />
+          <TabList icon="priority_high">공지사항</TabList>
+          <TabList icon="gavel">법적고지</TabList>
+        </Container>
       </Container>
-      <h1>마이페이지</h1>
-    </div>
+    </>
   );
 }

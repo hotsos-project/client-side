@@ -39,6 +39,7 @@ export { Headline } from './header/headline/Headline';
 // List
 export { MessageList } from './list/message/MessageList';
 export { SocialContentList } from './list/social-content/SocialContentList';
+export { TabList } from './list/tab/TabList';
 
 // Inputs
 export { Input } from './input/Input';
