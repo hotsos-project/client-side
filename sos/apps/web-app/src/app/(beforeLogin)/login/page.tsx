@@ -36,14 +36,10 @@ export default function Login() {
         display="flex"
         flexDirection="column"
         height={'100dvh'}
-        style={{ position: 'relative' }}
+        justifyContent="center"
+        alignItems="center"
       >
-        <Container
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          style={{ position: 'absolute', width: '100%', height: '20rem' }}
-        >
+        <Container display="flex" justifyContent="center" alignItems="center" paddingBottom={56}>
           <Text textType="display2" textMode="bold" color="uiPrimaryNormal">
             {'긴급 재난 알림'}
           </Text>
@@ -54,7 +50,7 @@ export default function Login() {
           flexDirection="column"
           justifyContent="center"
           width="100dvw"
-          height="100%"
+          paddingTop={56}
           onSubmit={handleSubmit}
         >
           <Container display="flex" flexDirection="column" paddingX={16} gap={24}>
@@ -62,28 +58,31 @@ export default function Login() {
               onChange={onChangeloginId}
               state="default"
               placeholder="아이디"
+              showStar={false}
               showButton={false}
               labelContent="아이디"
             ></InputGroup>
             <InputGroup
               onChange={onChangePassword}
               state="default"
-              placeholder="******"
+              placeholder="비밀번호"
+              showStar={false}
               showButton={false}
               labelContent="비밀번호"
               type="password"
+              showPasswordToggle={true}
             ></InputGroup>
           </Container>
           <Container paddingX={16} paddingY={36}>
-            <Button size="l" mainText="로그인" />
+            <Button size="l">{'로그인'}</Button>
           </Container>
           <Container display="flex" justifyContent="center" paddingX={16} gap={10}>
             <Link href="/signup" passHref>
-              <Text as="a">{'회원가입'}</Text>
+              <Text>{'회원가입'}</Text>
             </Link>
             <Divider orientation="vertical" color="textNormal" />
             <Link href="/login/find-id" passHref>
-              <Text as="a">{'계정찾기'}</Text>
+              <Text>{'계정찾기'}</Text>
             </Link>
           </Container>
         </Container>

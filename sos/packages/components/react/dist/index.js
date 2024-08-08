@@ -271,9 +271,9 @@ var Button = forwardRef5(
     variant = "primary",
     design = "fill",
     icon,
+    iconColor,
     leftSubText,
     rightSubText,
-    // mainText = 'Main Text',
     isLoading = false,
     loadingSpinner = "refresh",
     className,
@@ -299,11 +299,11 @@ var Button = forwardRef5(
         style: { ...props.style },
         ...props,
         children: [
-          icon && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hovertextColor : textColor, children: icon }),
+          icon && /* @__PURE__ */ jsx5(Icon, { color: iconColor || (isHovered ? hovertextColor : textColor), children: icon }),
           leftSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: leftSubText }),
           children && /* @__PURE__ */ jsx5(Text, { textType: "body1", textMode: "bold", color: isHovered ? hovertextColor : textColor, children }),
           rightSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", color: isHovered ? hovertextColor : textColor, children: rightSubText }),
-          isLoading && /* @__PURE__ */ jsx5(Icon, { color: isHovered ? hovertextColor : textColor, children: loadingSpinner })
+          isLoading && /* @__PURE__ */ jsx5(Icon, { color: iconColor || (isHovered ? hovertextColor : textColor), children: loadingSpinner })
         ]
       }
     );
@@ -864,6 +864,7 @@ var Input = forwardRef14(
     state = "default",
     showIcon = true,
     showButton = true,
+    showPasswordToggle = false,
     type,
     className,
     placeholder,
@@ -872,9 +873,15 @@ var Input = forwardRef14(
     ...props
   }, ref) => {
     const [internalValue, setInternalValue] = useState2(value || "");
+    const [inputType, setInputType] = useState2(type);
+    const [iconColor, setIconColor] = useState2("gray200");
     useEffect(() => {
       setInternalValue(value || "");
     }, [value]);
+    useEffect(() => {
+      setInputType(type);
+      setIconColor(type === "password" ? "gray200" : "gray600");
+    }, [type]);
     const handleInputChange = (event) => {
       setInternalValue(event.target.value);
       if (onChange) {
@@ -885,6 +892,15 @@ var Input = forwardRef14(
       setInternalValue("");
       if (onChange) {
         onChange({ target: { value: "" } });
+      }
+    };
+    const handlePasswordToggle = () => {
+      if (inputType === "password") {
+        setInputType("text");
+        setIconColor("gray600");
+      } else {
+        setInputType("password");
+        setIconColor("gray200");
       }
     };
     const commonClass = commonStyle;
@@ -898,14 +914,15 @@ var Input = forwardRef14(
         {
           ref,
           className: `${inputStyle} ${inputStateClass}`,
-          type,
+          type: inputType,
           placeholder,
           value: internalValue,
           onChange: handleInputChange,
           disabled: state === "disabled"
         }
       ),
-      showButton && internalValue && state !== "disabled" && /* @__PURE__ */ jsx17("button", { className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx17(Icon, { color: "gray200", children: "cancel" }) })
+      showButton && internalValue && state !== "disabled" && type !== "password" && /* @__PURE__ */ jsx17("button", { type: "button", className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx17(Icon, { color: "gray200", children: "cancel" }) }),
+      showPasswordToggle && /* @__PURE__ */ jsx17("button", { type: "button", className: buttonStyle, onClick: handlePasswordToggle, children: /* @__PURE__ */ jsx17(Icon, { color: iconColor, children: "remove_red_eye" }) })
     ] });
   }
 );
@@ -926,6 +943,8 @@ var InputGroup = forwardRef15(
     state = "default",
     showButton = true,
     showLabel = true,
+    showStar = true,
+    showPasswordToggle = false,
     labelContent = "label",
     warningContent = "warning text",
     placeholder = "",
@@ -938,7 +957,7 @@ var InputGroup = forwardRef15(
     return /* @__PURE__ */ jsxs10("div", { className, ref, ...props, children: [
       showLabel && /* @__PURE__ */ jsxs10("div", { className: labeStyle, children: [
         /* @__PURE__ */ jsx18("span", { children: labelContent }),
-        /* @__PURE__ */ jsx18("span", { className: starStyle, children: "*" })
+        showStar && /* @__PURE__ */ jsx18("span", { className: starStyle, children: "*" })
       ] }),
       /* @__PURE__ */ jsxs10("div", { className: inputStyle2, children: [
         /* @__PURE__ */ jsx18(
@@ -949,10 +968,11 @@ var InputGroup = forwardRef15(
             showIcon: false,
             placeholder,
             value,
-            onChange
+            onChange,
+            showPasswordToggle
           }
         ),
-        showButton && /* @__PURE__ */ jsx18(Container, { children: /* @__PURE__ */ jsx18(Button, { variant: "primary", design: "outline", mainText: "\uC911\uBCF5\uD655\uC778" }) })
+        showButton && /* @__PURE__ */ jsx18(Container, { children: /* @__PURE__ */ jsx18(Button, { variant: "primary", design: "outline", mainText: "main text" }) })
       ] }),
       state === "warning" && /* @__PURE__ */ jsx18("div", { className: warningStyle, children: warningContent })
     ] });
