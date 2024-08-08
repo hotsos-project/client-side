@@ -1,5 +1,5 @@
 'use client';
-import { useState, FormEventHandler, ChangeEventHandler } from 'react';
+import { useState, useEffect, FormEventHandler, ChangeEventHandler } from 'react';
 import { Button, InputGroup, Container } from '@sos/components-react';
 import { useRouter } from 'next/navigation';
 
@@ -9,7 +9,33 @@ export default function Signup() {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [newPhoneNumber, setNewPhoneNumber] = useState('');
   const [nickname, setNickname] = useState('');
+  const [isPhoneVerified, setIsPhoneVerified] = useState(false);
+  const [verificationCode, setVerificationCode] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    // 모든 필드가 채워졌는지 확인하여 폼 유효성 상태를 업데이트
+    const isFormComplete =
+      newId &&
+      newPassword &&
+      confirmNewPassword &&
+      newPhoneNumber &&
+      nickname &&
+      isPhoneVerified &&
+      verificationCode;
+
+    setIsFormValid(isFormComplete);
+    console.log('Form Valid:', isFormComplete);
+  }, [
+    newId,
+    newPassword,
+    confirmNewPassword,
+    newPhoneNumber,
+    nickname,
+    isPhoneVerified,
+    verificationCode,
+  ]);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -17,7 +43,6 @@ export default function Signup() {
     router.push('/');
   };
 
-  // 휴대폰 번호 입력시 formatting
   const formatPhoneNumber = (value: string) => {
     if (!value) return value;
 
@@ -36,6 +61,16 @@ export default function Signup() {
     setNewPhoneNumber(formattedPhoneNumber);
   };
 
+  const handlePhoneRequest = () => {
+    // 여기에 인증 요청 로직
+    setIsPhoneVerified(true);
+    console.log('Phone Verified');
+  };
+
+  const handleVerificationCodeChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setVerificationCode(e.target.value);
+  };
+
   return (
     <>
       <Container
@@ -50,10 +85,12 @@ export default function Signup() {
         <InputGroup
           state="default"
           placeholder="아이디를 입력하세요"
+          buttonText="중복확인"
           showLabel={true}
           labelContent="아이디"
           value={newId}
           onChange={(e) => setNewId(e.target.value)}
+          buttonType="button"
         />
         <InputGroup
           state="default"
@@ -61,6 +98,7 @@ export default function Signup() {
           type="password"
           showLabel={true}
           showButton={false}
+          showPasswordToggle={true}
           labelContent="비밀번호"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
@@ -71,6 +109,7 @@ export default function Signup() {
           type="password"
           showLabel={true}
           showButton={false}
+          showPasswordToggle={true}
           labelContent="비밀번호 확인"
           value={confirmNewPassword}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
@@ -79,22 +118,41 @@ export default function Signup() {
           state="default"
           placeholder="휴대폰 번호를 입력하세요"
           showLabel={true}
-          showButton={false}
+          showButton={true}
+          buttonText="인증요청"
           labelContent="휴대전화"
           value={newPhoneNumber}
           onChange={handleChangePhoneNumber}
+          onButtonClick={handlePhoneRequest}
+          buttonType="button"
+        />
+        <InputGroup
+          state={isPhoneVerified ? 'default' : 'disabled'}
+          placeholder="인증번호를 입력하세요"
+          showLabel={true}
+          showButton={true}
+          buttonText="인증확인"
+          labelContent="휴대전화 인증번호"
+          value={verificationCode}
+          onChange={handleVerificationCodeChange}
+          buttonDisabled={!isPhoneVerified}
+          inputDisabled={!isPhoneVerified}
+          buttonType="button"
         />
         <InputGroup
           state="default"
           placeholder="닉네임을 입력하세요"
           showLabel={true}
           showButton={false}
+          showStar={false}
           labelContent="닉네임"
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
         />
         <Container display="flex" paddingTop={56}>
-          <Button mainText="시작하기" />
+          <Button size="m" type="submit" disabled={!isFormValid}>
+            {'시작하기'}
+          </Button>
         </Container>
       </Container>
     </>

@@ -2,7 +2,6 @@ import { style, styleVariants } from '@vanilla-extract/css';
 import { vars } from '@sos/style-tokens';
 
 export const commonStyle = style({
-  display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   width: '100%',
@@ -22,7 +21,7 @@ export const inputStyle = style({
   textAlign: 'left',
   fontSize: vars.typography.fontSize[16],
   lineHeight: vars.typography.lineHeight[21],
-  backgroundColor: vars.color.$palette.background.normalPrimary,
+  // backgroundColor: vars.color.$palette.background.normalPrimary,
   selectors: {
     '&::placeholder': {
       color: vars.color.$palette.gray[200],
@@ -60,26 +59,38 @@ export const buttonStyle = style({
  * 공통 div 스타일
  */
 const baseDivStyle = style({
-  backgroundColor: vars.color.$palette.background.normalPrimary,
   border: `0.0625rem solid ${vars.color.$palette.gray[200]}`,
 });
 
 export const divStateStyle = styleVariants({
-  default: [baseDivStyle, { color: vars.color.$palette.gray[500] }],
+  default: [
+    baseDivStyle,
+    {
+      color: vars.color.$palette.gray[500],
+      backgroundColor: vars.color.$palette.background.normalPrimary,
+    },
+  ],
   highlight: [
     baseDivStyle,
-    { color: vars.color.$palette.gray[700], backgroundColor: vars.color.$palette.gray[100] },
+    {
+      color: vars.color.$palette.gray[700],
+      backgroundColor: vars.color.$palette.gray[100],
+    },
   ],
   warning: [
     baseDivStyle,
     {
       color: vars.color.$palette.pink[700],
       border: `0.0625rem solid ${vars.color.$palette.pink[500]}`,
+      backgroundColor: vars.color.$palette.background.normalPrimary,
     },
   ],
   disabled: [
     baseDivStyle,
-    { backgroundColor: vars.color.$palette.gray[50], color: vars.color.$palette.gray[200] },
+    {
+      color: vars.color.$palette.gray[200],
+      backgroundColor: vars.color.$palette.gray[50],
+    },
   ],
 });
 

@@ -1,4 +1,5 @@
 import { CommonProps } from '../../common/types';
+import React from 'react';
 interface HeadlineProps extends CommonProps {
     mainText: string;
     subText?: string;
@@ -14,5 +15,5 @@ interface HeadlineProps extends CommonProps {
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...any} props - 기타 HTML 속성
  */
-export declare const Headline: React.FC<HeadlineProps>;
+export declare const Headline: React.ForwardRefExoticComponent<HeadlineProps & React.RefAttributes<HTMLDivElement>>;
 export {};

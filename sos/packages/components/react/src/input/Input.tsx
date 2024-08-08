@@ -11,6 +11,7 @@ import {
 } from './style.css';
 import { Icon } from '../common/icon/Icon';
 import { Palette } from '../style/color/sprinkles.css';
+import { Container } from '../common/container/Container';
 
 interface InputProps extends CommonProps {
   state: 'default' | 'highlight' | 'warning' | 'disabled';
@@ -21,20 +22,9 @@ interface InputProps extends CommonProps {
   showPasswordToggle?: boolean;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
-/**
- * Input 컴포넌트
- *
- * @param {'default' | 'highlight' | 'warning' | 'disabled'} props.state - 인풋의 상태 (필수)
- * @param {boolean} [props.showIcon=true] - 아이콘 표시 여부 (선택, 기본값: true)
- * @param {boolean} [props.showButton=true] - 버튼 표시 여부 (선택, 기본값: true)
- * @param {boolean} [props.showPasswordToggle=false] - 비밀번호 토글 버튼 표시 여부 (선택, 기본값: false)
- * @param {string} [props.className] - 추가 CSS 클래스 (선택)
- * @param {string} props.placeholder - 인풋의 플레이스홀더 (필수)
- * @param {...any} props - 기타 HTML 속성
- * @param {React.Ref<HTMLInputElement>} ref - 전달받은 ref
- */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
@@ -47,6 +37,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       placeholder,
       value,
       onChange,
+      disabled = false,
       ...props
     },
     ref,
@@ -88,13 +79,23 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       }
     };
 
-    const commonClass = commonStyle;
     const divStateClass = divStateStyle[state];
     const inputStateClass = inputStateStyle[state];
-    const iconClass = state === 'disabled' ? disabledIconStyle : iconStyle;
+    const iconClass = disabled ? disabledIconStyle : iconStyle;
 
     return (
-      <div className={`${commonClass} ${divStateClass} ${className || ''}`} {...props}>
+      <Container
+        display="flex"
+        justifyContent="space-between"
+        width={'100%'}
+        paddingLeft={12}
+        paddingRight={18}
+        borderRadius="base"
+        gap={8}
+        style={{ height: '3rem' }}
+        className={`${divStateClass} ${className || ''}`}
+        {...props}
+      >
         {showIcon && <Icon className={iconClass}>{'search'}</Icon>}
         <input
           ref={ref}
@@ -103,9 +104,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           placeholder={placeholder}
           value={internalValue}
           onChange={handleInputChange}
-          disabled={state === 'disabled'}
+          disabled={disabled}
         />
-        {showButton && internalValue && state !== 'disabled' && type !== 'password' && (
+        {showButton && internalValue && !disabled && type !== 'password' && (
           <button type="button" className={buttonStyle} onClick={handleButtonClick}>
             <Icon color="gray200">{'cancel'}</Icon>
           </button>
@@ -115,7 +116,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             <Icon color={iconColor}>{'remove_red_eye'}</Icon>
           </button>
         )}
-      </div>
+      </Container>
     );
   },
 );
