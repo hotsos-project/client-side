@@ -8,13 +8,13 @@ import {
   Headline,
   MessageList,
 } from '@sos/components-react';
-import { useUserInfo } from '../_hooks/useUserInfo';
+import { useMemberInfoQuery } from '@/app/_hooks';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const userInfo = useUserInfo();
+  const { data, error } = useMemberInfoQuery();
   const router = useRouter();
-  console.log(userInfo.data);
+  console.log(data, error);
 
   const routeToPage = (route: string) => {
     router.push(route);
