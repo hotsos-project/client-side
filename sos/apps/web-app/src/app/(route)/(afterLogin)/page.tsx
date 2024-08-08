@@ -8,13 +8,16 @@ import {
   Headline,
   MessageList,
 } from '@sos/components-react';
-import { useMemberInfoQuery } from '@/app/_hooks';
+import { useMemberInfoQuery, useSidosQuery, useGugunsQuery } from '@/app/_hooks';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const { data, error } = useMemberInfoQuery();
+  // 테스트 코드
+  console.log(useMemberInfoQuery().data);
+  console.log(useSidosQuery().data);
+  console.log(useGugunsQuery(1).data);
+
   const router = useRouter();
-  console.log(data, error);
 
   const routeToPage = (route: string) => {
     router.push(route);
