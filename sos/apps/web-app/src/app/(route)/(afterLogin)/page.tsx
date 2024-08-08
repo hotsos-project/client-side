@@ -8,14 +8,28 @@ import {
   Headline,
   MessageList,
 } from '@sos/components-react';
-import { useMemberInfoQuery, useSidosQuery, useGugunsQuery } from '@/app/_hooks';
+import {
+  useFetchMemberInfo,
+  useFetchSidos,
+  useFetchGuguns,
+  useFetchReplies,
+  useCreateReply,
+} from '@/app/_hooks';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Home() {
   // 테스트 코드
-  console.log(useMemberInfoQuery().data);
-  console.log(useSidosQuery().data);
-  console.log(useGugunsQuery(1).data);
+  console.log(useFetchMemberInfo().data);
+  console.log(useFetchSidos().data);
+  console.log(useFetchGuguns(1).data);
+  console.log(useFetchReplies(1).data);
+
+  const mutation = useCreateReply();
+
+  useEffect(() => {
+    // mutation.mutate({ commentId: 0, memberId: 0, data: { content: 'hello' } });
+  }, []);
 
   const router = useRouter();
 

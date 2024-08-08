@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchMemberInfo } from '../../_libs/api/members';
+import { fetchSidos } from '@/app/_libs';
 
-export const useMemberInfoQuery = () => {
+export const useFetchSidos = () => {
   const isClient = typeof window !== 'undefined';
 
   return useQuery({
-    queryKey: ['memberInfo'],
-    queryFn: fetchMemberInfo,
+    queryKey: ['sidos'],
+    queryFn: fetchSidos,
     enabled: isClient ? !!localStorage.getItem('accessToken') : false,
   });
 };

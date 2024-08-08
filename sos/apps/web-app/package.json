@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.51.21",
-    "@tanstack/react-query-devtools": "^5.51.21",
     "axios": "^1.7.3",
     "next": "14.2.5",
     "react": "^18",
@@ -19,6 +18,7 @@
   "devDependencies": {
     "@sos/components-react": "workspace:^",
     "@sos/style-tokens": "workspace:^",
+    "@tanstack/react-query-devtools": "^5.51.23",
     "@types/node": "^20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

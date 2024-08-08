@@ -4,3 +4,4 @@ export * from './auth';
 export * from './members';
 export * from './guguns';
 export * from './sidos';
+export * from './replies';

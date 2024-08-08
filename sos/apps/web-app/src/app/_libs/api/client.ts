@@ -12,7 +12,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export const handleApiRequest = async <T, M extends HttpMethod, D = unknown>(
+export const handleApiRequest = async <T, M extends HttpMethod, D = undefined>(
   url: string,
   method: M,
   data?: ConditionalData<M, D>,

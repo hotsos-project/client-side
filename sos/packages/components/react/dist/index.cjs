@@ -82,7 +82,7 @@ var shadowSprinkles = (0, import_createRuntimeSprinkles5.createSprinkles)({ cond
 // src/common/text/Text.tsx
 var import_react = require("react");
 
-// ../../../../../../../../AppData/Local/Yarn/Berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;

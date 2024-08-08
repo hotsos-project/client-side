@@ -1,1 +1,1 @@
-export * from './useGugunsQuery';
+export * from './useFetchGuguns';

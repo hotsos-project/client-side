@@ -1,1 +1,1 @@
-export * from './useMemberInfoQuery';
+export * from './useFetchMemberInfo';

@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchSidos } from '@/app/_libs';
+import { fetchGuguns } from '@/app/_libs';
 
-export const useSidosQuery = () => {
+export const useFetchGuguns = (sidoId: number) => {
   const isClient = typeof window !== 'undefined';
 
   return useQuery({
-    queryKey: ['sidos'],
-    queryFn: fetchSidos,
+    queryKey: ['guguns', sidoId],
+    queryFn: () => fetchGuguns(sidoId),
     enabled: isClient ? !!localStorage.getItem('accessToken') : false,
   });
 };
