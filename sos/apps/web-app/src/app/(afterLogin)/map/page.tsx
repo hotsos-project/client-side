@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import useKakaoLoader from './components/userKakaoLoader';
 import { useAedData } from '../../_hooks/useAedData';
-import { Container, Input, Chips } from '@sos/components-react';
+import { Container, Input, Chips, MapBottomSheet } from '@sos/components-react';
 
 export default function BasicMap() {
   useKakaoLoader();
@@ -112,6 +112,7 @@ export default function BasicMap() {
         style={{
           width: '100%',
           height: '100vh',
+          position: 'relative',
         }}
         level={2}
         padding={{ top: 50, right: 50, bottom: 50, left: 50 }}
@@ -122,17 +123,17 @@ export default function BasicMap() {
             lng: lon,
           }}
         />
-        {aedData.map((aed, index) => (
-          <React.Fragment key={index}>
+        {aedData.map((aed) => (
+          <React.Fragment key={aed.id}>
             <MapMarker
               position={{
                 lat: aed.lat,
                 lng: aed.lon,
               }}
-              image={selectedMarker === index ? selectedMarkerImage : defaultMarkerImage}
-              onClick={() => setSelectedMarker(index)}
+              image={selectedMarker === aed.id ? selectedMarkerImage : defaultMarkerImage}
+              onClick={() => setSelectedMarker(aed.id)}
             />
-            {selectedMarker === index && (
+            {selectedMarker === aed.id && (
               <CustomOverlayMap position={{ lat: aed.lat, lng: aed.lon }}>
                 <div
                   style={{
@@ -151,6 +152,28 @@ export default function BasicMap() {
           </React.Fragment>
         ))}
       </Map>
+      <Container
+        display="flex"
+        width={'100%'}
+        padding={16}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          zIndex: 999,
+        }}
+      >
+        <MapBottomSheet
+          title="Title"
+          infos={[
+            { title: 'Title 1', content: 'Content 1' },
+            { title: 'Title 2', content: 'Content 2' },
+          ]}
+          badgeText="제세동기"
+          subText="서울특별시 00 00 000"
+          buttonText="길찾기"
+          subButtonIcon="call"
+        />
+      </Container>
     </>
   );
 }
