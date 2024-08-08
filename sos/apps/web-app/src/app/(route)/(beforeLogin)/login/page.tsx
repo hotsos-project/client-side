@@ -1,14 +1,14 @@
 'use client';
 import { useState, FormEventHandler, ChangeEventHandler } from 'react';
 import { Button, InputGroup, Container, Text, Divider } from '@sos/components-react';
-import { useAuth } from '@/app/_hooks/useAuth';
+import { useLogin } from '@/app/_hooks';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Login() {
   const [loginId, setloginId] = useState('');
   const [password, setPassword] = useState('');
-  const mutation = useAuth();
+  const mutation = useLogin();
   const router = useRouter();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
@@ -75,15 +75,15 @@ export default function Login() {
             ></InputGroup>
           </Container>
           <Container paddingX={16} paddingY={36}>
-            <Button size="l" mainText="로그인" />
+            <Button size="l">로그인</Button>
           </Container>
           <Container display="flex" justifyContent="center" paddingX={16} gap={10}>
             <Link href="/signup" passHref>
-              <Text as="a">{'회원가입'}</Text>
+              <Text>{'회원가입'}</Text>
             </Link>
             <Divider orientation="vertical" color="textNormal" />
             <Link href="/login/find-id" passHref>
-              <Text as="a">{'계정찾기'}</Text>
+              <Text>{'계정찾기'}</Text>
             </Link>
           </Container>
         </Container>

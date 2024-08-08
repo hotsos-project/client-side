@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import RQProvicer from './_component/RQProvicer';
+import RQProvicer from './_components/RQProvicer';
 import './globals.css';
 
 export const metadata: Metadata = {

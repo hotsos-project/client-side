@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchUserInfo } from '@/app/_lib/apiCalls';
+import { fetchMemberInfo } from '../../_libs/api/members';
 
-export const useUserInfo = () => {
+export const useMemberInfoQuery = () => {
   const isClient = typeof window !== 'undefined';
 
   return useQuery({
-    queryKey: ['userInfo'],
-    queryFn: fetchUserInfo,
+    queryKey: ['memberInfo'],
+    queryFn: fetchMemberInfo,
     enabled: isClient ? !!localStorage.getItem('accessToken') : false,
-    retry: false,
   });
 };
