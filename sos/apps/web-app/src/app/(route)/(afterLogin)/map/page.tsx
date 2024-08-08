@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
-import useKakaoLoader from './components/userKakaoLoader';
-import { useAedData } from '../../_hooks/useAedData';
+import useKakaoLoader from './_components/userKakaoLoader';
+import { useAedData } from '../../../_hooks/useAedData';
 import { Container, Input, Chips, MapBottomSheet } from '@sos/components-react';
 
 export default function BasicMap() {
@@ -115,7 +115,7 @@ export default function BasicMap() {
           position: 'relative',
         }}
         level={2}
-        padding={{ top: 50, right: 50, bottom: 50, left: 50 }}
+        padding={50}
       >
         <MapMarker
           position={{
