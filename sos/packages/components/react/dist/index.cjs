@@ -912,7 +912,6 @@ var inputStyle = "_1phoqpw1";
 // src/input/Input.tsx
 var import_jsx_runtime17 = require("react/jsx-runtime");
 var Input = (0, import_react14.forwardRef)(
-
   ({
     state = "default",
     showIcon = true,
@@ -951,7 +950,6 @@ var Input = (0, import_react14.forwardRef)(
         {
           ref,
           className: `${inputStyle} ${inputStateClass}`,
-
           type,
           placeholder,
           value: internalValue,
