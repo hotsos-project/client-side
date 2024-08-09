@@ -10,12 +10,14 @@ import { Text } from '../common/text/Text';
 
 interface ButtonProps extends CommonProps, NonNullable<ButtonVariants> {
   icon?: string;
-  iconColor?: Palette; // Add iconColor prop
+  iconColor?: Palette;
   leftSubText?: string | number;
   rightSubText?: string | number;
   mainText?: string;
   isLoading?: boolean;
   loadingSpinner?: string;
+  disabled?: boolean; // Add disabled prop
+  type?: 'button' | 'submit' | 'reset'; // Add type prop for button types
 }
 
 const textColorMap: Record<
@@ -49,6 +51,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       rightSubText,
       isLoading = false,
       loadingSpinner = 'refresh',
+      disabled = false,
+      type = 'button', // Set default type to 'button'
       className,
       ...props
     },
@@ -70,30 +74,40 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        type={type} // Apply type prop to the button element
         className={clsx(buttonClass, className)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{ ...props.style }}
+        disabled={disabled} // Apply disabled prop to the button element
         {...props}
       >
-        {icon && <Icon color={iconColor || (isHovered ? hovertextColor : textColor)}>{icon}</Icon>}
+        {icon && (
+          <Icon color={iconColor || (isHovered && !disabled ? hovertextColor : textColor)}>
+            {icon}
+          </Icon>
+        )}
         {leftSubText && (
-          <Text textType="body1" color={isHovered ? hovertextColor : textColor}>
+          <Text textType="body1" color={isHovered && !disabled ? hovertextColor : textColor}>
             {leftSubText}
           </Text>
         )}
         {children && (
-          <Text textType="body1" textMode="bold" color={isHovered ? hovertextColor : textColor}>
+          <Text
+            textType="body1"
+            textMode="bold"
+            color={isHovered && !disabled ? hovertextColor : textColor}
+          >
             {children}
           </Text>
         )}
         {rightSubText && (
-          <Text textType="body1" color={isHovered ? hovertextColor : textColor}>
+          <Text textType="body1" color={isHovered && !disabled ? hovertextColor : textColor}>
             {rightSubText}
           </Text>
         )}
         {isLoading && (
-          <Icon color={iconColor || (isHovered ? hovertextColor : textColor)}>
+          <Icon color={iconColor || (isHovered && !disabled ? hovertextColor : textColor)}>
             {loadingSpinner}
           </Icon>
         )}

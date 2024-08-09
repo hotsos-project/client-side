@@ -10,10 +10,16 @@ type TabBarProps = {
 
 export const TabBar = forwardRef<HTMLElement, TabBarProps>(({ tabs, className, ...props }, ref) => {
   const activeTabIndex = tabs.findIndex((tab) => tab.state === 'active');
-  const updatedTabs = tabs.map((tab, index) => ({
-    ...tab,
-    state: index === (activeTabIndex !== -1 ? activeTabIndex : 0) ? 'active' : 'default',
-  }));
+
+  const updatedTabs = tabs.map((tab, index) => {
+    const newState: 'default' | 'active' =
+      index === (activeTabIndex !== -1 ? activeTabIndex : 0) ? 'active' : 'default';
+
+    return {
+      ...tab,
+      state: newState,
+    };
+  });
 
   return (
     <Container

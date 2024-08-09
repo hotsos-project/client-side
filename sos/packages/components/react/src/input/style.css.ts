@@ -21,7 +21,7 @@ export const inputStyle = style({
   textAlign: 'left',
   fontSize: vars.typography.fontSize[16],
   lineHeight: vars.typography.lineHeight[21],
-  // backgroundColor: vars.color.$palette.background.normalPrimary,
+  backgroundColor: vars.color.$palette.background.normalPrimary,
   selectors: {
     '&::placeholder': {
       color: vars.color.$palette.gray[200],
@@ -31,7 +31,7 @@ export const inputStyle = style({
     },
     '&:disabled': {
       backgroundColor: vars.color.$palette.gray[50],
-      color: vars.color.$palette.gray[50],
+      color: vars.color.$palette.gray[200],
     },
   },
 });
@@ -43,6 +43,7 @@ export const inputStateStyle = styleVariants({
   },
   warning: {},
   disabled: {},
+  readonly: {},
 });
 
 export const buttonStyle = style({
@@ -90,6 +91,13 @@ export const divStateStyle = styleVariants({
     {
       color: vars.color.$palette.gray[200],
       backgroundColor: vars.color.$palette.gray[50],
+    },
+  ],
+  readonly: [
+    baseDivStyle,
+    {
+      color: vars.color.$palette.gray[500],
+      backgroundColor: vars.color.$palette.background.normalPrimary,
     },
   ],
 });
