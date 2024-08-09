@@ -1,7 +1,12 @@
+'use client';
+
+import { DropDownBox, Container } from '@sos/components-react';
+
 export default function FindId() {
+  const options = ['option1', 'option2', 'option3'];
   return (
-    <div>
-      <h1>아이디 찾기</h1>
-    </div>
+    <>
+      <DropDownBox options={options} />
+    </>
   );
 }
