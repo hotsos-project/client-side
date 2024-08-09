@@ -40,6 +40,7 @@ export { Headline } from './header/headline/Headline';
 export { MessageList } from './list/message/MessageList';
 export { SocialContentList } from './list/social-content/SocialContentList';
 export { TabList } from './list/tab/TabList';
+export { FollowingList } from './list/following/FollowingList';
 
 // Inputs
 export { Input } from './input/Input';

@@ -7,7 +7,7 @@ import { Container } from '../../common/container/Container';
 import { CommonProps } from '../../common/types';
 
 interface InputGroupProps extends CommonProps {
-  state: 'default' | 'highlight' | 'warning' | 'disabled';
+  state: 'default' | 'highlight' | 'warning' | 'disabled' | 'readonly';
   type?: string;
   showButton?: boolean;
   showLabel?: boolean;
@@ -17,11 +17,11 @@ interface InputGroupProps extends CommonProps {
   warningContent?: string;
   placeholder?: string;
   value?: string;
+  defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   buttonText?: string;
   buttonDisabled?: boolean;
   onButtonClick?: () => void;
-  inputDisabled?: boolean;
   buttonType?: 'button' | 'submit' | 'reset';
 }
 
@@ -39,8 +39,8 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
       placeholder = '',
       type,
       value,
+      defaultValue = '',
       buttonDisabled = false,
-      inputDisabled = false,
       buttonType = 'button',
       onButtonClick,
       onChange,
@@ -64,9 +64,11 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
             showIcon={false}
             placeholder={placeholder}
             value={value}
+            defaultValue={defaultValue}
             onChange={onChange}
             showPasswordToggle={showPasswordToggle}
-            disabled={inputDisabled}
+            disabled={state === 'disabled'}
+            readOnly={state === 'readonly'}
           />
           {showButton && (
             <Container>
@@ -74,7 +76,7 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
                 variant="primary"
                 design="outline"
                 onClick={onButtonClick}
-                disabled={buttonDisabled}
+                disabled={buttonDisabled || state === 'disabled'}
                 type={buttonType}
               >
                 {buttonText}

@@ -136,7 +136,6 @@ export default function Signup() {
           value={verificationCode}
           onChange={handleVerificationCodeChange}
           buttonDisabled={!isPhoneVerified}
-          inputDisabled={!isPhoneVerified}
           buttonType="button"
         />
         <InputGroup

@@ -18,9 +18,7 @@ export const inputStyle = style({
   display: 'flex',
   gap: vars.spacing.spacing[10],
   selectors: {
-    '&.disabledStyle': {
-      // backgroundColor: vars.color.$palette.gray[50],
-    },
+    '&.disabledStyle': {},
     '&.highlightStyle': {},
     '&.warningStyle': {},
   },

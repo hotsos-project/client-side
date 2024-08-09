@@ -14,15 +14,17 @@ import { Palette } from '../style/color/sprinkles.css';
 import { Container } from '../common/container/Container';
 
 interface InputProps extends CommonProps {
-  state: 'default' | 'highlight' | 'warning' | 'disabled';
+  state: 'default' | 'highlight' | 'warning' | 'disabled' | 'readonly';
   placeholder: string;
   type?: string;
   showIcon?: boolean;
   showButton?: boolean;
   showPasswordToggle?: boolean;
   value?: string;
+  defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  readOnly?: boolean; // readOnly prop 추가
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -36,18 +38,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       className,
       placeholder,
       value,
+      defaultValue = '',
       onChange,
-      disabled = false,
+      readOnly = false,
       ...props
     },
     ref,
   ) => {
-    const [internalValue, setInternalValue] = useState(value || '');
+    const [internalValue, setInternalValue] = useState(value || defaultValue);
     const [inputType, setInputType] = useState(type);
     const [iconColor, setIconColor] = useState<Palette>('gray200');
 
     useEffect(() => {
-      setInternalValue(value || '');
+      setInternalValue(value !== undefined ? value : internalValue);
     }, [value]);
 
     useEffect(() => {
@@ -81,12 +84,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const divStateClass = divStateStyle[state];
     const inputStateClass = inputStateStyle[state];
-    const iconClass = disabled ? disabledIconStyle : iconStyle;
+    const iconClass = state === 'disabled' ? disabledIconStyle : iconStyle;
 
     return (
       <Container
         display="flex"
         justifyContent="space-between"
+        alignItems="center"
         width={'100%'}
         paddingLeft={12}
         paddingRight={18}
@@ -104,13 +108,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           placeholder={placeholder}
           value={internalValue}
           onChange={handleInputChange}
-          disabled={disabled}
+          disabled={state === 'disabled'}
+          readOnly={state === 'readonly' || readOnly}
         />
-        {showButton && internalValue && !disabled && type !== 'password' && (
-          <button type="button" className={buttonStyle} onClick={handleButtonClick}>
-            <Icon color="gray200">{'cancel'}</Icon>
-          </button>
-        )}
+        {showButton &&
+          internalValue &&
+          state !== 'disabled' &&
+          type !== 'password' &&
+          !readOnly && (
+            <button type="button" className={buttonStyle} onClick={handleButtonClick}>
+              <Icon color="gray200">{'cancel'}</Icon>
+            </button>
+          )}
         {showPasswordToggle && (
           <button type="button" className={buttonStyle} onClick={handlePasswordToggle}>
             <Icon color={iconColor}>{'remove_red_eye'}</Icon>
