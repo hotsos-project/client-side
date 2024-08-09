@@ -1,1 +1,1 @@
-export * from './useSidosQuery';
+export * from './useFetchSidos';
