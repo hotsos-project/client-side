@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/layout/block/Block.tsx"],
-  "sourcesContent": ["import { View, Text } from 'react-native';\r\n\r\nexport const Block = () => {\r\n  return (\r\n    <View>\r\n      <Text>Hello</Text>\r\n    </View>\r\n  );\r\n};\r\n"],
-  "mappings": "AAAA,OAAS,QAAAA,EAAM,QAAAC,MAAY,eAEpB,IAAMC,EAAQ,IAEjB,oBAACF,EAAA,KACC,oBAACC,EAAA,KAAK,OAAK,CACb",
-  "names": ["View", "Text", "Block"]
-}
