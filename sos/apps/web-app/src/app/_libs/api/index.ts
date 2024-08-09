@@ -14,6 +14,6 @@ export * from './guguns';
 export * from './locations';
 export * from './members';
 export * from './notices';
-export * from './notices';
+export * from './replies';
 export * from './s3';
 export * from './sidos';

@@ -30,7 +30,7 @@ var shadowSprinkles = _ad2215({ conditions: void 0, styles: { boxShadow: { value
 // src/common/text/Text.tsx
 import { forwardRef } from "react";
 
-// ../../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
@@ -665,35 +665,28 @@ var Title = forwardRef11(
 );
 
 // src/header/headline/style.css.ts
+var headlineStyle = "_1oxa1x50";
 var headlineSubStyle = "_1oxa1x52";
+var iconStyle = "_1oxa1x51";
 
 // src/header/headline/Headline.tsx
-import React from "react";
 import { jsx as jsx14, jsxs as jsxs6 } from "react/jsx-runtime";
-var Headline = React.forwardRef(
-  ({ mainText = "mainText", subText, icon = false, color = "textNormal", className, ...props }, ref) => {
-    return /* @__PURE__ */ jsxs6(
-      Container,
-      {
-        display: "flex",
-        paddingLeft: 16,
-        paddingRight: 4,
-        paddingY: 10,
-        ref,
-        className,
-        ...props,
-        children: [
-          /* @__PURE__ */ jsx14(Text, { textType: "heading2", textMode: "bold", as: "h3", color, children: mainText }),
-          /* @__PURE__ */ jsxs6(Container, { className: headlineSubStyle, children: [
-            subText && /* @__PURE__ */ jsx14(Text, { textType: "body3", as: "p", color: "textAssistive", children: subText }),
-            icon && /* @__PURE__ */ jsx14(Icon, { children: icon })
-          ] })
-        ]
-      }
-    );
-  }
-);
-Headline.displayName = "Headline";
+var Headline = ({
+  mainText = "mainText",
+  subText = "subText",
+  icon = true,
+  color = "textNormal",
+  className,
+  ...props
+}) => {
+  return /* @__PURE__ */ jsxs6("div", { className: clsx_default(headlineStyle, className), ...props, children: [
+    /* @__PURE__ */ jsx14(Text, { textType: "heading2", textMode: "bold", as: "h3", color, children: mainText }),
+    /* @__PURE__ */ jsxs6("div", { className: headlineSubStyle, children: [
+      subText && /* @__PURE__ */ jsx14(Text, { textType: "body3", as: "p", color: "textAssistive", children: subText }),
+      icon && /* @__PURE__ */ jsx14("span", { className: clsx_default("material-symbols-outlined", iconStyle), children: "chevron_right" })
+    ] })
+  ] });
+};
 
 // src/list/message/MessageList.tsx
 import { forwardRef as forwardRef12 } from "react";
@@ -852,21 +845,12 @@ var SocialContentList = forwardRef13(
   }
 );
 
-// src/list/tab/TabList.tsx
-import { forwardRef as forwardRef14 } from "react";
-import { jsx as jsx17, jsxs as jsxs9 } from "react/jsx-runtime";
-var TabList = forwardRef14(({ icon, children }, ref) => {
-  return /* @__PURE__ */ jsxs9(Container, { display: "flex", alignItems: "center", paddingX: 24, paddingY: 16, gap: 16, ref, children: [
-    /* @__PURE__ */ jsx17(Icon, { children: icon }),
-    /* @__PURE__ */ jsx17(Text, { textMode: "bold", children })
-  ] });
-});
-
 // src/input/Input.tsx
-import { forwardRef as forwardRef15, useState as useState2, useEffect } from "react";
+import { forwardRef as forwardRef14, useState as useState2, useEffect } from "react";
 
 // src/input/style.css.ts
 var buttonStyle = "_1phoqpw6";
+var commonStyle = "_1phoqpw0";
 var disabledIconStyle = "_1phoqpwd";
 var divStateStyle = { "default": "_1phoqpw8 _1phoqpw7", highlight: "_1phoqpw9 _1phoqpw7", warning: "_1phoqpwa _1phoqpw7", disabled: "_1phoqpwb _1phoqpw7" };
 var iconStyle2 = "_1phoqpwc";
@@ -874,8 +858,8 @@ var inputStateStyle = { "default": "_1phoqpw2", highlight: "_1phoqpw3", warning:
 var inputStyle = "_1phoqpw1";
 
 // src/input/Input.tsx
-import { jsx as jsx18, jsxs as jsxs10 } from "react/jsx-runtime";
-var Input = forwardRef15(
+import { jsx as jsx17, jsxs as jsxs9 } from "react/jsx-runtime";
+var Input = forwardRef14(
   ({
     state = "default",
     showIcon = true,
@@ -886,7 +870,6 @@ var Input = forwardRef15(
     placeholder,
     value,
     onChange,
-    disabled = false,
     ...props
   }, ref) => {
     const [internalValue, setInternalValue] = useState2(value || "");
@@ -920,56 +903,42 @@ var Input = forwardRef15(
         setIconColor("gray200");
       }
     };
+    const commonClass = commonStyle;
     const divStateClass = divStateStyle[state];
     const inputStateClass = inputStateStyle[state];
-    const iconClass = disabled ? disabledIconStyle : iconStyle2;
-    return /* @__PURE__ */ jsxs10(
-      Container,
-      {
-        display: "flex",
-        justifyContent: "space-between",
-        width: "100%",
-        paddingLeft: 12,
-        paddingRight: 18,
-        borderRadius: "base",
-        gap: 8,
-        style: { height: "3rem" },
-        className: `${divStateClass} ${className || ""}`,
-        ...props,
-        children: [
-          showIcon && /* @__PURE__ */ jsx18(Icon, { className: iconClass, children: "search" }),
-          /* @__PURE__ */ jsx18(
-            "input",
-            {
-              ref,
-              className: `${inputStyle} ${inputStateClass}`,
-              type: inputType,
-              placeholder,
-              value: internalValue,
-              onChange: handleInputChange,
-              disabled
-            }
-          ),
-          showButton && internalValue && !disabled && type !== "password" && /* @__PURE__ */ jsx18("button", { type: "button", className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx18(Icon, { color: "gray200", children: "cancel" }) }),
-          showPasswordToggle && /* @__PURE__ */ jsx18("button", { type: "button", className: buttonStyle, onClick: handlePasswordToggle, children: /* @__PURE__ */ jsx18(Icon, { color: iconColor, children: "remove_red_eye" }) })
-        ]
-      }
-    );
+    const iconClass = state === "disabled" ? disabledIconStyle : iconStyle2;
+    return /* @__PURE__ */ jsxs9("div", { className: `${commonClass} ${divStateClass} ${className || ""}`, ...props, children: [
+      showIcon && /* @__PURE__ */ jsx17(Icon, { className: iconClass, children: "search" }),
+      /* @__PURE__ */ jsx17(
+        "input",
+        {
+          ref,
+          className: `${inputStyle} ${inputStateClass}`,
+          type: inputType,
+          placeholder,
+          value: internalValue,
+          onChange: handleInputChange,
+          disabled: state === "disabled"
+        }
+      ),
+      showButton && internalValue && state !== "disabled" && type !== "password" && /* @__PURE__ */ jsx17("button", { type: "button", className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx17(Icon, { color: "gray200", children: "cancel" }) }),
+      showPasswordToggle && /* @__PURE__ */ jsx17("button", { type: "button", className: buttonStyle, onClick: handlePasswordToggle, children: /* @__PURE__ */ jsx17(Icon, { color: iconColor, children: "remove_red_eye" }) })
+    ] });
   }
 );
 
 // src/input/group/InputGroup.tsx
-import { forwardRef as forwardRef16 } from "react";
+import { forwardRef as forwardRef15 } from "react";
 
 // src/input/group/style.css.ts
 var inputStyle2 = "_1n4ve932";
-var labelStyle = "_1n4ve930";
+var labeStyle = "_1n4ve930";
 var starStyle = "_1n4ve931";
 var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
-import { jsx as jsx19, jsxs as jsxs11 } from "react/jsx-runtime";
-var InputGroup = forwardRef16(
+import { jsx as jsx18, jsxs as jsxs10 } from "react/jsx-runtime";
+var InputGroup = forwardRef15(
   ({
     state = "default",
     showButton = true,
@@ -978,25 +947,20 @@ var InputGroup = forwardRef16(
     showPasswordToggle = false,
     labelContent = "label",
     warningContent = "warning text",
-    buttonText = "Submit",
     placeholder = "",
     type,
     value,
-    buttonDisabled = false,
-    inputDisabled = false,
-    buttonType = "button",
-    onButtonClick,
     onChange,
     className,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxs11(Container, { display: "flex", flexDirection: "column", className, ref, ...props, children: [
-      showLabel && /* @__PURE__ */ jsxs11(Container, { className: labelStyle, children: [
-        /* @__PURE__ */ jsx19(Text, { children: labelContent }),
-        showStar && /* @__PURE__ */ jsx19("span", { className: starStyle, children: "*" })
+    return /* @__PURE__ */ jsxs10("div", { className, ref, ...props, children: [
+      showLabel && /* @__PURE__ */ jsxs10("div", { className: labeStyle, children: [
+        /* @__PURE__ */ jsx18("span", { children: labelContent }),
+        showStar && /* @__PURE__ */ jsx18("span", { className: starStyle, children: "*" })
       ] }),
-      /* @__PURE__ */ jsxs11(Container, { display: "flex", className: inputStyle2, children: [
-        /* @__PURE__ */ jsx19(
+      /* @__PURE__ */ jsxs10("div", { className: inputStyle2, children: [
+        /* @__PURE__ */ jsx18(
           Input,
           {
             state,
@@ -1005,40 +969,29 @@ var InputGroup = forwardRef16(
             placeholder,
             value,
             onChange,
-            showPasswordToggle,
-            disabled: inputDisabled
+            showPasswordToggle
           }
         ),
-        showButton && /* @__PURE__ */ jsx19(Container, { children: /* @__PURE__ */ jsx19(
-          Button,
-          {
-            variant: "primary",
-            design: "outline",
-            onClick: onButtonClick,
-            disabled: buttonDisabled,
-            type: buttonType,
-            children: buttonText
-          }
-        ) })
+        showButton && /* @__PURE__ */ jsx18(Container, { children: /* @__PURE__ */ jsx18(Button, { variant: "primary", design: "outline", mainText: "main text" }) })
       ] }),
-      state === "warning" && /* @__PURE__ */ jsx19("div", { className: warningStyle, children: warningContent })
+      state === "warning" && /* @__PURE__ */ jsx18("div", { className: warningStyle, children: warningContent })
     ] });
   }
 );
 
 // src/notification/Notification.tsx
-import { forwardRef as forwardRef17 } from "react";
+import { forwardRef as forwardRef16 } from "react";
 
 // src/notification/style.css.ts
 import { createRuntimeFn as _7a4687 } from "@vanilla-extract/recipes/createRuntimeFn";
 var stateStyle2 = _7a4687({ defaultClassName: "_1pruyzf1 _89s0wz46 _89s0wz32 _89s0wz2g _89s0wz3k _89s0wz4q", variantClassNames: { state: { "default": "_1rmst083b _1rmst086r", warning: "_1rmst081k _1rmst086r", danger: "_1rmst081 _1rmst0852" } }, defaultVariants: { state: "default" }, compoundVariants: [] });
 
 // src/notification/Notification.tsx
-import { jsx as jsx20, jsxs as jsxs12 } from "react/jsx-runtime";
-var Notification = forwardRef17(
+import { jsx as jsx19, jsxs as jsxs11 } from "react/jsx-runtime";
+var Notification = forwardRef16(
   ({ state = "default", content = "warning", icon = "warning", ...props }, ref) => {
     const textColor = state === "danger" ? "white" : state === "warning" ? "pink500" : "textNormal";
-    return /* @__PURE__ */ jsxs12(
+    return /* @__PURE__ */ jsxs11(
       Container,
       {
         ref,
@@ -1049,8 +1002,8 @@ var Notification = forwardRef17(
         className: clsx_default(stateStyle2({ state })),
         ...props,
         children: [
-          /* @__PURE__ */ jsx20(Icon, { color: textColor, children: icon }),
-          /* @__PURE__ */ jsx20(Text, { color: textColor, children: content })
+          /* @__PURE__ */ jsx19(Icon, { color: textColor, children: icon }),
+          /* @__PURE__ */ jsx19(Text, { color: textColor, children: content })
         ]
       }
     );
@@ -1058,21 +1011,21 @@ var Notification = forwardRef17(
 );
 
 // src/tabs/tab-bar/TabBar.tsx
-import { forwardRef as forwardRef19 } from "react";
+import { forwardRef as forwardRef18 } from "react";
 
 // src/tabs/tab/Tab.tsx
-import { forwardRef as forwardRef18 } from "react";
+import { forwardRef as forwardRef17 } from "react";
 
 // src/tabs/tab/style.css.ts
 var commonStyle2 = "_1xjnc5f0";
 var stateStyle3 = { "default": "_1rmst083c", active: "_1rmst083b" };
 
 // src/tabs/tab/Tab.tsx
-import { jsx as jsx21 } from "react/jsx-runtime";
-var Tab = forwardRef18(
+import { jsx as jsx20 } from "react/jsx-runtime";
+var Tab = forwardRef17(
   ({ content, state, className = "" }, ref) => {
     const stateClass = state === "active" ? stateStyle3.active : stateStyle3.default;
-    return /* @__PURE__ */ jsx21(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle2, className), children: /* @__PURE__ */ jsx21(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
+    return /* @__PURE__ */ jsx20(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle2, className), children: /* @__PURE__ */ jsx20(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
   }
 );
 
@@ -1080,14 +1033,14 @@ var Tab = forwardRef18(
 var activeTab = "s5asx20";
 
 // src/tabs/tab-bar/TabBar.tsx
-import { jsx as jsx22 } from "react/jsx-runtime";
-var TabBar = forwardRef19(({ tabs, className, ...props }, ref) => {
+import { jsx as jsx21 } from "react/jsx-runtime";
+var TabBar = forwardRef18(({ tabs, className, ...props }, ref) => {
   const activeTabIndex = tabs.findIndex((tab) => tab.state === "active");
   const updatedTabs = tabs.map((tab, index) => ({
     ...tab,
     state: index === (activeTabIndex !== -1 ? activeTabIndex : 0) ? "active" : "default"
   }));
-  return /* @__PURE__ */ jsx22(
+  return /* @__PURE__ */ jsx21(
     Container,
     {
       ref,
@@ -1096,7 +1049,7 @@ var TabBar = forwardRef19(({ tabs, className, ...props }, ref) => {
       gap: 32,
       className,
       ...props,
-      children: updatedTabs.map((tab, index) => /* @__PURE__ */ jsx22(
+      children: updatedTabs.map((tab, index) => /* @__PURE__ */ jsx21(
         Tab,
         {
           content: tab.content,
@@ -1110,10 +1063,10 @@ var TabBar = forwardRef19(({ tabs, className, ...props }, ref) => {
 });
 
 // src/bottom-sheet/map/MapBottomSheet.tsx
-import { forwardRef as forwardRef20 } from "react";
+import { forwardRef as forwardRef19 } from "react";
 import { vars } from "@sos/style-tokens";
-import { jsx as jsx23, jsxs as jsxs13 } from "react/jsx-runtime";
-var MapBottomSheet = forwardRef20(
+import { jsx as jsx22, jsxs as jsxs12 } from "react/jsx-runtime";
+var MapBottomSheet = forwardRef19(
   ({
     children,
     title,
@@ -1126,7 +1079,7 @@ var MapBottomSheet = forwardRef20(
     className,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxs13(
+    return /* @__PURE__ */ jsxs12(
       Container,
       {
         ref,
@@ -1142,9 +1095,9 @@ var MapBottomSheet = forwardRef20(
         boxShadow: "s",
         ...props,
         children: [
-          /* @__PURE__ */ jsxs13(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 16, children: [
-            /* @__PURE__ */ jsxs13(Container, { display: "flex", justifyContent: "space-between", width: "100%", children: [
-              /* @__PURE__ */ jsxs13(
+          /* @__PURE__ */ jsxs12(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 16, children: [
+            /* @__PURE__ */ jsxs12(Container, { display: "flex", justifyContent: "space-between", width: "100%", children: [
+              /* @__PURE__ */ jsxs12(
                 Container,
                 {
                   display: "flex",
@@ -1152,15 +1105,15 @@ var MapBottomSheet = forwardRef20(
                   gap: 6,
                   style: { width: subButtonIcon ? `calc(100% - 48px)` : "100%" },
                   children: [
-                    title && /* @__PURE__ */ jsx23(Text, { as: "span", textType: "heading2", textMode: "bold", ellipsis: true, children: title }),
-                    /* @__PURE__ */ jsxs13(Container, { display: "flex", alignItems: "center", width: "100%", gap: 6, children: [
-                      badgeText && /* @__PURE__ */ jsx23(Badge, { color: badgeColor, children: badgeText }),
-                      /* @__PURE__ */ jsx23(Text, { as: "span", textType: "footnote", color: "textAssistive", ellipsis: true, children: subText })
+                    title && /* @__PURE__ */ jsx22(Text, { as: "span", textType: "heading2", textMode: "bold", ellipsis: true, children: title }),
+                    /* @__PURE__ */ jsxs12(Container, { display: "flex", alignItems: "center", width: "100%", gap: 6, children: [
+                      badgeText && /* @__PURE__ */ jsx22(Badge, { color: badgeColor, children: badgeText }),
+                      /* @__PURE__ */ jsx22(Text, { as: "span", textType: "footnote", color: "textAssistive", ellipsis: true, children: subText })
                     ] })
                   ]
                 }
               ),
-              /* @__PURE__ */ jsx23(Container, { display: "flex", children: subButtonIcon && /* @__PURE__ */ jsx23(
+              /* @__PURE__ */ jsx22(Container, { display: "flex", children: subButtonIcon && /* @__PURE__ */ jsx22(
                 Button,
                 {
                   variant: "secondary",
@@ -1173,9 +1126,9 @@ var MapBottomSheet = forwardRef20(
                 }
               ) })
             ] }),
-            infos && /* @__PURE__ */ jsx23(InfoBox, { infos, size: "s", backgroundColor: "backgroundElevatedSecondary" })
+            infos && /* @__PURE__ */ jsx22(InfoBox, { infos, size: "s", backgroundColor: "backgroundElevatedSecondary" })
           ] }),
-          buttonText && /* @__PURE__ */ jsx23(Button, { size: "m", children: buttonText }),
+          buttonText && /* @__PURE__ */ jsx22(Button, { size: "m", children: buttonText }),
           children
         ]
       }
@@ -1199,7 +1152,6 @@ export {
   Notification,
   SocialContentList,
   TabBar,
-  TabList,
   Text,
   Title,
   TopAppBar,

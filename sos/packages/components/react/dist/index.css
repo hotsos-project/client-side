@@ -4213,8 +4213,9 @@
 
 /* vanilla-extract-css-ns:src/list/message/style.css.ts.vanilla.css?source= */
 
-/* vanilla-extract-css-ns:src/input/style.css.ts.vanilla.css?source=#H4sIAAAAAAAAE61T0W7jIBB8z1fwclLvActOlOaOfkyFYW3vlQBdcJO06r+fwLGSOHF6Uu9xYXZmdgeK58p37tXvSvaxYEwabC3HCNsgmAIbgZ4WjP3pQ8TmwJWzEWwULHipgNcQdwA2IXaoYydYVZY/UtkBtl0UbEWwTbWXWqNtuYEmClYWm/XkggZ8VVTL8ap2pIE4SY19SE3jRSv9edk4G3nAdxCsOh4ZtMBHD1WxGkk/F8U4b5Xnndg+uknsq82lD8Gss5DqCPvI86IES/N8w4MQ3kgFnTMaKBtSzjgS7E3SA+ctyQNfluXPSVfjVB8y3PUx6YzmLlAag6wN6AyspXppyfVW82uJdVK4pb2eSK++5qqmdh9zj8bgjTwI1hjYP82/tFMCfn9r+XP7ueUqkrTBSwKbM1I9hXTsHQ5qZyY3w2BHsbIoH3NaLDiD+m4av2ZiW8/aGkBn59bRVhruCbeSDpf0v2foN1/Q385CXrN5tC8ntrsLyND/NFd997X/y3s9I1PXZMMnDQFDxDe4hOvZyBLuL7zozeMSBQAA */
+/* vanilla-extract-css-ns:src/input/style.css.ts.vanilla.css?source=#H4sIAAAAAAAAE6WT3W7jIBCF7/MUc7PS7gWW3SjNLn2YCsPYnpYACzg/W/XdV5BaiZ3YVdXLGQ4z38yB4rlynf3rDiW8rQAUBafFiUOj8fi0AhCaWsMo4i5wkGgi+pR+6UOk5sSkNRFN5BCckMhqjAdEkxQHUrHjUJXljxR2SG0XOaw97lLshFJkWqaxiRzKYruZHPizviqqh+Gotl6hZ14o6kO6NBy0wl2HjTWRBfqHHKqPlCaDbGCoivVQ9H1VDAuo8gIm2B80qfp6O+bgYKzBFEc8RpYXxSHN80UGgFrI19bb3igmrbaew174n4xd5Y31O6GZ87QT/vRrTM6500JiZ7VCn8cYlWm9OLGHspzeaqzsQ5bbPia6YaSRSlEQtUaVhXOkucUmdbjXezNpvf68VjXFffzS+7z45o73LJvbzz2q6IUJTng02VnZ+5DSztK52xXkdnGwJTsviGVRPuaXAcFqUose/p4xezMV/pkRbmenXvJC3FZzZF4v1RZHydIbwvob7+tmL/IW8PxJQ6AQaY9juZpdY9L9BxCxK9MjBQAA */
 ._1phoqpw0 {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -4233,6 +4234,7 @@
   text-align: left;
   font-size: 1rem;
   line-height: 1.3125rem;
+  background-color: var(--background-normal-primary);
 }
 ._1phoqpw1::placeholder {
   color: var(--gray-200);
@@ -4257,11 +4259,11 @@
   cursor: pointer;
 }
 ._1phoqpw7 {
+  background-color: var(--background-normal-primary);
   border: 0.0625rem solid var(--gray-200);
 }
 ._1phoqpw8 {
   color: var(--gray-500);
-  background-color: var(--background-normal-primary);
 }
 ._1phoqpw9 {
   color: var(--gray-700);
@@ -4270,11 +4272,10 @@
 ._1phoqpwa {
   color: var(--pink-700);
   border: 0.0625rem solid var(--pink-500);
-  background-color: var(--background-normal-primary);
 }
 ._1phoqpwb {
-  color: var(--gray-200);
   background-color: var(--gray-50);
+  color: var(--gray-200);
 }
 ._1phoqpwc {
   color: var(--text-assistive);
