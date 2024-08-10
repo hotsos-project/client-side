@@ -30,7 +30,7 @@ var shadowSprinkles = _ad2215({ conditions: void 0, styles: { boxShadow: { value
 // src/common/text/Text.tsx
 import { forwardRef } from "react";
 
-// ../../../../../../../AppData/Local/Yarn/Berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
@@ -1240,15 +1240,11 @@ var MapBottomSheet = forwardRef21(
 );
 
 // src/drop-down/drop-down-item/DropDownItem.tsx
-import { useState as useState3, forwardRef as forwardRef22 } from "react";
-import { Fragment, jsx as jsx25 } from "react/jsx-runtime";
+import { forwardRef as forwardRef22 } from "react";
+import { jsx as jsx25 } from "react/jsx-runtime";
 var DropDownItem = forwardRef22(
-  ({ state: initialState = "default", children, className }, ref) => {
-    const [state, setState] = useState3(initialState);
-    const handleClick = () => {
-      setState("active");
-    };
-    return /* @__PURE__ */ jsx25(Fragment, { children: /* @__PURE__ */ jsx25(
+  ({ state = "default", children, className, onClick }, ref) => {
+    return /* @__PURE__ */ jsx25(
       Container,
       {
         display: "flex",
@@ -1256,25 +1252,25 @@ var DropDownItem = forwardRef22(
         paddingY: 10,
         borderRadius: "s",
         backgroundColor: state === "active" ? "gray50" : "backgroundNormalPrimary",
-        style: { width: "153px" },
+        style: { width: "153px", cursor: "pointer" },
         className,
         ref,
-        onClick: handleClick,
+        onClick,
         children: /* @__PURE__ */ jsx25(Text, { textType: "label", children })
       }
-    ) });
+    );
   }
 );
 
 // src/drop-down/drop-down-box/DropDownBox.tsx
-import { useState as useState4, forwardRef as forwardRef23 } from "react";
-import { Fragment as Fragment2, jsx as jsx26 } from "react/jsx-runtime";
+import { useState as useState3, forwardRef as forwardRef23 } from "react";
+import { jsx as jsx26 } from "react/jsx-runtime";
 var DropDownBox = forwardRef23(({ options }, ref) => {
-  const [activeIndex, setActiveIndex] = useState4(null);
+  const [activeIndex, setActiveIndex] = useState3(null);
   const handleItemClick = (index) => {
     setActiveIndex(index);
   };
-  return /* @__PURE__ */ jsx26(Fragment2, { children: /* @__PURE__ */ jsx26(Container, { display: "flex", children: /* @__PURE__ */ jsx26(
+  return /* @__PURE__ */ jsx26(Container, { display: "flex", ref, children: /* @__PURE__ */ jsx26(
     Container,
     {
       display: "flex",
@@ -1294,7 +1290,7 @@ var DropDownBox = forwardRef23(({ options }, ref) => {
         index
       ))
     }
-  ) }) });
+  ) });
 });
 export {
   Badge,
