@@ -23,7 +23,7 @@ interface InputProps extends CommonProps {
   defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
-  readOnly?: boolean; // readOnly prop 추가
+  readOnly?: boolean;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(

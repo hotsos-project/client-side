@@ -96,7 +96,7 @@ var shadowSprinkles = (0, import_createRuntimeSprinkles5.createSprinkles)({ cond
 // src/common/text/Text.tsx
 var import_react = require("react");
 
-// ../../../../../../../AppData/Local/Yarn/Berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
@@ -1309,12 +1309,8 @@ var MapBottomSheet = (0, import_react22.forwardRef)(
 var import_react23 = require("react");
 var import_jsx_runtime25 = require("react/jsx-runtime");
 var DropDownItem = (0, import_react23.forwardRef)(
-  ({ state: initialState = "default", children, className }, ref) => {
-    const [state, setState] = (0, import_react23.useState)(initialState);
-    const handleClick = () => {
-      setState("active");
-    };
-    return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(import_jsx_runtime25.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
+  ({ state = "default", children, className, onClick }, ref) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
       Container,
       {
         display: "flex",
@@ -1322,13 +1318,13 @@ var DropDownItem = (0, import_react23.forwardRef)(
         paddingY: 10,
         borderRadius: "s",
         backgroundColor: state === "active" ? "gray50" : "backgroundNormalPrimary",
-        style: { width: "153px" },
+        style: { width: "153px", cursor: "pointer" },
         className,
         ref,
-        onClick: handleClick,
+        onClick,
         children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { textType: "label", children })
       }
-    ) });
+    );
   }
 );
 
@@ -1340,7 +1336,7 @@ var DropDownBox = (0, import_react24.forwardRef)(({ options }, ref) => {
   const handleItemClick = (index) => {
     setActiveIndex(index);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(import_jsx_runtime26.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Container, { display: "flex", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Container, { display: "flex", ref, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
     Container,
     {
       display: "flex",
@@ -1360,6 +1356,6 @@ var DropDownBox = (0, import_react24.forwardRef)(({ options }, ref) => {
         index
       ))
     }
-  ) }) });
+  ) });
 });
 //# sourceMappingURL=index.cjs.map
