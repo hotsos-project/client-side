@@ -14,6 +14,7 @@ export { Icon } from './common/icon/Icon';
 export { Divider } from './common/divider/Divider';
 export { Button } from './button/Button';
 export { InfoButton } from './button/info/InfoButton';
+export { MoreButton } from './button/more/MoreButton';
 export { Badge } from './badge/Badge';
 export { InfoBox } from './box/info/info-box/InfoBox';
 export { WeatherBox } from './box/weather/WeatherBox';
