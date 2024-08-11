@@ -631,31 +631,33 @@ var WeatherBox = forwardRef11(
   }
 );
 
+// src/chip/Chips.tsx
+import { forwardRef as forwardRef12 } from "react";
+
 // src/chip/style.css.ts
-var baseStyle = "w4y0nd0";
-var sizeStyle = { s: "w4y0nd1", m: "w4y0nd2", l: "w4y0nd3" };
-var stateStyle = { "default": "w4y0nd4", outlinePrimary: "w4y0nd5", outlineSecondary: "w4y0nd6", activePrimary: "w4y0nd7", activeSecondary: "w4y0nd8", disabled: "w4y0nd9" };
+import { createRuntimeFn as _7a4686 } from "@vanilla-extract/recipes/createRuntimeFn";
+var chipsStyle = _7a4686({ defaultClassName: "w4y0nd0", variantClassNames: { size: { s: "w4y0nd1", m: "w4y0nd2", l: "w4y0nd3" }, state: { "default": "w4y0nd4", outline: "w4y0nd5", active: "w4y0nd6", disabled: "w4y0nd7" }, variant: { primary: "w4y0nd8", secondary: "w4y0nd9" } }, defaultVariants: { size: "m", state: "default", variant: "primary" }, compoundVariants: [[{ state: "default", variant: "primary" }, "w4y0nda"], [{ state: "default", variant: "secondary" }, "w4y0ndb"], [{ state: "outline", variant: "primary" }, "w4y0ndc"], [{ state: "outline", variant: "secondary" }, "w4y0ndd"], [{ state: "active", variant: "primary" }, "w4y0nde"], [{ state: "active", variant: "secondary" }, "w4y0ndf"]] });
 
 // src/chip/Chips.tsx
 import { jsx as jsx12 } from "react/jsx-runtime";
-var Chips = ({
-  size = "m",
-  variant = "primary",
-  state = "default",
-  content = "Label"
-}) => {
-  const baseClass = baseStyle;
-  const sizeClass = sizeStyle[size];
-  let stateClass = "";
-  if (state === "active") {
-    stateClass = variant === "primary" ? stateStyle.activePrimary : stateStyle.activeSecondary;
-  } else if (state === "outline") {
-    stateClass = variant === "primary" ? stateStyle.outlinePrimary : stateStyle.outlineSecondary;
-  } else {
-    stateClass = stateStyle[state];
+var Chips = forwardRef12(
+  ({ size = "m", variant = "primary", state = "default", children = "\uB0B4\uC6A9" }, ref) => {
+    const textType = size === "s" ? "footnote" : size === "m" ? "label" : "body3";
+    return /* @__PURE__ */ jsx12(
+      Container,
+      {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "round",
+        className: chipsStyle({ size, state, variant }),
+        ref,
+        style: { height: "100%" },
+        children: /* @__PURE__ */ jsx12(Text, { textType, children })
+      }
+    );
   }
-  return /* @__PURE__ */ jsx12("div", { className: `${baseClass} ${sizeClass} ${stateClass}`, children: content });
-};
+);
 
 // src/app-bar/top-app-bar/style.css.ts
 var iconWrapperStyle = { inner: "_7pr8fe3", outer: "_7pr8fe4" };
@@ -676,14 +678,14 @@ var TopAppBar = ({ icon = false }) => {
 };
 
 // src/header/title/Title.tsx
-import { forwardRef as forwardRef12 } from "react";
+import { forwardRef as forwardRef13 } from "react";
 
 // src/header/title/style.css.ts
 var titleStyle = "ujvneh1 _1rmst086p";
 
 // src/header/title/Title.tsx
 import { jsx as jsx14 } from "react/jsx-runtime";
-var Title = forwardRef12(
+var Title = forwardRef13(
   ({ children = "\uC81C\uBAA9", color = "textNormal", className, ...props }, ref) => {
     return /* @__PURE__ */ jsx14(
       Text,
@@ -702,9 +704,9 @@ var Title = forwardRef12(
 );
 
 // src/header/headline/Headline.tsx
-import { forwardRef as forwardRef13 } from "react";
+import { forwardRef as forwardRef14 } from "react";
 import { jsx as jsx15 } from "react/jsx-runtime";
-var Headline = forwardRef13(
+var Headline = forwardRef14(
   ({ children = "\uC81C\uBAA9", className, ...props }, ref) => {
     return /* @__PURE__ */ jsx15(
       Container,
@@ -725,11 +727,11 @@ var Headline = forwardRef13(
 Headline.displayName = "Headline";
 
 // src/list/message/MessageList.tsx
-import { forwardRef as forwardRef14 } from "react";
+import { forwardRef as forwardRef15 } from "react";
 
 // src/list/message/style.css.ts
-import { createRuntimeFn as _7a4686 } from "@vanilla-extract/recipes/createRuntimeFn";
-var messageListRecipe = _7a4686({ defaultClassName: "_17rsevb6", variantClassNames: { variant: { "default": "_1rmst086p", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevba", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "default" }, "_1bfxj7rkq _1bfxj7riy _1bfxj7rj2 _1bfxj7rij _1bfxj7r1k"], [{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
+import { createRuntimeFn as _7a4687 } from "@vanilla-extract/recipes/createRuntimeFn";
+var messageListRecipe = _7a4687({ defaultClassName: "_17rsevb6", variantClassNames: { variant: { "default": "_1rmst086p", danger: "_1rmst084w", warning: "_1rmst0859" }, mode: { "default": "_17rsevba", round: "_1bfxj7r3n" } }, defaultVariants: { variant: "default" }, compoundVariants: [[{ variant: "danger", mode: "default" }, "_1bfxj7rkq _1bfxj7riy _1bfxj7rj2 _1bfxj7rij _1bfxj7r1k"], [{ variant: "danger", mode: "round" }, "_1bfxj7r3y _1bfxj7r3u _1bfxj7r1k"]] });
 
 // src/list/message/MessageList.tsx
 import { jsx as jsx16, jsxs as jsxs7 } from "react/jsx-runtime";
@@ -738,7 +740,7 @@ var colorMap = {
   danger: "pink",
   warning: "orange"
 };
-var MessageList = forwardRef14(
+var MessageList = forwardRef15(
   ({
     title,
     date = "2024/07/18 09:15:40",
@@ -784,9 +786,9 @@ var MessageList = forwardRef14(
 );
 
 // src/list/social-content/SocialContentList.tsx
-import { forwardRef as forwardRef15 } from "react";
+import { forwardRef as forwardRef16 } from "react";
 import { jsx as jsx17, jsxs as jsxs8 } from "react/jsx-runtime";
-var SocialContentList = forwardRef15(
+var SocialContentList = forwardRef16(
   ({
     children,
     title = "title",
@@ -882,9 +884,9 @@ var SocialContentList = forwardRef15(
 );
 
 // src/list/tab/TabList.tsx
-import { forwardRef as forwardRef16 } from "react";
+import { forwardRef as forwardRef17 } from "react";
 import { jsx as jsx18, jsxs as jsxs9 } from "react/jsx-runtime";
-var TabList = forwardRef16(({ icon, children }, ref) => {
+var TabList = forwardRef17(({ icon, children }, ref) => {
   return /* @__PURE__ */ jsxs9(Container, { display: "flex", alignItems: "center", paddingX: 24, paddingY: 16, gap: 16, ref, children: [
     /* @__PURE__ */ jsx18(Icon, { children: icon }),
     /* @__PURE__ */ jsx18(Text, { textMode: "bold", children })
@@ -892,9 +894,9 @@ var TabList = forwardRef16(({ icon, children }, ref) => {
 });
 
 // src/list/following/FollowingList.tsx
-import { forwardRef as forwardRef17 } from "react";
+import { forwardRef as forwardRef18 } from "react";
 import { jsx as jsx19, jsxs as jsxs10 } from "react/jsx-runtime";
-var FollowingList = forwardRef17(
+var FollowingList = forwardRef18(
   ({ nickName, name, children, className, onDelete }, ref) => {
     const handleDelete = () => {
       if (window.confirm(`${name}\uB2D8\uC744 \uC0AD\uC81C\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?`)) {
@@ -927,7 +929,7 @@ var FollowingList = forwardRef17(
 );
 
 // src/input/Input.tsx
-import { forwardRef as forwardRef18, useState as useState2, useEffect } from "react";
+import { forwardRef as forwardRef19, useState as useState2, useEffect } from "react";
 
 // src/input/style.css.ts
 var buttonStyle = "_1phoqpw7";
@@ -939,7 +941,7 @@ var inputStyle = "_1phoqpw1";
 
 // src/input/Input.tsx
 import { jsx as jsx20, jsxs as jsxs11 } from "react/jsx-runtime";
-var Input = forwardRef18(
+var Input = forwardRef19(
   ({
     state = "default",
     showIcon = true,
@@ -1026,7 +1028,7 @@ var Input = forwardRef18(
 );
 
 // src/input/group/InputGroup.tsx
-import { forwardRef as forwardRef19 } from "react";
+import { forwardRef as forwardRef20 } from "react";
 
 // src/input/group/style.css.ts
 var inputStyle2 = "_1n4ve932";
@@ -1036,7 +1038,7 @@ var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
 import { jsx as jsx21, jsxs as jsxs12 } from "react/jsx-runtime";
-var InputGroup = forwardRef19(
+var InputGroup = forwardRef20(
   ({
     state = "default",
     showButton = true,
@@ -1096,15 +1098,15 @@ var InputGroup = forwardRef19(
 );
 
 // src/notification/Notification.tsx
-import { forwardRef as forwardRef20 } from "react";
+import { forwardRef as forwardRef21 } from "react";
 
 // src/notification/style.css.ts
-import { createRuntimeFn as _7a4687 } from "@vanilla-extract/recipes/createRuntimeFn";
-var stateStyle2 = _7a4687({ defaultClassName: "_1pruyzf1 _89s0wz46 _89s0wz32 _89s0wz2g _89s0wz3k _89s0wz4q", variantClassNames: { state: { "default": "_1rmst083b _1rmst086r", warning: "_1rmst081k _1rmst086r", danger: "_1rmst081 _1rmst0852" } }, defaultVariants: { state: "default" }, compoundVariants: [] });
+import { createRuntimeFn as _7a4688 } from "@vanilla-extract/recipes/createRuntimeFn";
+var stateStyle = _7a4688({ defaultClassName: "_1pruyzf1 _89s0wz46 _89s0wz32 _89s0wz2g _89s0wz3k _89s0wz4q", variantClassNames: { state: { "default": "_1rmst083b _1rmst086r", warning: "_1rmst081k _1rmst086r", danger: "_1rmst081 _1rmst0852" } }, defaultVariants: { state: "default" }, compoundVariants: [] });
 
 // src/notification/Notification.tsx
 import { jsx as jsx22, jsxs as jsxs13 } from "react/jsx-runtime";
-var Notification = forwardRef20(
+var Notification = forwardRef21(
   ({ state = "default", content = "warning", icon = "warning", ...props }, ref) => {
     const textColor = state === "danger" ? "white" : state === "warning" ? "pink500" : "textNormal";
     return /* @__PURE__ */ jsxs13(
@@ -1115,7 +1117,7 @@ var Notification = forwardRef20(
         justifyContent: "center",
         alignItems: "center",
         gap: 20,
-        className: clsx_default(stateStyle2({ state })),
+        className: clsx_default(stateStyle({ state })),
         ...props,
         children: [
           /* @__PURE__ */ jsx22(Icon, { color: textColor, children: icon }),
@@ -1127,20 +1129,20 @@ var Notification = forwardRef20(
 );
 
 // src/tabs/tab-bar/TabBar.tsx
-import { forwardRef as forwardRef22 } from "react";
+import { forwardRef as forwardRef23 } from "react";
 
 // src/tabs/tab/Tab.tsx
-import { forwardRef as forwardRef21 } from "react";
+import { forwardRef as forwardRef22 } from "react";
 
 // src/tabs/tab/style.css.ts
 var commonStyle = "_1xjnc5f0";
-var stateStyle3 = { "default": "_1rmst083c", active: "_1rmst083b" };
+var stateStyle2 = { "default": "_1rmst083c", active: "_1rmst083b" };
 
 // src/tabs/tab/Tab.tsx
 import { jsx as jsx23 } from "react/jsx-runtime";
-var Tab = forwardRef21(
+var Tab = forwardRef22(
   ({ content, state, className = "" }, ref) => {
-    const stateClass = state === "active" ? stateStyle3.active : stateStyle3.default;
+    const stateClass = state === "active" ? stateStyle2.active : stateStyle2.default;
     return /* @__PURE__ */ jsx23(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle, className), children: /* @__PURE__ */ jsx23(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
   }
 );
@@ -1150,7 +1152,7 @@ var activeTab = "s5asx20";
 
 // src/tabs/tab-bar/TabBar.tsx
 import { jsx as jsx24 } from "react/jsx-runtime";
-var TabBar = forwardRef22(({ tabs, className, ...props }, ref) => {
+var TabBar = forwardRef23(({ tabs, className, ...props }, ref) => {
   const activeTabIndex = tabs.findIndex((tab) => tab.state === "active");
   const updatedTabs = tabs.map((tab, index) => {
     const newState = index === (activeTabIndex !== -1 ? activeTabIndex : 0) ? "active" : "default";
@@ -1182,10 +1184,10 @@ var TabBar = forwardRef22(({ tabs, className, ...props }, ref) => {
 });
 
 // src/bottom-sheet/map/MapBottomSheet.tsx
-import { forwardRef as forwardRef23 } from "react";
+import { forwardRef as forwardRef24 } from "react";
 import { vars } from "@sos/style-tokens";
 import { jsx as jsx25, jsxs as jsxs14 } from "react/jsx-runtime";
-var MapBottomSheet = forwardRef23(
+var MapBottomSheet = forwardRef24(
   ({
     children,
     title,
@@ -1256,9 +1258,9 @@ var MapBottomSheet = forwardRef23(
 );
 
 // src/drop-down/drop-down-item/DropDownItem.tsx
-import { forwardRef as forwardRef24 } from "react";
+import { forwardRef as forwardRef25 } from "react";
 import { jsx as jsx26 } from "react/jsx-runtime";
-var DropDownItem = forwardRef24(
+var DropDownItem = forwardRef25(
   ({ state = "default", children, className, onClick }, ref) => {
     return /* @__PURE__ */ jsx26(
       Container,
@@ -1279,9 +1281,9 @@ var DropDownItem = forwardRef24(
 );
 
 // src/drop-down/drop-down-box/DropDownBox.tsx
-import { useState as useState3, forwardRef as forwardRef25 } from "react";
+import { useState as useState3, forwardRef as forwardRef26 } from "react";
 import { jsx as jsx27 } from "react/jsx-runtime";
-var DropDownBox = forwardRef25(({ options }, ref) => {
+var DropDownBox = forwardRef26(({ options }, ref) => {
   const [activeIndex, setActiveIndex] = useState3(null);
   const handleItemClick = (index) => {
     setActiveIndex(index);

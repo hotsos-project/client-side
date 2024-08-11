@@ -1,83 +1,128 @@
+import { recipe } from '@vanilla-extract/recipes';
+import { colorSprinkles } from '../../src/style/color/sprinkles.css'; // sprinkles에서 가져오는 것
 import { vars } from '@sos/style-tokens';
-import { style } from '@vanilla-extract/css';
+import { Palette } from '../../src/style/color/sprinkles.css';
 
-/**
- * 공통 스타일
- */
-export const baseStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: vars.radius.borderRadius.round,
-  textAlign: 'center',
+export const chipsStyle = recipe({
+  base: {},
+  variants: {
+    size: {
+      s: {
+        height: '1.125rem',
+        padding: `${vars.spacing.spacing[4]} ${vars.spacing.spacing[8]}`,
+      },
+      m: {
+        height: '1.1875rem',
+        padding: `${vars.spacing.spacing[6]} ${vars.spacing.spacing[12]}`,
+      },
+      l: {
+        height: '1.25rem',
+        padding: `${vars.spacing.spacing[8]} ${vars.spacing.spacing[16]}`,
+      },
+    },
+    state: {
+      default: {},
+      outline: {},
+      active: {},
+      disabled: {
+        color: colorSprinkles({ color: 'blueGray200' }),
+        backgroundColor: colorSprinkles({ backgroundColor: 'blueGray50' }),
+      },
+    },
+    variant: {
+      primary: {},
+      secondary: {},
+    },
+  },
+  compoundVariants: [
+    {
+      variants: {
+        state: 'default',
+        variant: 'primary',
+      },
+      style: {
+        color: colorSprinkles({ color: 'blue500' }),
+        backgroundColor: colorSprinkles({ backgroundColor: 'blue100' }),
+      },
+    },
+    {
+      variants: {
+        state: 'default',
+        variant: 'secondary',
+      },
+      style: {
+        color: colorSprinkles({ color: 'textNormal' }),
+        backgroundColor: colorSprinkles({ backgroundColor: 'gray100' }),
+      },
+    },
+    {
+      variants: {
+        state: 'outline',
+        variant: 'primary',
+      },
+      style: {
+        border: `0.0625rem solid ${colorSprinkles({ color: 'blue100' })}`,
+        color: colorSprinkles({ color: 'blue500' }),
+        backgroundColor: 'transparent',
+      },
+    },
+    {
+      variants: {
+        state: 'outline',
+        variant: 'secondary',
+      },
+      style: {
+        border: `0.0625rem solid ${colorSprinkles({ color: 'gray200' })}`,
+        color: colorSprinkles({ color: 'textNormal' }),
+        backgroundColor: 'transparent',
+      },
+    },
+    {
+      variants: {
+        state: 'active',
+        variant: 'primary',
+      },
+      style: {
+        color: colorSprinkles({ color: 'white950' }),
+        backgroundColor: colorSprinkles({ backgroundColor: 'blue500' }),
+      },
+    },
+    {
+      variants: {
+        state: 'active',
+        variant: 'secondary',
+      },
+      style: {
+        border: `0.0625rem solid ${colorSprinkles({ color: 'blue500' })}`,
+        color: colorSprinkles({ color: 'blue500' }),
+        backgroundColor: colorSprinkles({ backgroundColor: 'blue100' }),
+      },
+    },
+  ],
+  defaultVariants: {
+    size: 'm',
+    state: 'default',
+    variant: 'primary',
+  },
 });
 
-/**
- * size 스타일
- */
-const small = style({
-  padding: `${vars.spacing.spacing[4]} ${vars.spacing.spacing[8]}`,
-  fontSize: vars.typography.fontSize[13],
-  lineHeight: vars.typography.lineHeight[18],
-});
+export const getTextColor = ({
+  state,
+  variant,
+}: {
+  state: 'default' | 'outline' | 'active' | 'disabled';
+  variant: 'primary' | 'secondary';
+}): Palette => {
+  if (state === 'disabled') return 'blueGray200';
 
-const medium = style({
-  padding: `${vars.spacing.spacing[6]} ${vars.spacing.spacing[12]}`,
-  fontSize: vars.typography.fontSize[14],
-  lineHeight: vars.typography.lineHeight[19],
-});
+  if (state === 'active') {
+    return variant === 'primary' ? 'blue500' : 'blue500';
+  }
 
-const large = style({
-  padding: `${vars.spacing.spacing[6]} ${vars.spacing.spacing[12]}`,
-  fontSize: vars.typography.fontSize[15],
-  lineHeight: vars.typography.lineHeight[20],
-});
+  if (state === 'outline') {
+    return variant === 'primary' ? 'blue500' : 'textNormal';
+  }
 
-export const sizeStyle = {
-  s: small,
-  m: medium,
-  l: large,
-};
-
-/**
- * state 스타일
- */
-const basic = style({
-  color: vars.color.$palette.ui.primaryNormal,
-  backgroundColor: vars.color.$palette.blue[100],
-});
-
-const outlinePrimary = style({
-  border: `0.0625rem solid ${vars.color.$palette.blue[100]}`,
-  color: vars.color.$palette.ui.primaryNormal,
-});
-
-const outlineSecondary = style({
-  border: `0.0625rem solid ${vars.color.$palette.gray[200]}`,
-  color: vars.color.$palette.text.normal,
-});
-
-const activePrimary = style({
-  color: vars.color.$static.light.opacityWhite[950],
-  backgroundColor: vars.color.$palette.ui.primaryNormal,
-});
-
-const activeSecondary = style({
-  border: `0.0625rem solid ${vars.color.$palette.ui.primaryNormal}`,
-  color: vars.color.$palette.ui.primaryNormal,
-  backgroundColor: vars.color.$palette.blue[100],
-});
-
-const disabled = style({
-  color: vars.color.$palette.blueGray[200],
-  backgroundColor: vars.color.$palette.blueGray[50],
-});
-
-export const stateStyle = {
-  default: basic,
-  outlinePrimary: outlinePrimary,
-  outlineSecondary: outlineSecondary,
-  activePrimary: activePrimary,
-  activeSecondary: activeSecondary,
-  disabled: disabled,
+  // Default state
+  return variant === 'primary' ? 'blue500' : 'textNormal';
 };

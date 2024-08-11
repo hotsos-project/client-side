@@ -19,6 +19,8 @@ export { Badge } from './badge/Badge';
 export { InfoBox } from './box/info/info-box/InfoBox';
 export { WeatherBox } from './box/weather/WeatherBox';
 export { Chips } from './chip/Chips';
+export { ChipsGroup } from './chip/ChipsGroup';
+export { useChipsGroup } from './chip/ChipsGroup';
 export { TopAppBar } from './app-bar/top-app-bar/TopAppBar';
 export { Title } from './header/title/Title';
 export { Headline } from './header/headline/Headline';

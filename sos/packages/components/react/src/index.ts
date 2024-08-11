@@ -31,6 +31,8 @@ export { WeatherBox } from './box/weather/WeatherBox';
 
 // Chips
 export { Chips } from './chip/Chips';
+export { ChipsGroup } from './chip/ChipsGroup';
+export { useChipsGroup } from './chip/ChipsGroup';
 
 // Header
 export { TopAppBar } from './app-bar/top-app-bar/TopAppBar';

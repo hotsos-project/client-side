@@ -1,39 +1,83 @@
+import { forwardRef, useState } from 'react';
 import { CommonProps } from '../common/types';
-import { baseStyle, sizeStyle, stateStyle } from './style.css';
+import { Container } from '../common/container/Container';
+import { Text } from '../common/text/Text';
+import { chipsStyle } from './style.css';
 
 interface ChipsProps extends CommonProps {
   size: 's' | 'm' | 'l';
   variant: 'primary' | 'secondary';
   state: 'default' | 'outline' | 'active' | 'disabled';
-  content: string;
+  name: string;
+  value: string;
+  checked?: boolean;
+  onToggle?: (checked: boolean) => void;
+  children: React.ReactNode;
 }
 
-/**
- * Chips 컴포넌트
- *
- * @param {'s' | 'm' | 'l'} props.size - 칩의 크기 (필수, 기본값: 'm')
- * @param {'primary' | 'secondary'} props.variant - 칩의 변형 스타일 (필수, 기본값: 'primary')
- * @param {'default' | 'outline' | 'active' | 'disabled'} props.state - 칩의 상태 (필수, 기본값: 'default')
- * @param {string} props.content - 칩에 표시될 텍스트 내용 (필수, 기본값: 'Label')
- */
-export const Chips: React.FC<ChipsProps> = ({
-  size = 'm',
-  variant = 'primary',
-  state = 'default',
-  content = 'Label',
-}) => {
-  const baseClass = baseStyle;
-  const sizeClass = sizeStyle[size];
+export const Chips = forwardRef<HTMLInputElement, ChipsProps>(
+  (
+    {
+      size = 'm',
+      variant = 'primary',
+      state = 'default',
+      name,
+      value,
+      checked = false,
+      onToggle,
+      children,
+    },
+    ref,
+  ) => {
+    const [isChecked, setIsChecked] = useState(checked);
 
-  let stateClass = '';
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newCheckedState = event.target.checked;
+      setIsChecked(newCheckedState);
+      if (onToggle) {
+        console.log('??');
+        onToggle(newCheckedState);
+      }
+    };
 
-  if (state === 'active') {
-    stateClass = variant === 'primary' ? stateStyle.activePrimary : stateStyle.activeSecondary;
-  } else if (state === 'outline') {
-    stateClass = variant === 'primary' ? stateStyle.outlinePrimary : stateStyle.outlineSecondary;
-  } else {
-    stateClass = stateStyle[state];
-  }
+    const effectiveState = isChecked ? 'active' : state;
 
-  return <div className={`${baseClass} ${sizeClass} ${stateClass}`}>{content}</div>;
-};
+    return (
+      <Container
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        borderRadius="round"
+        className={chipsStyle({ size, state: effectiveState, variant })}
+      >
+        <input
+          type="checkbox"
+          id={`chip-${value}`}
+          name={name}
+          value={value}
+          checked={isChecked}
+          onChange={handleChange}
+          ref={ref}
+          style={{ display: 'none' }}
+        />
+        <label
+          htmlFor={`chip-${value}`}
+          style={{
+            cursor: 'pointer',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Text
+            textType={size === 's' ? 'footnote' : size === 'm' ? 'label' : 'body3'}
+            color={effectiveState === 'active' ? 'white' : 'textNormal'}
+          >
+            {children}
+          </Text>
+        </label>
+      </Container>
+    );
+  },
+);
