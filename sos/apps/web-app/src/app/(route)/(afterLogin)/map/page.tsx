@@ -33,7 +33,6 @@ export default function BasicMap() {
         navigator.geolocation.clearWatch(watchId);
       };
     } else {
-      // default: 서울 시청
       setLat(37.5665);
       setLon(126.978);
     }
