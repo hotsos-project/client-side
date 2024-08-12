@@ -1,7 +1,11 @@
-export default function NewSocialPost() {
+'use client';
+
+import { Container, TextArea } from '@sos/components-react';
+
+export default function NewSocialPost({ params }: { params: { id: string } }) {
   return (
-    <div>
-      <h1>게시글 작성</h1>
-    </div>
+    <>
+      <TextArea />
+    </>
   );
 }

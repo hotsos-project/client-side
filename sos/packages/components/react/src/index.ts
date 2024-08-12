@@ -42,10 +42,12 @@ export { MessageList } from './list/message/MessageList';
 export { SocialContentList } from './list/social-content/SocialContentList';
 export { TabList } from './list/tab/TabList';
 export { FollowingList } from './list/following/FollowingList';
+export { CommentList } from './list/comment/CommentList';
 
 // Inputs
 export { Input } from './input/Input';
 export { InputGroup } from './input/group/InputGroup';
+export { TextArea } from './input/text-area/TextArea';
 
 // Notification
 export { Notification } from './notification/Notification';
