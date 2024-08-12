@@ -35,3 +35,4 @@ export { TabBar } from './tabs/tab-bar/TabBar';
 export { MapBottomSheet } from './bottom-sheet/map/MapBottomSheet';
 export { DropDownItem } from './drop-down/drop-down-item/DropDownItem';
 export { DropDownBox } from './drop-down/drop-down-box/DropDownBox';
+export { LoadingSpinner } from './loading-spinner/LoadingSpinner';

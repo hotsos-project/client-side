@@ -4324,4 +4324,28 @@
   transform-origin: left;
   transition: transform 0.5s ease;
 }
+
+/* vanilla-extract-css-ns:src/loading-spinner/style.css.ts.vanilla.css?source=QGtleWZyYW1lcyBfMWtvdnQ1ZTAgewogIDEwMCUgewogICAgdHJhbnNmb3JtOiByb3RhdGUoMXR1cm4pOwogIH0KfQouXzFrb3Z0NWUxIHsKICB3aWR0aDogNTBweDsKICBhc3BlY3QtcmF0aW86IDE7CiAgYm9yZGVyLXJhZGl1czogNTAlOwogIGJhY2tncm91bmQ6IAogIHJhZGlhbC1ncmFkaWVudChmYXJ0aGVzdC1zaWRlLCB2YXIoLS11aS1wcmltYXJ5LW5vcm1hbCkgOTQlLCB0cmFuc3BhcmVudCkgdG9wLzhweCA4cHggbm8tcmVwZWF0LAogIGNvbmljLWdyYWRpZW50KHRyYW5zcGFyZW50IDMwJSwgdmFyKC0tdWktcHJpbWFyeS1ub3JtYWwpKQo7CiAgLXdlYmtpdC1tYXNrOiByYWRpYWwtZ3JhZGllbnQoZmFydGhlc3Qtc2lkZSwgdHJhbnNwYXJlbnQgY2FsYygxMDAlIC0gOHB4KSwgIzAwMCAwKTsKICBhbmltYXRpb246IF8xa292dDVlMCAxcyBpbmZpbml0ZSBsaW5lYXI7Cn0= */
+@keyframes _1kovt5e0 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+._1kovt5e1 {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      farthest-side,
+      var(--ui-primary-normal) 94%,
+      transparent) top/8px 8px no-repeat,
+    conic-gradient(transparent 30%, var(--ui-primary-normal));
+  -webkit-mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 8px),
+      #000 0);
+  animation: _1kovt5e0 1s infinite linear;
+}
 /*# sourceMappingURL=index.css.map */

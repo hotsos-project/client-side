@@ -1431,6 +1431,18 @@ var MapBottomSheet = forwardRef27(
     );
   }
 );
+
+// src/loading-spinner/LoadingSpinner.tsx
+import { forwardRef as forwardRef28 } from "react";
+
+// src/loading-spinner/style.css.ts
+var loader = "_1kovt5e1";
+
+// src/loading-spinner/LoadingSpinner.tsx
+import { jsx as jsx30 } from "react/jsx-runtime";
+var LoadingSpinner = forwardRef28(() => {
+  return /* @__PURE__ */ jsx30("div", { className: loader });
+});
 export {
   Badge,
   Button,
@@ -1447,6 +1459,7 @@ export {
   InfoButton,
   Input,
   InputGroup,
+  LoadingSpinner,
   MapBottomSheet,
   MessageList,
   MoreButton,

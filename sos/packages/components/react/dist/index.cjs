@@ -35,6 +35,7 @@ __export(src_exports, {
   InfoButton: () => InfoButton,
   Input: () => Input,
   InputGroup: () => InputGroup,
+  LoadingSpinner: () => LoadingSpinner,
   MapBottomSheet: () => MapBottomSheet,
   MessageList: () => MessageList,
   MoreButton: () => MoreButton,
@@ -1490,4 +1491,16 @@ var MapBottomSheet = (0, import_react27.forwardRef)(
     );
   }
 );
+
+// src/loading-spinner/LoadingSpinner.tsx
+var import_react28 = require("react");
+
+// src/loading-spinner/style.css.ts
+var loader = "_1kovt5e1";
+
+// src/loading-spinner/LoadingSpinner.tsx
+var import_jsx_runtime30 = require("react/jsx-runtime");
+var LoadingSpinner = (0, import_react28.forwardRef)(() => {
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: loader });
+});
 //# sourceMappingURL=index.cjs.map
