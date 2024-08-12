@@ -74,7 +74,9 @@ export default function Login() {
             ></InputGroup>
           </Container>
           <Container paddingX={16} paddingY={36}>
-            <Button size="l">로그인</Button>
+            <Button size="l" type="submit">
+              로그인
+            </Button>
           </Container>
           <Container display="flex" justifyContent="center" paddingX={16} gap={10}>
             <Link href="/signup" passHref>

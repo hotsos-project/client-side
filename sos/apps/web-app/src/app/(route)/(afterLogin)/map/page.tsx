@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import useKakaoLoader from './_components/userKakaoLoader';
-import { useAedData } from '../../../_hooks/useAedData';
-import { Container, Input, Chips, MapBottomSheet } from '@sos/components-react';
+import { useFetchAED } from '@/app/_hooks';
+import { AEDResponse } from '@/app/_types';
+import { Container, Input, Chips, MapBottomSheet, LoadingSpinner } from '@sos/components-react';
 
 export default function BasicMap() {
   useKakaoLoader();
@@ -13,9 +14,7 @@ export default function BasicMap() {
   const [lon, setLon] = useState<number | null>(null);
   const [radius, setRadius] = useState(2);
   const [isClient, setIsClient] = useState(false);
-  const [queryEnabled, setQueryEnabled] = useState(false);
-  const [aedData, setaedData] = useState<any[]>([]);
-  const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<AEDResponse | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -24,39 +23,42 @@ export default function BasicMap() {
         (position) => {
           setLat(position.coords.latitude);
           setLon(position.coords.longitude);
-          setQueryEnabled(true);
         },
         (error) => {
           console.log('❌ Fail to load geolocation', error.message);
           setLat(37.5665);
           setLon(126.978);
-          setQueryEnabled(true);
         },
       );
       return () => {
         navigator.geolocation.clearWatch(watchId);
       };
     } else {
-      // default: 서울 시청
       setLat(37.5665);
       setLon(126.978);
-      setQueryEnabled(true);
     }
   }, []);
 
-  const { data, error, isLoading } = useAedData(lat ?? 0, lon ?? 0, radius, queryEnabled);
+  const { data, error, isLoading } = useFetchAED(lat ?? 0, lon ?? 0, radius ?? 0);
 
-  useEffect(() => {
-    if (data && data.data && data.data.aedResponses) {
-      console.log('📝 Fetched Data', data);
-      setaedData(data.data.aedResponses);
-    }
-  }, [data]);
+  if (!isClient || lat === null || lon === null || isLoading) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100vh',
+        }}
+      >
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
-  if (!isClient || lat === null || lon === null) return <div>로딩 중</div>;
-
-  if (isLoading) return <div>로딩 중</div>;
   if (error) return <div>{error.message}</div>;
+
+  const aedData = data?.aedResponses || ['nothing'];
 
   const defaultMarkerImage = {
     src: '/aed_default.png',
@@ -123,57 +125,54 @@ export default function BasicMap() {
             lng: lon,
           }}
         />
-        {aedData.map((aed) => (
-          <React.Fragment key={aed.id}>
-            <MapMarker
-              position={{
-                lat: aed.lat,
-                lng: aed.lon,
-              }}
-              image={selectedMarker === aed.id ? selectedMarkerImage : defaultMarkerImage}
-              onClick={() => setSelectedMarker(aed.id)}
-            />
-            {selectedMarker === aed.id && (
-              <CustomOverlayMap position={{ lat: aed.lat, lng: aed.lon }}>
-                <div
-                  style={{
-                    padding: '5px',
-                    backgroundColor: 'white',
-                    border: '1px solid gray',
-                    position: 'relative',
-                    top: '10px',
-                    transform: 'translateY(40%)',
-                  }}
-                >
-                  {`주소: ${aed.detailAddress}`} <br /> {`위치: ${aed.buildPlace}`}
-                </div>
-              </CustomOverlayMap>
-            )}
-          </React.Fragment>
-        ))}
+        {aedData.map((aed) => {
+          if (typeof aed === 'string') return null;
+
+          return (
+            <React.Fragment key={aed.id}>
+              <MapMarker
+                position={{
+                  lat: aed.lat,
+                  lng: aed.lon,
+                }}
+                image={selectedMarker?.id === aed.id ? selectedMarkerImage : defaultMarkerImage}
+                onClick={() => setSelectedMarker(aed)}
+              />
+              {selectedMarker?.id === aed.id && (
+                <CustomOverlayMap position={{ lat: aed.lat, lng: aed.lon }} />
+              )}
+            </React.Fragment>
+          );
+        })}
       </Map>
-      <Container
-        display="flex"
-        width={'100%'}
-        padding={16}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          zIndex: 999,
-        }}
-      >
-        <MapBottomSheet
-          title="Title"
-          infos={[
-            { title: 'Title 1', content: 'Content 1' },
-            { title: 'Title 2', content: 'Content 2' },
-          ]}
-          badgeText="제세동기"
-          subText="서울특별시 00 00 000"
-          buttonText="길찾기"
-          subButtonIcon="call"
-        />
-      </Container>
+      {selectedMarker && (
+        <Container
+          display="flex"
+          width={'100%'}
+          padding={16}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            zIndex: 999,
+          }}
+        >
+          <MapBottomSheet
+            title={selectedMarker ? `${selectedMarker.buildPlace}` : 'Title'}
+            infos={[
+              { title: '주소', content: selectedMarker?.detailAddress || 'Content 1' },
+              { title: '상세 위치', content: selectedMarker?.buildPlace || 'Content 2' },
+            ]}
+            badgeText="제세동기"
+            subText={
+              selectedMarker
+                ? `${selectedMarker.sido} ${selectedMarker.gugun} ${selectedMarker.detailAddress}`
+                : '서울특별시 00 00 000'
+            }
+            buttonText="길찾기"
+            subButtonIcon="call"
+          />
+        </Container>
+      )}
     </>
   );
 }

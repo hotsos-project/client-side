@@ -59,3 +59,6 @@ export { MapBottomSheet } from './bottom-sheet/map/MapBottomSheet';
 // Drop Down
 export { DropDownItem } from './drop-down/drop-down-item/DropDownItem';
 export { DropDownBox } from './drop-down/drop-down-box/DropDownBox';
+
+// Loading Spinner
+export { LoadingSpinner } from './loading-spinner/LoadingSpinner';
