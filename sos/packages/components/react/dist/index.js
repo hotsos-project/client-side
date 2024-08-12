@@ -30,7 +30,7 @@ var shadowSprinkles = _ad2215({ conditions: void 0, styles: { boxShadow: { value
 // src/common/text/Text.tsx
 import { forwardRef } from "react";
 
-// ../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../AppData/Local/Yarn/Berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;

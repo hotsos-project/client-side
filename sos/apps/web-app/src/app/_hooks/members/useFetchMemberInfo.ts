@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchMemberInfo } from '../../_libs/api/members';
+import { fetchMemberInfo } from '@/app/_libs';
 
 export const useFetchMemberInfo = () => {
   const isClient = typeof window !== 'undefined';

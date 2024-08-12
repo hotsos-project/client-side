@@ -9,6 +9,8 @@ export interface ReplyRequest {
   content: string;
 }
 
+// 아래 무시
+
 export interface CreateReplyVariables {
   commentId: number;
   memberId: number;
