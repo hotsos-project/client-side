@@ -5,8 +5,9 @@ interface ButtonProps extends CommonProps, NonNullable<ButtonVariants> {
     icon?: string;
     iconColor?: Palette;
     leftSubText?: string | number;
+    leftSubTextColor?: Palette;
     rightSubText?: string | number;
-    mainText?: string;
+    rightSubTextColor?: Palette;
     isLoading?: boolean;
     loadingSpinner?: string;
     disabled?: boolean;

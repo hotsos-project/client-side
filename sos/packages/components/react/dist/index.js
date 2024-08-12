@@ -273,12 +273,13 @@ var Button = forwardRef5(
     icon,
     iconColor,
     leftSubText,
+    leftSubTextColor,
     rightSubText,
+    rightSubTextColor,
     isLoading = false,
     loadingSpinner = "refresh",
     disabled = false,
     type = "button",
-    // Set default type to 'button'
     className,
     ...props
   }, ref) => {
@@ -305,7 +306,16 @@ var Button = forwardRef5(
         ...props,
         children: [
           icon && /* @__PURE__ */ jsx5(Icon, { color: iconColor || (isHovered && !disabled ? hovertextColor : textColor), children: icon }),
-          leftSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", color: isHovered && !disabled ? hovertextColor : textColor, children: leftSubText }),
+          leftSubText && /* @__PURE__ */ jsx5(
+            Text,
+            {
+              textType: "body1",
+              style: {
+                color: leftSubTextColor || (isHovered && !disabled ? hovertextColor : textColor)
+              },
+              children: leftSubText
+            }
+          ),
           children && /* @__PURE__ */ jsx5(
             Text,
             {
@@ -315,7 +325,16 @@ var Button = forwardRef5(
               children
             }
           ),
-          rightSubText && /* @__PURE__ */ jsx5(Text, { textType: "body1", color: isHovered && !disabled ? hovertextColor : textColor, children: rightSubText }),
+          rightSubText && /* @__PURE__ */ jsx5(
+            Text,
+            {
+              textType: "body1",
+              style: {
+                color: rightSubTextColor || (isHovered && !disabled ? hovertextColor : textColor)
+              },
+              children: rightSubText
+            }
+          ),
           isLoading && /* @__PURE__ */ jsx5(Icon, { color: iconColor || (isHovered && !disabled ? hovertextColor : textColor), children: loadingSpinner })
         ]
       }
@@ -800,16 +819,26 @@ var SocialContentList = forwardRef15(
     isFalseCounts = 0
   }, ref) => {
     return /* @__PURE__ */ jsxs8(Container, { as: "li", children: [
-      /* @__PURE__ */ jsxs8(Container, { display: "flex", flexDirection: "column", paddingX: 16, paddingTop: 20, gap: 6, children: [
-        /* @__PURE__ */ jsxs8(Container, { display: "flex", justifyContent: "space-between", children: [
-          /* @__PURE__ */ jsx17(Text, { textType: "heading2", textMode: "bold", children: title }),
-          /* @__PURE__ */ jsx17(Icon, { children: "more_horiz" })
-        ] }),
-        /* @__PURE__ */ jsxs8(Container, { display: "flex", gap: 6, children: [
-          /* @__PURE__ */ jsx17(Text, { textType: "label", color: "textAlternative", children: writer }),
-          /* @__PURE__ */ jsx17(Text, { textType: "label", color: "textAssistive", children: date })
-        ] })
-      ] }),
+      /* @__PURE__ */ jsxs8(
+        Container,
+        {
+          display: "flex",
+          flexDirection: "column",
+          paddingX: 16,
+          paddingTop: 20,
+          gap: 6,
+          children: [
+            /* @__PURE__ */ jsxs8(Container, { display: "flex", justifyContent: "space-between", children: [
+              /* @__PURE__ */ jsx17(Text, { textType: "heading2", textMode: "bold", children: title }),
+              /* @__PURE__ */ jsx17(Icon, { children: "more_horiz" })
+            ] }),
+            /* @__PURE__ */ jsxs8(Container, { display: "flex", gap: 6, children: [
+              /* @__PURE__ */ jsx17(Text, { textType: "label", color: "textAlternative", children: writer }),
+              /* @__PURE__ */ jsx17(Text, { textType: "label", color: "textAssistive", children: date })
+            ] })
+          ]
+        }
+      ),
       /* @__PURE__ */ jsxs8(
         Container,
         {
@@ -839,10 +868,10 @@ var SocialContentList = forwardRef15(
       ),
       /* @__PURE__ */ jsxs8(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children: [
         children,
-        /* @__PURE__ */ jsx17("img", { src: "/earthquake3-01.jpg", height: 240 })
+        /* @__PURE__ */ jsx17("img", { src: "/earthquake3-01.jpg", width: "100%" })
       ] }),
       /* @__PURE__ */ jsx17(Container, { padding: 16, children: /* @__PURE__ */ jsx17(Text, { children: content }) }),
-      /* @__PURE__ */ jsxs8(
+      /* @__PURE__ */ jsx17(
         Container,
         {
           display: "flex",
@@ -850,31 +879,40 @@ var SocialContentList = forwardRef15(
           justifyContent: "center",
           gap: 64,
           borderType: "borderTop",
-          children: [
-            /* @__PURE__ */ jsxs8(Container, { display: "flex", gap: 16, children: [
-              /* @__PURE__ */ jsx17(
-                Button,
-                {
-                  variant: "secondary",
-                  design: "outline",
-                  mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694",
-                  rightSubText: isTrueCounts,
-                  size: "s"
-                }
-              ),
-              /* @__PURE__ */ jsx17(
-                Button,
-                {
-                  variant: "secondary",
-                  design: "outline",
-                  mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694",
-                  rightSubText: isFalseCounts,
-                  size: "s"
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsx17(Button, { icon: "chat", mainText: "", leftSubText: commentCounts, size: "s" })
-          ]
+          children: /* @__PURE__ */ jsxs8(Container, { display: "flex", gap: 16, width: "100%", children: [
+            /* @__PURE__ */ jsx17(
+              Button,
+              {
+                variant: "secondary",
+                design: "outline",
+                rightSubText: isTrueCounts,
+                rightSubTextColor: "uiPrimaryNormal",
+                size: "s",
+                children: "\uC0AC\uC2E4\uC774\uC5D0\uC694"
+              }
+            ),
+            /* @__PURE__ */ jsx17(
+              Button,
+              {
+                variant: "secondary",
+                design: "outline",
+                rightSubText: isFalseCounts,
+                rightSubTextColor: "pink500",
+                size: "s",
+                children: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694"
+              }
+            ),
+            /* @__PURE__ */ jsx17(Container, { display: "flex", children: /* @__PURE__ */ jsx17(
+              Button,
+              {
+                variant: "tertiary",
+                icon: "chat",
+                iconColor: "blueGray500",
+                leftSubText: commentCounts,
+                size: "s"
+              }
+            ) })
+          ] })
         }
       )
     ] });
@@ -926,8 +964,138 @@ var FollowingList = forwardRef17(
   }
 );
 
+// src/list/comment/CommentList.tsx
+import { forwardRef as forwardRef20, useState as useState3 } from "react";
+import { createPortal } from "react-dom";
+
+// src/drop-down/drop-down-box/DropDownBox.tsx
+import { useState as useState2, forwardRef as forwardRef19 } from "react";
+
+// src/drop-down/drop-down-item/DropDownItem.tsx
+import { forwardRef as forwardRef18 } from "react";
+import { jsx as jsx20 } from "react/jsx-runtime";
+var DropDownItem = forwardRef18(
+  ({ state = "default", children, className, onClick }, ref) => {
+    return /* @__PURE__ */ jsx20(
+      Container,
+      {
+        display: "flex",
+        paddingX: 16,
+        paddingY: 10,
+        borderRadius: "s",
+        backgroundColor: state === "active" ? "gray50" : "backgroundNormalPrimary",
+        style: { width: "153px", cursor: "pointer" },
+        className,
+        ref,
+        onClick,
+        children: /* @__PURE__ */ jsx20(Text, { textType: "label", children })
+      }
+    );
+  }
+);
+
+// src/drop-down/drop-down-box/DropDownBox.tsx
+import { jsx as jsx21 } from "react/jsx-runtime";
+var DropDownBox = forwardRef19(({ options }, ref) => {
+  const [activeIndex, setActiveIndex] = useState2(null);
+  const handleItemClick = (index) => {
+    setActiveIndex(index);
+  };
+  return /* @__PURE__ */ jsx21(Container, { display: "flex", ref, children: /* @__PURE__ */ jsx21(
+    Container,
+    {
+      display: "flex",
+      flexDirection: "column",
+      padding: 6,
+      gap: 4,
+      borderRadius: "s",
+      boxShadow: "s",
+      backgroundColor: "backgroundNormalPrimary",
+      children: options.map((item, index) => /* @__PURE__ */ jsx21(
+        DropDownItem,
+        {
+          state: activeIndex === index ? "active" : "default",
+          onClick: () => handleItemClick(index),
+          children: item
+        },
+        index
+      ))
+    }
+  ) });
+});
+
+// src/list/comment/CommentList.tsx
+import { Fragment, jsx as jsx22, jsxs as jsxs11 } from "react/jsx-runtime";
+var CommentList = forwardRef20(
+  ({
+    writer = "writer",
+    children = "content",
+    date = "2024/07/18 09:15:40",
+    isReply = false,
+    isWriter = false,
+    className
+  }, ref) => {
+    const options = ["\uC218\uC815\uD558\uAE30", "\uC0AD\uC81C\uD558\uAE30"];
+    const [isDropdownVisible, setDropdownVisible] = useState3(false);
+    const [dropdownPosition, setDropdownPosition] = useState3({ top: 0, left: 0 });
+    const effectivePadding = isReply ? 64 : 16;
+    const handleIconClick = (event) => {
+      if (isWriter) {
+        const rect = event.currentTarget.getBoundingClientRect();
+        setDropdownPosition({ top: rect.bottom, left: rect.left });
+        setDropdownVisible(!isDropdownVisible);
+      } else {
+        alert("\uD574\uB2F9 \uB313\uAE00\uC744 \uC2E0\uACE0\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?");
+      }
+    };
+    return /* @__PURE__ */ jsxs11(Fragment, { children: [
+      /* @__PURE__ */ jsxs11(
+        Container,
+        {
+          display: "flex",
+          flexDirection: "column",
+          paddingLeft: effectivePadding,
+          paddingRight: 16,
+          paddingY: 16,
+          gap: 6,
+          className,
+          ref,
+          children: [
+            /* @__PURE__ */ jsxs11(Container, { display: "flex", justifyContent: "space-between", children: [
+              /* @__PURE__ */ jsxs11(Container, { display: "flex", gap: 16, children: [
+                /* @__PURE__ */ jsx22(Text, { textType: "body3", textMode: "bold", children: writer }),
+                /* @__PURE__ */ jsx22(Text, { textType: "body3", children })
+              ] }),
+              /* @__PURE__ */ jsx22(Container, { style: { position: "relative" }, children: /* @__PURE__ */ jsx22(Icon, { size: 15, onClick: handleIconClick, children: "more_horiz" }) })
+            ] }),
+            /* @__PURE__ */ jsxs11(Container, { display: "flex", justifyContent: "space-between", children: [
+              /* @__PURE__ */ jsx22(Text, { textType: "label", color: "gray300", children: date }),
+              !isReply && /* @__PURE__ */ jsx22(Text, { textType: "label", color: "gray300", children: "\uB2F5\uAE00\uB2EC\uAE30" })
+            ] })
+          ]
+        }
+      ),
+      isDropdownVisible && createPortal(
+        /* @__PURE__ */ jsx22(
+          DropDownBox,
+          {
+            options,
+            style: {
+              position: "absolute",
+              top: dropdownPosition.top,
+              left: dropdownPosition.left,
+              zIndex: 1e3
+            }
+          }
+        ),
+        document.body
+      )
+    ] });
+  }
+);
+
 // src/input/Input.tsx
-import { forwardRef as forwardRef18, useState as useState2, useEffect } from "react";
+import { forwardRef as forwardRef21, useState as useState4, useEffect } from "react";
 
 // src/input/style.css.ts
 var buttonStyle = "_1phoqpw7";
@@ -938,8 +1106,8 @@ var inputStateStyle = { "default": "_1phoqpw2", highlight: "_1phoqpw3", warning:
 var inputStyle = "_1phoqpw1";
 
 // src/input/Input.tsx
-import { jsx as jsx20, jsxs as jsxs11 } from "react/jsx-runtime";
-var Input = forwardRef18(
+import { jsx as jsx23, jsxs as jsxs12 } from "react/jsx-runtime";
+var Input = forwardRef21(
   ({
     state = "default",
     showIcon = true,
@@ -954,9 +1122,9 @@ var Input = forwardRef18(
     readOnly = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = useState2(value || defaultValue);
-    const [inputType, setInputType] = useState2(type);
-    const [iconColor, setIconColor] = useState2("gray200");
+    const [internalValue, setInternalValue] = useState4(value || defaultValue);
+    const [inputType, setInputType] = useState4(type);
+    const [iconColor, setIconColor] = useState4("gray200");
     useEffect(() => {
       setInternalValue(value !== void 0 ? value : internalValue);
     }, [value]);
@@ -988,7 +1156,7 @@ var Input = forwardRef18(
     const divStateClass = divStateStyle[state];
     const inputStateClass = inputStateStyle[state];
     const iconClass = state === "disabled" ? disabledIconStyle : iconStyle;
-    return /* @__PURE__ */ jsxs11(
+    return /* @__PURE__ */ jsxs12(
       Container,
       {
         display: "flex",
@@ -1003,8 +1171,8 @@ var Input = forwardRef18(
         className: `${divStateClass} ${className || ""}`,
         ...props,
         children: [
-          showIcon && /* @__PURE__ */ jsx20(Icon, { className: iconClass, children: "search" }),
-          /* @__PURE__ */ jsx20(
+          showIcon && /* @__PURE__ */ jsx23(Icon, { className: iconClass, children: "search" }),
+          /* @__PURE__ */ jsx23(
             "input",
             {
               ref,
@@ -1017,8 +1185,8 @@ var Input = forwardRef18(
               readOnly: state === "readonly" || readOnly
             }
           ),
-          showButton && internalValue && state !== "disabled" && type !== "password" && !readOnly && /* @__PURE__ */ jsx20("button", { type: "button", className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx20(Icon, { color: "gray200", children: "cancel" }) }),
-          showPasswordToggle && /* @__PURE__ */ jsx20("button", { type: "button", className: buttonStyle, onClick: handlePasswordToggle, children: /* @__PURE__ */ jsx20(Icon, { color: iconColor, children: "remove_red_eye" }) })
+          showButton && internalValue && state !== "disabled" && type !== "password" && !readOnly && /* @__PURE__ */ jsx23("button", { type: "button", className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ jsx23(Icon, { color: "gray200", children: "cancel" }) }),
+          showPasswordToggle && /* @__PURE__ */ jsx23("button", { type: "button", className: buttonStyle, onClick: handlePasswordToggle, children: /* @__PURE__ */ jsx23(Icon, { color: iconColor, children: "remove_red_eye" }) })
         ]
       }
     );
@@ -1026,7 +1194,7 @@ var Input = forwardRef18(
 );
 
 // src/input/group/InputGroup.tsx
-import { forwardRef as forwardRef19 } from "react";
+import { forwardRef as forwardRef22 } from "react";
 
 // src/input/group/style.css.ts
 var inputStyle2 = "_1n4ve932";
@@ -1035,8 +1203,8 @@ var starStyle = "_1n4ve931";
 var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
-import { jsx as jsx21, jsxs as jsxs12 } from "react/jsx-runtime";
-var InputGroup = forwardRef19(
+import { jsx as jsx24, jsxs as jsxs13 } from "react/jsx-runtime";
+var InputGroup = forwardRef22(
   ({
     state = "default",
     showButton = true,
@@ -1057,13 +1225,13 @@ var InputGroup = forwardRef19(
     className,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxs12(Container, { display: "flex", flexDirection: "column", className, ref, ...props, children: [
-      showLabel && /* @__PURE__ */ jsxs12(Container, { className: labelStyle, children: [
-        /* @__PURE__ */ jsx21(Text, { children: labelContent }),
-        showStar && /* @__PURE__ */ jsx21("span", { className: starStyle, children: "*" })
+    return /* @__PURE__ */ jsxs13(Container, { display: "flex", flexDirection: "column", className, ref, ...props, children: [
+      showLabel && /* @__PURE__ */ jsxs13(Container, { className: labelStyle, children: [
+        /* @__PURE__ */ jsx24(Text, { children: labelContent }),
+        showStar && /* @__PURE__ */ jsx24("span", { className: starStyle, children: "*" })
       ] }),
-      /* @__PURE__ */ jsxs12(Container, { display: "flex", className: inputStyle2, children: [
-        /* @__PURE__ */ jsx21(
+      /* @__PURE__ */ jsxs13(Container, { display: "flex", className: inputStyle2, children: [
+        /* @__PURE__ */ jsx24(
           Input,
           {
             state,
@@ -1078,7 +1246,7 @@ var InputGroup = forwardRef19(
             readOnly: state === "readonly"
           }
         ),
-        showButton && /* @__PURE__ */ jsx21(Container, { children: /* @__PURE__ */ jsx21(
+        showButton && /* @__PURE__ */ jsx24(Container, { children: /* @__PURE__ */ jsx24(
           Button,
           {
             variant: "primary",
@@ -1090,24 +1258,33 @@ var InputGroup = forwardRef19(
           }
         ) })
       ] }),
-      state === "warning" && /* @__PURE__ */ jsx21("div", { className: warningStyle, children: warningContent })
+      state === "warning" && /* @__PURE__ */ jsx24("div", { className: warningStyle, children: warningContent })
     ] });
   }
 );
 
+// src/input/text-area/TextArea.tsx
+import { forwardRef as forwardRef23 } from "react";
+import { jsx as jsx25 } from "react/jsx-runtime";
+var TextArea = forwardRef23(
+  ({ children = "\uC81C\uBAA9", className, ...props }, ref) => {
+    return /* @__PURE__ */ jsx25(Container, { children: /* @__PURE__ */ jsx25("input", {}) });
+  }
+);
+
 // src/notification/Notification.tsx
-import { forwardRef as forwardRef20 } from "react";
+import { forwardRef as forwardRef24 } from "react";
 
 // src/notification/style.css.ts
 import { createRuntimeFn as _7a4687 } from "@vanilla-extract/recipes/createRuntimeFn";
 var stateStyle2 = _7a4687({ defaultClassName: "_1pruyzf1 _89s0wz46 _89s0wz32 _89s0wz2g _89s0wz3k _89s0wz4q", variantClassNames: { state: { "default": "_1rmst083b _1rmst086r", warning: "_1rmst081k _1rmst086r", danger: "_1rmst081 _1rmst0852" } }, defaultVariants: { state: "default" }, compoundVariants: [] });
 
 // src/notification/Notification.tsx
-import { jsx as jsx22, jsxs as jsxs13 } from "react/jsx-runtime";
-var Notification = forwardRef20(
+import { jsx as jsx26, jsxs as jsxs14 } from "react/jsx-runtime";
+var Notification = forwardRef24(
   ({ state = "default", content = "warning", icon = "warning", ...props }, ref) => {
     const textColor = state === "danger" ? "white" : state === "warning" ? "pink500" : "textNormal";
-    return /* @__PURE__ */ jsxs13(
+    return /* @__PURE__ */ jsxs14(
       Container,
       {
         ref,
@@ -1118,8 +1295,8 @@ var Notification = forwardRef20(
         className: clsx_default(stateStyle2({ state })),
         ...props,
         children: [
-          /* @__PURE__ */ jsx22(Icon, { color: textColor, children: icon }),
-          /* @__PURE__ */ jsx22(Text, { color: textColor, children: content })
+          /* @__PURE__ */ jsx26(Icon, { color: textColor, children: icon }),
+          /* @__PURE__ */ jsx26(Text, { color: textColor, children: content })
         ]
       }
     );
@@ -1127,21 +1304,21 @@ var Notification = forwardRef20(
 );
 
 // src/tabs/tab-bar/TabBar.tsx
-import { forwardRef as forwardRef22 } from "react";
+import { forwardRef as forwardRef26 } from "react";
 
 // src/tabs/tab/Tab.tsx
-import { forwardRef as forwardRef21 } from "react";
+import { forwardRef as forwardRef25 } from "react";
 
 // src/tabs/tab/style.css.ts
 var commonStyle = "_1xjnc5f0";
 var stateStyle3 = { "default": "_1rmst083c", active: "_1rmst083b" };
 
 // src/tabs/tab/Tab.tsx
-import { jsx as jsx23 } from "react/jsx-runtime";
-var Tab = forwardRef21(
+import { jsx as jsx27 } from "react/jsx-runtime";
+var Tab = forwardRef25(
   ({ content, state, className = "" }, ref) => {
     const stateClass = state === "active" ? stateStyle3.active : stateStyle3.default;
-    return /* @__PURE__ */ jsx23(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle, className), children: /* @__PURE__ */ jsx23(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
+    return /* @__PURE__ */ jsx27(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle, className), children: /* @__PURE__ */ jsx27(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
   }
 );
 
@@ -1149,8 +1326,8 @@ var Tab = forwardRef21(
 var activeTab = "s5asx20";
 
 // src/tabs/tab-bar/TabBar.tsx
-import { jsx as jsx24 } from "react/jsx-runtime";
-var TabBar = forwardRef22(({ tabs, className, ...props }, ref) => {
+import { jsx as jsx28 } from "react/jsx-runtime";
+var TabBar = forwardRef26(({ tabs, className, ...props }, ref) => {
   const activeTabIndex = tabs.findIndex((tab) => tab.state === "active");
   const updatedTabs = tabs.map((tab, index) => {
     const newState = index === (activeTabIndex !== -1 ? activeTabIndex : 0) ? "active" : "default";
@@ -1159,7 +1336,7 @@ var TabBar = forwardRef22(({ tabs, className, ...props }, ref) => {
       state: newState
     };
   });
-  return /* @__PURE__ */ jsx24(
+  return /* @__PURE__ */ jsx28(
     Container,
     {
       ref,
@@ -1168,7 +1345,7 @@ var TabBar = forwardRef22(({ tabs, className, ...props }, ref) => {
       gap: 32,
       className,
       ...props,
-      children: updatedTabs.map((tab, index) => /* @__PURE__ */ jsx24(
+      children: updatedTabs.map((tab, index) => /* @__PURE__ */ jsx28(
         Tab,
         {
           content: tab.content,
@@ -1182,10 +1359,10 @@ var TabBar = forwardRef22(({ tabs, className, ...props }, ref) => {
 });
 
 // src/bottom-sheet/map/MapBottomSheet.tsx
-import { forwardRef as forwardRef23 } from "react";
+import { forwardRef as forwardRef27 } from "react";
 import { vars } from "@sos/style-tokens";
-import { jsx as jsx25, jsxs as jsxs14 } from "react/jsx-runtime";
-var MapBottomSheet = forwardRef23(
+import { jsx as jsx29, jsxs as jsxs15 } from "react/jsx-runtime";
+var MapBottomSheet = forwardRef27(
   ({
     children,
     title,
@@ -1198,7 +1375,7 @@ var MapBottomSheet = forwardRef23(
     className,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxs14(
+    return /* @__PURE__ */ jsxs15(
       Container,
       {
         ref,
@@ -1214,9 +1391,9 @@ var MapBottomSheet = forwardRef23(
         boxShadow: "s",
         ...props,
         children: [
-          /* @__PURE__ */ jsxs14(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 16, children: [
-            /* @__PURE__ */ jsxs14(Container, { display: "flex", justifyContent: "space-between", width: "100%", children: [
-              /* @__PURE__ */ jsxs14(
+          /* @__PURE__ */ jsxs15(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 16, children: [
+            /* @__PURE__ */ jsxs15(Container, { display: "flex", justifyContent: "space-between", width: "100%", children: [
+              /* @__PURE__ */ jsxs15(
                 Container,
                 {
                   display: "flex",
@@ -1224,15 +1401,15 @@ var MapBottomSheet = forwardRef23(
                   gap: 6,
                   style: { width: subButtonIcon ? `calc(100% - 48px)` : "100%" },
                   children: [
-                    title && /* @__PURE__ */ jsx25(Text, { as: "span", textType: "heading2", textMode: "bold", ellipsis: true, children: title }),
-                    /* @__PURE__ */ jsxs14(Container, { display: "flex", alignItems: "center", width: "100%", gap: 6, children: [
-                      badgeText && /* @__PURE__ */ jsx25(Badge, { color: badgeColor, children: badgeText }),
-                      /* @__PURE__ */ jsx25(Text, { as: "span", textType: "footnote", color: "textAssistive", ellipsis: true, children: subText })
+                    title && /* @__PURE__ */ jsx29(Text, { as: "span", textType: "heading2", textMode: "bold", ellipsis: true, children: title }),
+                    /* @__PURE__ */ jsxs15(Container, { display: "flex", alignItems: "center", width: "100%", gap: 6, children: [
+                      badgeText && /* @__PURE__ */ jsx29(Badge, { color: badgeColor, children: badgeText }),
+                      /* @__PURE__ */ jsx29(Text, { as: "span", textType: "footnote", color: "textAssistive", ellipsis: true, children: subText })
                     ] })
                   ]
                 }
               ),
-              /* @__PURE__ */ jsx25(Container, { display: "flex", children: subButtonIcon && /* @__PURE__ */ jsx25(
+              /* @__PURE__ */ jsx29(Container, { display: "flex", children: subButtonIcon && /* @__PURE__ */ jsx29(
                 Button,
                 {
                   variant: "secondary",
@@ -1245,73 +1422,20 @@ var MapBottomSheet = forwardRef23(
                 }
               ) })
             ] }),
-            infos && /* @__PURE__ */ jsx25(InfoBox, { infos, size: "s", backgroundColor: "backgroundElevatedSecondary" })
+            infos && /* @__PURE__ */ jsx29(InfoBox, { infos, size: "s", backgroundColor: "backgroundElevatedSecondary" })
           ] }),
-          buttonText && /* @__PURE__ */ jsx25(Button, { size: "m", children: buttonText }),
+          buttonText && /* @__PURE__ */ jsx29(Button, { size: "m", children: buttonText }),
           children
         ]
       }
     );
   }
 );
-
-// src/drop-down/drop-down-item/DropDownItem.tsx
-import { forwardRef as forwardRef24 } from "react";
-import { jsx as jsx26 } from "react/jsx-runtime";
-var DropDownItem = forwardRef24(
-  ({ state = "default", children, className, onClick }, ref) => {
-    return /* @__PURE__ */ jsx26(
-      Container,
-      {
-        display: "flex",
-        paddingX: 16,
-        paddingY: 10,
-        borderRadius: "s",
-        backgroundColor: state === "active" ? "gray50" : "backgroundNormalPrimary",
-        style: { width: "153px", cursor: "pointer" },
-        className,
-        ref,
-        onClick,
-        children: /* @__PURE__ */ jsx26(Text, { textType: "label", children })
-      }
-    );
-  }
-);
-
-// src/drop-down/drop-down-box/DropDownBox.tsx
-import { useState as useState3, forwardRef as forwardRef25 } from "react";
-import { jsx as jsx27 } from "react/jsx-runtime";
-var DropDownBox = forwardRef25(({ options }, ref) => {
-  const [activeIndex, setActiveIndex] = useState3(null);
-  const handleItemClick = (index) => {
-    setActiveIndex(index);
-  };
-  return /* @__PURE__ */ jsx27(Container, { display: "flex", ref, children: /* @__PURE__ */ jsx27(
-    Container,
-    {
-      display: "flex",
-      flexDirection: "column",
-      padding: 6,
-      gap: 4,
-      borderRadius: "s",
-      boxShadow: "s",
-      backgroundColor: "backgroundNormalPrimary",
-      children: options.map((item, index) => /* @__PURE__ */ jsx27(
-        DropDownItem,
-        {
-          state: activeIndex === index ? "active" : "default",
-          onClick: () => handleItemClick(index),
-          children: item
-        },
-        index
-      ))
-    }
-  ) });
-});
 export {
   Badge,
   Button,
   Chips,
+  CommentList,
   Container,
   Divider,
   DropDownBox,
@@ -1331,6 +1455,7 @@ export {
   TabBar,
   TabList,
   Text,
+  TextArea,
   Title,
   TopAppBar,
   WeatherBox,

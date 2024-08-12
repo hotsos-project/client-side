@@ -23,6 +23,7 @@ __export(src_exports, {
   Badge: () => Badge,
   Button: () => Button,
   Chips: () => Chips,
+  CommentList: () => CommentList,
   Container: () => Container,
   Divider: () => Divider,
   DropDownBox: () => DropDownBox,
@@ -42,6 +43,7 @@ __export(src_exports, {
   TabBar: () => TabBar,
   TabList: () => TabList,
   Text: () => Text,
+  TextArea: () => TextArea,
   Title: () => Title,
   TopAppBar: () => TopAppBar,
   WeatherBox: () => WeatherBox,
@@ -330,12 +332,13 @@ var Button = (0, import_react5.forwardRef)(
     icon,
     iconColor,
     leftSubText,
+    leftSubTextColor,
     rightSubText,
+    rightSubTextColor,
     isLoading = false,
     loadingSpinner = "refresh",
     disabled = false,
     type = "button",
-    // Set default type to 'button'
     className,
     ...props
   }, ref) => {
@@ -362,7 +365,16 @@ var Button = (0, import_react5.forwardRef)(
         ...props,
         children: [
           icon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: iconColor || (isHovered && !disabled ? hovertextColor : textColor), children: icon }),
-          leftSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", color: isHovered && !disabled ? hovertextColor : textColor, children: leftSubText }),
+          leftSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+            Text,
+            {
+              textType: "body1",
+              style: {
+                color: leftSubTextColor || (isHovered && !disabled ? hovertextColor : textColor)
+              },
+              children: leftSubText
+            }
+          ),
           children && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
             Text,
             {
@@ -372,7 +384,16 @@ var Button = (0, import_react5.forwardRef)(
               children
             }
           ),
-          rightSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text, { textType: "body1", color: isHovered && !disabled ? hovertextColor : textColor, children: rightSubText }),
+          rightSubText && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+            Text,
+            {
+              textType: "body1",
+              style: {
+                color: rightSubTextColor || (isHovered && !disabled ? hovertextColor : textColor)
+              },
+              children: rightSubText
+            }
+          ),
           isLoading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { color: iconColor || (isHovered && !disabled ? hovertextColor : textColor), children: loadingSpinner })
         ]
       }
@@ -857,16 +878,26 @@ var SocialContentList = (0, import_react15.forwardRef)(
     isFalseCounts = 0
   }, ref) => {
     return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { as: "li", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { display: "flex", flexDirection: "column", paddingX: 16, paddingTop: 20, gap: 6, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { display: "flex", justifyContent: "space-between", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Text, { textType: "heading2", textMode: "bold", children: title }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { children: "more_horiz" })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { display: "flex", gap: 6, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Text, { textType: "label", color: "textAlternative", children: writer }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Text, { textType: "label", color: "textAssistive", children: date })
-        ] })
-      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(
+        Container,
+        {
+          display: "flex",
+          flexDirection: "column",
+          paddingX: 16,
+          paddingTop: 20,
+          gap: 6,
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { display: "flex", justifyContent: "space-between", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Text, { textType: "heading2", textMode: "bold", children: title }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Icon, { children: "more_horiz" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { display: "flex", gap: 6, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Text, { textType: "label", color: "textAlternative", children: writer }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Text, { textType: "label", color: "textAssistive", children: date })
+            ] })
+          ]
+        }
+      ),
       /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(
         Container,
         {
@@ -896,10 +927,10 @@ var SocialContentList = (0, import_react15.forwardRef)(
       ),
       /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { display: "flex", justifyContent: "center", alignItems: "center", width: "100%", children: [
         children,
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("img", { src: "/earthquake3-01.jpg", height: 240 })
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("img", { src: "/earthquake3-01.jpg", width: "100%" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Container, { padding: 16, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Text, { children: content }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
         Container,
         {
           display: "flex",
@@ -907,31 +938,40 @@ var SocialContentList = (0, import_react15.forwardRef)(
           justifyContent: "center",
           gap: 64,
           borderType: "borderTop",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { display: "flex", gap: 16, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
-                Button,
-                {
-                  variant: "secondary",
-                  design: "outline",
-                  mainText: "\uC0AC\uC2E4\uC774\uC5D0\uC694",
-                  rightSubText: isTrueCounts,
-                  size: "s"
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
-                Button,
-                {
-                  variant: "secondary",
-                  design: "outline",
-                  mainText: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694",
-                  rightSubText: isFalseCounts,
-                  size: "s"
-                }
-              )
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Button, { icon: "chat", mainText: "", leftSubText: commentCounts, size: "s" })
-          ]
+          children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Container, { display: "flex", gap: 16, width: "100%", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+              Button,
+              {
+                variant: "secondary",
+                design: "outline",
+                rightSubText: isTrueCounts,
+                rightSubTextColor: "uiPrimaryNormal",
+                size: "s",
+                children: "\uC0AC\uC2E4\uC774\uC5D0\uC694"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+              Button,
+              {
+                variant: "secondary",
+                design: "outline",
+                rightSubText: isFalseCounts,
+                rightSubTextColor: "pink500",
+                size: "s",
+                children: "\uD5C8\uC704\uC0AC\uC2E4\uC774\uC5D0\uC694"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Container, { display: "flex", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+              Button,
+              {
+                variant: "tertiary",
+                icon: "chat",
+                iconColor: "blueGray500",
+                leftSubText: commentCounts,
+                size: "s"
+              }
+            ) })
+          ] })
         }
       )
     ] });
@@ -983,8 +1023,138 @@ var FollowingList = (0, import_react17.forwardRef)(
   }
 );
 
-// src/input/Input.tsx
+// src/list/comment/CommentList.tsx
+var import_react20 = require("react");
+var import_react_dom = require("react-dom");
+
+// src/drop-down/drop-down-box/DropDownBox.tsx
+var import_react19 = require("react");
+
+// src/drop-down/drop-down-item/DropDownItem.tsx
 var import_react18 = require("react");
+var import_jsx_runtime20 = require("react/jsx-runtime");
+var DropDownItem = (0, import_react18.forwardRef)(
+  ({ state = "default", children, className, onClick }, ref) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+      Container,
+      {
+        display: "flex",
+        paddingX: 16,
+        paddingY: 10,
+        borderRadius: "s",
+        backgroundColor: state === "active" ? "gray50" : "backgroundNormalPrimary",
+        style: { width: "153px", cursor: "pointer" },
+        className,
+        ref,
+        onClick,
+        children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Text, { textType: "label", children })
+      }
+    );
+  }
+);
+
+// src/drop-down/drop-down-box/DropDownBox.tsx
+var import_jsx_runtime21 = require("react/jsx-runtime");
+var DropDownBox = (0, import_react19.forwardRef)(({ options }, ref) => {
+  const [activeIndex, setActiveIndex] = (0, import_react19.useState)(null);
+  const handleItemClick = (index) => {
+    setActiveIndex(index);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Container, { display: "flex", ref, children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+    Container,
+    {
+      display: "flex",
+      flexDirection: "column",
+      padding: 6,
+      gap: 4,
+      borderRadius: "s",
+      boxShadow: "s",
+      backgroundColor: "backgroundNormalPrimary",
+      children: options.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+        DropDownItem,
+        {
+          state: activeIndex === index ? "active" : "default",
+          onClick: () => handleItemClick(index),
+          children: item
+        },
+        index
+      ))
+    }
+  ) });
+});
+
+// src/list/comment/CommentList.tsx
+var import_jsx_runtime22 = require("react/jsx-runtime");
+var CommentList = (0, import_react20.forwardRef)(
+  ({
+    writer = "writer",
+    children = "content",
+    date = "2024/07/18 09:15:40",
+    isReply = false,
+    isWriter = false,
+    className
+  }, ref) => {
+    const options = ["\uC218\uC815\uD558\uAE30", "\uC0AD\uC81C\uD558\uAE30"];
+    const [isDropdownVisible, setDropdownVisible] = (0, import_react20.useState)(false);
+    const [dropdownPosition, setDropdownPosition] = (0, import_react20.useState)({ top: 0, left: 0 });
+    const effectivePadding = isReply ? 64 : 16;
+    const handleIconClick = (event) => {
+      if (isWriter) {
+        const rect = event.currentTarget.getBoundingClientRect();
+        setDropdownPosition({ top: rect.bottom, left: rect.left });
+        setDropdownVisible(!isDropdownVisible);
+      } else {
+        alert("\uD574\uB2F9 \uB313\uAE00\uC744 \uC2E0\uACE0\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?");
+      }
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+        Container,
+        {
+          display: "flex",
+          flexDirection: "column",
+          paddingLeft: effectivePadding,
+          paddingRight: 16,
+          paddingY: 16,
+          gap: 6,
+          className,
+          ref,
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Container, { display: "flex", justifyContent: "space-between", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Container, { display: "flex", gap: 16, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { textType: "body3", textMode: "bold", children: writer }),
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { textType: "body3", children })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Container, { style: { position: "relative" }, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Icon, { size: 15, onClick: handleIconClick, children: "more_horiz" }) })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Container, { display: "flex", justifyContent: "space-between", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { textType: "label", color: "gray300", children: date }),
+              !isReply && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { textType: "label", color: "gray300", children: "\uB2F5\uAE00\uB2EC\uAE30" })
+            ] })
+          ]
+        }
+      ),
+      isDropdownVisible && (0, import_react_dom.createPortal)(
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+          DropDownBox,
+          {
+            options,
+            style: {
+              position: "absolute",
+              top: dropdownPosition.top,
+              left: dropdownPosition.left,
+              zIndex: 1e3
+            }
+          }
+        ),
+        document.body
+      )
+    ] });
+  }
+);
+
+// src/input/Input.tsx
+var import_react21 = require("react");
 
 // src/input/style.css.ts
 var buttonStyle = "_1phoqpw7";
@@ -995,8 +1165,8 @@ var inputStateStyle = { "default": "_1phoqpw2", highlight: "_1phoqpw3", warning:
 var inputStyle = "_1phoqpw1";
 
 // src/input/Input.tsx
-var import_jsx_runtime20 = require("react/jsx-runtime");
-var Input = (0, import_react18.forwardRef)(
+var import_jsx_runtime23 = require("react/jsx-runtime");
+var Input = (0, import_react21.forwardRef)(
   ({
     state = "default",
     showIcon = true,
@@ -1011,13 +1181,13 @@ var Input = (0, import_react18.forwardRef)(
     readOnly = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = (0, import_react18.useState)(value || defaultValue);
-    const [inputType, setInputType] = (0, import_react18.useState)(type);
-    const [iconColor, setIconColor] = (0, import_react18.useState)("gray200");
-    (0, import_react18.useEffect)(() => {
+    const [internalValue, setInternalValue] = (0, import_react21.useState)(value || defaultValue);
+    const [inputType, setInputType] = (0, import_react21.useState)(type);
+    const [iconColor, setIconColor] = (0, import_react21.useState)("gray200");
+    (0, import_react21.useEffect)(() => {
       setInternalValue(value !== void 0 ? value : internalValue);
     }, [value]);
-    (0, import_react18.useEffect)(() => {
+    (0, import_react21.useEffect)(() => {
       setInputType(type);
       setIconColor(type === "password" ? "gray200" : "gray600");
     }, [type]);
@@ -1045,7 +1215,7 @@ var Input = (0, import_react18.forwardRef)(
     const divStateClass = divStateStyle[state];
     const inputStateClass = inputStateStyle[state];
     const iconClass = state === "disabled" ? disabledIconStyle : iconStyle;
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(
       Container,
       {
         display: "flex",
@@ -1060,8 +1230,8 @@ var Input = (0, import_react18.forwardRef)(
         className: `${divStateClass} ${className || ""}`,
         ...props,
         children: [
-          showIcon && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Icon, { className: iconClass, children: "search" }),
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          showIcon && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Icon, { className: iconClass, children: "search" }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
             "input",
             {
               ref,
@@ -1074,8 +1244,8 @@ var Input = (0, import_react18.forwardRef)(
               readOnly: state === "readonly" || readOnly
             }
           ),
-          showButton && internalValue && state !== "disabled" && type !== "password" && !readOnly && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { type: "button", className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Icon, { color: "gray200", children: "cancel" }) }),
-          showPasswordToggle && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { type: "button", className: buttonStyle, onClick: handlePasswordToggle, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Icon, { color: iconColor, children: "remove_red_eye" }) })
+          showButton && internalValue && state !== "disabled" && type !== "password" && !readOnly && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { type: "button", className: buttonStyle, onClick: handleButtonClick, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Icon, { color: "gray200", children: "cancel" }) }),
+          showPasswordToggle && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { type: "button", className: buttonStyle, onClick: handlePasswordToggle, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Icon, { color: iconColor, children: "remove_red_eye" }) })
         ]
       }
     );
@@ -1083,7 +1253,7 @@ var Input = (0, import_react18.forwardRef)(
 );
 
 // src/input/group/InputGroup.tsx
-var import_react19 = require("react");
+var import_react22 = require("react");
 
 // src/input/group/style.css.ts
 var inputStyle2 = "_1n4ve932";
@@ -1092,8 +1262,8 @@ var starStyle = "_1n4ve931";
 var warningStyle = "_1n4ve933";
 
 // src/input/group/InputGroup.tsx
-var import_jsx_runtime21 = require("react/jsx-runtime");
-var InputGroup = (0, import_react19.forwardRef)(
+var import_jsx_runtime24 = require("react/jsx-runtime");
+var InputGroup = (0, import_react22.forwardRef)(
   ({
     state = "default",
     showButton = true,
@@ -1114,13 +1284,13 @@ var InputGroup = (0, import_react19.forwardRef)(
     className,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Container, { display: "flex", flexDirection: "column", className, ref, ...props, children: [
-      showLabel && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Container, { className: labelStyle, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Text, { children: labelContent }),
-        showStar && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: starStyle, children: "*" })
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Container, { display: "flex", flexDirection: "column", className, ref, ...props, children: [
+      showLabel && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Container, { className: labelStyle, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Text, { children: labelContent }),
+        showStar && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: starStyle, children: "*" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Container, { display: "flex", className: inputStyle2, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Container, { display: "flex", className: inputStyle2, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
           Input,
           {
             state,
@@ -1135,7 +1305,7 @@ var InputGroup = (0, import_react19.forwardRef)(
             readOnly: state === "readonly"
           }
         ),
-        showButton && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+        showButton && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
           Button,
           {
             variant: "primary",
@@ -1147,24 +1317,33 @@ var InputGroup = (0, import_react19.forwardRef)(
           }
         ) })
       ] }),
-      state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: warningStyle, children: warningContent })
+      state === "warning" && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: warningStyle, children: warningContent })
     ] });
   }
 );
 
+// src/input/text-area/TextArea.tsx
+var import_react23 = require("react");
+var import_jsx_runtime25 = require("react/jsx-runtime");
+var TextArea = (0, import_react23.forwardRef)(
+  ({ children = "\uC81C\uBAA9", className, ...props }, ref) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", {}) });
+  }
+);
+
 // src/notification/Notification.tsx
-var import_react20 = require("react");
+var import_react24 = require("react");
 
 // src/notification/style.css.ts
 var import_createRuntimeFn7 = require("@vanilla-extract/recipes/createRuntimeFn");
 var stateStyle2 = (0, import_createRuntimeFn7.createRuntimeFn)({ defaultClassName: "_1pruyzf1 _89s0wz46 _89s0wz32 _89s0wz2g _89s0wz3k _89s0wz4q", variantClassNames: { state: { "default": "_1rmst083b _1rmst086r", warning: "_1rmst081k _1rmst086r", danger: "_1rmst081 _1rmst0852" } }, defaultVariants: { state: "default" }, compoundVariants: [] });
 
 // src/notification/Notification.tsx
-var import_jsx_runtime22 = require("react/jsx-runtime");
-var Notification = (0, import_react20.forwardRef)(
+var import_jsx_runtime26 = require("react/jsx-runtime");
+var Notification = (0, import_react24.forwardRef)(
   ({ state = "default", content = "warning", icon = "warning", ...props }, ref) => {
     const textColor = state === "danger" ? "white" : state === "warning" ? "pink500" : "textNormal";
-    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
       Container,
       {
         ref,
@@ -1175,8 +1354,8 @@ var Notification = (0, import_react20.forwardRef)(
         className: clsx_default(stateStyle2({ state })),
         ...props,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Icon, { color: textColor, children: icon }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { color: textColor, children: content })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Icon, { color: textColor, children: icon }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { color: textColor, children: content })
         ]
       }
     );
@@ -1184,21 +1363,21 @@ var Notification = (0, import_react20.forwardRef)(
 );
 
 // src/tabs/tab-bar/TabBar.tsx
-var import_react22 = require("react");
+var import_react26 = require("react");
 
 // src/tabs/tab/Tab.tsx
-var import_react21 = require("react");
+var import_react25 = require("react");
 
 // src/tabs/tab/style.css.ts
 var commonStyle = "_1xjnc5f0";
 var stateStyle3 = { "default": "_1rmst083c", active: "_1rmst083b" };
 
 // src/tabs/tab/Tab.tsx
-var import_jsx_runtime23 = require("react/jsx-runtime");
-var Tab = (0, import_react21.forwardRef)(
+var import_jsx_runtime27 = require("react/jsx-runtime");
+var Tab = (0, import_react25.forwardRef)(
   ({ content, state, className = "" }, ref) => {
     const stateClass = state === "active" ? stateStyle3.active : stateStyle3.default;
-    return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle, className), children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Container, { display: "inline-block", paddingY: 16, className: clsx_default(commonStyle, className), children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { textType: "body1", textMode: "bold", className: stateClass, children: content }) });
   }
 );
 
@@ -1206,8 +1385,8 @@ var Tab = (0, import_react21.forwardRef)(
 var activeTab = "s5asx20";
 
 // src/tabs/tab-bar/TabBar.tsx
-var import_jsx_runtime24 = require("react/jsx-runtime");
-var TabBar = (0, import_react22.forwardRef)(({ tabs, className, ...props }, ref) => {
+var import_jsx_runtime28 = require("react/jsx-runtime");
+var TabBar = (0, import_react26.forwardRef)(({ tabs, className, ...props }, ref) => {
   const activeTabIndex = tabs.findIndex((tab) => tab.state === "active");
   const updatedTabs = tabs.map((tab, index) => {
     const newState = index === (activeTabIndex !== -1 ? activeTabIndex : 0) ? "active" : "default";
@@ -1216,7 +1395,7 @@ var TabBar = (0, import_react22.forwardRef)(({ tabs, className, ...props }, ref)
       state: newState
     };
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
     Container,
     {
       ref,
@@ -1225,7 +1404,7 @@ var TabBar = (0, import_react22.forwardRef)(({ tabs, className, ...props }, ref)
       gap: 32,
       className,
       ...props,
-      children: updatedTabs.map((tab, index) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+      children: updatedTabs.map((tab, index) => /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
         Tab,
         {
           content: tab.content,
@@ -1239,10 +1418,10 @@ var TabBar = (0, import_react22.forwardRef)(({ tabs, className, ...props }, ref)
 });
 
 // src/bottom-sheet/map/MapBottomSheet.tsx
-var import_react23 = require("react");
+var import_react27 = require("react");
 var import_style_tokens = require("@sos/style-tokens");
-var import_jsx_runtime25 = require("react/jsx-runtime");
-var MapBottomSheet = (0, import_react23.forwardRef)(
+var import_jsx_runtime29 = require("react/jsx-runtime");
+var MapBottomSheet = (0, import_react27.forwardRef)(
   ({
     children,
     title,
@@ -1255,7 +1434,7 @@ var MapBottomSheet = (0, import_react23.forwardRef)(
     className,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(
       Container,
       {
         ref,
@@ -1271,9 +1450,9 @@ var MapBottomSheet = (0, import_react23.forwardRef)(
         boxShadow: "s",
         ...props,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 16, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Container, { display: "flex", justifyContent: "space-between", width: "100%", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Container, { display: "flex", flexDirection: "column", width: "100%", gap: 16, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Container, { display: "flex", justifyContent: "space-between", width: "100%", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(
                 Container,
                 {
                   display: "flex",
@@ -1281,15 +1460,15 @@ var MapBottomSheet = (0, import_react23.forwardRef)(
                   gap: 6,
                   style: { width: subButtonIcon ? `calc(100% - 48px)` : "100%" },
                   children: [
-                    title && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { as: "span", textType: "heading2", textMode: "bold", ellipsis: true, children: title }),
-                    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Container, { display: "flex", alignItems: "center", width: "100%", gap: 6, children: [
-                      badgeText && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Badge, { color: badgeColor, children: badgeText }),
-                      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { as: "span", textType: "footnote", color: "textAssistive", ellipsis: true, children: subText })
+                    title && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Text, { as: "span", textType: "heading2", textMode: "bold", ellipsis: true, children: title }),
+                    /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Container, { display: "flex", alignItems: "center", width: "100%", gap: 6, children: [
+                      badgeText && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Badge, { color: badgeColor, children: badgeText }),
+                      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Text, { as: "span", textType: "footnote", color: "textAssistive", ellipsis: true, children: subText })
                     ] })
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Container, { display: "flex", children: subButtonIcon && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Container, { display: "flex", children: subButtonIcon && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
                 Button,
                 {
                   variant: "secondary",
@@ -1302,67 +1481,13 @@ var MapBottomSheet = (0, import_react23.forwardRef)(
                 }
               ) })
             ] }),
-            infos && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(InfoBox, { infos, size: "s", backgroundColor: "backgroundElevatedSecondary" })
+            infos && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(InfoBox, { infos, size: "s", backgroundColor: "backgroundElevatedSecondary" })
           ] }),
-          buttonText && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Button, { size: "m", children: buttonText }),
+          buttonText && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Button, { size: "m", children: buttonText }),
           children
         ]
       }
     );
   }
 );
-
-// src/drop-down/drop-down-item/DropDownItem.tsx
-var import_react24 = require("react");
-var import_jsx_runtime26 = require("react/jsx-runtime");
-var DropDownItem = (0, import_react24.forwardRef)(
-  ({ state = "default", children, className, onClick }, ref) => {
-    return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
-      Container,
-      {
-        display: "flex",
-        paddingX: 16,
-        paddingY: 10,
-        borderRadius: "s",
-        backgroundColor: state === "active" ? "gray50" : "backgroundNormalPrimary",
-        style: { width: "153px", cursor: "pointer" },
-        className,
-        ref,
-        onClick,
-        children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { textType: "label", children })
-      }
-    );
-  }
-);
-
-// src/drop-down/drop-down-box/DropDownBox.tsx
-var import_react25 = require("react");
-var import_jsx_runtime27 = require("react/jsx-runtime");
-var DropDownBox = (0, import_react25.forwardRef)(({ options }, ref) => {
-  const [activeIndex, setActiveIndex] = (0, import_react25.useState)(null);
-  const handleItemClick = (index) => {
-    setActiveIndex(index);
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Container, { display: "flex", ref, children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
-    Container,
-    {
-      display: "flex",
-      flexDirection: "column",
-      padding: 6,
-      gap: 4,
-      borderRadius: "s",
-      boxShadow: "s",
-      backgroundColor: "backgroundNormalPrimary",
-      children: options.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
-        DropDownItem,
-        {
-          state: activeIndex === index ? "active" : "default",
-          onClick: () => handleItemClick(index),
-          children: item
-        },
-        index
-      ))
-    }
-  ) });
-});
 //# sourceMappingURL=index.cjs.map

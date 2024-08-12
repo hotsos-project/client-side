@@ -36,7 +36,13 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
     return (
       <Container as="li">
         {/* Title-area */}
-        <Container display="flex" flexDirection="column" paddingX={16} paddingTop={20} gap={6}>
+        <Container
+          display="flex"
+          flexDirection="column"
+          paddingX={16}
+          paddingTop={20}
+          gap={6}
+        >
           <Container display="flex" justifyContent="space-between">
             <Text textType="heading2" textMode="bold">
               {title}
@@ -91,7 +97,7 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
         {/*  */}
         <Container display="flex" justifyContent="center" alignItems="center" width="100%">
           {children}
-          <img src="/earthquake3-01.jpg" height={240} />
+          <img src="/earthquake3-01.jpg" width={'100%'} />
         </Container>
         <Container padding={16}>
           <Text>{content}</Text>
@@ -103,23 +109,35 @@ export const SocialContentList = forwardRef<HTMLElement, SocialContentListProps>
           gap={64}
           borderType="borderTop"
         >
-          <Container display="flex" gap={16}>
+          <Container display="flex" gap={16} width={'100%'}>
             <Button
               variant="secondary"
               design="outline"
-              mainText="사실이에요"
               rightSubText={isTrueCounts}
+              rightSubTextColor="uiPrimaryNormal"
               size="s"
-            />
+            >
+              사실이에요
+            </Button>
             <Button
               variant="secondary"
               design="outline"
-              mainText="허위사실이에요"
               rightSubText={isFalseCounts}
+              rightSubTextColor="pink500"
               size="s"
-            />
+            >
+              허위사실이에요
+            </Button>
+            <Container display="flex">
+              <Button
+                variant="tertiary"
+                icon="chat"
+                iconColor="blueGray500"
+                leftSubText={commentCounts}
+                size="s"
+              ></Button>
+            </Container>
           </Container>
-          <Button icon="chat" mainText="" leftSubText={commentCounts} size="s"></Button>
         </Container>
       </Container>
     );

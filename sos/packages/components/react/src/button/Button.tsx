@@ -12,12 +12,13 @@ interface ButtonProps extends CommonProps, NonNullable<ButtonVariants> {
   icon?: string;
   iconColor?: Palette;
   leftSubText?: string | number;
+  leftSubTextColor?: Palette;
   rightSubText?: string | number;
-  mainText?: string;
+  rightSubTextColor?: Palette;
   isLoading?: boolean;
   loadingSpinner?: string;
-  disabled?: boolean; // Add disabled prop
-  type?: 'button' | 'submit' | 'reset'; // Add type prop for button types
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const textColorMap: Record<
@@ -48,11 +49,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       icon,
       iconColor,
       leftSubText,
+      leftSubTextColor,
       rightSubText,
+      rightSubTextColor,
       isLoading = false,
       loadingSpinner = 'refresh',
       disabled = false,
-      type = 'button', // Set default type to 'button'
+      type = 'button',
       className,
       ...props
     },
@@ -74,12 +77,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        type={type} // Apply type prop to the button element
+        type={type}
         className={clsx(buttonClass, className)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{ ...props.style }}
-        disabled={disabled} // Apply disabled prop to the button element
+        disabled={disabled}
         {...props}
       >
         {icon && (
@@ -88,7 +91,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </Icon>
         )}
         {leftSubText && (
-          <Text textType="body1" color={isHovered && !disabled ? hovertextColor : textColor}>
+          <Text
+            textType="body1"
+            style={{
+              color: leftSubTextColor || (isHovered && !disabled ? hovertextColor : textColor),
+            }}
+          >
             {leftSubText}
           </Text>
         )}
@@ -102,7 +110,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </Text>
         )}
         {rightSubText && (
-          <Text textType="body1" color={isHovered && !disabled ? hovertextColor : textColor}>
+          <Text
+            textType="body1"
+            style={{
+              color: rightSubTextColor || (isHovered && !disabled ? hovertextColor : textColor),
+            }}
+          >
             {rightSubText}
           </Text>
         )}
