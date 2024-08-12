@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import useKakaoLoader from './_components/userKakaoLoader';
-import { useAedData } from '../../../_hooks/useAedData';
+import { useFetchAED } from '@/app/_hooks';
 import { Container, Input, Chips, MapBottomSheet } from '@sos/components-react';
 
 export default function BasicMap() {
@@ -11,10 +11,8 @@ export default function BasicMap() {
 
   const [lat, setLat] = useState<number | null>(null);
   const [lon, setLon] = useState<number | null>(null);
-  const [radius, setRadius] = useState(2);
+  const [radius, setRadius] = useState(1);
   const [isClient, setIsClient] = useState(false);
-  const [queryEnabled, setQueryEnabled] = useState(false);
-  const [aedData, setaedData] = useState<any[]>([]);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
 
   useEffect(() => {
@@ -24,39 +22,30 @@ export default function BasicMap() {
         (position) => {
           setLat(position.coords.latitude);
           setLon(position.coords.longitude);
-          setQueryEnabled(true);
         },
         (error) => {
           console.log('❌ Fail to load geolocation', error.message);
           setLat(37.5665);
           setLon(126.978);
-          setQueryEnabled(true);
         },
       );
       return () => {
         navigator.geolocation.clearWatch(watchId);
       };
     } else {
-      // default: 서울 시청
       setLat(37.5665);
       setLon(126.978);
-      setQueryEnabled(true);
     }
   }, []);
 
-  const { data, error, isLoading } = useAedData(lat ?? 0, lon ?? 0, radius, queryEnabled);
-
-  useEffect(() => {
-    if (data && data.data && data.data.aedResponses) {
-      console.log('📝 Fetched Data', data);
-      setaedData(data.data.aedResponses);
-    }
-  }, [data]);
+  const { data, error, isLoading } = useFetchAED(lat ?? 0, lon ?? 0, radius ?? 0);
 
   if (!isClient || lat === null || lon === null) return <div>로딩 중</div>;
 
   if (isLoading) return <div>로딩 중</div>;
   if (error) return <div>{error.message}</div>;
+
+  const aedData = data?.aedResponses || ['nothing'];
 
   const defaultMarkerImage = {
     src: '/aed_default.png',
