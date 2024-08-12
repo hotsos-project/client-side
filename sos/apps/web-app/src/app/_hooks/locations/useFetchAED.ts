@@ -13,7 +13,7 @@ export const useFetchAED = (lat: number, lon: number, radius: number) => {
 
   useEffect(() => {
     if (query.data) {
-      console.log('Fetched AED Data:', query.data);
+      console.log('📝 Fetched AED Data:', query.data);
     }
   }, [query.data]);
 
