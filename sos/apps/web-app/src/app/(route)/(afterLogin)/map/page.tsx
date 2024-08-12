@@ -1,11 +1,21 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
+import React, { useState, useEffect, useRef } from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import useKakaoLoader from './_components/userKakaoLoader';
-import { useFetchAED } from '@/app/_hooks';
-import { AEDResponse } from '@/app/_types';
 import { Container, Input, Chips, MapBottomSheet, LoadingSpinner } from '@sos/components-react';
+import {
+  useFetchAED,
+  useFetchCivilShelters,
+  useFetchEOShelters,
+  useFetchETShelters,
+} from '@/app/_hooks';
+import {
+  AEDResponse,
+  CivilShelterResponse,
+  EOShelterResponse,
+  ETShelterResponse,
+} from '@/app/_types';
 
 export default function BasicMap() {
   useKakaoLoader();
@@ -14,7 +24,12 @@ export default function BasicMap() {
   const [lon, setLon] = useState<number | null>(null);
   const [radius, setRadius] = useState(2);
   const [isClient, setIsClient] = useState(false);
-  const [selectedMarker, setSelectedMarker] = useState<AEDResponse | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<
+    AEDResponse | CivilShelterResponse | EOShelterResponse | ETShelterResponse | null
+  >(null);
+  const [selectedChip, setSelectedChip] = useState<string>('');
+
+  const clustererRef = useRef<unknown>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -39,9 +54,36 @@ export default function BasicMap() {
     }
   }, []);
 
-  const { data, error, isLoading } = useFetchAED(lat ?? 0, lon ?? 0, radius ?? 0);
+  const {
+    data: aedData,
+    error: aedError,
+    isLoading: aedLoading,
+  } = useFetchAED(lat ?? 0, lon ?? 0, radius ?? 0);
+  const {
+    data: civilShelterData,
+    error: civilShelterError,
+    isLoading: civilShelterLoading,
+  } = useFetchCivilShelters(lat ?? 0, lon ?? 0, radius ?? 0);
+  const {
+    data: eoShelterData,
+    error: eoShelterError,
+    isLoading: eoShelterLoading,
+  } = useFetchEOShelters(lat ?? 0, lon ?? 0, radius ?? 0);
+  const {
+    data: etShelterData,
+    error: etShelterError,
+    isLoading: etShelterLoading,
+  } = useFetchETShelters(lat ?? 0, lon ?? 0, radius ?? 0);
 
-  if (!isClient || lat === null || lon === null || isLoading) {
+  if (
+    !isClient ||
+    lat === null ||
+    lon === null ||
+    aedLoading ||
+    civilShelterLoading ||
+    eoShelterLoading ||
+    etShelterLoading
+  ) {
     return (
       <div
         style={{
@@ -56,12 +98,52 @@ export default function BasicMap() {
     );
   }
 
-  if (error) return <div>{error.message}</div>;
+  if (aedError || civilShelterError || eoShelterError || etShelterError)
+    return (
+      <div>{(aedError || civilShelterError || eoShelterError || etShelterError)?.message}</div>
+    );
 
-  const aedData = data?.aedResponses || ['nothing'];
+  const currentData = (() => {
+    switch (selectedChip) {
+      case '제세동기':
+        return aedData?.aedResponses ?? [];
+      case '민방위대피소':
+        return civilShelterData?.civilShelterResponses ?? [];
+      case '지진(옥외)대피소':
+        return eoShelterData?.eoShelterResponses ?? [];
+      case '지진/해일대피소':
+        return etShelterData?.etShelterResponses ?? [];
+      default:
+        return [];
+    }
+  })();
+
+  const markerImages: {
+    제세동기: { default: string; selected: string };
+    민방위대피소: { default: string; selected: string };
+    '지진(옥외)대피소': { default: string; selected: string };
+    '지진/해일대피소': { default: string; selected: string };
+  } = {
+    제세동기: {
+      default: '/aed_default.png',
+      selected: '/aed.png',
+    },
+    민방위대피소: {
+      default: '/civil_default.png',
+      selected: '/civil.png',
+    },
+    '지진(옥외)대피소': {
+      default: '/eo_default.png',
+      selected: '/eo.png',
+    },
+    '지진/해일대피소': {
+      default: '/et_default.png',
+      selected: '/et.png',
+    },
+  };
 
   const defaultMarkerImage = {
-    src: '/aed_default.png',
+    src: markerImages[selectedChip as keyof typeof markerImages]?.default || '',
     size: {
       width: 24,
       height: 35,
@@ -75,7 +157,7 @@ export default function BasicMap() {
   };
 
   const selectedMarkerImage = {
-    src: '/aed.png',
+    src: markerImages[selectedChip as keyof typeof markerImages]?.selected || '',
     size: {
       width: 30,
       height: 41,
@@ -88,6 +170,28 @@ export default function BasicMap() {
     },
   };
 
+  const handleChipClick = (chipContent: string) => {
+    setSelectedChip(chipContent);
+    setSelectedMarker(null);
+
+    if (clustererRef.current) {
+      clustererRef.current.clear();
+    }
+  };
+
+  const handleMarkerClick = (
+    item: AEDResponse | CivilShelterResponse | EOShelterResponse | ETShelterResponse,
+  ) => {
+    setSelectedMarker(item);
+  };
+
+  const clusterColors = {
+    제세동기: 'rgba(255, 47, 68, 0.5)',
+    민방위대피소: 'rgba(0, 117, 39, 0.3)',
+    '지진(옥외)대피소': 'rgba(255, 93, 0, 0.5)',
+    '지진/해일대피소': 'rgba(0, 102, 255, 0.5)',
+  };
+
   return (
     <>
       <Container
@@ -98,11 +202,47 @@ export default function BasicMap() {
         backgroundColor="backgroundNormalPrimary"
       >
         <Input state="default" placeholder="장소를 입력하세요" />
-        <Container display="flex" gap={10}>
-          <Chips size="m" content="심장충격기" variant="primary" state="active" />
-          <Chips size="m" content="민방대피소" variant="primary" state="outline" />
-          <Chips size="m" content="지진대피소" variant="primary" state="outline" />
-          <Chips size="m" content="해일대피소" variant="primary" state="outline" />
+        <Container
+          display="flex"
+          gap={10}
+          style={{
+            overflowX: 'auto',
+            whiteSpace: 'nowrap',
+            scrollbarWidth: 'none',
+          }}
+        >
+          <Chips
+            size="m"
+            variant="primary"
+            state={selectedChip === '제세동기' ? 'active' : 'outline'}
+            onClick={() => handleChipClick('제세동기')}
+          >
+            제세동기
+          </Chips>
+          <Chips
+            size="m"
+            variant="primary"
+            state={selectedChip === '민방위대피소' ? 'active' : 'outline'}
+            onClick={() => handleChipClick('민방위대피소')}
+          >
+            민방위대피소
+          </Chips>
+          <Chips
+            size="m"
+            variant="primary"
+            state={selectedChip === '지진(옥외)대피소' ? 'active' : 'outline'}
+            onClick={() => handleChipClick('지진(옥외)대피소')}
+          >
+            지진(옥외)대피소
+          </Chips>
+          <Chips
+            size="m"
+            variant="primary"
+            state={selectedChip === '지진/해일대피소' ? 'active' : 'outline'}
+            onClick={() => handleChipClick('지진/해일대피소')}
+          >
+            지진/해일대피소
+          </Chips>
         </Container>
       </Container>
       <Map
@@ -118,6 +258,69 @@ export default function BasicMap() {
         }}
         level={2}
         padding={50}
+        onCreate={(map) => {
+          clustererRef.current = new kakao.maps.MarkerClusterer({
+            map: map,
+            averageCenter: true,
+            minLevel: 5,
+            gridSize: 80,
+            styles: [
+              {
+                width: '53px',
+                height: '52px',
+                background:
+                  clusterColors[selectedChip as keyof typeof clusterColors] || 'rgba(0, 0, 0, 0.5)',
+                borderRadius: '50%',
+                color: '#fff',
+                textAlign: 'center',
+                lineHeight: '54px',
+                fontWeight: 'bold',
+              },
+            ],
+          });
+
+          const markers = currentData.map(
+            (item: AEDResponse | CivilShelterResponse | EOShelterResponse | ETShelterResponse) => {
+              const marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(item.lat, item.lon),
+                image:
+                  selectedMarker?.id === item.id
+                    ? new kakao.maps.MarkerImage(
+                        selectedMarkerImage.src,
+                        new kakao.maps.Size(
+                          selectedMarkerImage.size.width,
+                          selectedMarkerImage.size.height,
+                        ),
+                        {
+                          offset: new kakao.maps.Point(
+                            selectedMarkerImage.options.offset.x,
+                            selectedMarkerImage.options.offset.y,
+                          ),
+                        },
+                      )
+                    : new kakao.maps.MarkerImage(
+                        defaultMarkerImage.src,
+                        new kakao.maps.Size(
+                          defaultMarkerImage.size.width,
+                          defaultMarkerImage.size.height,
+                        ),
+                        {
+                          offset: new kakao.maps.Point(
+                            defaultMarkerImage.options.offset.x,
+                            defaultMarkerImage.options.offset.y,
+                          ),
+                        },
+                      ),
+              });
+
+              kakao.maps.event.addListener(marker, 'click', () => handleMarkerClick(item));
+
+              return marker;
+            },
+          );
+
+          clustererRef.current.addMarkers(markers);
+        }}
       >
         <MapMarker
           position={{
@@ -125,25 +328,6 @@ export default function BasicMap() {
             lng: lon,
           }}
         />
-        {aedData.map((aed) => {
-          if (typeof aed === 'string') return null;
-
-          return (
-            <React.Fragment key={aed.id}>
-              <MapMarker
-                position={{
-                  lat: aed.lat,
-                  lng: aed.lon,
-                }}
-                image={selectedMarker?.id === aed.id ? selectedMarkerImage : defaultMarkerImage}
-                onClick={() => setSelectedMarker(aed)}
-              />
-              {selectedMarker?.id === aed.id && (
-                <CustomOverlayMap position={{ lat: aed.lat, lng: aed.lon }} />
-              )}
-            </React.Fragment>
-          );
-        })}
       </Map>
       {selectedMarker && (
         <Container
@@ -157,16 +341,33 @@ export default function BasicMap() {
           }}
         >
           <MapBottomSheet
-            title={selectedMarker ? `${selectedMarker.buildPlace}` : 'Title'}
+            title={
+              selectedChip === '제세동기' && 'buildPlace' in selectedMarker
+                ? selectedMarker.buildPlace || '-'
+                : 'name' in selectedMarker
+                  ? selectedMarker.name || '-'
+                  : '-'
+            }
             infos={[
-              { title: '주소', content: selectedMarker?.detailAddress || 'Content 1' },
-              { title: '상세 위치', content: selectedMarker?.buildPlace || 'Content 2' },
+              {
+                title: selectedChip === '제세동기' ? '가응시간' : '주소',
+                content: selectedMarker?.detailAddress || '-',
+              },
+              {
+                title: selectedChip === '제세동기' ? '전화번호' : '상세 위치',
+                content:
+                  selectedChip === '제세동기' && 'tel' in selectedMarker
+                    ? selectedMarker.tel || '-'
+                    : 'name' in selectedMarker
+                      ? selectedMarker.name || '-'
+                      : '-',
+              },
             ]}
-            badgeText="제세동기"
+            badgeText={selectedChip}
             subText={
               selectedMarker
                 ? `${selectedMarker.sido} ${selectedMarker.gugun} ${selectedMarker.detailAddress}`
-                : '서울특별시 00 00 000'
+                : '-'
             }
             buttonText="길찾기"
             subButtonIcon="call"
