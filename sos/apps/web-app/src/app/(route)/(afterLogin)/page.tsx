@@ -17,8 +17,18 @@ import {
   useCreateReply,
 } from '@/app/_hooks';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, React } from 'react';
 import Link from 'next/link';
+import EmergencyAlert from './emergency-alert/page';
+
+// ReactNativeWebView 타입 정의 추가
+declare global {
+  interface Window {
+    ReactNativeWebView?: {
+      postMessage(message: string): void;
+    };
+  }
+}
 
 export default function Home() {
   // 테스트 코드
@@ -36,7 +46,19 @@ export default function Home() {
   const router = useRouter();
 
   const routeToPage = (route: string) => {
-    router.push(route);
+    if (typeof window !== 'undefined' && window.ReactNativeWebView) {
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+        type: 'NAVIGATE',
+        url: route
+      }));
+    } else {
+      router.push(route, undefined, { scroll: false });
+    }
+  };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    routeToPage(href);
   };
 
   return (
@@ -70,7 +92,7 @@ export default function Home() {
       <Container display="flex" flexDirection="column" paddingY={16}>
         <Container display="flex" justifyContent="space-between">
           <Headline>재난 문자</Headline>
-          <Link href={'/emergency-alert'}>
+          <Link href={'/emergency-alert'} onClick={(e) => handleLinkClick(e, '/emergency-alert')}>
             <MoreButton />
           </Link>
         </Container>

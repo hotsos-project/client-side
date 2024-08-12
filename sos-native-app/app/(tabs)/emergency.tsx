@@ -5,7 +5,7 @@ const EmergencyScreen = () => {
   return (
     <WebView
       style={styles.container}
-      source={{ uri: 'http://192.168.0.16:3000/emergency' }}
+      source={{ uri: 'http:///emergency' }}
     />
   );
 };
