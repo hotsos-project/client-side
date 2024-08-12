@@ -5,7 +5,7 @@ const SocialScreen = () => {
   return (
     <WebView
       style={styles.container}
-      source={{ uri: 'http://192.168.0.16:3000/social' }}
+      source={{ uri: 'http:///social' }}
     />
   );
 };

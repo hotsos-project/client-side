@@ -1,20 +1,21 @@
-import { Tabs } from 'expo-router';
+import { Tabs, useNavigation } from 'expo-router';
 import MaterialIcon from '@expo/vector-icons/MaterialIcons';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useColorScheme } from 'react-native';
 import { Platform } from 'react-native';
+import { useRef } from 'react';
 
 // Color Theme
 const lightTheme = {
-  background: '#ffffff',
-  text: '#1a1a1a',
+  backgroundColor: '#ffffff',
+  color: '#1a1a1a',
   inactive: '#b3b3b3',
   border: '#E6E6E6',
 };
 
 const darkTheme = {
-  background: '#18181B',
-  text: '#FCFCFC',
+  backgroundColor: '#18181B',
+  color: '#FCFCFC',
   inactive: '#595959',
   border: '#2B2B2B',
 };
@@ -62,24 +63,42 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
+  const navigation = useNavigation();
+  const lastTabPressTimeRef = useRef<{ [key: string]: number }>({});
+
+  const handleTabPress = (routeName: string) => {
+    const now = new Date().getTime();
+    const lastPressTime = lastTabPressTimeRef.current[routeName] || 0;
+
+    if (now - lastPressTime < 300) {
+      navigation.emit({
+        type: 'tabDoubleTap',
+        target: routeName,
+      });
+    }
+
+    lastTabPressTimeRef.current[routeName] = now;
+  };
+
   return (
     <Tabs
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: theme.background,
+          backgroundColor: theme.backgroundColor,
           height: Platform.OS === 'android' ? 84 : 80,
           paddingTop: 8,
           paddingBottom: 24,
           borderTopWidth: 1,
           borderTopColor: theme.border,
         },
-        tabBarActiveTintColor: theme.text,
+        tabBarActiveTintColor: theme.color,
         tabBarInactiveTintColor: theme.inactive,
         tabBarIconStyle: {
           marginTop: 4,
           marginBottom: 8,
         },
         tabBarLabelStyle: {
+          fontFamily: 'Pretendard-Regular',
           fontSize: 12,
         },
         headerShown: false,
