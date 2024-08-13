@@ -29,7 +29,8 @@ export default function BasicMap() {
   >(null);
   const [selectedChip, setSelectedChip] = useState<string>('');
 
-  const clustererRef = useRef<unknown>(null);
+  const clustererRef = useRef<kakao.maps.MarkerClusterer | null>(null);
+  const markersRef = useRef<kakao.maps.Marker[]>([]);
 
   useEffect(() => {
     setIsClient(true);
@@ -170,15 +171,30 @@ export default function BasicMap() {
     },
   };
 
-  const handleChipClick = (chipContent: string) => {
-    setSelectedChip(chipContent);
-    setSelectedMarker(null);
+  /**
+   * Marker들을 관리하는 메서드
+   */
+
+  // 지도에 표시된 마커들을 초기화
+  const clearMarkers = () => {
+    markersRef.current.forEach((marker) => {
+      marker.setMap(null);
+    });
+    markersRef.current = [];
 
     if (clustererRef.current) {
       clustererRef.current.clear();
     }
   };
 
+  // chip을 누르면 표시되는 마커들을 변경
+  const handleChipClick = (chipContent: string) => {
+    clearMarkers(); // 마커 초기화를 먼저 수행
+    setSelectedChip(chipContent);
+    setSelectedMarker(null);
+  };
+
+  // makrer를 누르면 bottom sheet 표시
   const handleMarkerClick = (
     item: AEDResponse | CivilShelterResponse | EOShelterResponse | ETShelterResponse,
   ) => {
@@ -259,6 +275,8 @@ export default function BasicMap() {
         level={2}
         padding={50}
         onCreate={(map) => {
+          clearMarkers(); // 마커를 생성하기 전에 먼저 초기화
+
           clustererRef.current = new kakao.maps.MarkerClusterer({
             map: map,
             averageCenter: true,
@@ -312,9 +330,8 @@ export default function BasicMap() {
                         },
                       ),
               });
-
               kakao.maps.event.addListener(marker, 'click', () => handleMarkerClick(item));
-
+              markersRef.current.push(marker); // 마커들을 배열에 추가
               return marker;
             },
           );
