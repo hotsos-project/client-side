@@ -90,7 +90,7 @@ var shadowSprinkles = (0, import_createRuntimeSprinkles5.createSprinkles)({ cond
 // src/common/text/Text.tsx
 var import_react = require("react");
 
-// ../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../AppData/Local/Yarn/Berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
@@ -1336,11 +1336,16 @@ var InputGroup = (0, import_react23.forwardRef)(
 // src/input/text-area/TextArea.tsx
 var import_react24 = require("react");
 var import_jsx_runtime25 = require("react/jsx-runtime");
-var TextArea = (0, import_react24.forwardRef)(
-  ({ children = "\uC81C\uBAA9", className, ...props }, ref) => {
-    return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", {}) });
-  }
-);
+var TextArea = (0, import_react24.forwardRef)(({ children, className }, ref) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Container, { display: "flex", width: "100%", className, ref, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
+    "textarea",
+    {
+      placeholder: "\uB0B4\uC6A9\uC744 \uC791\uC131\uD558\uC138\uC694.",
+      className: inputStyle,
+      style: { padding: "0px" }
+    }
+  ) });
+});
 
 // src/notification/Notification.tsx
 var import_react25 = require("react");
