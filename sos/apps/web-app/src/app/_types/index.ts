@@ -17,3 +17,4 @@ export * from './notices';
 export * from './replies';
 export * from './s3';
 export * from './sidos';
+export * from './weather';
