@@ -30,7 +30,7 @@ var shadowSprinkles = _ad2215({ conditions: void 0, styles: { boxShadow: { value
 // src/common/text/Text.tsx
 import { forwardRef } from "react";
 
-// ../../../../../../.yarn/berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
+// ../../../../../../AppData/Local/Yarn/Berry/cache/clsx-npm-2.1.1-96125b98be-10c0.zip/node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
   if ("string" == typeof e || "number" == typeof e) n += e;
@@ -1276,11 +1276,16 @@ var InputGroup = forwardRef23(
 // src/input/text-area/TextArea.tsx
 import { forwardRef as forwardRef24 } from "react";
 import { jsx as jsx25 } from "react/jsx-runtime";
-var TextArea = forwardRef24(
-  ({ children = "\uC81C\uBAA9", className, ...props }, ref) => {
-    return /* @__PURE__ */ jsx25(Container, { children: /* @__PURE__ */ jsx25("input", {}) });
-  }
-);
+var TextArea = forwardRef24(({ children, className }, ref) => {
+  return /* @__PURE__ */ jsx25(Container, { display: "flex", width: "100%", className, ref, children: /* @__PURE__ */ jsx25(
+    "textarea",
+    {
+      placeholder: "\uB0B4\uC6A9\uC744 \uC791\uC131\uD558\uC138\uC694.",
+      className: inputStyle,
+      style: { padding: "0px" }
+    }
+  ) });
+});
 
 // src/notification/Notification.tsx
 import { forwardRef as forwardRef25 } from "react";
