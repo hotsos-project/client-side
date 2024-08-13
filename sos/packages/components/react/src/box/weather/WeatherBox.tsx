@@ -8,10 +8,11 @@ interface WeatherBoxProps extends CommonProps {
   date: string;
   location: string;
   condition: React.ReactNode;
+  iconSrc: string;
   temperature: number | string;
   highestTemperature: number | string;
   lowestTemperature: number | string;
-  airQuality: string;
+  windSpeed: number | string;
 }
 
 /**
@@ -23,7 +24,7 @@ interface WeatherBoxProps extends CommonProps {
  * @param {number | string} [props.temperature='-'] - 현재 온도 (필수, 기본값: '-')
  * @param {number | string} [props.highestTemperature='-'] - 최고 온도 (필수, 기본값: '-')
  * @param {number | string} [props.lowestTemperature='-'] - 최저 온도 (필수, 기본값: '-')
- * @param {string} [props.airQuality='-'] - 미세먼지 상태 (필수, 기본값: '-')
+ * @param {string} [props.windSpeed='-'] - 미세먼지 상태 (필수, 기본값: '-')
  * @param {string} [props.className] - 추가 CSS 클래스 (선택)
  * @param {...CommonProps} props - Container 컴포넌트에 전달될 기타 속성
  * @param {React.Ref<HTMLElement>} ref - 전달받은 ref
@@ -34,10 +35,11 @@ export const WeatherBox = forwardRef<HTMLElement, WeatherBoxProps>(
       date = '2024-07-18 (목)',
       location = '-',
       condition = 'loading',
+      iconSrc = '',
       temperature = '-',
       highestTemperature = '-',
       lowestTemperature = '-',
-      airQuality = '-',
+      windSpeed = '-',
       className,
       ...props
     },
@@ -80,7 +82,8 @@ export const WeatherBox = forwardRef<HTMLElement, WeatherBoxProps>(
               width={72}
               height={72}
             >
-              {condition}
+              {/* {condition} */}
+              <img src={iconSrc} />
             </Container>
             <Text textType="display1" textAlign="center">
               {`${temperature}°`}
@@ -109,10 +112,10 @@ export const WeatherBox = forwardRef<HTMLElement, WeatherBoxProps>(
             {/* 미세먼지 */}
             <Container display="flex" gap={6}>
               <Text textType="body2" color="textAssistive">
-                미세먼지
+                풍속
               </Text>
               <Text textType="body2" textMode="bold" color="textAlternative">
-                {airQuality}
+                {windSpeed}m/s
               </Text>
             </Container>
           </Container>

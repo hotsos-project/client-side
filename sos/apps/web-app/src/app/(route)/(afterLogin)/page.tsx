@@ -15,11 +15,13 @@ import {
   useFetchGuguns,
   useFetchReplies,
   useCreateReply,
+  useFetchWeather,
 } from '@/app/_hooks';
 import { useRouter } from 'next/navigation';
 import { useEffect, React } from 'react';
 import Link from 'next/link';
 import EmergencyAlert from './emergency-alert/page';
+import { WeatherData } from '@/app/_libs';
 
 // ReactNativeWebView 타입 정의 추가
 declare global {
@@ -47,10 +49,12 @@ export default function Home() {
 
   const routeToPage = (route: string) => {
     if (typeof window !== 'undefined' && window.ReactNativeWebView) {
-      window.ReactNativeWebView.postMessage(JSON.stringify({
-        type: 'NAVIGATE',
-        url: route
-      }));
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({
+          type: 'NAVIGATE',
+          url: route,
+        }),
+      );
     } else {
       router.push(route, undefined, { scroll: false });
     }
@@ -61,6 +65,8 @@ export default function Home() {
     routeToPage(href);
   };
 
+  const weatherInfo = useFetchWeather(37.5665, 126.978).data;
+
   return (
     <>
       {/* Test */}
@@ -68,14 +74,17 @@ export default function Home() {
         <Notification state="default"></Notification>
       </Container>
       <Container paddingX={16}>
-        <WeatherBox temperature={28} />
+        <WeatherBox
+          temperature={weatherInfo?.temp ?? '-'}
+          highestTemperature={weatherInfo?.maxTemp ?? '-'}
+          lowestTemperature={weatherInfo?.minTemp ?? '-'}
+          iconSrc={weatherInfo?.icon ?? '-'}
+          windSpeed={weatherInfo?.windSpeed ?? '-'}
+        />
       </Container>
       <Container display="flex" flexDirection="column" paddingY={16}>
         <Container display="flex" justifyContent="space-between">
           <Headline>친구 현황</Headline>
-          <Link href={'/'}>
-            <MoreButton />
-          </Link>
         </Container>
         <Container display="flex" paddingX={12} paddingY={8} gap={16}>
           <InfoButton variant="default" size="s">

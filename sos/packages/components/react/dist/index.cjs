@@ -645,10 +645,11 @@ var WeatherBox = (0, import_react11.forwardRef)(
     date = "2024-07-18 (\uBAA9)",
     location = "-",
     condition = "loading",
+    iconSrc = "",
     temperature = "-",
     highestTemperature = "-",
     lowestTemperature = "-",
-    airQuality = "-",
+    windSpeed = "-",
     className,
     ...props
   }, ref) => {
@@ -682,7 +683,7 @@ var WeatherBox = (0, import_react11.forwardRef)(
                   alignItems: "center",
                   width: 72,
                   height: 72,
-                  children: condition
+                  children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("img", { src: iconSrc })
                 }
               ),
               /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "display1", textAlign: "center", children: `${temperature}\xB0` })
@@ -699,8 +700,11 @@ var WeatherBox = (0, import_react11.forwardRef)(
                 ] })
               ] }),
               /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Container, { display: "flex", gap: 6, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "body2", color: "textAssistive", children: "\uBBF8\uC138\uBA3C\uC9C0" }),
-                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "body2", textMode: "bold", color: "textAlternative", children: airQuality })
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Text, { textType: "body2", color: "textAssistive", children: "\uD48D\uC18D" }),
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Text, { textType: "body2", textMode: "bold", color: "textAlternative", children: [
+                  windSpeed,
+                  "m/s"
+                ] })
               ] })
             ] })
           ] })
