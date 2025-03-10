@@ -1,0 +1,50 @@
+{
+  "pages": {
+    "/(route)/(afterLogin)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(route)/(afterLogin)/page.js"
+    ],
+    "/(route)/(afterLogin)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(route)/(afterLogin)/layout.js"
+    ],
+    "/(route)/(afterLogin)/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(route)/(afterLogin)/loading.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/(route)/(beforeLogin)/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(route)/(beforeLogin)/login/page.js"
+    ],
+    "/(route)/(afterLogin)/social/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(route)/(afterLogin)/social/page.js"
+    ],
+    "/(route)/(afterLogin)/social/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(route)/(afterLogin)/social/loading.js"
+    ],
+    "/(route)/(afterLogin)/map/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(route)/(afterLogin)/map/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ]
+  }
+}

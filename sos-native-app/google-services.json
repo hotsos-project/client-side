@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "19438944332",
+    "project_id": "fcm-test-28c43",
+    "storage_bucket": "fcm-test-28c43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19438944332:android:e5041effa15aec927b34e9",
+        "android_client_info": {
+          "package_name": "com.hotsos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH5es473vNLx0ksIe3AXMo1nS_BCiNEWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19438944332:android:54297ffa3f2b92057b34e9",
+        "android_client_info": {
+          "package_name": "com.parkparkppark.fcmtest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH5es473vNLx0ksIe3AXMo1nS_BCiNEWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
